@@ -1,0 +1,18 @@
+{
+    "stories": [
+        {
+            "story_id": 1,
+            "story_title": "Mars Exploration",
+            "story_thumbnail": " ",
+            "questions": [
+                {
+                    "question_id": 1,
+                    "question_order": "A",
+                    "prompt": "Your spacecraft, the U.S. Ambassador, "
+
+                }
+            ]
+
+        }
+    ]
+}
