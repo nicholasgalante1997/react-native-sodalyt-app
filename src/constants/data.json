@@ -1,0 +1,222 @@
+{
+    "stories": [
+        {
+            "story_id": 1,
+            "story_title": "Mars Exploration",
+            "story_thumbnail": " ",
+            "questions": [
+                {
+                    "question_id": 1,
+                    "order": 1,
+                    "type": "MBTI",
+                    "spec": "J/P",
+                    "response_type": "binary",
+                    "prompt": "Your spacecraft, the Ambassador, has just entered Mars's atmosphere, and you prepare to land. You detect some commotion, and it appears to be some life form activity, where do you land?",
+                    "answers": [
+                        {
+                            "question_id": 1,
+                            "id": 1,
+                            "raw_value": "J",
+                            "value": 0,
+                            "text": "We try to get as close to where NASA told us to land regardless of life form activity."
+                        },
+                        {
+                            "question_id": 1,
+                            "id": 2,
+                            "raw_value": "P",
+                            "value": 1,
+                            "text": "Close to the activity, let’s see what is going on down there!"
+                        }
+                    ]
+
+                },
+                {
+                    "question_id": 2,
+                    "order": 2,
+                    "type": "MBTI",
+                    "spec": "S/N",
+                    "response_type": "binary",
+                    "prompt": "You've landed safely. Now it's time to set up camp. How do you begin?",
+                    "answers": [
+                        {
+                            "question_id": 2,
+                            "id": 3,
+                            "raw_value": "S",
+                            "value": 0,
+                            "text": "Everyone starts with step 1 as instructed in the manual and during training."
+                        },
+                        {
+                            "question_id": 2,
+                            "id": 4,
+                            "raw_value": "N",
+                            "value": 1,
+                            "text": "Work with the team to figure out what needs to be done and get to it; manual can be referenced as needed."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 3,
+                    "order": 3,
+                    "type": "Kearsey",
+                    "spec": "Archetypes (4)",
+                    "response_type": "categorical",
+                    "prompt": "Great, camp is ready!  Now for some food, what do you want to cook tonight?",
+                    "answers": [
+                        {
+                            "question_id": 3,
+                            "id": 5,
+                            "raw_value": "The Artist/The Explorer",
+                            "value": ["ISTP", "ISFP", "ESTP", "ESFP"],
+                            "text": "Forage for what is available on Mars."
+                        },
+                        {
+                            "question_id": 3,
+                            "id": 6,
+                            "raw_value": "The Guardian/The Sentinel",
+                            "value": ["ISTJ", "ISFJ", "ESTJ", "ESFJ"],
+                            "text": "Let's get ahead and meal prep for the whole week."
+                        },
+                        {
+                            "question_id": 3,
+                            "id": 7,
+                            "raw_value": "The Rationalist/The Analyst",
+                            "value": ["INTJ", "INTP", "ENTJ", "ESFP"],
+                            "text": "We should stick to the ration guide prepped by NASA."
+                        },
+                        {
+                            "question_id": 3,
+                            "id": 8,
+                            "raw_value": "The Idealist/The Diplomat",
+                            "value": ["INFJ", "INFP", "ENFJ", "ENFP"],
+                            "text": "This is a huge achievement, let's have a feast and celebrate right."
+                        }
+                    ]
+                }, 
+                {
+                    "question_id": 4,
+                    "order": 4,
+                    "type": "MBTI",
+                    "spec": "T/F",
+                    "response_type": "binary",
+                    "prompt": "Lights go out on your ship!  Uh-oh, you’ve run out of your power source and everyone wants to go explore for sodalyt, a mineral power source. What do you want to do?",
+                    "answers": [
+                        {
+                            "question_id": 4,
+                            "id": 9,
+                            "raw_value": "T",
+                            "value": 0,
+                            "text": "I think we should be safe and use what we have on the ship to rig an alternate generator; no need to risk the team on an exploration."
+                        },
+                        {
+                            "question_id": 4,
+                            "id": 10,
+                            "raw_value": "F",
+                            "value": 1,
+                            "text": "If we all go together we will be able to figure out something with our collective brain power."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 5,
+                    "order": 5,
+                    "type": "MBTI",
+                    "spec": "E/I",
+                    "response_type": "binary",
+                    "prompt": "You weren't able to acquire a power source and time is running out.  What's next?",
+                    "answers": [
+                        {
+                            "question_id": 5,
+                            "id": 11,
+                            "raw_value": "E",
+                            "value": 0,
+                            "text": "Time to make contact with the life forms you saw when you landed.  They have to have something powering their camp."
+                        },
+                        {
+                            "question_id": 5,
+                            "id": 12,
+                            "raw_value": "I",
+                            "value": 1,
+                            "text": "Keep trying to call NASA. If they don’t answer, then we abandon mission and go back to earth."
+                        }
+                    ] 
+                },
+                {
+                    "question_id": 6,
+                    "order": 6,
+                    "type": "Kearsey",
+                    "spec": "Archetypal (4)",
+                    "response_type": "categorical",
+                    "prompt": "You told NASA the situation and the said try the life forms.  Who do you want to lead you on a diplomatic mission?",
+                    "answers": [
+                        {
+                            "question_id": 6,
+                            "id": 13,
+                            "raw_value": "The Artist/The Explorer",
+                            "value": ["ISTP", "ISFP", "ESTP", "ESFP"],
+                            "text": "The Artist; The anthropologist of the group who is there to learn about cultures and any ancient civilizations."
+                        },
+                        {
+                            "question_id": 6,
+                            "id": 14,
+                            "raw_value": "The Guardian/The Sentinel",
+                            "value": ["ISTJ", "ISFJ", "ESTJ", "ESFJ"],
+                            "text": "The Guardian; The doctor of the group, values the health of the team above all else."
+                        },
+                        {
+                            "question_id": 6,
+                            "id": 15,
+                            "raw_value": "The Rationalist/The Analyst",
+                            "value": ["INTJ", "INTP", "ENTJ", "ESFP"],
+                            "text": "The Rationalist; Your engineer is the unbiased, objective, unemotional one in the group."
+                        },
+                        {
+                            "question_id": 6,
+                            "id": 16,
+                            "raw_value": "The Idealist/The Diplomat",
+                            "value": ["INFJ", "INFP", "ENFJ", "ENFP"],
+                            "text": "The Idealist; The pilot who is adventurous and optimistic that with grit things will turn out okay."
+                        }
+                    ] 
+                },
+                {
+                    "question_id": 7,
+                    "order": 7,
+                    "type": "Kearsey",
+                    "spec": "Archetypal (4)",
+                    "response_type": "categorical",
+                    "prompt": "What is your negotiation tactic when you meet the aliens?  Put in order of priority of what seems like the best route, to the worst route of action.",
+                    "answers": [
+                        {
+                            "question_id": 7,
+                            "id": 17,
+                            "raw_value": "The Artist/The Explorer",
+                            "value": ["ISTP", "ISFP", "ESTP", "ESFP"],
+                            "text": "The Artist; The anthropologist of the group who is there to learn about cultures and any ancient civilizations."
+                        },
+                        {
+                            "question_id": 6,
+                            "id": 14,
+                            "raw_value": "The Guardian/The Sentinel",
+                            "value": ["ISTJ", "ISFJ", "ESTJ", "ESFJ"],
+                            "text": "The Guardian; The doctor of the group, values the health of the team above all else."
+                        },
+                        {
+                            "question_id": 6,
+                            "id": 15,
+                            "raw_value": "The Rationalist/The Analyst",
+                            "value": ["INTJ", "INTP", "ENTJ", "ESFP"],
+                            "text": "The Rationalist; Your engineer is the unbiased, objective, unemotional one in the group."
+                        },
+                        {
+                            "question_id": 6,
+                            "id": 16,
+                            "raw_value": "The Idealist/The Diplomat",
+                            "value": ["INFJ", "INFP", "ENFJ", "ENFP"],
+                            "text": "The Idealist; The pilot who is adventurous and optimistic that with grit things will turn out okay."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
