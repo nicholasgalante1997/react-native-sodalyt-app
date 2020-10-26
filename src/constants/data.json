@@ -191,28 +191,172 @@
                             "id": 17,
                             "raw_value": "The Artist/The Explorer",
                             "value": ["ISTP", "ISFP", "ESTP", "ESFP"],
-                            "text": "The Artist; The anthropologist of the group who is there to learn about cultures and any ancient civilizations."
+                            "text": "Check out the alien’s bar, do some karaoke, learn the language, and remember to ask about their power source."
                         },
                         {
-                            "question_id": 6,
-                            "id": 14,
+                            "question_id": 7,
+                            "id": 18,
                             "raw_value": "The Guardian/The Sentinel",
                             "value": ["ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-                            "text": "The Guardian; The doctor of the group, values the health of the team above all else."
+                            "text": "March directly into the alien camp and ask to speak to their leader, there's no time to waste."
                         },
                         {
-                            "question_id": 6,
-                            "id": 15,
+                            "question_id": 7,
+                            "id": 19,
                             "raw_value": "The Rationalist/The Analyst",
                             "value": ["INTJ", "INTP", "ENTJ", "ESFP"],
-                            "text": "The Rationalist; Your engineer is the unbiased, objective, unemotional one in the group."
+                            "text": "Recon around the area before we enter the alien camp."
                         },
                         {
-                            "question_id": 6,
-                            "id": 16,
+                            "question_id": 7,
+                            "id": 20,
                             "raw_value": "The Idealist/The Diplomat",
                             "value": ["INFJ", "INFP", "ENFJ", "ENFP"],
-                            "text": "The Idealist; The pilot who is adventurous and optimistic that with grit things will turn out okay."
+                            "text": "Find something in camp you can trade with them."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 8,
+                    "order": 7.10,
+                    "type": "MBTI",
+                    "spec": "N/S",
+                    "response_type": "binary",
+                    "prompt": "Choose your location to start gathering the intel…",
+                    "answers": [
+                        {
+                            "question_id": 8,
+                            "id": 21,
+                            "raw_value": "N",
+                            "value": 0,
+                            "text": "Your instincts tell you to go to the right."
+                        },
+                        {
+                            "question_id": 8,
+                            "id": 22,
+                            "raw_value": "S",
+                            "value": 1,
+                            "text": "You choose to follow an alien sign with what seems like arrows pointing to the left"
+                        }
+                    ]
+                },
+                {
+                    "question_id": 9,
+                    "order": 7.11,
+                    "type": "MBTI",
+                    "spec": "T/F",
+                    "response_type": "binary",
+                    "prompt": "You've wound up in the middle of the city somehow, what is your next move?",
+                    "answers": [
+                        {
+                            "question_id": 9,
+                            "id": 23,
+                            "raw_value": "T",
+                            "value": 0,
+                            "text": "Ask an alien for directions to the leader."
+                        },
+                        {
+                            "question_id": 9,
+                            "id": 24,
+                            "raw_value": "F",
+                            "value": 1,
+                            "text": "Follow the masses...there seems to be something going on up ahead"
+                        }
+                    ]
+                },
+                {
+                    "question_id": 10,
+                    "order": 7.12,
+                    "type": "MBTI",
+                    "spec": "E/I",
+                    "response_type": "binary",
+                    "prompt": "Behold!  You made it to the leader of the aliens and a crowd of his advisors!",
+                    "answers": [
+                        {
+                            "question_id": 10,
+                            "id": 25,
+                            "raw_value": "E",
+                            "value": 0,
+                            "text": "You start the conversation asking about living on mars hoping that your sociability and friendliness will win them over."
+                        },
+                        {
+                            "question_id": 10,
+                            "id": 26,
+                            "raw_value": "I",
+                            "value": 1,
+                            "text": "You ask for a private meeting where you can tell them about your power problem."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 11,
+                    "order": 7.13,
+                    "type": "MBTI",
+                    "spec": "J/P",
+                    "response_type": "binary",
+                    "prompt": "The aliens offer to help you, but they won’t reveal the secret to their power source.  Which option do you choose?",
+                    "answers": [
+                        {
+                            "question_id": 11,
+                            "id": 27,
+                            "raw_value": "J",
+                            "value": 0,
+                            "text": "They fix your power, but you don’t know how they fix it."
+                        },
+                        {
+                            "question_id": 11,
+                            "id": 28,
+                            "raw_value": "P",
+                            "value": 1,
+                            "text": "You live with them until you can figure out how to fix yourself."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 12,
+                    "order": 7.20,
+                    "type": "MBTI",
+                    "spec": "F/T",
+                    "response_type": "binary",
+                    "prompt": "What do you choose to trade…",
+                    "answers": [
+                        {
+                            "question_id": 12,
+                            "id": 29,
+                            "raw_value": "F",
+                            "value": 0,
+                            "text": "Something from earth with sentimental value."
+                        },
+                        {
+                            "question_id": 12,
+                            "id": 30,
+                            "raw_value": "T",
+                            "value": 1,
+                            "text": "Some seeds to grow new foods."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 13,
+                    "order": 7.21,
+                    "type": "MBTI",
+                    "spec": "S/N",
+                    "response_type": "binary",
+                    "prompt": "You’ve made it to the city with your trade goods.  Which way do you go?",
+                    "answers": [
+                        {
+                            "question_id": 12,
+                            "id": 31,
+                            "raw_value": "S",
+                            "value": 0,
+                            "text": "Your instincts tell you to go to the right."
+                        },
+                        {
+                            "question_id": 12,
+                            "id": 32,
+                            "raw_value": "T",
+                            "value": 1,
+                            "text": "Some seeds to grow new foods."
                         }
                     ]
                 }
