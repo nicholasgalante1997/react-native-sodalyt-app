@@ -8,6 +8,7 @@ import * as Font from 'expo-font'
 import ExampleFonts from './src/screens/ExampleFonts'
 import MainButton from './src/components/custom/MainButton'
 import Colors from './src/constants/Colors'
+import ColorSwatch from './src/screens/ColorSwatch'
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -51,18 +52,19 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.styledText}>Open up App.js to start working on your app!</Text>
-      <MainButton onPress={toggleExampleFontScreen}>Show Example Fonts</MainButton>
-      <StatusBar style="auto" />
-    </View>
+    // <View style={styles.container}>
+    //   <Text style={styles.styledText}>Open up App.js to start working on your app!</Text>
+    //   <MainButton onPress={toggleExampleFontScreen}>Show Example Fonts</MainButton>
+    //   <StatusBar style="auto" />
+    // </View>
+    <ColorSwatch />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.ocean.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },

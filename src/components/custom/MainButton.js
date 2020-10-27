@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 
+import Colors from '../../constants/Colors'
+
 
 const MainButton = (props) => {
     return ( 
         <TouchableOpacity onPress={props.onPress}>
-            <View style={styles.button}>
+            <View style={{...styles.button, ...props.style}}>
                 <Text style={styles.buttonText}>{props.children}</Text>
             </View>
         </TouchableOpacity>
@@ -14,7 +16,6 @@ const MainButton = (props) => {
  
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "#4E87F2",
         paddingVertical: 12,
         paddingHorizontal: 30,
         borderRadius: 25

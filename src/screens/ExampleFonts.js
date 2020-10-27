@@ -31,7 +31,7 @@ styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: 10,
-        backgroundColor: Colors.primary
+        backgroundColor: Colors.ocean.primary
     },
     buttonHolder: {
         paddingVertical: 10
