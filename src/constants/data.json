@@ -345,20 +345,499 @@
                     "prompt": "You’ve made it to the city with your trade goods.  Which way do you go?",
                     "answers": [
                         {
-                            "question_id": 12,
+                            "question_id": 13,
                             "id": 31,
                             "raw_value": "S",
                             "value": 0,
                             "text": "Your instincts tell you to go to the right."
                         },
                         {
-                            "question_id": 12,
+                            "question_id": 13,
                             "id": 32,
-                            "raw_value": "T",
+                            "raw_value": "N",
                             "value": 1,
-                            "text": "Some seeds to grow new foods."
+                            "text": "You choose the alien sign with arrows pointing to the left"
                         }
                     ]
+                },
+                {
+                    "question_id": 14,
+                    "order": 7.22,
+                    "type": "MBTI",
+                    "spec": "E/I",
+                    "response_type": "binary",
+                    "prompt": "Behold!  You made it to the leader of the aliens!",
+                    "answers": [
+                        {
+                            "question_id": 14,
+                            "id": 33,
+                            "raw_value": "E",
+                            "value": 0,
+                            "text": "You start the conversation asking about living on mars hoping that your sociability will win them over."
+                        },
+                        {
+                            "question_id": 14,
+                            "id": 34,
+                            "raw_value": "I",
+                            "value": 1,
+                            "text": "You ask for a private meeting where you can tell them about your power problem."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 15,
+                    "order": 7.23,
+                    "type": "MBTI",
+                    "spec": "J/P",
+                    "response_type": "binary",
+                    "prompt": "The aliens take your gift of trade and offer to help us yet they are not yet ready to share the secret behind their power.",
+                    "answers": [
+                        {
+                            "question_id": 15,
+                            "id": 35,
+                            "raw_value": "J",
+                            "value": 0,
+                            "text": "You take them up on offer for their engineer to go fix it for you."
+                        },
+                        {
+                            "question_id": 15,
+                            "id": 36,
+                            "raw_value": "P",
+                            "value": 1,
+                            "text": "You agree to live in their city with them until you can figure out how to fix it."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 16,
+                    "order": 7.30,
+                    "type": "MBTI",
+                    "spec": "E/I",
+                    "response_type": "binary",
+                    "prompt": "You and your crewmate have trudged the city and marched directly to the heart of the city. You see the alien leader. What do you do next?",
+                    "answers": [
+                        {
+                            "question_id": 16,
+                            "id": 37,
+                            "raw_value": "E",
+                            "value": 0,
+                            "text": "You start the conversation asking about living on mars hoping that your sociability will win them over."
+                        },
+                        {
+                            "question_id": 16,
+                            "id": 38,
+                            "raw_value": "I",
+                            "value": 1,
+                            "text": "You tell them you have a problem with your power source and ask for help."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 17,
+                    "order": 7.31,
+                    "type": "MBTI",
+                    "spec": "F/T",
+                    "response_type": "binary",
+                    "prompt": "They offer you a drink before talking, what do you do?",
+                    "answers": [
+                        {
+                            "question_id": 17,
+                            "id": 39,
+                            "raw_value": "F",
+                            "value": 0,
+                            "text": "You don’t want to be rude and accept taking a sip."
+                        },
+                        {
+                            "question_id": 17,
+                            "id": 40,
+                            "raw_value": "T",
+                            "value": 1,
+                            "text": "You politely decline since you do not know what it will do to you."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 18,
+                    "order": 7.32,
+                    "type": "MBTI",
+                    "spec": "S/N",
+                    "response_type": "binary",
+                    "prompt": "The aliens offer to help.  Which option do you choose?",
+                    "answers": [
+                        {
+                            "question_id": 18,
+                            "id": 41,
+                            "raw_value": "S",
+                            "value": 0,
+                            "text": "They offer for their engineer to walk you through schematics."
+                        },
+                        {
+                            "question_id": 18,
+                            "id": 42,
+                            "raw_value": "N",
+                            "value": 1,
+                            "text": "They can come to your camp and you can co-create a solution."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 19,
+                    "order": 7.33,
+                    "type": "MBTI",
+                    "spec": "J/P",
+                    "response_type": "binary",
+                    "prompt": "You’ve got the help from the alien’s and now it is time to get the colony going. What do you do?",
+                    "answers": [
+                        {
+                            "question_id": 19,
+                            "id": 43,
+                            "raw_value": "J",
+                            "value": 0,
+                            "text": "We follow the guidelines outlined by NASA and get things back on track to meet our deadlines."
+                        },
+                        {
+                            "question_id": 19,
+                            "id": 44,
+                            "raw_value": "P",
+                            "value": 1,
+                            "text": "We continue to work with aliens on adjusting to life on Mars."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 20,
+                    "order": 7.40,
+                    "type": "MBTI",
+                    "spec": "J/P",
+                    "response_type": "binary",
+                    "prompt": "You enter the bar;",
+                    "answers": [
+                        {
+                            "question_id": 20,
+                            "id": 45,
+                            "raw_value": "J",
+                            "value": 0,
+                            "text": "You look around to assess the situation with your back to the door just in case."
+                        },
+                        {
+                            "question_id": 20,
+                            "id": 46,
+                            "raw_value": "P",
+                            "value": 1,
+                            "text": "You go right to the middle of the action and order the same thing he is having!"
+                        }
+                    ]
+                },
+                {
+                    "question_id": 21,
+                    "order": 7.41,
+                    "type": "MBTI",
+                    "spec": "F/T",
+                    "response_type": "binary",
+                    "prompt": "Oh no you see an alien who appears to be choking what do you do?",
+                    "answers": [
+                        {
+                            "question_id": 21,
+                            "id": 47,
+                            "raw_value": "F",
+                            "value": 0,
+                            "text": "Go give them the heimlich maneuver of course!"
+                        },
+                        {
+                            "question_id": 21,
+                            "id": 48,
+                            "raw_value": "T",
+                            "value": 1,
+                            "text": "I yell for help because they are an alien I don’t know what organs they have!"
+                        }
+                    ]
+                },
+                {
+                    "question_id": 22,
+                    "order": 7.42,
+                    "type": "MBTI",
+                    "spec": "E/I",
+                    "response_type": "binary",
+                    "prompt": "Whew!  The alien is okay and the crowd is cheering.  All alien eyes are on you.",
+                    "answers": [
+                        {
+                            "question_id": 22,
+                            "id": 49,
+                            "raw_value": "E",
+                            "value": 0,
+                            "text": "You help the alien up and say “another round!” and then you ask the alien for some help with your power source."
+                        },
+                        {
+                            "question_id": 22,
+                            "id": 50,
+                            "raw_value": "I",
+                            "value": 1,
+                            "text": "You don’t like to be the center of attention, you slink away to the bar and ask the bartender for help with a power source."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 23,
+                    "order": 7.43,
+                    "type": "MBTI",
+                    "spec": "S/N",
+                    "response_type": "binary",
+                    "prompt": "The aliens offer to help. Which option do you choose?",
+                    "answers": [
+                        {
+                            "question_id": 23,
+                            "id": 51,
+                            "raw_value": "S",
+                            "value": 0,
+                            "text": "They offer for their engineer to walk you through schematics."
+                        },
+                        {
+                            "question_id": 23,
+                            "id": 52,
+                            "raw_value": "N",
+                            "value": 1,
+                            "text": "They can come to your camp and you can co-create a solution."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 24,
+                    "order": 8,
+                    "type": "MBTI",
+                    "spec": "S/N",
+                    "response_type": "binary",
+                    "prompt": "You’re living the good life on Mars, now NASA wants you to work on your mission to find sodalyt a precious mineral. Where do you start looking?",
+                    "answers": [
+                        {
+                            "question_id": 24,
+                            "id": 53,
+                            "raw_value": "S",
+                            "value": 0,
+                            "text": "You scour the geological surveys, run the data with your experts, have the Mars rover do an initial pass at specific locations."
+                        },
+                        {
+                            "question_id": 24,
+                            "id": 54,
+                            "raw_value": "N",
+                            "value": 1,
+                            "text": "You talk to local Martians about minerals, listen to their exploration stories, and decide on some areas to survey with them based upon what they have personally seen."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 25,
+                    "order": 9,
+                    "type": "MBTI",
+                    "spec": "F/T",
+                    "response_type": "binary",
+                    "prompt": "Eureka! You’ve found a massive amount of the mineral.  Do send it all back to Earth?",
+                    "answers": [
+                        {
+                            "question_id": 25,
+                            "id": 55,
+                            "raw_value": "F",
+                            "value": 0,
+                            "text": "You split it 50 / 50 with the aliens, let NASA know half is coming to Earth, and everyone is happy."
+                        },
+                        {
+                            "question_id": 25,
+                            "id": 56,
+                            "raw_value": "T",
+                            "value": 1,
+                            "text": "You decide not to send it all back because you can use it as leverage to further diplomatic relations with the Aliens."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 26,
+                    "order": 10,
+                    "type": "MBTI",
+                    "spec": "J/P",
+                    "response_type": "binary",
+                    "prompt": "The Martians tell you about a once in a million year meteor shower coming next week.  NASA has specific experiments that you need to run next week which will make you miss the meteor shower.  What do you do?",
+                    "answers": [
+                        {
+                            "question_id": 26,
+                            "id": 57,
+                            "raw_value": "J",
+                            "value": 0,
+                            "text": "I ask the aliens to record the shower, after-all I have deadlines I need to meet with these experiments."
+                        },
+                        {
+                            "question_id": 26,
+                            "id": 58,
+                            "raw_value": "P",
+                            "value": 1,
+                            "text": "I decide to go to the meteor shower and will make up a reason why the experiments were delayed."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 27,
+                    "order": 11,
+                    "type": "MBTI",
+                    "spec": "E/I",
+                    "response_type": "binary",
+                    "prompt": "Wow, 6 months went by fast!  Everyone is missing the Earth holidays. How do you choose to recognize the holiday season?",
+                    "answers": [
+                        {
+                            "question_id": 27,
+                            "id": 59,
+                            "raw_value": "E",
+                            "value": 0,
+                            "text": "Throw a Thanksgiving dinner of course with the Aliens and teach them about Black Friday sales shopping on Earth."
+                        },
+                        {
+                            "question_id": 27,
+                            "id": 60,
+                            "raw_value": "I",
+                            "value": 1,
+                            "text": "I decorate my cabin and cook a meal for a few close friends."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 28,
+                    "order": 12,
+                    "type": "Five Rs",
+                    "spec": "Responsibility",
+                    "response_type": "binary",
+                    "prompt": "Well, Now its been 1 year since landing on Mars.  How have you kept in touch with the aliens?",
+                    "answers": [
+                        {
+                            "question_id": 28,
+                            "id": 61,
+                            "raw_value": "null",
+                            "value": 0,
+                            "text": "I made sure we had a plan to keep communications open."
+                        },
+                        {
+                            "question_id": 28,
+                            "id": 62,
+                            "raw_value": "null",
+                            "value": 1,
+                            "text": "I waited for the alien to open communications when they saw fit."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 29,
+                    "order": 13,
+                    "type": "Five Rs",
+                    "spec": "Respect",
+                    "response_type": "categorical",
+                    "prompt": "How often did you keep in touch?",
+                    "answers": [
+                        {
+                            "question_id": 29,
+                            "id": 63,
+                            "raw_value": "null",
+                            "value": 0,
+                            "text": "Weekly"
+                        },
+                        {
+                            "question_id": 29,
+                            "id": 64,
+                            "raw_value": "null",
+                            "value": 1,
+                            "text": "Monthly"
+                        },
+                        {
+                            "question_id": 29,
+                            "id": 65,
+                            "raw_value": "null",
+                            "value": 2,
+                            "text": "We're Cohabitating!"
+                        }
+                    ]
+                },
+                {
+                    "question_id": 30,
+                    "order": 14,
+                    "type": "Five Rs",
+                    "spec": "Recognition",
+                    "response_type": "categorical",
+                    "prompt": "For your 1 year anniversary, how do you recognize the alien’s for their help?",
+                    "answers": [
+                        {
+                            "question_id": 30,
+                            "id": 66,
+                            "raw_value": "null",
+                            "value": 0,
+                            "text": "A Party!"
+                        },
+                        {
+                            "question_id": 30,
+                            "id": 67,
+                            "raw_value": "null",
+                            "value": 1,
+                            "text": "An Earthly Token"
+                        },
+                        {
+                            "question_id": 30,
+                            "id": 68,
+                            "raw_value": "null",
+                            "value": 2,
+                            "text": "A Formal Ceremony at Our Base."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 31,
+                    "order": 15,
+                    "type": "Five Rs",
+                    "spec": "ReAssurance",
+                    "response_type": "binary",
+                    "prompt": "Egads!  When you thank the alien’s they tell you they have a virus they can’t control. What do you say to them?",
+                    "answers": [
+                        {
+                            "question_id": 31,
+                            "id": 69,
+                            "raw_value": "null",
+                            "value": 0,
+                            "text": "You reassure them everything is going to be okay after-all you’ve seen viruses on earth before."
+                        },
+                        {
+                            "question_id": 31,
+                            "id": 70,
+                            "raw_value": "null",
+                            "value": 1,
+                            "text": "You tell them you are not sure what to do, but that you will help them figure it out together."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 32,
+                    "order": 16,
+                    "type": "Five Rs",
+                    "spec": "Resilience",
+                    "response_type": "binary",
+                    "prompt": "You get the other Earthlings together and tell them the situation with the alien virus. What do you do next?",
+                    "answers": [
+                        {
+                            "question_id": 32,
+                            "id": 71,
+                            "raw_value": "null",
+                            "value": 0,
+                            "text": "Leave everything where it is and get back to Earth as quickly as possible; help the aliens from a quarantine pod on Earth."
+                        },
+                        {
+                            "question_id": 32,
+                            "id": 72,
+                            "raw_value": "null",
+                            "value": 1,
+                            "text": "You set up labs and help the alien’s get through the virus; after-all you would not have survived if it were not for their help."
+                        }
+                    ]
+                },
+                {
+                    "question_id": 33,
+                    "order": 17,
+                    "type": "Final Slide",
+                    "spec": "null",
+                    "response_type": "null",
+                    "prompt": "Fantastic!  You were able to help them through solving their virus problem and have been able to close out your mission colonizing mars, finding sodalyt the precious mineral, and setting up diplomatic relations with an alien race!",
+                    "answers": []
                 }
             ]
         }
