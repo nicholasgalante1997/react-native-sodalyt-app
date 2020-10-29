@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import {AppLoading} from 'expo'
@@ -9,6 +9,7 @@ import ExampleFonts from './src/screens/ExampleFonts'
 import MainButton from './src/components/custom/MainButton'
 import Colors from './src/constants/Colors'
 import ColorSwatch from './src/screens/ColorSwatch'
+import Data from './src/constants/data'
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -29,11 +30,11 @@ const fetchFonts = () => {
   })
 }
 
-
-export default function App() {
+export default function App(props) {
 
   const [fontLoaded, setFontLoaded] = useState(false)
   const [showExampleFonts, setShowExampleFonts] = useState(false)
+  const [questionsArray, setQuestionsArray] = useState(Data.stories[0])
 
   const toggleExampleFontScreen = () => {
     setShowExampleFonts(!showExampleFonts)
@@ -51,13 +52,13 @@ export default function App() {
     return <ExampleFonts onPress={toggleExampleFontScreen} /> 
   }
 
+  console.log(questionsArray)
   return (
-    // <View style={styles.container}>
-    //   <Text style={styles.styledText}>Open up App.js to start working on your app!</Text>
-    //   <MainButton onPress={toggleExampleFontScreen}>Show Example Fonts</MainButton>
-    //   <StatusBar style="auto" />
-    // </View>
-    <ColorSwatch />
+    <View style={styles.container}>
+      <Text style={styles.styledText}>Open up App.js to start working on your app!</Text>
+      <MainButton style={styles.button} onPress={toggleExampleFontScreen}>Show Example Fonts</MainButton>
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
@@ -72,5 +73,8 @@ const styles = StyleSheet.create({
     fontFamily: 'tommy-bold',
     color: 'white',
     paddingVertical: 25
+  },
+  button: {
+    backgroundColor: Colors.ocean.secondary,
   }
 });

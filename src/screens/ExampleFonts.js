@@ -19,7 +19,7 @@ const ExampleFonts = (props) => {
             <Text style={{fontFamily: 'tommy-thin', color: 'white', fontSize: 36}}>Tommy Thin</Text>
             <Text style={{fontFamily: 'tommy-thin-outline', color: 'white', fontSize: 36}}>Tommy Thin Outline</Text>
             <View style={styles.buttonHolder}>
-                <MainButton onPress={props.onPress}>Toggle Screen</MainButton>
+                <MainButton style={{backgroundColor: Colors.ocean.secondary}}onPress={props.onPress}>Toggle Screen</MainButton>
             </View>
         </View>
      );

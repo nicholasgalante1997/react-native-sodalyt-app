@@ -8,7 +8,7 @@ const ColorSwatch = (props) => {
     return ( 
         <View style={styles.container}>
             <Text style={styles.text}>
-                Hi Ashley, nice blunt!
+                Brigid you look so hot!
             </Text>
             <View style={styles.buttonHolder}>
                 <MainButton style={styles.button}>Click Me!</MainButton>
@@ -25,7 +25,7 @@ styles = StyleSheet.create({
         alignItems: "center"
     },
     text: {
-        color: 'white',
+        color: 'black',
         fontSize: 32,
         fontFamily: 'tommy-bold'
     },
