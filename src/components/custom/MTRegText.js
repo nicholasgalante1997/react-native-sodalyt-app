@@ -9,7 +9,7 @@ const MTRegularText = (props) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontFamily: 'tommy-regular',
+        fontFamily: 'tommy-reg',
         color: 'white'
     }
 })

@@ -840,6 +840,24 @@ export default {
                     "answers": []
                 }
             ]
+        },
+        {
+            "story_id": 2,
+            "story_title": "Atlantis Discovery",
+            "story_thumbnail": " ",
+            "questions": []
+        },
+        {
+            "story_id": 3,
+            "story_title": "Monopoly Mogul",
+            "story_thumbnail": " ",
+            "questions": []
+        },
+        {
+            "story_id": 4,
+            "story_title": "History Heights",
+            "story_thumbnail": " ",
+            "questions": []
         }
     ]
 }

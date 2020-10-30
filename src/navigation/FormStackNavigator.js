@@ -6,6 +6,7 @@ import Colors from '../constants/data'
 
 import LandingScreen from '../screens/LandingScreen'
 import EmailGatherScreen from '../screens/EmailGatherScreen'
+import StoryCardHolderScreen from '../screens/StoryCardHolderScreen'
 
 const FormStackNavigator = createStackNavigator({
     Welcome: {
@@ -16,6 +17,12 @@ const FormStackNavigator = createStackNavigator({
     },
     Email: {
         screen: EmailGatherScreen,
+        navigationOptions: {
+            headerShown: false
+        }
+    },
+    StoryCardPage: {
+        screen: StoryCardHolderScreen,
         navigationOptions: {
             headerShown: false
         }

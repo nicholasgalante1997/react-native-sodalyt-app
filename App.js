@@ -5,12 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import {AppLoading} from 'expo'
 import * as Font from 'expo-font'
 
-import ExampleFonts from './src/screens/ExampleFonts'
-import MainButton from './src/components/custom/MainButton'
 import Colors from './src/constants/Colors'
-import ColorSwatch from './src/screens/ColorSwatch'
-import Data from './src/constants/data'
-import LandingScreen from './src/screens/LandingScreen'
 import FormStackNavigator from './src/navigation/FormStackNavigator'
 
 const fetchFonts = () => {
@@ -35,8 +30,8 @@ const fetchFonts = () => {
 export default function App(props) {
 
   const [fontLoaded, setFontLoaded] = useState(false)
-  const [showExampleFonts, setShowExampleFonts] = useState(false)
-  const [questionsArray, setQuestionsArray] = useState(Data.stories[0])
+  // const [showExampleFonts, setShowExampleFonts] = useState(false)
+  // const [questionsArray, setQuestionsArray] = useState(Data)
 
   const toggleExampleFontScreen = () => {
     setShowExampleFonts(!showExampleFonts)
@@ -50,18 +45,7 @@ export default function App(props) {
     />
   }
 
-  if (showExampleFonts) {
-    return <ExampleFonts onPress={toggleExampleFontScreen} /> 
-  }
-
-  console.log(questionsArray)
   return (
-    // <View style={styles.container}>
-    //   <Text style={styles.styledText}>Open up App.js to start working on your app!</Text>
-    //   <MainButton style={styles.button} onPress={toggleExampleFontScreen}>Show Example Fonts</MainButton>
-    //   <StatusBar style="auto" />
-    // </View>
-    // <LandingScreen />
     <FormStackNavigator />
   );
 }

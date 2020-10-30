@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View, StyleSheet, Dimensions, Image} from 'react-native'
 
 import {AntDesign} from '@expo/vector-icons'
@@ -7,7 +7,18 @@ import MTBoldText from '../components/custom/MTBoldText'
 import MBLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 
+const dummyUser = {
+    userEmail: ""
+}
+
 const EmailGatherScreen = (props) => {
+
+    const [currentUser, setCurrentUser] = useState({})
+
+    const pushToStoryPage = (OAuthObject) => {
+        props.navigation.navigate({routeName: 'StoryCardPage'})
+    }
+
     return ( 
         <View style={styles.container}>
             <View style={styles.banner}>
@@ -34,17 +45,20 @@ const EmailGatherScreen = (props) => {
                     name="facebook-square" 
                     size={48} 
                     color="white" 
-                    style={styles.icon} />
+                    style={styles.icon} 
+                    onPress={pushToStoryPage} />
                     <AntDesign 
                     name="google" 
                     size={48} 
                     color="white" 
-                    style={styles.icon} />
+                    style={styles.icon} 
+                    onPress={pushToStoryPage} />
                     <AntDesign 
                     name="instagram" 
                     size={48} 
                     color="white" 
-                    style={styles.icon} />
+                    style={styles.icon} 
+                    onPress={pushToStoryPage} />
                 </View>
                 <View style={styles.arrowHolder}>
                     <AntDesign 
