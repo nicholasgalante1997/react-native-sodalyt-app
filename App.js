@@ -10,6 +10,8 @@ import MainButton from './src/components/custom/MainButton'
 import Colors from './src/constants/Colors'
 import ColorSwatch from './src/screens/ColorSwatch'
 import Data from './src/constants/data'
+import LandingScreen from './src/screens/LandingScreen'
+import FormStackNavigator from './src/navigation/FormStackNavigator'
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -54,11 +56,13 @@ export default function App(props) {
 
   console.log(questionsArray)
   return (
-    <View style={styles.container}>
-      <Text style={styles.styledText}>Open up App.js to start working on your app!</Text>
-      <MainButton style={styles.button} onPress={toggleExampleFontScreen}>Show Example Fonts</MainButton>
-      <StatusBar style="auto" />
-    </View>
+    // <View style={styles.container}>
+    //   <Text style={styles.styledText}>Open up App.js to start working on your app!</Text>
+    //   <MainButton style={styles.button} onPress={toggleExampleFontScreen}>Show Example Fonts</MainButton>
+    //   <StatusBar style="auto" />
+    // </View>
+    // <LandingScreen />
+    <FormStackNavigator />
   );
 }
 

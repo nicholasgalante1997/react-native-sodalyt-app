@@ -1,7 +1,7 @@
 export default {
     ocean: {
-        primary: '#06235A',
-        secondary: "#4E87F2"
+        primary: '#151F6A',
+        secondary: "#3141B8"
     },
     grassy: {
         primary: '#DAF7A6',
@@ -14,5 +14,9 @@ export default {
     light: {
         primary: '#FBF700',
         secondary: '#00ABFB'
+    },
+    rugged: {
+        primary: '#C54E16',
+        secondary: '#F6A443'
     }
 }

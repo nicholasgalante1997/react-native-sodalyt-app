@@ -8,7 +8,7 @@ const ColorSwatch = (props) => {
     return ( 
         <View style={styles.container}>
             <Text style={styles.text}>
-                Brigid you look so hot!
+                Color Swatch
             </Text>
             <View style={styles.buttonHolder}>
                 <MainButton style={styles.button}>Click Me!</MainButton>

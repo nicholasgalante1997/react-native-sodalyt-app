@@ -770,14 +770,14 @@ export default {
                             "question_id": 30,
                             "id": 67,
                             "raw_value": "null",
-                            "value": 1,
+                            "value": 0,
                             "text": "An Earthly Token"
                         },
                         {
                             "question_id": 30,
                             "id": 68,
                             "raw_value": "null",
-                            "value": 2,
+                            "value": 0,
                             "text": "A Formal Ceremony at Our Base."
                         }
                     ]
