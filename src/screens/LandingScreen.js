@@ -14,16 +14,16 @@ const LandingScreen = (props) => {
             }>
                 <View>
                     <View style={styles.headerImageContainer}>
-                    <Image 
-                    source={require('../images/box_crest_logo.png')}
-                    style={styles.image} 
-                    resizeMode='cover' />
+                        <Image 
+                        source={require('../images/box_crest_logo.png')}
+                        style={styles.image} 
+                        resizeMode='cover' />
                     </View>
                     <View style={styles.imageContainer}>
-                    <Image 
-                    source={require('../images/find_the_right.png')}
-                    style={styles.image} 
-                    resizeMode='cover' />
+                        <Image 
+                        source={require('../images/logo_w_text.png')}
+                        style={styles.image} 
+                        resizeMode='cover' />
                     </View>
                     <View>
                         <MTLightText style={styles.text}>Click Anywhere to Get Started</MTLightText>

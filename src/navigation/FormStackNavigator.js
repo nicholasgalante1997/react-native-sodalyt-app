@@ -15,7 +15,10 @@ const FormStackNavigator = createStackNavigator({
         }
     },
     Email: {
-        screen: EmailGatherScreen
+        screen: EmailGatherScreen,
+        navigationOptions: {
+            headerShown: false
+        }
     }
 })
 
