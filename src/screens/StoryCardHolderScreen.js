@@ -1,13 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import {View, StyleSheet} from 'react-native'
 
 import Colors from '../constants/Colors'
-import DATA from '../constants/data'
+
 import StoryTile from '../components/story/StoryTile'
 import MTRegularText from '../components/custom/MTRegText'
 
+import {useSelector} from 'react-redux'
+
 const StoryCardScreen = (props) => {
-    console.log(DATA.stories.length)
+
+    const currentUser = useSelector(state => state.currentUser)
+    console.log(currentUser)
+
     return ( 
         <View style={styles.container}>
             <MTRegularText>

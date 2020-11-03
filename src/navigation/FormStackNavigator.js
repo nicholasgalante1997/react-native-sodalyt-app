@@ -8,6 +8,8 @@ import LandingScreen from '../screens/LandingScreen'
 import EmailGatherScreen from '../screens/EmailGatherScreen'
 import StoryCardHolderScreen from '../screens/StoryCardHolderScreen'
 
+import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen';
+
 const FormStackNavigator = createStackNavigator({
     Welcome: {
         screen: LandingScreen,
@@ -23,6 +25,12 @@ const FormStackNavigator = createStackNavigator({
     },
     StoryCardPage: {
         screen: StoryCardHolderScreen,
+        navigationOptions: {
+            headerShown: false
+        }
+    },
+    NewUserEmailSignUp: {
+        screen: NewUserEmailSignUpScreen,
         navigationOptions: {
             headerShown: false
         }

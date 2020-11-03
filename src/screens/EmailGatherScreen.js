@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, Dimensions, Image} from 'react-native'
+import {View, StyleSheet, Dimensions, Image} from 'react-native'
 
 import {AntDesign} from '@expo/vector-icons'
 
@@ -7,16 +7,28 @@ import MTBoldText from '../components/custom/MTBoldText'
 import MBLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 
-const dummyUser = {
-    userEmail: ""
+import {useDispatch} from 'react-redux'
+import {setCurrentUser} from '../store/actions/actionCreator'
+
+
+
+const demoUser = {
+    email: "nicholas.galante@sodalyt.com",
+    password: "Sodalyt"
 }
 
 const EmailGatherScreen = (props) => {
 
-    const [currentUser, setCurrentUser] = useState({})
 
-    const pushToStoryPage = (OAuthObject) => {
+    const dispatch = useDispatch();
+
+    const pushToStoryPage = () => {
+        dispatch(setCurrentUser(demoUser))
         props.navigation.navigate({routeName: 'StoryCardPage'})
+    }
+
+    const pushToNewUserEmailScreen = () => {
+        props.navigation.navigate({routeName: 'NewUserEmailSignUp'})
     }
 
     return ( 
@@ -64,7 +76,8 @@ const EmailGatherScreen = (props) => {
                     <AntDesign 
                     name="arrowright" 
                     size={48} 
-                    color="white" />
+                    color="white" 
+                    onPress={pushToNewUserEmailScreen} />
                 </View>
                 <View style={styles.profTextContainer}>
                     <MBLightText>

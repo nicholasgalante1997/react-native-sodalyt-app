@@ -1,12 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 
 import {AppLoading} from 'expo'
 import * as Font from 'expo-font'
-
 import Colors from './src/constants/Colors'
+
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import rootReducer from './src/store/reducers/reducers'
+
 import FormStackNavigator from './src/navigation/FormStackNavigator'
+import {enableScreens} from 'react-native-screens'
+
+enableScreens();
+
+const store = createStore(rootReducer)
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -46,7 +54,9 @@ export default function App(props) {
   }
 
   return (
-    <FormStackNavigator />
+    <Provider store={store}>
+      <FormStackNavigator />
+    </Provider>
   );
 }
 
