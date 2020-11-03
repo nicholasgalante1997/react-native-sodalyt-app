@@ -4,6 +4,7 @@ export default {
             "story_id": 1,
             "story_title": "Mars Exploration",
             "story_thumbnail": " ",
+            "icon": "md-planet",
             "questions": [
                 {
                     "question_id": 1,
@@ -845,18 +846,21 @@ export default {
             "story_id": 2,
             "story_title": "Atlantis Discovery",
             "story_thumbnail": " ",
+            "icon": "md-boat",
             "questions": []
         },
         {
             "story_id": 3,
-            "story_title": "Monopoly Mogul",
+            "story_title": "The New Settlers on Plum Island",
             "story_thumbnail": " ",
+            "icon": "md-cash",
             "questions": []
         },
         {
             "story_id": 4,
-            "story_title": "History Heights",
+            "story_title": "Heights of History",
             "story_thumbnail": " ",
+            "icon": "md-map",
             "questions": []
         }
     ]

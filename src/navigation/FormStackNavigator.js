@@ -7,6 +7,7 @@ import Colors from '../constants/data'
 import LandingScreen from '../screens/LandingScreen'
 import EmailGatherScreen from '../screens/EmailGatherScreen'
 import StoryCardHolderScreen from '../screens/StoryCardHolderScreen'
+import QuestionRenderer from '../components/story/QuestionRenderer'
 
 import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen';
 
@@ -31,6 +32,12 @@ const FormStackNavigator = createStackNavigator({
     },
     NewUserEmailSignUp: {
         screen: NewUserEmailSignUpScreen,
+        navigationOptions: {
+            headerShown: false
+        }
+    },
+    QuestionRenderer: {
+        screen: QuestionRenderer,
         navigationOptions: {
             headerShown: false
         }
