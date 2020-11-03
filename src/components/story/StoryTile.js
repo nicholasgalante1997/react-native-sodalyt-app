@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, TouchableOpacity, StyleSheet} from 'react-native'
-
+import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native'
+import Colors from '../../constants/Colors'
 import MTBoldText from '../custom/MTBoldText'
 
 const StoryTile = (props) => {
@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     gridItem: {
         flex: 1,
         margin: 15,
-        height: 150
+        height: 150,
+        marginVertical: Dimensions.get('window').width / 5,
     },
     container: {
         flex: 1,
@@ -34,11 +35,13 @@ const styles = StyleSheet.create({
         elevation: 3,
         padding: 15,
         justifyContent: 'flex-end',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        backgroundColor: Colors.ocean.secondary
     },
     title: {
         textAlign: 'right',
-        fontSize: 20
+        fontSize: 20,
+        color: 'white'
     } 
 })
 export default StoryTile;
