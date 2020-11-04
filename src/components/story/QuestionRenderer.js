@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
@@ -20,27 +20,39 @@ const QuestionRenderer = (props) => {
     const { questions } = storyInfo;
 
     let content = null;
+    let thisQuestion;
 
     const dispatch = useDispatch();
     const [currentQuestionOrder, setCurrentQuestionOrder] = useState(1)
-    const [thisQuestion, setThisQuestion] = useState(findThisQuestion(currentQuestionOrder))
+    // const [thisQuestion, setThisQuestion] = useState(findThisQuestion(currentQuestionOrder))
     const [chosenAnswer, setChosenAnswer] = useState(null)
     const checkAnswerPush = useSelector(state => state.answers)
 
-    const pushTo = () => {
+    const pushAnswerToRedux = () => {
         dispatch(addAnswer(chosenAnswer));
         setChosenAnswer(null);
-        // setCurrentQuestionOrder(orderNumber);
-        // setThisQuestion(findThisQuestion(orderNumber))
     }
 
-    const defaultBinaryQuestionLayout = () => {
+    const adjustContent = () => {
+        if (currentQuestionOrder < 7){
+            setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
+        }
+    }
+
+    const pushTo = () => {
+        pushAnswerToRedux();
+        adjustContent();
+    }
+
+    const defaultBinaryQuestionLayout = (thisQuestion) => {
         return (
             <View style={styles.defaultBinary}>
             {/* BANNER */}
                 <View style={styles.bannerWrapper}>
                     <View style={styles.banner}>
-                        <MTMediumText style={styles.bannerText}>{thisQuestion.prompt}</MTMediumText>
+                        <MTMediumText style={styles.bannerText}>
+                            {thisQuestion.prompt}
+                        </MTMediumText>
                     </View>
                 </View>
             {/* ANIMATION */}
@@ -74,22 +86,26 @@ const QuestionRenderer = (props) => {
         )
     }
 
+    thisQuestion = findThisQuestion(currentQuestionOrder)
+    content = defaultBinaryQuestionLayout(thisQuestion)
+
     // switch (currentQuestionOrder) {
     //     case 1:
-    //         content = defaultBinaryQuestionLayout()
+    //         thisQuestion = findThisQuestion(currentQuestionOrder)
+    //         content = defaultBinaryQuestionLayout(thisQuestion)
     //         break;
     //     case 2: 
-    //         content = defaultBinaryQuestionLayout()
+    //         thisQuestion = findThisQuestion(currentQuestionOrder)
+    //         content = defaultBinaryQuestionLayout(thisQuestion)
     //     default:
     //         break;
     // }
-
-    content = defaultBinaryQuestionLayout();
 
     console.log("on the mars exploration page", storyInfo, questions)
     console.log("current question", thisQuestion)
     console.log("chosen answer", chosenAnswer)
     console.log("redux state", checkAnswerPush)
+    console.log("current order", currentQuestionOrder)
 
     return (
         // WHOLE SCREEN
@@ -131,9 +147,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',        
         alignItems: 'center',
-        paddingTop: Dimensions.get('window').height / 15
+        paddingTop: 50
     },
     defaultBinary: {
+        marginVertical: 20,
         height: '75%',
         width: '100%'
     },
