@@ -23,8 +23,8 @@ const TestComp = (props) => {
         // make API call with parameters and use promises to get response
         fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result)
-        .catch(error => console.log('error', error));
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error))
     }
     
     return (
