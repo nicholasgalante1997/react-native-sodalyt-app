@@ -10,7 +10,7 @@ import StoryCardHolderScreen from '../screens/StoryCardHolderScreen'
 import QuestionRenderer from '../components/story/QuestionRenderer'
 
 import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen';
-import { Modal } from 'react-native';
+
 
 const FormStackNavigator = createStackNavigator({
     Welcome: {

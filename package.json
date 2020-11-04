@@ -10,7 +10,9 @@
   "dependencies": {
     "@expo/vector-icons": "^10.2.1",
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/netinfo": "^5.9.7",
     "aws-amplify": "^3.3.4",
+    "aws-sdk": "^2.784.0",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
     "react": "16.13.1",

@@ -1,3 +1,5 @@
+import TestComp from './TestComponent'
+
 import React, {useState, useEffect} from 'react';
 import { StyleSheet} from 'react-native';
 
@@ -11,6 +13,14 @@ import rootReducer from './src/store/reducers/reducers'
 
 import FormStackNavigator from './src/navigation/FormStackNavigator'
 import {enableScreens} from 'react-native-screens'
+
+import Amplify from 'aws-amplify'
+import awsconfig from './aws-exports'
+import AWS from 'aws-sdk'
+
+Amplify.configure(awsconfig)
+
+
 
 enableScreens();
 
@@ -54,9 +64,10 @@ export default function App(props) {
   }
 
   return (
-    <Provider store={store}>
-      <FormStackNavigator />
-    </Provider>
+    // <Provider store={store}>
+    //   <FormStackNavigator />
+    // </Provider>
+    <TestComp />
   );
 }
 
