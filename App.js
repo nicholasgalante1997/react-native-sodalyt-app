@@ -20,8 +20,6 @@ import AWS from 'aws-sdk'
 
 Amplify.configure(awsconfig)
 
-
-
 enableScreens();
 
 const store = createStore(rootReducer)
