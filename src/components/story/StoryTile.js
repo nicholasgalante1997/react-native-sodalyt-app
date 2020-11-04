@@ -16,7 +16,7 @@ const StoryTile = (props) => {
     return ( 
         <TouchableOpacity 
         style={styles.gridItem} 
-        onPress={props.onPress} 
+        onPress={onPress} 
         >
             <View style={{...styles.container, ...props.style}}>
             <Ionicons 
@@ -24,7 +24,6 @@ const StoryTile = (props) => {
             size={56}
             color='white'
             style={styles.icon}
-            onPress={onPress}
             />
                 <MTBoldText style={styles.title}>
                     {props.title}

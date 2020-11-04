@@ -49,7 +49,8 @@ const StoryCardScreen = (props) => {
                 <AntDesign 
                 name="form" 
                 size={24} 
-                color="white" />
+                color="white" 
+                style={{paddingTop: 5}} />
             </View>
             
         </View>

@@ -17,6 +17,6 @@ export default {
     },
     rugged: {
         primary: '#C54E16',
-        secondary: '#F6A443'
+        secondary: '#151F6A'
     }
 }
