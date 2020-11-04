@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native'
+import React, {useState} from 'react';
+import {View, StyleSheet, ScrollView} from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
 import MTMediumText from '../custom/MTMediumText'
@@ -24,24 +24,173 @@ const QuestionRenderer = (props) => {
 
     const dispatch = useDispatch();
     const [currentQuestionOrder, setCurrentQuestionOrder] = useState(1)
-    // const [thisQuestion, setThisQuestion] = useState(findThisQuestion(currentQuestionOrder))
     const [chosenAnswer, setChosenAnswer] = useState(null)
     const checkAnswerPush = useSelector(state => state.answers)
 
     const pushAnswerToRedux = () => {
         dispatch(addAnswer(chosenAnswer));
-        setChosenAnswer(null);
     }
 
-    const adjustContent = () => {
-        if (currentQuestionOrder < 7){
-            setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
+    const switchContent = (chosenAnswerId) => {
+        switch(chosenAnswerId){
+            case 17: 
+                setCurrentQuestionOrder(prev => prev + 0.40)
+                setChosenAnswer(null)
+                break;
+            case 18: 
+                setCurrentQuestionOrder(prev => prev + 0.30)
+                setChosenAnswer(null)
+                break;
+            case 19:
+                setCurrentQuestionOrder(prev => prev + 0.10)
+                setChosenAnswer(null)
+                break;
+            case 20: 
+                setCurrentQuestionOrder(prev => prev + 0.20)
+                setChosenAnswer(null)
+                break;
+            case 21: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 22:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 23: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 24: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 25: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 26:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 27:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+            case 28:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+            case 29: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 30:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 31: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 32: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 33: 
+                setCurrentQuestionOrder(prev => prev + 0.30)
+                setChosenAnswer(null)
+                break;
+            case 34:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 35:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+            case 36:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+            case 37: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 38: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 39: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 40:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 41: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 42: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 43:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+            case 44:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+            case 45: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 46:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 47: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 48: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 49: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 50:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 51: 
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+                break;
+            case 52: 
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+                break;
+            default: 
+                console.log('in the case statement')
+                setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
+                setChosenAnswer(null)
+                break;
         }
     }
 
+    // const adjustEarlyContent = () => {
+    //     if (currentQuestionOrder < 7){
+    //         setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
+    //         setChosenAnswer(null);
+    //     }
+    // }
+
     const pushTo = () => {
+        const chosenAnswerId = chosenAnswer.id 
         pushAnswerToRedux();
-        adjustContent();
+        console.log(chosenAnswerId, "in the pushTo function")
+        switchContent(chosenAnswerId);
     }
 
     const defaultBinaryQuestionLayout = (thisQuestion) => {
@@ -67,9 +216,10 @@ const QuestionRenderer = (props) => {
                     color="white" />
                 </Animatable.View>
             {/* ANSWERS */}
+            <ScrollView>
                 <View style={styles.answerContainer}>
                     { thisQuestion.answers.map(answer => 
-                        <View style={styles.buttonHolder}>
+                        <View key={answer.id} style={styles.buttonHolder}>
                             <MainButton 
                             style={chosenAnswer ? 
                             chosenAnswer.id === answer.id ? 
@@ -82,24 +232,13 @@ const QuestionRenderer = (props) => {
                         </View>
                     )}
                 </View>
+            </ScrollView>
         </View>
         )
     }
 
     thisQuestion = findThisQuestion(currentQuestionOrder)
     content = defaultBinaryQuestionLayout(thisQuestion)
-
-    // switch (currentQuestionOrder) {
-    //     case 1:
-    //         thisQuestion = findThisQuestion(currentQuestionOrder)
-    //         content = defaultBinaryQuestionLayout(thisQuestion)
-    //         break;
-    //     case 2: 
-    //         thisQuestion = findThisQuestion(currentQuestionOrder)
-    //         content = defaultBinaryQuestionLayout(thisQuestion)
-    //     default:
-    //         break;
-    // }
 
     console.log("on the mars exploration page", storyInfo, questions)
     console.log("current question", thisQuestion)
@@ -139,7 +278,6 @@ const QuestionRenderer = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.rugged.primary
     },
@@ -160,7 +298,6 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     banner: {
-        // height: Dimensions.get('window').height / 6,
         paddingVertical: 10,
         width: '100%',
         backgroundColor: Colors.rugged.secondary,
