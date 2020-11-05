@@ -62,10 +62,10 @@ export default function App(props) {
   }
 
   return (
-    // <Provider store={store}>
-    //   <FormStackNavigator />
-    // </Provider>
-    <TestComp />
+    <Provider store={store}>
+      <FormStackNavigator />
+    </Provider>
+    // <TestComp />
   );
 }
 

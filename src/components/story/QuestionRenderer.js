@@ -10,6 +10,27 @@ import {useSelector, useDispatch} from 'react-redux'
 import {addAnswer} from '../../store/actions/actionCreator'
 
 const QuestionRenderer = (props) => {
+
+    const postToSageMakerEndPoint = (answersString) => {
+        // instantiate a headers object
+        let myHeaders = new Headers();
+        // add content type header to object
+        myHeaders.append("Content-Type", "application/json");
+        // using built in JSON utility package turn object to string and store in a variable
+        let raw = JSON.stringify({"data": answersString});
+        // create a JSON object with parameters for API call and store in a variable
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        // make API call with parameters and use promises to get response
+        fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error))
+    }
    
     const findThisQuestion = (orderNumber) => {
         let found = questions.filter(question => question.order === orderNumber)
@@ -33,112 +54,12 @@ const QuestionRenderer = (props) => {
 
     const switchContent = (chosenAnswerId) => {
         switch(chosenAnswerId){
+
+            // Case of Alien Bar
             case 17: 
                 setCurrentQuestionOrder(prev => prev + 0.40)
                 setChosenAnswer(null)
                 break;
-            case 18: 
-                setCurrentQuestionOrder(prev => prev + 0.30)
-                setChosenAnswer(null)
-                break;
-            case 19:
-                setCurrentQuestionOrder(prev => prev + 0.10)
-                setChosenAnswer(null)
-                break;
-            case 20: 
-                setCurrentQuestionOrder(prev => prev + 0.20)
-                setChosenAnswer(null)
-                break;
-            case 21: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 22:
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 23: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 24: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 25: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 26:
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 27:
-                setCurrentQuestionOrder(8)
-                setChosenAnswer(null)
-            case 28:
-                setCurrentQuestionOrder(8)
-                setChosenAnswer(null)
-            case 29: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 30:
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 31: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 32: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 33: 
-                setCurrentQuestionOrder(prev => prev + 0.30)
-                setChosenAnswer(null)
-                break;
-            case 34:
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 35:
-                setCurrentQuestionOrder(8)
-                setChosenAnswer(null)
-            case 36:
-                setCurrentQuestionOrder(8)
-                setChosenAnswer(null)
-            case 37: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 38: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 39: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 40:
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 41: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 42: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
-                setChosenAnswer(null)
-                break;
-            case 43:
-                setCurrentQuestionOrder(8)
-                setChosenAnswer(null)
-            case 44:
-                setCurrentQuestionOrder(8)
-                setChosenAnswer(null)
             case 45: 
                 setCurrentQuestionOrder(prev => prev + 0.01)
                 setChosenAnswer(null)
@@ -171,6 +92,145 @@ const QuestionRenderer = (props) => {
                 setCurrentQuestionOrder(8)
                 setChosenAnswer(null)
                 break;
+            // Case of Direct March Into City
+            case 18: 
+                setCurrentQuestionOrder(prev => prev + 0.30)
+                setChosenAnswer(null)
+                break;
+            case 37: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 38: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            // issues 39 , 40 - quick patch with hard code value
+            case 39: 
+                setCurrentQuestionOrder(7.32)
+                setChosenAnswer(null)
+                break;
+            case 40:
+                setCurrentQuestionOrder(7.32)
+                setChosenAnswer(null)
+                break
+            case 41: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 42: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 43:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+                break;
+            case 44:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+                break;
+            // Case of Recon 
+            case 19:
+                setCurrentQuestionOrder(prev => prev + 0.10)
+                setChosenAnswer(null)
+                break;
+            case 21: 
+                setCurrentQuestionOrder(7.11)
+                setChosenAnswer(null)
+                break;
+            case 22:
+                setCurrentQuestionOrder(7.11)
+                setChosenAnswer(null)
+                break;
+            case 23: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 24: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 25: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 26:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 27:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+                break;
+            case 28:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+                break;
+
+            // Case of the Trade
+            case 20: 
+                setCurrentQuestionOrder(prev => prev + 0.20)
+                setChosenAnswer(null)
+                break;
+            case 29: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 30:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 31: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 32: 
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 33: 
+                setCurrentQuestionOrder(prev => prev + 0.30)
+                setChosenAnswer(null)
+                break;
+            case 34:
+                setCurrentQuestionOrder(prev => prev + 0.01)
+                setChosenAnswer(null)
+                break;
+            case 35:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+            case 36:
+                setCurrentQuestionOrder(8)
+                setChosenAnswer(null)
+
+            // Check Difference
+            // case 40:
+            //     setCurrentQuestionOrder(prev => prev + 0.01)
+            //     setChosenAnswer(null)
+            //     break;
+            // case 43:
+            //     setCurrentQuestionOrder(8)
+            //     setChosenAnswer(null)
+            // case 44:
+            //     setCurrentQuestionOrder(8)
+            //     setChosenAnswer(null)
+            // case 47: 
+            //     setCurrentQuestionOrder(prev => prev + 0.01)
+            //     setChosenAnswer(null)
+            //     break;
+            // case 48: 
+            //     setCurrentQuestionOrder(prev => prev + 0.01)
+            //     setChosenAnswer(null)
+            //     break;
+            // case 51: 
+            //     setCurrentQuestionOrder(8)
+            //     setChosenAnswer(null)
+            //     break;
+            // case 52: 
+            //     setCurrentQuestionOrder(8)
+            //     setChosenAnswer(null)
+            //     break;
             default: 
                 console.log('in the case statement')
                 setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
@@ -179,18 +239,14 @@ const QuestionRenderer = (props) => {
         }
     }
 
-    // const adjustEarlyContent = () => {
-    //     if (currentQuestionOrder < 7){
-    //         setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
-    //         setChosenAnswer(null);
-    //     }
-    // }
+
 
     const pushTo = () => {
         const chosenAnswerId = chosenAnswer.id 
         pushAnswerToRedux();
-        console.log(chosenAnswerId, "in the pushTo function")
+        console.log(chosenAnswerId, currentQuestionOrder, "in the pushTo function before switch content")
         switchContent(chosenAnswerId);
+        console.log(chosenAnswerId, currentQuestionOrder, "in the pushTo function after switch content")
     }
 
     const defaultBinaryQuestionLayout = (thisQuestion) => {
@@ -331,3 +387,13 @@ const styles = StyleSheet.create({
 })
  
 export default QuestionRenderer;
+
+
+
+
+// const adjustEarlyContent = () => {
+    //     if (currentQuestionOrder < 7){
+    //         setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
+    //         setChosenAnswer(null);
+    //     }
+    // }

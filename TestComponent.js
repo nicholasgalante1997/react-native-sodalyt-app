@@ -6,15 +6,15 @@ import Colors from './src/constants/Colors'
 const TestComp = (props) => {
 
     // define the callAPI function that takes a first name and last name as parameters
-    var callAPI = ()=>{
+    const postToSageMakerEndPoint = () => {
         // instantiate a headers object
-        var myHeaders = new Headers();
+        let myHeaders = new Headers();
         // add content type header to object
         myHeaders.append("Content-Type", "application/json");
         // using built in JSON utility package turn object to string and store in a variable
-        var raw = JSON.stringify({"data":"0,0,0,0,0,0,0,0,0,0,0,0"});
+        let raw = JSON.stringify({"data":"0,0,0,0,0,0,0,0,0,0,0,0"});
         // create a JSON object with parameters for API call and store in a variable
-        var requestOptions = {
+        let requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: raw,
