@@ -1,13 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native'
-import Colors from '../constants/Colors'
+import {View, StyleSheet} from 'react-native'
+import MBTextBold from '../components/custom'
+import Colors from '../components/custom/MTBoldText'
 
 const PersonalityResultPage = (props) => {
     const displayType = props.navigation.getParam('personalityResult')
     return ( 
-        <View>
-            <Text>Personality Result Page</Text>
-            <Text>{displayType}</Text>
+        <View style={styles.screen}>
+            <MTBoldText>Personality Result Page</MTBoldText>
+            <MTBoldText>{displayType}</MTBoldText>
         </View>
      );
 }
