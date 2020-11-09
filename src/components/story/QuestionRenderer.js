@@ -8,6 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import {useSelector, useDispatch} from 'react-redux'
 import {addAnswer} from '../../store/actions/actionCreator'
+import { a } from 'aws-amplify';
 
 const QuestionRenderer = (props) => {
 
@@ -28,7 +29,7 @@ const QuestionRenderer = (props) => {
         // make API call with parameters and use promises to get response
         fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
+        .then(result => console.log(result, "response from the server"))
         .catch(error => console.log('error', error))
     }
    
@@ -46,7 +47,7 @@ const QuestionRenderer = (props) => {
     const dispatch = useDispatch();
     const [currentQuestionOrder, setCurrentQuestionOrder] = useState(1)
     const [chosenAnswer, setChosenAnswer] = useState(null)
-    const checkAnswerPush = useSelector(state => state.answers)
+    const selectedAnswersArray = useSelector(state => state.answers)
 
     const pushAnswerToRedux = () => {
         dispatch(addAnswer(chosenAnswer));
@@ -200,10 +201,16 @@ const QuestionRenderer = (props) => {
             case 35:
                 setCurrentQuestionOrder(8)
                 setChosenAnswer(null)
+                break;
             case 36:
                 setCurrentQuestionOrder(8)
                 setChosenAnswer(null)
+                break;
 
+
+            case 73: 
+                cleanUpAfterLastQuestion()
+                break;
             // Check Difference
             // case 40:
             //     setCurrentQuestionOrder(prev => prev + 0.01)
@@ -239,7 +246,58 @@ const QuestionRenderer = (props) => {
         }
     }
 
+    const cleanUpAfterLastQuestion = () => {
+        const currentAnswerList = [...selectedAnswersArray]
+        const extrovertArray = []
+        const introvertArray = []
+        const judgingArray = []
+        const perceivingArray = []
+        const sensingArray = []
+        const intuitionArray = []
+        const thinkingArray = []
+        const feelingArray = []
+        currentAnswerList.forEach(answer => {
+            if (answer.raw_value === "E") {
+                extrovertArray.push(answer)
+            }
+            if (answer.raw_value === "I") {
+                introvertArray.push(answer)
+            }
+            if (answer.raw_value === "J") {
+                judgingArray.push(answer)
+            }
+            if (answer.raw_value === "P") {
+                perceivingArray.push(answer)
+            }
+            if (answer.raw_value === "S"){
+                sensingArray.push(answer)
+            }
+            if (answer.raw_value === "N"){
+                intuitionArray.push(answer)
+            }
+            if (answer.raw_value === "T"){
+                thinkingArray.push(answer)
+            }
+            if (answer.raw_value === "F"){
+                feelingArray.push(answer)
+            }
+        })
 
+        const returnData = {
+            "E": extrovertArray.length.toString(),
+            "I": introvertArray.length.toString(),
+            "S": sensingArray.length.toString(),
+            "N": intuitionArray.length.toString(),
+            "J": judgingArray.length.toString(),
+            "P": perceivingArray.length.toString(),
+            "T": thinkingArray.length.toString(),
+            "F": feelingArray.length.toString()
+        }
+
+        console.log(returnData, "return data object")
+
+        postToSageMakerEndPoint(returnData)
+    }
 
     const pushTo = () => {
         const chosenAnswerId = chosenAnswer.id 
@@ -299,7 +357,7 @@ const QuestionRenderer = (props) => {
     console.log("on the mars exploration page", storyInfo, questions)
     console.log("current question", thisQuestion)
     console.log("chosen answer", chosenAnswer)
-    console.log("redux state", checkAnswerPush)
+    console.log("redux state", selectedAnswersArray)
     console.log("current order", currentQuestionOrder)
 
     return (

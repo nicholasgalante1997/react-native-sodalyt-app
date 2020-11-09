@@ -838,7 +838,15 @@ export default {
                     "spec": "null",
                     "response_type": "null",
                     "prompt": "Fantastic!  You were able to help them through solving their virus problem and have been able to close out your mission colonizing mars, finding sodalyt the precious mineral, and setting up diplomatic relations with an alien race!",
-                    "answers": []
+                    "answers": [
+                        {
+                            "question_id": 33,
+                            "id": 73,
+                            "raw_value": "null",
+                            "value": 0,
+                            "text": "Ready to get matched?"
+                        }
+                    ]
                 }
             ]
         },
@@ -865,3 +873,11 @@ export default {
         }
     ]
 }
+
+
+// return object for post 
+
+/* {
+"E": "2",
+"I": "1"
+} */
