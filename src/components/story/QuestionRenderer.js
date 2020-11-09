@@ -31,13 +31,13 @@ const QuestionRenderer = (props) => {
         .then(result => {
             console.log(result, "response from the server")
             
-            setCurrentQuestionOrder(0)
-            setChosenAnswer(null)
+            // setCurrentQuestionOrder(0)
+            // setChosenAnswer(null)
 
             props.navigation.navigate({routeName: 'PersonalityResultPage', params: {
                 personalityResult: result
             }})
-            
+
         })
         .catch(error => console.log('error', error))
     }
