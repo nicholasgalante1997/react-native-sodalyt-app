@@ -8,6 +8,7 @@ import LandingScreen from '../screens/LandingScreen'
 import EmailGatherScreen from '../screens/EmailGatherScreen'
 import StoryCardHolderScreen from '../screens/StoryCardHolderScreen'
 import QuestionRenderer from '../components/story/QuestionRenderer'
+import PersonalityResultPage from '../screens/PersonalityResultPage'
 
 import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen';
 
@@ -41,6 +42,12 @@ const FormStackNavigator = createStackNavigator({
         screen: QuestionRenderer,
         navigationOptions: {
             headerShown: false,
+        }
+    },
+    PersonalityResultPage: {
+        screen: PersonalityResultPage,
+        navigationOptions: {
+            headerShown: false
         }
     }
 })

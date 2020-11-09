@@ -8,7 +8,6 @@ import * as Animatable from 'react-native-animatable';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import {useSelector, useDispatch} from 'react-redux'
 import {addAnswer} from '../../store/actions/actionCreator'
-import { a } from 'aws-amplify';
 
 const QuestionRenderer = (props) => {
 
@@ -29,13 +28,18 @@ const QuestionRenderer = (props) => {
         // make API call with parameters and use promises to get response
         fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result, "response from the server"))
+        .then(result => {
+            console.log(result, "response from the server")
+            
+            setCurrentQuestionOrder(0)
+            setChosenAnswer(null)
+
+            props.navigation.navigate({routeName: 'PersonalityResultPage', params: {
+                personalityResult: result
+            }})
+            
+        })
         .catch(error => console.log('error', error))
-    }
-   
-    const findThisQuestion = (orderNumber) => {
-        let found = questions.filter(question => question.order === orderNumber)
-        return found[0]
     }
 
     const storyInfo = props.navigation.getParam('storyInfo')
@@ -51,6 +55,11 @@ const QuestionRenderer = (props) => {
 
     const pushAnswerToRedux = () => {
         dispatch(addAnswer(chosenAnswer));
+    }
+    
+    const findThisQuestion = (orderNumber) => {
+        let found = questions.filter(question => question.order === orderNumber)
+        return found[0]
     }
 
     const switchContent = (chosenAnswerId) => {
@@ -93,6 +102,7 @@ const QuestionRenderer = (props) => {
                 setCurrentQuestionOrder(8)
                 setChosenAnswer(null)
                 break;
+
             // Case of Direct March Into City
             case 18: 
                 setCurrentQuestionOrder(prev => prev + 0.30)
@@ -131,6 +141,7 @@ const QuestionRenderer = (props) => {
                 setCurrentQuestionOrder(8)
                 setChosenAnswer(null)
                 break;
+
             // Case of Recon 
             case 19:
                 setCurrentQuestionOrder(prev => prev + 0.10)
@@ -207,37 +218,10 @@ const QuestionRenderer = (props) => {
                 setChosenAnswer(null)
                 break;
 
-
+            // Case of Last Question 
             case 73: 
                 cleanUpAfterLastQuestion()
                 break;
-            // Check Difference
-            // case 40:
-            //     setCurrentQuestionOrder(prev => prev + 0.01)
-            //     setChosenAnswer(null)
-            //     break;
-            // case 43:
-            //     setCurrentQuestionOrder(8)
-            //     setChosenAnswer(null)
-            // case 44:
-            //     setCurrentQuestionOrder(8)
-            //     setChosenAnswer(null)
-            // case 47: 
-            //     setCurrentQuestionOrder(prev => prev + 0.01)
-            //     setChosenAnswer(null)
-            //     break;
-            // case 48: 
-            //     setCurrentQuestionOrder(prev => prev + 0.01)
-            //     setChosenAnswer(null)
-            //     break;
-            // case 51: 
-            //     setCurrentQuestionOrder(8)
-            //     setChosenAnswer(null)
-            //     break;
-            // case 52: 
-            //     setCurrentQuestionOrder(8)
-            //     setChosenAnswer(null)
-            //     break;
             default: 
                 console.log('in the case statement')
                 setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
@@ -297,14 +281,13 @@ const QuestionRenderer = (props) => {
         console.log(returnData, "return data object")
 
         postToSageMakerEndPoint(returnData)
+
     }
 
     const pushTo = () => {
         const chosenAnswerId = chosenAnswer.id 
         pushAnswerToRedux();
-        console.log(chosenAnswerId, currentQuestionOrder, "in the pushTo function before switch content")
         switchContent(chosenAnswerId);
-        console.log(chosenAnswerId, currentQuestionOrder, "in the pushTo function after switch content")
     }
 
     const defaultBinaryQuestionLayout = (thisQuestion) => {
@@ -354,11 +337,12 @@ const QuestionRenderer = (props) => {
     thisQuestion = findThisQuestion(currentQuestionOrder)
     content = defaultBinaryQuestionLayout(thisQuestion)
 
-    console.log("on the mars exploration page", storyInfo, questions)
-    console.log("current question", thisQuestion)
-    console.log("chosen answer", chosenAnswer)
-    console.log("redux state", selectedAnswersArray)
-    console.log("current order", currentQuestionOrder)
+    // console.log("on the mars exploration page", storyInfo, questions)
+    // console.log("current question", thisQuestion)
+    // console.log("chosen answer", chosenAnswer)
+    // console.log("redux state", selectedAnswersArray)
+    // console.log("current order", currentQuestionOrder)
+    console.log('props', props)
 
     return (
         // WHOLE SCREEN
