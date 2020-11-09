@@ -18,7 +18,7 @@ const QuestionRenderer = (props) => {
         // add content type header to object
         myHeaders.append("Content-Type", "application/json");
         // using built in JSON utility package turn object to string and store in a variable
-        let raw = JSON.stringify({"data": answersString});
+        let raw = JSON.stringify(answersString);
         // create a JSON object with parameters for API call and store in a variable
         let requestOptions = {
             method: 'POST',
