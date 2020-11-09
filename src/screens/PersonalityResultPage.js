@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native'
-import MBTextBold from '../components/custom'
-import Colors from '../components/custom/MTBoldText'
+import MBTextBold from '../components/custom/MTBoldText'
+import Colors from '../constants/Colors'
 
 const PersonalityResultPage = (props) => {
     const displayType = props.navigation.getParam('personalityResult')
