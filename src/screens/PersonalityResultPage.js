@@ -2,6 +2,9 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText'
 import Colors from '../constants/Colors'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+// brain, biathlon, shield-home, artist
 
 const PersonalityResultPage = (props) => {
 
@@ -9,6 +12,7 @@ const PersonalityResultPage = (props) => {
     let archetype;
     let spec;
     let description;
+    let iconName;
 
     const typeHandler = (type) => {
         console.log('inside the handler')
@@ -99,7 +103,20 @@ const PersonalityResultPage = (props) => {
         }
     }
 
+    const iconHandler = () => {
+        if (archetype === 'Rationalist'){
+            iconName = 'brain'
+        } else if (archetype === 'Idealist') {
+            iconName = 'biathlon'
+        } else if (archetype === 'Guardian'){
+            iconName = 'shield-home'
+        } else {
+            iconName = 'artist'
+        }
+    }
+
     typeHandler(displayType.slice(1, -1))
+    iconHandler()
 
     console.log(displayType, displayType.slice(1, -1))
 
@@ -110,6 +127,8 @@ const PersonalityResultPage = (props) => {
             <MTBoldText style={{paddingTop: 20}}>Specifically, you're a {spec}</MTBoldText>
             <MTBoldText style={{padding: 20, textAlign: 'center'}}>These are individuals with the Meyers-Brigg type {displayType.slice(1, -1)}</MTBoldText>
             <MTBoldText style={{paddingTop: 20, textAlign: 'center'}}>{description}</MTBoldText>
+            <MaterialCommunityIcons 
+            name={iconName} size={48} style={{margin: 10, padding: 5}} color="white" />
         </View>
      );
 }
