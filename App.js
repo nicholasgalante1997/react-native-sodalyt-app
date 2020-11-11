@@ -18,12 +18,16 @@ import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
 import AWS from 'aws-sdk'
 
+// AWS Configuration
 Amplify.configure(awsconfig)
 
+// Screen Optimization
 enableScreens();
 
+// Redux Store
 const store = createStore(rootReducer)
 
+// Custom Fonts
 const fetchFonts = () => {
   return Font.loadAsync({
     "tommy-bold": require('./src/constants/fonts/Made_Tommy_Bold.otf'),
@@ -46,12 +50,6 @@ const fetchFonts = () => {
 export default function App(props) {
 
   const [fontLoaded, setFontLoaded] = useState(false)
-  // const [showExampleFonts, setShowExampleFonts] = useState(false)
-  // const [questionsArray, setQuestionsArray] = useState(Data)
-
-  const toggleExampleFontScreen = () => {
-    setShowExampleFonts(!showExampleFonts)
-  }
 
   if (!fontLoaded) {
     return <AppLoading 
@@ -65,23 +63,6 @@ export default function App(props) {
     <Provider store={store}>
       <FormStackNavigator />
     </Provider>
-    // <TestComp />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.ocean.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  styledText: {
-    fontFamily: 'tommy-bold',
-    color: 'white',
-    paddingVertical: 25
-  },
-  button: {
-    backgroundColor: Colors.ocean.secondary,
-  }
-});

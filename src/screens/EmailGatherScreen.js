@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, StyleSheet, Dimensions, Image} from 'react-native'
 
 import {AntDesign} from '@expo/vector-icons'
-
 import MTBoldText from '../components/custom/MTBoldText'
 import MBLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'

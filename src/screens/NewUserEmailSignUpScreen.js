@@ -24,6 +24,12 @@ const NewUserEmailSignUpScreen = (props) => {
         }))
     }
 
+    const handlePasswordInput = (inputText) => {
+        setUserInfo(currentState => ({
+            ...currentState, passsword: inputText
+        }))
+    }
+
     const pushToStoryPage = () => {
         dispatch(setCurrentUser(userInfo))
         props.navigation.navigate({routeName: 'StoryCardPage'})
@@ -41,6 +47,18 @@ const NewUserEmailSignUpScreen = (props) => {
                 keyboardType="default" 
                 value={userInfo.email}
                 onChangeText={handleEmailInput}
+                />
+            </View>
+            <View style={styles.labelHolder}>
+                <MTBoldText>password</MTBoldText>
+                <Input 
+                style={styles.input} 
+                blurOnSubmit 
+                autoCapitalize="none" 
+                autoCorrect={false} 
+                keyboardType="default" 
+                value={userInfo.passsword}
+                onChangeText={handlePasswordInput}
                 />
             </View>
             <AntDesign 

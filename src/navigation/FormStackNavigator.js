@@ -1,15 +1,11 @@
-import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack'
 import {createAppContainer} from 'react-navigation'
-
-import Colors from '../constants/data'
 
 import LandingScreen from '../screens/LandingScreen'
 import EmailGatherScreen from '../screens/EmailGatherScreen'
 import StoryCardHolderScreen from '../screens/StoryCardHolderScreen'
 import QuestionRenderer from '../components/story/QuestionRenderer'
 import PersonalityResultPage from '../screens/PersonalityResultPage'
-
 import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen';
 
 

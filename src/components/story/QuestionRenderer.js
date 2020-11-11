@@ -182,31 +182,31 @@ const QuestionRenderer = (props) => {
 
             // Case of the Trade
             case 20: 
-                setCurrentQuestionOrder(prev => prev + 0.20)
+                setCurrentQuestionOrder(7.20)
                 setChosenAnswer(null)
                 break;
             case 29: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.21)
                 setChosenAnswer(null)
                 break;
             case 30:
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.21)
                 setChosenAnswer(null)
                 break;
             case 31: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.22)
                 setChosenAnswer(null)
                 break;
             case 32: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.22)
                 setChosenAnswer(null)
                 break;
             case 33: 
-                setCurrentQuestionOrder(prev => prev + 0.30)
+                setCurrentQuestionOrder(7.23)
                 setChosenAnswer(null)
                 break;
             case 34:
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.23)
                 setChosenAnswer(null)
                 break;
             case 35:
@@ -430,12 +430,3 @@ const styles = StyleSheet.create({
  
 export default QuestionRenderer;
 
-
-
-
-// const adjustEarlyContent = () => {
-    //     if (currentQuestionOrder < 7){
-    //         setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
-    //         setChosenAnswer(null);
-    //     }
-    // }
