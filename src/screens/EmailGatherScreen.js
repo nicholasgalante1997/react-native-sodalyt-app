@@ -57,19 +57,19 @@ const EmailGatherScreen = (props) => {
                     size={48} 
                     color="white" 
                     style={styles.icon} 
-                    onPress={pushToStoryPage} />
+                    onPress={() => {}} />
                     <AntDesign 
                     name="google" 
                     size={48} 
                     color="white" 
                     style={styles.icon} 
-                    onPress={pushToStoryPage} />
+                    onPress={() => {}} />
                     <AntDesign 
                     name="instagram" 
                     size={48} 
                     color="white" 
                     style={styles.icon} 
-                    onPress={pushToStoryPage} />
+                    onPress={() => {}} />
                 </View>
                 <View style={styles.arrowHolder}>
                     <AntDesign 

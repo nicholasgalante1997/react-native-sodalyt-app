@@ -20,9 +20,12 @@ const QuestionRenderer = (props) => {
     let thisQuestion;
 
     const dispatch = useDispatch();
+
     const [currentQuestionOrder, setCurrentQuestionOrder] = useState(1)
+
     const [chosenAnswer, setChosenAnswer] = useState(null)
     const selectedAnswersArray = useSelector(state => state.answers)
+    const userInfo = useSelector(state => state.currentUser)
 
     const pushAnswerToRedux = () => {
         dispatch(addAnswer(chosenAnswer));
@@ -272,6 +275,8 @@ const QuestionRenderer = (props) => {
         })
 
         const returnData = {
+            "email": userInfo.email,
+            "password": userInfo.password,
             "E": extrovertArray.length.toString(),
             "I": introvertArray.length.toString(),
             "S": sensingArray.length.toString(),
@@ -279,7 +284,7 @@ const QuestionRenderer = (props) => {
             "J": judgingArray.length.toString(),
             "P": perceivingArray.length.toString(),
             "T": thinkingArray.length.toString(),
-            "F": feelingArray.length.toString()
+            "F": feelingArray.length.toString(),
         }
 
         console.log(returnData, "return data object")

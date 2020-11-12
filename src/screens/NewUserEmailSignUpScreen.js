@@ -35,6 +35,8 @@ const NewUserEmailSignUpScreen = (props) => {
         props.navigation.navigate({routeName: 'StoryCardPage'})
     }
 
+    console.log(userInfo)
+    
     return ( 
         <View style={styles.screen}>
             <View style={styles.labelHolder}>
