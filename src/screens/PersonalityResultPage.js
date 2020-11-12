@@ -3,12 +3,17 @@ import {View, StyleSheet} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText'
 import Colors from '../constants/Colors'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MainButton from '../components/custom/MainButton'
+import {useSelector} from 'react-redux'
 
 // brain, biathlon, shield-home, artist
 
 const PersonalityResultPage = (props) => {
 
     const displayType = props.navigation.getParam('personalityResult')
+    const checkResetAnswers = useSelector(state => state.answers)
+    console.log(checkResetAnswers)
+
     let archetype;
     let spec;
     let description;
@@ -79,22 +84,22 @@ const PersonalityResultPage = (props) => {
             description = "Extraordinarily caring, social, and popular people, always eager to help."
             break;
         case "ISTP": 
-            archetype = "Artist"
+            archetype = 'Creator'
             spec = "Virtuoso"
             description = "Bold and practical experimenters, masters of all kinds of tools."
             break;
         case "ISFP":
-            archetype = "Artist"
+            archetype = "Creator"
             spec = "Adventurer"
             description = "Flexible and charming artists, always ready to explore and experience something new."
             break;
         case "ESTP":
-            archetype = "Artist"
+            archetype = "Creator"
             spec = "Entrepreneur"
             description = "Smart, energetic, and very perceptive people, who truly enjoy living on the edge."
             break;
         case "ESFP":
-            archetype = "Artist"
+            archetype = "Creator"
             spec = "Entertainer"
             description = "Spontaneous, energetic, and enthusiastic people, life is never boring around them."
             break;
@@ -122,13 +127,20 @@ const PersonalityResultPage = (props) => {
 
     return ( 
         <View style={styles.screen}>
-            <MTBoldText>You belong to the group</MTBoldText>
-            <MTBoldText style={{fontSize: 48}}>{archetype}</MTBoldText>
-            <MTBoldText style={{paddingTop: 20}}>Specifically, you're a {spec}</MTBoldText>
-            <MTBoldText style={{padding: 20, textAlign: 'center'}}>These are individuals with the Meyers-Brigg type {displayType.slice(1, -1)}</MTBoldText>
-            <MTBoldText style={{paddingTop: 20, textAlign: 'center'}}>{description}</MTBoldText>
+            <View>
+                <MTBoldText style={{textAlign: 'center'}}>You belong to the group</MTBoldText>
+                <MTBoldText style={{fontSize: 48}}>{archetype}</MTBoldText>
+            </View>
+            <View>
+                <MTBoldText style={{paddingTop: 20, textAlign: 'center'}}>Specifically, you're a {spec}</MTBoldText>
+                <MTBoldText style={{padding: 20, textAlign: 'center'}}>These are individuals with the Meyers-Brigg type {displayType.slice(1, -1)}</MTBoldText>
+            </View>
             <MaterialCommunityIcons 
             name={iconName} size={48} style={{margin: 10, padding: 5}} color="white" />
+            <MTBoldText style={{padding: 20, textAlign: 'center'}}>{description}</MTBoldText>
+            <View>
+                <MainButton style={{backgroundColor: Colors.ocean.secondary}}>Ready to explore?</MainButton>
+            </View>
         </View>
      );
 }

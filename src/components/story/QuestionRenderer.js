@@ -7,40 +7,11 @@ import MainButton from '../custom/MainButton'
 import * as Animatable from 'react-native-animatable';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import {useSelector, useDispatch} from 'react-redux'
-import {addAnswer} from '../../store/actions/actionCreator'
+import {addAnswer, resetAnswers} from '../../store/actions/actionCreator'
 
 const QuestionRenderer = (props) => {
 
-    const postToSageMakerEndPoint = (answersString) => {
-        // instantiate a headers object
-        let myHeaders = new Headers();
-        // add content type header to object
-        myHeaders.append("Content-Type", "application/json");
-        // using built in JSON utility package turn object to string and store in a variable
-        let raw = JSON.stringify(answersString);
-        // create a JSON object with parameters for API call and store in a variable
-        let requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-        // make API call with parameters and use promises to get response
-        fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            console.log(result, "response from the server")
-            
-            // setCurrentQuestionOrder(0)
-            // setChosenAnswer(null)
-
-            props.navigation.navigate({routeName: 'PersonalityResultPage', params: {
-                personalityResult: result
-            }})
-
-        })
-        .catch(error => console.log('error', error))
-    }
+    
 
     const storyInfo = props.navigation.getParam('storyInfo')
     const { questions } = storyInfo;
@@ -230,7 +201,39 @@ const QuestionRenderer = (props) => {
         }
     }
 
+    const postToSageMakerEndPoint = (answersString) => {
+        // instantiate a headers object
+        let myHeaders = new Headers();
+        // add content type header to object
+        myHeaders.append("Content-Type", "application/json");
+        // using built in JSON utility package turn object to string and store in a variable
+        let raw = JSON.stringify(answersString);
+        // create a JSON object with parameters for API call and store in a variable
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        // make API call with parameters and use promises to get response
+        fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log(result, "response from the server")
+
+            props.navigation.navigate({routeName: 'PersonalityResultPage', params: {
+                personalityResult: result
+            }})
+
+            setCurrentQuestionOrder(1)
+            setChosenAnswer(null)
+            resetReduxAnswers()
+        })
+        .catch(error => console.log('error', error))
+    }
+
     const cleanUpAfterLastQuestion = () => {
+
         const currentAnswerList = [...selectedAnswersArray]
         const extrovertArray = []
         const introvertArray = []
@@ -240,6 +243,7 @@ const QuestionRenderer = (props) => {
         const intuitionArray = []
         const thinkingArray = []
         const feelingArray = []
+
         currentAnswerList.forEach(answer => {
             if (answer.raw_value === "E") {
                 extrovertArray.push(answer)
@@ -282,6 +286,10 @@ const QuestionRenderer = (props) => {
 
         postToSageMakerEndPoint(returnData)
 
+    }
+
+    const resetReduxAnswers = () => {
+        dispatch(resetAnswers())
     }
 
     const pushTo = () => {
@@ -336,13 +344,6 @@ const QuestionRenderer = (props) => {
 
     thisQuestion = findThisQuestion(currentQuestionOrder)
     content = defaultBinaryQuestionLayout(thisQuestion)
-
-    // console.log("on the mars exploration page", storyInfo, questions)
-    // console.log("current question", thisQuestion)
-    // console.log("chosen answer", chosenAnswer)
-    // console.log("redux state", selectedAnswersArray)
-    // console.log("current order", currentQuestionOrder)
-    console.log('props', props)
 
     return (
         // WHOLE SCREEN
