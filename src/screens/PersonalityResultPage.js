@@ -10,9 +10,9 @@ import {useSelector} from 'react-redux'
 
 const PersonalityResultPage = (props) => {
 
-    const displayType = props.navigation.getParam('personalityResult')
+    const returnedObject = props.navigation.getParam('personalityResult')
     const checkResetAnswers = useSelector(state => state.answers)
-    console.log(checkResetAnswers)
+    console.log(checkResetAnswers, returnedObject, returnedObject["email"])
 
     let archetype;
     let spec;
@@ -120,10 +120,10 @@ const PersonalityResultPage = (props) => {
         }
     }
 
-    typeHandler(displayType.slice(1, -1))
+    typeHandler(returnedObject.MBTI)
     iconHandler()
 
-    console.log(displayType, displayType.slice(1, -1))
+    // console.log(returnedObject["MBTI"].slice(1, -1))
 
     return ( 
         <View style={styles.screen}>
@@ -133,7 +133,7 @@ const PersonalityResultPage = (props) => {
             </View>
             <View>
                 <MTBoldText style={{paddingTop: 20, textAlign: 'center'}}>Specifically, you're a {spec}</MTBoldText>
-                <MTBoldText style={{padding: 20, textAlign: 'center'}}>These are individuals with the Meyers-Brigg type {displayType.slice(1, -1)}</MTBoldText>
+                <MTBoldText style={{padding: 20, textAlign: 'center'}}>These are individuals with the Meyers-Brigg type {returnedObject["MBTI"]}</MTBoldText>
             </View>
             <MaterialCommunityIcons 
             name={iconName} size={48} style={{margin: 10, padding: 5}} color="white" />

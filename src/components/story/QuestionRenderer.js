@@ -220,7 +220,7 @@ const QuestionRenderer = (props) => {
         };
         // make API call with parameters and use promises to get response
         fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
             console.log(result, "response from the server")
 
@@ -246,6 +246,14 @@ const QuestionRenderer = (props) => {
         const intuitionArray = []
         const thinkingArray = []
         const feelingArray = []
+        let kearseyOne = selectedAnswersArray.filter(answer => answer.question_id === 3)[0]
+        let kearseyTwo = selectedAnswersArray.filter(answer => answer.question_id === 6)[0]
+        let kearseyThree = selectedAnswersArray.filter(answer => answer.question_id === 7)[0]
+        let respect = selectedAnswersArray.filter(answer => answer.question_id === 29)[0]
+        let recognition = selectedAnswersArray.filter(answer => answer.question_id === 30)[0]
+        let reassurance = selectedAnswersArray.filter(answer => answer.question_id === 31)[0]
+        let resilience = selectedAnswersArray.filter(a => a.question_id === 32)[0]
+        let resp = selectedAnswersArray.filter(a => a.question_id === 28)[0]
 
         currentAnswerList.forEach(answer => {
             if (answer.raw_value === "E") {
@@ -277,6 +285,14 @@ const QuestionRenderer = (props) => {
         const returnData = {
             "email": userInfo.email,
             "password": userInfo.password,
+            "kearsey-one": kearseyOne.raw_value,
+            "kearsey-two": kearseyTwo.raw_value,
+            "kearsey-three": kearseyThree.raw_value,
+            "respect": respect.text,
+            "responsibility": resp.text,
+            "recognition": recognition.text,
+            "resilience": resilience.text,
+            "reassurance": reassurance.text,
             "E": extrovertArray.length.toString(),
             "I": introvertArray.length.toString(),
             "S": sensingArray.length.toString(),
