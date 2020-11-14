@@ -8,6 +8,7 @@ import QuestionRenderer from '../components/story/QuestionRenderer'
 import PersonalityResultPage from '../screens/PersonalityResultPage'
 import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen';
 
+import CustomDevelopmentAlert from '../components/custom/CustomDevelopmentAlert'
 
 const FormStackNavigator = createStackNavigator({
     Welcome: {
@@ -44,6 +45,12 @@ const FormStackNavigator = createStackNavigator({
         screen: PersonalityResultPage,
         navigationOptions: {
             headerShown: false
+        }
+    },
+    CustomDevelopmentAlert: {
+        screen: CustomDevelopmentAlert,
+        navigationOptions: {
+            headerShown: false,
         }
     }
 })

@@ -1,11 +1,10 @@
 import TestComp from './TestComponent'
+import CustomAlert from './src/components/custom/CustomDevelopmentAlert'
 
-import React, {useState, useEffect} from 'react';
-import { StyleSheet} from 'react-native';
+import React, {useState} from 'react';
 
 import {AppLoading} from 'expo'
 import * as Font from 'expo-font'
-import Colors from './src/constants/Colors'
 
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
@@ -63,7 +62,7 @@ export default function App(props) {
     <Provider store={store}>
       <FormStackNavigator />
     </Provider>
-    // <TestComp />
+    // <CustomAlert />
   );
 }
 

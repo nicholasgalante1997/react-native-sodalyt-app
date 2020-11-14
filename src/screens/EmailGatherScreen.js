@@ -1,30 +1,16 @@
 import React from 'react';
 import {View, StyleSheet, Dimensions, Image} from 'react-native'
 
-import {AntDesign} from '@expo/vector-icons'
+import {AntDesign, MaterialCommunityIcons} from '@expo/vector-icons'
 import MTBoldText from '../components/custom/MTBoldText'
 import MBLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 
-import {useDispatch} from 'react-redux'
-import {setCurrentUser} from '../store/actions/actionCreator'
-
-
-
-const demoUser = {
-    email: "nicholas.galante@sodalyt.com",
-    password: "Sodalyt"
-}
-
 const EmailGatherScreen = (props) => {
 
-
-    const dispatch = useDispatch();
-
-    const pushToStoryPage = () => {
-        dispatch(setCurrentUser(demoUser))
-        props.navigation.navigate({routeName: 'StoryCardPage'})
-    }
+   const deadEndNavigator = () => {
+       props.navigation.navigate('CustomDevelopmentAlert')
+   }
 
     const pushToNewUserEmailScreen = () => {
         props.navigation.navigate({routeName: 'NewUserEmailSignUp'})
@@ -46,10 +32,10 @@ const EmailGatherScreen = (props) => {
             </View>
             <View style={styles.lowerContent}>
                 <MTBoldText style={styles.textSmall}>
-                    tap an icon below to auto-register otherwise tap the arrow below
+                    One tap sign in coming soon!
                 </MTBoldText>
                 <MTBoldText style={styles.textSmall}>
-                    to register with your email
+                    For now, tap the email icon to register!
                 </MTBoldText>
                 <View style={styles.buttonHolder}>
                     <AntDesign 
@@ -57,34 +43,35 @@ const EmailGatherScreen = (props) => {
                     size={48} 
                     color="white" 
                     style={styles.icon} 
-                    onPress={() => {}} />
+                    onPress={deadEndNavigator} />
                     <AntDesign 
                     name="google" 
                     size={48} 
                     color="white" 
                     style={styles.icon} 
-                    onPress={() => {}} />
+                    onPress={deadEndNavigator} />
                     <AntDesign 
                     name="instagram" 
                     size={48} 
                     color="white" 
                     style={styles.icon} 
-                    onPress={() => {}} />
+                    onPress={deadEndNavigator} />
                 </View>
                 <View style={styles.arrowHolder}>
-                    <AntDesign 
-                    name="arrowright" 
+                    <MaterialCommunityIcons 
+                    name="email-multiple-outline" 
                     size={48} 
                     color="white" 
-                    onPress={pushToNewUserEmailScreen} />
+                    onPress={pushToNewUserEmailScreen}
+                    />
                 </View>
                 <View style={styles.profTextContainer}>
-                    <MBLightText>
+                    <MBLightText onPress={deadEndNavigator}>
                         Professional User? Click here to sign up.
                     </MBLightText>
                 </View>
                 <View style={styles.returningUserTab}>
-                    <MBLightText>
+                    <MBLightText onPress={deadEndNavigator}>
                         Returning User?
                     </MBLightText>
                 </View>
@@ -125,7 +112,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25
     },
     textSmall: {
-    fontSize: 10
+        fontSize: 10
     },
     lowerContent: {
         alignItems: 'center'
@@ -137,6 +124,10 @@ const styles = StyleSheet.create({
     },
     returningUserTab: {
         paddingTop: 50
+    },
+    arrowHolder: {
+        flexDirection: 'row',
+        paddingVertical: 10
     }
 })
  

@@ -7,9 +7,13 @@ import MTBoldText from '../custom/MTBoldText'
 const StoryTile = (props) => {
 
     const onPress = () => {
+      if (props.story.story_id === 1){  
         props.navigation.navigate({routeName: 'QuestionRenderer', params: {
             storyInfo: {...props.story}
         }})
+      } else {
+          props.navigation.navigate('CustomDevelopmentAlert')
+      }
     }
 
     console.log(props)

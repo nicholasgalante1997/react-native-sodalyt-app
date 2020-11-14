@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native'
+import {View, StyleSheet, Dimensions, Alert} from 'react-native'
 import {AntDesign} from '@expo/vector-icons'
 import Input from '../components/custom/Input'
 import Colors from '../constants/Colors'
@@ -30,9 +30,29 @@ const NewUserEmailSignUpScreen = (props) => {
         }))
     }
 
+    const checkValidity = () => {
+        if (userInfo.email.includes(' ')){
+            return false
+        } else if (userInfo.password.length < 6){
+            return false 
+        } else {
+            return true
+        }
+    }
+
     const pushToStoryPage = () => {
         dispatch(setCurrentUser(userInfo))
         props.navigation.navigate({routeName: 'StoryCardPage'})
+    }
+
+    const checkValidityAndPushtoStoryPage = () => {
+        if (checkValidity()){
+        pushToStoryPage()
+        } else {
+            Alert.alert(
+                "Hey you", "Emails can't contain spaces, and passwords must be at least 6 characters.", [{text: "Ok, I won't do it again.", style: 'default'}]
+            )
+        }
     }
 
     console.log(userInfo)
@@ -40,7 +60,7 @@ const NewUserEmailSignUpScreen = (props) => {
     return ( 
         <View style={styles.screen}>
             <View style={styles.labelHolder}>
-                <MTBoldText>email</MTBoldText>
+                <MTBoldText>Email please</MTBoldText>
                 <Input 
                 style={styles.input} 
                 blurOnSubmit 
@@ -52,9 +72,10 @@ const NewUserEmailSignUpScreen = (props) => {
                 />
             </View>
             <View style={styles.labelHolder}>
-                <MTBoldText>password</MTBoldText>
+                <MTBoldText>Password</MTBoldText>
                 <Input 
                 style={styles.input} 
+                secureTextEntry={true}
                 blurOnSubmit 
                 autoCapitalize="none" 
                 autoCorrect={false} 
@@ -67,7 +88,7 @@ const NewUserEmailSignUpScreen = (props) => {
                     name="arrowright" 
                     size={48} 
                     color="white" 
-                    onPress={pushToStoryPage} />
+                    onPress={checkValidityAndPushtoStoryPage} />
         </View>
      );
 }
