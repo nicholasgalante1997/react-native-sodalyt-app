@@ -9,7 +9,7 @@ import {setCurrentUser} from '../store/actions/actionCreator'
 
 const demoUserInfo = {
     email: "",
-    passsword: ""
+    password: ""
 }
 
 const NewUserEmailSignUpScreen = (props) => {
@@ -26,7 +26,7 @@ const NewUserEmailSignUpScreen = (props) => {
 
     const handlePasswordInput = (inputText) => {
         setUserInfo(currentState => ({
-            ...currentState, passsword: inputText
+            ...currentState, password: inputText
         }))
     }
 
@@ -59,7 +59,7 @@ const NewUserEmailSignUpScreen = (props) => {
                 autoCapitalize="none" 
                 autoCorrect={false} 
                 keyboardType="default" 
-                value={userInfo.passsword}
+                value={userInfo.password}
                 onChangeText={handlePasswordInput}
                 />
             </View>

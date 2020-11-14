@@ -17,6 +17,8 @@ const StoryCardScreen = (props) => {
         return (<StoryTile navigation={props.navigation} story={{...itemData.item}} title={itemData.item.story_title} icon={itemData.item.icon} />)
     }
 
+    console.log(currentUser)
+
     return ( 
         <View style={styles.container}>
             <MTBoldText style={styles.titleText}>

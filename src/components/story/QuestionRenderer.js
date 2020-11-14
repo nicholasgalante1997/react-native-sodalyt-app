@@ -366,6 +366,7 @@ const QuestionRenderer = (props) => {
     thisQuestion = findThisQuestion(currentQuestionOrder)
     content = defaultBinaryQuestionLayout(thisQuestion)
 
+    console.log('userInfo', userInfo)
     return (
         // WHOLE SCREEN
         <View style={styles.container}>
