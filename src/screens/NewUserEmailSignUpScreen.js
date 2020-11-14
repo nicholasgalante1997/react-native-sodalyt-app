@@ -50,7 +50,7 @@ const NewUserEmailSignUpScreen = (props) => {
         pushToStoryPage()
         } else {
             Alert.alert(
-                "Hey you", "Emails can't contain spaces, and passwords must be at least 6 characters.", [{text: "Ok, I won't do it again.", style: 'default'}]
+                "Hey you", "Emails can't contain spaces, and/or passwords must be at least 6 characters.", [{text: "Ok, I won't do it again.", style: 'default'}]
             )
         }
     }

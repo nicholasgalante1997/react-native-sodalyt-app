@@ -34,11 +34,13 @@ const StoryCardScreen = (props) => {
             <MTBoldText style={styles.titleText}>
                 Choose any one of the stories below to get started.
             </MTBoldText>
-            <FlatList 
-            keyExtractor={(item, index) => index}
-            data={storiesArray} 
-            numColumns={2} 
-            renderItem={renderGridItem}/>
+            <View>
+                <FlatList 
+                keyExtractor={(item, index) => index}
+                data={storiesArray} 
+                numColumns={2} 
+                renderItem={renderGridItem}/>
+            </View>
             <View style={styles.underItem}>
                 <MTLightText>
                     Not a fan of stories? That's okay! We thought of you.
