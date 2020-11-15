@@ -6,9 +6,8 @@ import EmailGatherScreen from '../screens/EmailGatherScreen'
 import StoryCardHolderScreen from '../screens/StoryCardHolderScreen'
 import QuestionRenderer from '../components/story/QuestionRenderer'
 import PersonalityResultPage from '../screens/PersonalityResultPage'
-import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen';
-
-import CustomDevelopmentAlert from '../components/custom/CustomDevelopmentAlert'
+import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen'
+import TesterEndScreen from '../screens/TesterEndScreen'
 
 const FormStackNavigator = createStackNavigator({
     Welcome: {
@@ -47,10 +46,10 @@ const FormStackNavigator = createStackNavigator({
             headerShown: false
         }
     },
-    CustomDevelopmentAlert: {
-        screen: CustomDevelopmentAlert,
+    TesterEndScreen: {
+        screen: TesterEndScreen,
         navigationOptions: {
-            headerShown: false,
+            headerShown: false 
         }
     }
 })

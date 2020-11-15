@@ -18,8 +18,10 @@ const CustomAlert = (props) => {
                 <View style={styles.medRow}>
                     <MTLightText style={{textAlign: 'center'}}>We're sorry! This app is still under development, so not all features are operational. Check back in at a later time to get the full experience. Thank you for understanding!</MTLightText>
                 </View>
-                <View>
-                <Ionicons name="md-thumbs-up" size={24} color="white" onPress={() => props.navigation.goBack()} />
+                <View style={styles.bottomRow}>
+                    <View style={styles.circle}>
+                    <Ionicons name="md-thumbs-up" size={24} color="white" onPress={props.onPress} />
+                    </View>
                 </View>
             </View>
         </View>
@@ -29,7 +31,7 @@ const CustomAlert = (props) => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: Colors.ocean.primary,
+        // backgroundColor: Colors.ocean.primary,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -60,7 +62,18 @@ const styles = StyleSheet.create({
         height: '20%',
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingBottom: 30
+    },
+    circle: {
+        backgroundColor: 'gray',
+        height: 42,
+        width: 42,
+        borderRadius: 21,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'white'
     }
 })
  

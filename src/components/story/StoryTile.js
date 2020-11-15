@@ -12,7 +12,7 @@ const StoryTile = (props) => {
             storyInfo: {...props.story}
         }})
       } else {
-          props.navigation.navigate('CustomDevelopmentAlert')
+         props.modalOn()
       }
     }
 

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, FlatList, Dimensions} from 'react-native'
+import Modal from 'react-native-modal'
+import CustomAlert from '../components/custom/CustomDevelopmentAlert'
 import DATA from '../constants/data'
 import Colors from '../constants/Colors'
 import StoryTile from '../components/story/StoryTile'
@@ -12,15 +14,27 @@ const StoryCardScreen = (props) => {
 
     const storiesArray = [...DATA["stories"]]
     const currentUser = useSelector(state => state.currentUser)
+    const [modalVisible, setModalVisible] = useState(false)
+
+    const modalOn = () => {
+        setModalVisible(true)
+    }
+
+    const modalOff = () => {
+        setModalVisible(false)
+    }
 
     const renderGridItem = (itemData) => {
-        return (<StoryTile navigation={props.navigation} story={{...itemData.item}} title={itemData.item.story_title} icon={itemData.item.icon} />)
+        return (<StoryTile modalOn={modalOn} navigation={props.navigation} story={{...itemData.item}} title={itemData.item.story_title} icon={itemData.item.icon} />)
     }
 
     console.log(currentUser)
 
     return ( 
         <View style={styles.container}>
+             <Modal isVisible={modalVisible}>
+                <CustomAlert onPress={modalOff} />
+            </Modal>
             <MTBoldText style={styles.titleText}>
                 In order to pair you with the professional that best suits your needs, 
                 and better yet your personality, we have to get to know you 

@@ -1,23 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Dimensions, Image} from 'react-native'
+import Modal from 'react-native-modal'
 
 import {AntDesign, MaterialCommunityIcons} from '@expo/vector-icons'
 import MTBoldText from '../components/custom/MTBoldText'
 import MBLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
+import CustomAlert from '../components/custom/CustomDevelopmentAlert'
 
 const EmailGatherScreen = (props) => {
 
-   const deadEndNavigator = () => {
-       props.navigation.navigate('CustomDevelopmentAlert')
-   }
+    const [modalVisible, setModalVisible] = useState(false)
+
+//    const deadEndNavigator = () => {
+//        props.navigation.navigate('CustomDevelopmentAlert')
+//    }
 
     const pushToNewUserEmailScreen = () => {
         props.navigation.navigate({routeName: 'NewUserEmailSignUp'})
     }
 
+    const modalOn = () => {
+        setModalVisible(true)
+    }
+
+    const modalOff = () => {
+        setModalVisible(false)
+    }
+
     return ( 
         <View style={styles.container}>
+            <Modal isVisible={modalVisible}>
+                <CustomAlert onPress={modalOff} />
+            </Modal>
             <View style={styles.banner}>
                 <MTBoldText>Our mission is to make the customer-to-professional relationship more meaningful.</MTBoldText>
                 <MTBoldText> </MTBoldText>
@@ -43,19 +58,19 @@ const EmailGatherScreen = (props) => {
                     size={48} 
                     color="white" 
                     style={styles.icon} 
-                    onPress={deadEndNavigator} />
+                    onPress={modalOn} />
                     <AntDesign 
                     name="google" 
                     size={48} 
                     color="white" 
                     style={styles.icon} 
-                    onPress={deadEndNavigator} />
+                    onPress={modalOn} />
                     <AntDesign 
                     name="instagram" 
                     size={48} 
                     color="white" 
                     style={styles.icon} 
-                    onPress={deadEndNavigator} />
+                    onPress={modalOn} />
                 </View>
                 <View style={styles.arrowHolder}>
                     <MaterialCommunityIcons 
@@ -66,12 +81,12 @@ const EmailGatherScreen = (props) => {
                     />
                 </View>
                 <View style={styles.profTextContainer}>
-                    <MBLightText onPress={deadEndNavigator}>
+                    <MBLightText onPress={modalOn}>
                         Professional User? Click here to sign up.
                     </MBLightText>
                 </View>
                 <View style={styles.returningUserTab}>
-                    <MBLightText onPress={deadEndNavigator}>
+                    <MBLightText onPress={modalOn}>
                         Returning User?
                     </MBLightText>
                 </View>

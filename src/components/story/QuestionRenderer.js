@@ -332,7 +332,7 @@ const QuestionRenderer = (props) => {
                 </View>
             {/* ANIMATION */}
                 <Animatable.View 
-                animation="slideInDown" 
+                animation="lightSpeedOut" 
                 iterationCount="infinite" 
                 direction="alternate" 
                 style={styles.iconHolder}>

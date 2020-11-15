@@ -139,7 +139,13 @@ const PersonalityResultPage = (props) => {
             name={iconName} size={48} style={{margin: 10, padding: 5}} color="white" />
             <MTBoldText style={{padding: 20, textAlign: 'center'}}>{description}</MTBoldText>
             <View>
-                <MainButton style={{backgroundColor: Colors.ocean.secondary}}>Ready to explore?</MainButton>
+                    <MaterialCommunityIcons 
+                    name="arrow-right-bold-circle-outline" 
+                    size={48} 
+                    color="white" 
+                    onPress={() => {
+                        props.navigation.navigate('TesterEndScreen')
+                    }}/>
             </View>
         </View>
      );
