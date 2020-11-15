@@ -33,7 +33,7 @@ const NewUserEmailSignUpScreen = (props) => {
     const checkValidity = () => {
         if (userInfo.email.includes(' ')){
             return false
-        } else if (userInfo.password.length < 6){
+        } else if (userInfo.password.length < 4){
             return false 
         } else {
             return true
@@ -50,17 +50,15 @@ const NewUserEmailSignUpScreen = (props) => {
         pushToStoryPage()
         } else {
             Alert.alert(
-                "Hey you", "Emails can't contain spaces, and/or passwords must be at least 6 characters.", [{text: "Ok, I won't do it again.", style: 'default'}]
+                "Hey you", "Emails can't contain spaces, and/or passwords must be at least 4 characters.", [{text: "Ok, I won't do it again.", style: 'default'}]
             )
         }
     }
-
-    console.log(userInfo)
     
     return ( 
         <View style={styles.screen}>
             <View style={styles.labelHolder}>
-                <MTBoldText>Email please</MTBoldText>
+                <MTBoldText>Email</MTBoldText>
                 <Input 
                 style={styles.input} 
                 blurOnSubmit 

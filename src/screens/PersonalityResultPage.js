@@ -3,24 +3,18 @@ import {View, StyleSheet} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText'
 import Colors from '../constants/Colors'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import MainButton from '../components/custom/MainButton'
 import {useSelector} from 'react-redux'
-
-// brain, biathlon, shield-home, artist
 
 const PersonalityResultPage = (props) => {
 
     const returnedObject = props.navigation.getParam('personalityResult')
-    const checkResetAnswers = useSelector(state => state.answers)
-    console.log(checkResetAnswers, returnedObject, returnedObject["email"])
-
+   
     let archetype;
     let spec;
     let description;
     let iconName;
 
     const typeHandler = (type) => {
-        console.log('inside the handler')
         switch(type){
         case "INTJ":
             archetype = "Rationalist"
@@ -43,7 +37,6 @@ const PersonalityResultPage = (props) => {
             description = "Smart and curious thinkers who cannot resist an intellectual challenge."
             break;
         case "INFJ":
-            console.log('in the case')
             archetype = 'Idealist'
             spec = "Advocate"
             description = "Quiet and mystical, yet very inspiring and tireless idealists."
@@ -122,9 +115,7 @@ const PersonalityResultPage = (props) => {
 
     typeHandler(returnedObject.MBTI)
     iconHandler()
-
-    // console.log(returnedObject["MBTI"].slice(1, -1))
-
+    
     return ( 
         <View style={styles.screen}>
             <View>

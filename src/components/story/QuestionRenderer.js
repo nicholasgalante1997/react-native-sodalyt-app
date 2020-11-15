@@ -11,8 +11,6 @@ import {addAnswer, resetAnswers} from '../../store/actions/actionCreator'
 
 const QuestionRenderer = (props) => {
 
-    
-
     const storyInfo = props.navigation.getParam('storyInfo')
     const { questions } = storyInfo;
 
@@ -41,31 +39,31 @@ const QuestionRenderer = (props) => {
 
             // Case of Alien Bar
             case 17: 
-                setCurrentQuestionOrder(prev => prev + 0.40)
+                setCurrentQuestionOrder(7.40)
                 setChosenAnswer(null)
                 break;
             case 45: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.41)
                 setChosenAnswer(null)
                 break;
             case 46:
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.41)
                 setChosenAnswer(null)
                 break;
             case 47: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.42)
                 setChosenAnswer(null)
                 break;
             case 48: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.42)
                 setChosenAnswer(null)
                 break;
             case 49: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.43)
                 setChosenAnswer(null)
                 break;
             case 50:
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.43)
                 setChosenAnswer(null)
                 break;
             case 51: 
@@ -79,15 +77,15 @@ const QuestionRenderer = (props) => {
 
             // Case of Direct March Into City
             case 18: 
-                setCurrentQuestionOrder(prev => prev + 0.30)
+                setCurrentQuestionOrder(7.30)
                 setChosenAnswer(null)
                 break;
             case 37: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.31)
                 setChosenAnswer(null)
                 break;
             case 38: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.31)
                 setChosenAnswer(null)
                 break;
             // issues 39 , 40 - quick patch with hard code value
@@ -100,11 +98,11 @@ const QuestionRenderer = (props) => {
                 setChosenAnswer(null)
                 break
             case 41: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.33)
                 setChosenAnswer(null)
                 break;
             case 42: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.33)
                 setChosenAnswer(null)
                 break;
             case 43:
@@ -118,7 +116,7 @@ const QuestionRenderer = (props) => {
 
             // Case of Recon 
             case 19:
-                setCurrentQuestionOrder(prev => prev + 0.10)
+                setCurrentQuestionOrder(7.10)
                 setChosenAnswer(null)
                 break;
             case 21: 
@@ -130,19 +128,19 @@ const QuestionRenderer = (props) => {
                 setChosenAnswer(null)
                 break;
             case 23: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.12)
                 setChosenAnswer(null)
                 break;
             case 24: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.12)
                 setChosenAnswer(null)
                 break;
             case 25: 
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.13)
                 setChosenAnswer(null)
                 break;
             case 26:
-                setCurrentQuestionOrder(prev => prev + 0.01)
+                setCurrentQuestionOrder(7.13)
                 setChosenAnswer(null)
                 break;
             case 27:
@@ -197,20 +195,19 @@ const QuestionRenderer = (props) => {
                 cleanUpAfterLastQuestion()
                 break;
             default: 
-                console.log('in the case statement')
                 setCurrentQuestionOrder(currentQOrder => currentQOrder + 1)
                 setChosenAnswer(null)
                 break;
         }
     }
 
-    const postToSageMakerEndPoint = (answersString) => {
+    const postToSageMakerEndPoint = (answersObj) => {
         // instantiate a headers object
         let myHeaders = new Headers();
         // add content type header to object
         myHeaders.append("Content-Type", "application/json");
         // using built in JSON utility package turn object to string and store in a variable
-        let raw = JSON.stringify(answersString);
+        let raw = JSON.stringify(answersObj);
         // create a JSON object with parameters for API call and store in a variable
         let requestOptions = {
             method: 'POST',
@@ -222,8 +219,7 @@ const QuestionRenderer = (props) => {
         fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
         .then(response => response.json())
         .then(result => {
-            console.log(result, "response from the server")
-
+            
             props.navigation.navigate({routeName: 'PersonalityResultPage', params: {
                 personalityResult: result
             }})
@@ -231,6 +227,7 @@ const QuestionRenderer = (props) => {
             setCurrentQuestionOrder(1)
             setChosenAnswer(null)
             resetReduxAnswers()
+
         })
         .catch(error => console.log('error', error))
     }
@@ -303,10 +300,7 @@ const QuestionRenderer = (props) => {
             "F": feelingArray.length.toString(),
         }
 
-        console.log(returnData, "return data object")
-
         postToSageMakerEndPoint(returnData)
-
     }
 
     const resetReduxAnswers = () => {
@@ -366,7 +360,6 @@ const QuestionRenderer = (props) => {
     thisQuestion = findThisQuestion(currentQuestionOrder)
     content = defaultBinaryQuestionLayout(thisQuestion)
 
-    console.log('userInfo', userInfo)
     return (
         // WHOLE SCREEN
         <View style={styles.container}>

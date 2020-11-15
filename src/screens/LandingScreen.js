@@ -4,7 +4,7 @@ import Colors from '../constants/Colors'
 import MTLightText from '../components/custom/MTLightText'
 
 const LandingScreen = (props) => {
-    console.log(props.navigation)
+
     return ( 
         <View style={styles.container}>
             <TouchableWithoutFeedback 

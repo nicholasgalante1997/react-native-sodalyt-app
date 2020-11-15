@@ -82,7 +82,7 @@ const EmailGatherScreen = (props) => {
                 </View>
                 <View style={styles.profTextContainer}>
                     <MBLightText onPress={modalOn}>
-                        Professional User? Click here to sign up.
+                        Trying to register your company? Click here to sign up.
                     </MBLightText>
                 </View>
                 <View style={styles.returningUserTab}>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'white'
     },
     returningUserTab: {
-        paddingTop: 50
+        paddingTop: 20
     },
     arrowHolder: {
         flexDirection: 'row',

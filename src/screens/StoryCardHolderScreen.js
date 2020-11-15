@@ -28,8 +28,6 @@ const StoryCardScreen = (props) => {
         return (<StoryTile modalOn={modalOn} navigation={props.navigation} story={{...itemData.item}} title={itemData.item.story_title} icon={itemData.item.icon} />)
     }
 
-    console.log(currentUser)
-
     return ( 
         <View style={styles.container}>
              <Modal isVisible={modalVisible}>
@@ -68,7 +66,8 @@ const StoryCardScreen = (props) => {
                 name="form" 
                 size={24} 
                 color="white" 
-                style={{paddingTop: 5}} />
+                style={{paddingTop: 5}}  
+                onPress={modalOn} />
             </View>
             
         </View>

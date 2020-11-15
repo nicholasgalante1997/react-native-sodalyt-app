@@ -16,7 +16,6 @@ const StoryTile = (props) => {
       }
     }
 
-    console.log(props)
     return ( 
         <TouchableOpacity 
         style={styles.gridItem} 
