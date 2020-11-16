@@ -115,7 +115,7 @@ const PersonalityResultPage = (props) => {
 
     typeHandler(returnedObject.MBTI)
     iconHandler()
-    
+
     return ( 
         <View style={styles.screen}>
             <View>
@@ -135,7 +135,7 @@ const PersonalityResultPage = (props) => {
                     size={48} 
                     color="white" 
                     onPress={() => {
-                        props.navigation.navigate('TesterEndScreen')
+                        props.navigation.navigate('ExploreDynamicContent')
                     }}/>
             </View>
         </View>
