@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native'
+import {Ionicons} from '@expo/vector-icons'
 import MTBoldText from '../components/custom/MTBoldText'
 
 const VerticalCategoriesScreen = (props) => {
@@ -12,7 +13,10 @@ const VerticalCategoriesScreen = (props) => {
 
 VerticalCategoriesScreen.navigationOptions = navData => {
     return {
-        headerTitle: 'Services'
+        headerTitle: 'Services',
+        headerLeft: () => {
+            return <Ionicons name="ios-menu" color="black" size={24} />
+        }
     }
 }
 
