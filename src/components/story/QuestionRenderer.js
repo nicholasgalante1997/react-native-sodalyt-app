@@ -216,7 +216,7 @@ const QuestionRenderer = (props) => {
             redirect: 'follow'
         };
         // make API call with parameters and use promises to get response
-        fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
+        fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti2/mbti-predictor-sansml", requestOptions)
         .then(response => response.json())
         .then(result => {
             
