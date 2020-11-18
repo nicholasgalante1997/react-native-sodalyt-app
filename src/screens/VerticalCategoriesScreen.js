@@ -1,14 +1,29 @@
 import React from 'react';
 import {View, StyleSheet, FlatList, Platform} from 'react-native'
-import {Ionicons} from '@expo/vector-icons'
 import MTBoldText from '../components/custom/MTBoldText'
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
+import VerticalData from '../constants/verticalCategoriesData'
+import VerticalCard from '../components/explore/VerticalCard'
 
 const VerticalCategoriesScreen = (props) => {
+
+    const verticalArray = VerticalData
+    console.log(verticalArray)
+
+    const renderItem = (itemData) => {
+        return (
+            <VerticalCard vertical={itemData.item} prompt={itemData.item.prompt} iconFamily={itemData.item.iconFamily} icon={itemData.item.icon} style={{backgroundColor: itemData.item.backgroundColor}} />
+        )
+    }
+
     return ( 
         <View style={styles.screen}>
-                <MTBoldText>Vertical Categories Screen</MTBoldText>
+               <FlatList 
+               data={verticalArray} 
+               keyExtractor={item => item.id} 
+               renderItem={renderItem} 
+            />
         </View>
      );
 }
@@ -34,8 +49,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#888'
+        alignItems: 'center'
     }
 })
  
