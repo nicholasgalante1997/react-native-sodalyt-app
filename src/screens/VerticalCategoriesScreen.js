@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, StyleSheet, FlatList} from 'react-native'
+import {View, StyleSheet, FlatList, Platform} from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
 import MTBoldText from '../components/custom/MTBoldText'
+import {HeaderButtons, Item} from 'react-navigation-header-buttons'
+import HeaderButton from '../components/custom/CustomHeaderButton'
 
 const VerticalCategoriesScreen = (props) => {
     return ( 
@@ -14,9 +16,17 @@ const VerticalCategoriesScreen = (props) => {
 VerticalCategoriesScreen.navigationOptions = navData => {
     return {
         headerTitle: 'Services',
-        headerLeft: () => {
-            return <Ionicons name="ios-menu" color="black" size={24} />
-        }
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item 
+                title="Menu" 
+                iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu' } 
+                onPress={() => {
+                    console.log('click')
+                    navData.navigation.toggleDrawer()
+                }} />
+            </HeaderButtons>
+        )
     }
 }
 

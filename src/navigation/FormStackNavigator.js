@@ -113,17 +113,17 @@ const FormStackNavigator = createStackNavigator({
         }
     },
     ExploreDynamicContent: {
-        screen: ExploreTabsContentNavigator,
-        navigationOptions: {
-            headerBackTitleVisible: false,
-            headerTitle: 'Services',
-            headerLeftContainerStyle: {
-                marginLeft: 20
-            },
-            headerLeft: () => {
-                return <Ionicons name="ios-menu" color="black" size={24} />
-            }
-        }
+        screen: ExploreTabsContentNavigator
+        // navigationOptions: {
+        //     headerBackTitleVisible: false,
+        //     headerTitle: 'Services',
+        //     headerLeftContainerStyle: {
+        //         marginLeft: 20
+        //     },
+        //     headerLeft: () => {
+        //         return <Ionicons name="ios-menu" color="black" size={24} />
+        //     }
+        // }
     }
 })
 

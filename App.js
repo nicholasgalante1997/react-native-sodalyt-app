@@ -17,6 +17,12 @@ import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
 import AWS from 'aws-sdk'
 
+
+// IMPORTS FOR TESTING SCREENS
+import MainDrawerNavigator from './src/navigation/MainDrawerNavigator'
+import MainTabNavigator from './src/navigation/MainTabNavigator';
+import FullStackNavigator from './src/navigation/FullStackNavigator'
+
 // AWS Configuration
 Amplify.configure(awsconfig)
 
@@ -60,7 +66,9 @@ export default function App(props) {
 
   return (
     <Provider store={store}>
-      <FormStackNavigator />
+      {/* <FormStackNavigator /> */}
+      {/* <MainDrawerNavigator /> */}
+      <FullStackNavigator />
     </Provider>
     // <CustomAlert />
   );

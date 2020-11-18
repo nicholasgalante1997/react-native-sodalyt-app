@@ -135,7 +135,9 @@ const PersonalityResultPage = (props) => {
                     size={48} 
                     color="white" 
                     onPress={() => {
-                        props.navigation.navigate('ExploreDynamicContent')
+                        // props.navigation.navigate('ExploreDynamicContent')
+                        // Test for New Nav
+                        props.navigation.navigate('MainContent')
                     }}/>
             </View>
         </View>
