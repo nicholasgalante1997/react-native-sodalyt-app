@@ -35,7 +35,7 @@ const VerticalCard = (props) => {
     console.log(props)
 
     return ( 
-        <TouchableOpacity style={styles.gridItem}>
+        <TouchableOpacity style={styles.gridItem} onPress={props.onPress}>
             <View style={{...styles.container, ...props.style}}>
                 {icon()}
                 <MTBoldText style={styles.title}>

@@ -18,5 +18,19 @@ export default {
     rugged: {
         primary: '#C54E16',
         secondary: '#151F6A'
+    },
+    vertical: {
+        one: "#3382CE",
+        two: "#CE3335",
+        three: "#56EB7A",
+        four: "#7A56EB",
+        five: "#DCA8CF",
+        six: "#F5A171",
+        seven: "#71F5E3",
+        eight: "#8BA5DA",
+        nine: "#DA8BA5",
+        ten: "#F3B366",
+        eleven: "#D7F7BE",
+        twelve: "#BED7F7"
     }
 }

@@ -9,11 +9,16 @@ import VerticalCard from '../components/explore/VerticalCard'
 const VerticalCategoriesScreen = (props) => {
 
     const verticalArray = VerticalData
+    console.log("spec page")
     console.log(verticalArray)
+    
+    const pushTo = (itemData) => {
+        props.navigation.navigate('SpecificServicesPage', {VerticalInformation: itemData })
+    }
 
     const renderItem = (itemData) => {
         return (
-            <VerticalCard vertical={itemData.item} prompt={itemData.item.prompt} iconFamily={itemData.item.iconFamily} icon={itemData.item.icon} style={{backgroundColor: itemData.item.backgroundColor}} />
+            <VerticalCard onPress={() => pushTo(itemData.item)} vertical={itemData.item} prompt={itemData.item.prompt} iconFamily={itemData.item.iconFamily} icon={itemData.item.icon} style={{backgroundColor: itemData.item.backgroundColor}} />
         )
     }
 
