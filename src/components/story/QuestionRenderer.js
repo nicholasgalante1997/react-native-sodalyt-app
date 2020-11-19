@@ -426,7 +426,8 @@ const styles = StyleSheet.create({
     bannerText: {
        color: 'white',
        fontSize: 20,
-       textAlign: 'left'
+       textAlign: 'left',
+       marginHorizontal: 9
     },
     iconHolder: {
         justifyContent: 'center',
@@ -436,7 +437,8 @@ const styles = StyleSheet.create({
     },
     answerContainer: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        // width: '90%'
     },
     buttonHolder: {
         paddingVertical: 5,

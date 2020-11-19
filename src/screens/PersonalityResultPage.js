@@ -166,7 +166,7 @@ const PersonalityResultPage = (props) => {
             <MTBoldText style={{padding: 20, textAlign: 'center'}}>{description}</MTBoldText>
             <View style={styles.learnMoreCont}>
                 <CustomButton onPress={modalOn}  style={{backgroundColor: Colors.rugged.primary, width: '40%', height: 50, marginBottom: 20}}>
-                    <MTBoldText color="white">Learn More</MTBoldText>
+                    <MTBoldText color="white" style={{fontSize: 14}}>Learn More</MTBoldText>
                 </CustomButton>
             </View>
             <View>

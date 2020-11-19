@@ -33,7 +33,7 @@ const StoryCardScreen = (props) => {
              <Modal isVisible={modalVisible}>
                 <CustomAlert onPress={modalOff} />
             </Modal>
-            <MTBoldText style={styles.titleText}>
+            {/* <MTBoldText style={styles.titleText}>
                 In order to pair you with the professional that best suits your needs, 
                 and better yet your personality, we have to get to know you 
                 just a little bit.  
@@ -42,9 +42,9 @@ const StoryCardScreen = (props) => {
                 We here at Sodalyt, felt that the best way to get to know you and what you're like, 
                 is to see what it's like to be in your shoes. So, we've developed four little Adventure Stories 
                 to choose from, each one just 15 questions. 
-            </MTBoldText>
+            </MTBoldText> */}
             <MTBoldText style={styles.titleText}>
-                Choose any one of the stories below to get started.
+               First step to finding your professional is matching based upon personalities. Play one of the games below to take the Sodalyt personality quiz.
             </MTBoldText>
             <View>
                 <FlatList 
