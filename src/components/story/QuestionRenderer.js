@@ -24,6 +24,7 @@ const QuestionRenderer = (props) => {
     const [chosenAnswer, setChosenAnswer] = useState(null)
     const selectedAnswersArray = useSelector(state => state.answers)
     const userInfo = useSelector(state => state.currentUser)
+    const localConcatName  = userInfo.firstName.concat(" ", userInfo.lastName)
 
     const pushAnswerToRedux = () => {
         dispatch(addAnswer(chosenAnswer));
@@ -216,10 +217,11 @@ const QuestionRenderer = (props) => {
             redirect: 'follow'
         };
         // make API call with parameters and use promises to get response
-        fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
+        fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti2/mbti-predictor-sansml", requestOptions)
         .then(response => response.json())
         .then(result => {
             
+            console.log(result)
             props.navigation.navigate({routeName: 'PersonalityResultPage', params: {
                 personalityResult: result
             }})
@@ -280,6 +282,7 @@ const QuestionRenderer = (props) => {
         })
 
         const returnData = {
+            "name": localConcatName,
             "email": userInfo.email,
             "password": userInfo.password,
             "kearsey-one": kearseyOne.raw_value,
@@ -360,6 +363,8 @@ const QuestionRenderer = (props) => {
     thisQuestion = findThisQuestion(currentQuestionOrder)
     content = defaultBinaryQuestionLayout(thisQuestion)
 
+    console.log(localConcatName, userInfo)
+   
     return (
         // WHOLE SCREEN
         <View style={styles.container}>

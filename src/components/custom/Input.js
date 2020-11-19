@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
         height: 30,
         borderBottomColor: 'grey',
         borderBottomWidth: 1,
-        marginVertical: 10
+        marginVertical: 10,
+        color: 'black'
     }
 })
  
