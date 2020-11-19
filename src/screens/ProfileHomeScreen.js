@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText'
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
+import Colors from '../constants/Colors'
 
 const ProfileHomeScreen = (props) => {
     return ( 
@@ -17,6 +18,10 @@ const ProfileHomeScreen = (props) => {
 ProfileHomeScreen.navigationOptions = navData => {
     return {
         headerTitle: 'Home',
+        headerTitleStyle: {
+            fontFamily: 'tommy-bold',
+            color: Colors.rugged.primary
+        },
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item 

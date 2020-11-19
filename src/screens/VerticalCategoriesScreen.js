@@ -1,17 +1,17 @@
 import React from 'react';
 import {View, StyleSheet, FlatList, Platform} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText'
+import Colors from '../constants/Colors'
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
 import VerticalData from '../constants/verticalCategoriesData'
 import VerticalCard from '../components/explore/VerticalCard'
+import SearchBar from '../components/custom/SearchBar';
 
 const VerticalCategoriesScreen = (props) => {
 
     const verticalArray = VerticalData
-    console.log("spec page")
-    console.log(verticalArray)
-    
+
     const pushTo = (itemData) => {
         props.navigation.navigate('SpecificServicesPage', {VerticalInformation: itemData })
     }
@@ -24,6 +24,7 @@ const VerticalCategoriesScreen = (props) => {
 
     return ( 
         <View style={styles.screen}>
+            <SearchBar />
                <FlatList 
                data={verticalArray} 
                keyExtractor={item => item.id} 
@@ -36,6 +37,10 @@ const VerticalCategoriesScreen = (props) => {
 VerticalCategoriesScreen.navigationOptions = navData => {
     return {
         headerTitle: 'Services',
+        headerTitleStyle: {
+            fontFamily: 'tommy-bold',
+            color: Colors.rugged.primary
+        },
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item 

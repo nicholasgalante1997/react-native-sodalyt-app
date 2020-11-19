@@ -27,12 +27,12 @@ const VerticalCard = (props) => {
                 icon = () => <Ionicons name={props.icon} size={64} color='white' />
                 break;
             default: 
+                icon = () => {}
                 break;
         }
     }
 
     iconSorter(props.iconFamily)
-    console.log(props)
 
     return ( 
         <TouchableOpacity style={styles.gridItem} onPress={props.onPress}>

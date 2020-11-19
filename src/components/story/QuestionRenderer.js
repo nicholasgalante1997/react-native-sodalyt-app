@@ -243,6 +243,7 @@ const QuestionRenderer = (props) => {
         const intuitionArray = []
         const thinkingArray = []
         const feelingArray = []
+        
         let kearseyOne = selectedAnswersArray.filter(answer => answer.question_id === 3)[0]
         let kearseyTwo = selectedAnswersArray.filter(answer => answer.question_id === 6)[0]
         let kearseyThree = selectedAnswersArray.filter(answer => answer.question_id === 7)[0]
@@ -251,6 +252,14 @@ const QuestionRenderer = (props) => {
         let reassurance = selectedAnswersArray.filter(answer => answer.question_id === 31)[0]
         let resilience = selectedAnswersArray.filter(a => a.question_id === 32)[0]
         let resp = selectedAnswersArray.filter(a => a.question_id === 28)[0]
+
+        // const kearseyPrefGenerator = (one, two, three) => {
+        //     let sentinel = 0
+
+        //     if (one.raw_value === "The Guardian/The Sentinel" || two.raw_value === "The Guardian/The Sentinel" || three.raw_value === "The Guardian/The Sentinel"){
+        //         sentinel = sentinel + 1
+        //     } else if 
+        // }
 
         currentAnswerList.forEach(answer => {
             if (answer.raw_value === "E") {
