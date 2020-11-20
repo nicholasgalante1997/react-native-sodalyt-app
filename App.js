@@ -16,6 +16,8 @@ import {enableScreens} from 'react-native-screens'
 import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
 import AWS from 'aws-sdk'
+import { Platform , Dimensions} from 'react-native';
+
 
 // AWS Configuration
 Amplify.configure(awsconfig)
@@ -58,6 +60,7 @@ export default function App(props) {
     />
   }
 
+ console.log(Dimensions.get('window'))
   return (
     <Provider store={store}>
       <FormStackNavigator />

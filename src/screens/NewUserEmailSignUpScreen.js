@@ -9,7 +9,7 @@ import {setCurrentUser} from '../store/actions/actionCreator'
 
 const demoUserInfo = {
     email: "",
-    password: "",
+    password: "password",
     firstName: "",
     lastName: ""
 }
@@ -26,11 +26,11 @@ const NewUserEmailSignUpScreen = (props) => {
         }))
     }
 
-    const handlePasswordInput = (inputText) => {
-        setUserInfo(currentState => ({
-            ...currentState, password: inputText
-        }))
-    }
+    // const handlePasswordInput = (inputText) => {
+    //     setUserInfo(currentState => ({
+    //         ...currentState, password: inputText
+    //     }))
+    // }
 
     const handleFirstNameInput = (inputText) => {
         setUserInfo(currentState => ({
@@ -82,7 +82,7 @@ const NewUserEmailSignUpScreen = (props) => {
         <ScrollView contentContainerStyle={{flex: 1, backgroundColor: Colors.ocean.primary}} onPress={() => Keyboard.dismiss()}>
         <View style={styles.screen}>
             <MTBoldText style={{fontSize: 48, textAlign: 'center', marginBottom: 20}}>Join Us!</MTBoldText>
-            <View style={{backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', height: '45%', width: '60%', borderRadius: 15, paddingTop: 30}}>
+            <View style={{backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', height: '35%', width: '60%', borderRadius: 15}}>
              <View style={styles.labelHolder}>
                 <MTBoldText style={{color: 'black'}}>First Name</MTBoldText>
                 <Input 
@@ -119,7 +119,7 @@ const NewUserEmailSignUpScreen = (props) => {
                 onChangeText={handleEmailInput}
                 />
             </View>
-            <View style={styles.labelHolder}>
+            {/* <View style={styles.labelHolder}>
                 <MTBoldText style={{color: 'black'}}>Password</MTBoldText>
                 <Input 
                 style={styles.input} 
@@ -131,7 +131,7 @@ const NewUserEmailSignUpScreen = (props) => {
                 value={userInfo.password}
                 onChangeText={handlePasswordInput}
                 />
-            </View>
+            </View> */}
         </View>
         <View style={styles.homeIcon}>
         <AntDesign 
@@ -149,8 +149,8 @@ const NewUserEmailSignUpScreen = (props) => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        // justifyContent: 'center',
-        marginTop: '30%',
+        justifyContent: 'center',
+        // marginTop: '30%',
         alignItems: 'center',
         backgroundColor: Colors.ocean.primary
     },

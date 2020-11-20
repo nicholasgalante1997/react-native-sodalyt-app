@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native'
+import {View, StyleSheet, ScrollView, Dimensions} from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
 import MTMediumText from '../custom/MTMediumText'
@@ -339,7 +339,7 @@ const QuestionRenderer = (props) => {
                     color="white" />
                 </Animatable.View>
             {/* ANSWERS */}
-            <ScrollView>
+            <ScrollView style={{marginTop: Dimensions.get('window').height > 700 ? 0 : 50}}>
                 <View style={styles.answerContainer}>
                     { thisQuestion.answers.map(answer => 
                         <View key={answer.id} style={styles.buttonHolder}>
@@ -362,8 +362,6 @@ const QuestionRenderer = (props) => {
 
     thisQuestion = findThisQuestion(currentQuestionOrder)
     content = defaultBinaryQuestionLayout(thisQuestion)
-
-    console.log(localConcatName, userInfo)
    
     return (
         // WHOLE SCREEN
@@ -394,7 +392,7 @@ const QuestionRenderer = (props) => {
 
 }
 
-const styles = StyleSheet.create({
+let styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
@@ -432,24 +430,92 @@ const styles = StyleSheet.create({
     iconHolder: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 60,
-        paddingBottom: 20
+        // paddingTop: 60,
+        // paddingBottom: 20,
+        marginVertical: 20
     },
     answerContainer: {
-        justifyContent: 'center',
+        marginTop: 20,
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        borderRadius: 15,
+        height: (Dimensions.get('window').height / 10) * 4
         // width: '90%'
     },
     buttonHolder: {
-        paddingVertical: 5,
-        paddingHorizontal: 5
+        marginVertical: 5,
+        marginHorizontal: 15
     },
     nextButtonContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 10
+        marginTop: 10
     }
 })
+
+if (Dimensions.get('window').height < 700){
+    styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            alignItems: 'center',
+            backgroundColor: Colors.rugged.primary
+        },
+        topContainer: {
+            flexDirection: 'row',
+            justifyContent: 'space-around',        
+            alignItems: 'center',
+            paddingTop: 20
+        },
+        defaultBinary: {
+            // marginVertical: 10,
+            height: '80%',
+            width: '100%',
+            borderRadius: 15
+        },
+        bannerWrapper: {
+            width: '100%',
+            paddingVertical: 20,
+            borderRadius: 20
+        },
+        banner: {
+            paddingVertical: 10,
+            width: '100%',
+            backgroundColor: Colors.rugged.secondary,
+            alignItems: 'center',
+            justifyContent: 'center'
+        },
+        bannerText: {
+           color: 'white',
+           fontSize: 20,
+           textAlign: 'left',
+           marginHorizontal: 9
+        },
+        iconHolder: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            // paddingTop: 60,
+            // paddingBottom: 20,
+            marginVertical: 20
+        },
+        answerContainer: {
+            // marginTop: 100,
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            borderRadius: 15,
+            height: (Dimensions.get('window').height / 10) * 3
+            // width: '90%'
+        },
+        buttonHolder: {
+            marginVertical: 5,
+            marginHorizontal: 15
+        },
+        nextButtonContainer: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 10
+        }
+    })
+}
  
 export default QuestionRenderer;
 
