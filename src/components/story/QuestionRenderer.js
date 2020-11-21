@@ -350,7 +350,7 @@ const QuestionRenderer = (props) => {
                                 : {backgroundColor: Colors.rugged.secondary}
                             : {backgroundColor: Colors.rugged.secondary}} 
                             onPress={() => setChosenAnswer(answer)}>
-                                {answer.text}
+                             {answer.text}
                             </MainButton>
                         </View>
                     )}
@@ -453,7 +453,7 @@ let styles = StyleSheet.create({
     }
 })
 
-if (Dimensions.get('window').height < 700){
+if (Dimensions.get('window').height < 800){
     styles = StyleSheet.create({
         container: {
             flex: 1,
@@ -502,7 +502,7 @@ if (Dimensions.get('window').height < 700){
             justifyContent: 'flex-start',
             alignItems: 'center',
             borderRadius: 15,
-            height: (Dimensions.get('window').height / 10) * 3
+            // height: (Dimensions.get('window').height / 10) * 3
             // width: '90%'
         },
         buttonHolder: {

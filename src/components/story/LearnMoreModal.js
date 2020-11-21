@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     alertContainer: {
-        height: Dimensions.get('window').height > 700 ?  Dimensions.get('window').height / 2 : Dimensions.get('window').height / 1.5,
+        height: Dimensions.get('window').height > 700 ?  Dimensions.get('window').height / 1.8 : Dimensions.get('window').height / 1.5,
         width:  Dimensions.get('window').width / 1.5,
         backgroundColor: Colors.ocean.secondary,
         borderRadius: 15,
