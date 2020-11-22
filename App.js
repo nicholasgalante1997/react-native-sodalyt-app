@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import {View} from 'react-native'
 import {AppLoading} from 'expo'
 import * as Font from 'expo-font'
 
@@ -14,11 +14,14 @@ import awsconfig from './aws-exports'
 import AWS from 'aws-sdk'
 
 // IMPORTS FOR TESTING SCREENS
+import Carousel from './src/components/custom/Carousel'
+import VerticalCategories from './src/constants/verticalCategoriesData'
 import LandingCUSearchScreen from './src/screens/LandingCUSearchScreen'
 import FormStackNavigator from './src/navigation/FormStackNavigator'
 import MainDrawerNavigator from './src/navigation/MainDrawerNavigator'
 import MainTabNavigator from './src/navigation/MainTabNavigator';
 import FullStackNavigator from './src/navigation/FullStackNavigator'
+import Colors from './src/constants/Colors';
 
 // AWS Configuration
 Amplify.configure(awsconfig)
@@ -67,6 +70,14 @@ export default function App(props) {
       {/* <MainDrawerNavigator /> */}
       {/* <FullStackNavigator /> */}
       <LandingCUSearchScreen />
+      {/* <View style={{
+        justifyContent: 'center',
+        alignItems:'center',
+        flex: 1,
+        backgroundColor: Colors.ocean.primary
+      }}>
+        <Carousel dataArray={VerticalCategories} />
+      </View> */}
     </Provider>
   );
 }
