@@ -67,8 +67,8 @@ export default function App(props) {
   return (
     <Provider store={store}>
       {/* <FormStackNavigator /> */}
-      <MainDrawerNavigator />
-      {/* <FullStackNavigator /> */}
+      {/* <MainDrawerNavigator /> */}
+      <FullStackNavigator />
     </Provider>
     // <CustomAlert />
   );
