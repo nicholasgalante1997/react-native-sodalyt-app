@@ -24,6 +24,7 @@ const QuestionRenderer = (props) => {
     const [chosenAnswer, setChosenAnswer] = useState(null)
     const selectedAnswersArray = useSelector(state => state.answers)
     const userInfo = useSelector(state => state.currentUser)
+    const localConcatName  = userInfo.firstName.concat(" ", userInfo.lastName)
 
     const pushAnswerToRedux = () => {
         dispatch(addAnswer(chosenAnswer));
@@ -290,6 +291,7 @@ const QuestionRenderer = (props) => {
         })
 
         const returnData = {
+            "name": localConcatName,
             "email": userInfo.email,
             "password": userInfo.password,
             "kearsey-one": kearseyOne.raw_value,

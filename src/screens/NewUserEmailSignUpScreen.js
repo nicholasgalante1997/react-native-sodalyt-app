@@ -9,7 +9,7 @@ import {setCurrentUser} from '../store/actions/actionCreator'
 
 const demoUserInfo = {
     email: "",
-    password: "",
+    password: "password",
     firstName: "",
     lastName: ""
 }
