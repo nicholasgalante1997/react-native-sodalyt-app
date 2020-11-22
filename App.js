@@ -1,6 +1,3 @@
-import TestComp from './TestComponent'
-import CustomAlert from './src/components/custom/CustomDevelopmentAlert'
-
 import React, {useState} from 'react';
 
 import {AppLoading} from 'expo'
@@ -10,15 +7,15 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import rootReducer from './src/store/reducers/reducers'
 
-import FormStackNavigator from './src/navigation/FormStackNavigator'
 import {enableScreens} from 'react-native-screens'
 
 import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
 import AWS from 'aws-sdk'
 
-
 // IMPORTS FOR TESTING SCREENS
+import LandingCUSearchScreen from './src/screens/LandingCUSearchScreen'
+import FormStackNavigator from './src/navigation/FormStackNavigator'
 import MainDrawerNavigator from './src/navigation/MainDrawerNavigator'
 import MainTabNavigator from './src/navigation/MainTabNavigator';
 import FullStackNavigator from './src/navigation/FullStackNavigator'
@@ -68,9 +65,9 @@ export default function App(props) {
     <Provider store={store}>
       {/* <FormStackNavigator /> */}
       {/* <MainDrawerNavigator /> */}
-      <FullStackNavigator />
+      {/* <FullStackNavigator /> */}
+      <LandingCUSearchScreen />
     </Provider>
-    // <CustomAlert />
   );
 }
 

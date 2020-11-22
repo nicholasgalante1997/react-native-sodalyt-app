@@ -6,9 +6,9 @@ import Colors from '../../constants/Colors'
 
 const SearchBar = (props) => {
     return (  
-        <View style={styles.bar}>
+        <View style={{...styles.bar, ...props.style}}>
             <Ionicons name="md-search" size={24} color='white' style={{marginLeft: 7}}/>
-            <Input style={{marginRight: 15, backgroundColor: 'white', width: '86%', borderRadius: 15, alignSelf: 'flex-end'}} />
+            <Input {...props.inputSpecific} style={{ backgroundColor: 'white', width: '86%', borderRadius: 15, alignSelf: 'flex-end', fontFamily: 'tommy-thin', paddingLeft: 8}} />
         </View>
     );
 }
