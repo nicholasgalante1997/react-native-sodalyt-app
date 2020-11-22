@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native'
+import {View, StyleSheet, ScrollView, FlatList} from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
 import MTMediumText from '../custom/MTMediumText'
@@ -15,6 +15,9 @@ const QuestionRenderer = (props) => {
     const { questions } = storyInfo;
 
     let content = null;
+    let bannerContent = null;
+    let flightAnimation = null;
+    let answerScrollList = null;
     let thisQuestion;
 
     const dispatch = useDispatch();
@@ -325,6 +328,34 @@ const QuestionRenderer = (props) => {
         switchContent(chosenAnswerId);
     }
 
+    const generateDynamicQuestionBanner = (thisQuestion) => {
+        return (
+           <View>
+
+           </View>
+        )
+    }
+
+    const generateAnimationSection = (thisQuestion) => {
+        return (
+            <View>
+
+            </View>
+        )
+    }
+
+    const renderAnswerItem = (itemData) => {
+        return (
+            <View>
+
+            </View>
+        )
+    }
+
+    const renderAnswerList = (thisQuestion) => {
+        <FlatList />
+    }
+
     const defaultBinaryQuestionLayout = (thisQuestion) => {
         return (
             <View style={styles.defaultBinary}>
@@ -339,7 +370,7 @@ const QuestionRenderer = (props) => {
             {/* ANIMATION */}
                 <Animatable.View 
                 animation="lightSpeedOut" 
-                iterationCount="infinite" 
+                iterationCount="once" 
                 direction="alternate" 
                 style={styles.iconHolder}>
                     <FontAwesome5 

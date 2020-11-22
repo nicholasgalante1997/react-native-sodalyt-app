@@ -37,8 +37,10 @@ const EmailGatherScreen = (props) => {
             </Modal>
             <View style={styles.banner}>
                 <MTBoldText>Our mission is to make the customer-to-professional relationship more meaningful.</MTBoldText>
-                <MTBoldText> </MTBoldText>
-                <MTBoldText>We do that through AI powered matching, based upon your needs and your personality.</MTBoldText>
+                <MTBoldText></MTBoldText>
+                <MTBoldText>We do that through AI powered matching, based upon your needs and your personality. After this, you'll take a brief 2 minute survey, where we'll determine your personality preference.</MTBoldText>
+                <MTBoldText></MTBoldText>
+                <MTBoldText>Sign up with us as a Sodalyt User to store your personality results for future professional searches.</MTBoldText>
             </View>
             <View style={styles.imageContainer}>
                 <Image 
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     banner: {
-        paddingBottom: Dimensions.get('window').height / 20,
+        paddingBottom: Dimensions.get('window').height / 30,
         paddingHorizontal: 10
     },
     imageContainer: {
@@ -137,7 +139,8 @@ const styles = StyleSheet.create({
     profTextContainer: {
         paddingVertical: 10,
         borderBottomWidth: 1,
-        borderBottomColor: 'white'
+        borderBottomColor: 'white',
+        marginHorizontal: 8
     },
     returningUserTab: {
         paddingTop: 20

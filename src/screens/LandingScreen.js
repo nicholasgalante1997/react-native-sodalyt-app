@@ -13,7 +13,7 @@ const LandingScreen = (props) => {
                     props.navigation.navigate({routeName: 'LandingSearchScreen'})
                 }
             }>
-                <View>
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
                     <View style={styles.headerImageContainer}>
                         <Image 
                         source={require('../images/box_crest_logo.png')}
@@ -26,7 +26,7 @@ const LandingScreen = (props) => {
                         style={styles.image} 
                         resizeMode='cover' />
                     </View>
-                    <View>
+                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
                         <MTLightText style={styles.text}>Click Anywhere to Get Started</MTLightText>
                     </View>
                 </View>
@@ -42,14 +42,18 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.7,
         height: Dimensions.get('window').width * 0.7,
         overflow: 'hidden',
-        marginVertical: 0
+        marginVertical: 0,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     imageContainer: {
         borderRadius: Dimensions.get('window').width * 0.7 / 18,
         width: Dimensions.get('window').width * 0.7,
         height: Dimensions.get('window').width * 0.7,
         overflow: 'hidden',
-        marginBottom: Dimensions.get('window').height / 20
+        marginBottom: Dimensions.get('window').height / 20,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     container: {
         flex: 1,
@@ -64,7 +68,8 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontSize: 20,
-        paddingTop: 50
+        paddingTop: 50,
+        textAlign: 'center' 
     }
 })
 
