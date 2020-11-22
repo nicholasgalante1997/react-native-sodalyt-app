@@ -1,18 +1,18 @@
 {
   "expo": {
     "name": "Sodalyt",
-    "slug": "react-native-sodalyt-app",
+    "slug": "sodalyt-test-app",
     "platforms": [
       "ios",
       "android"
     ],
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
-    "icon": "./assets/circle-logo.png",
+    "icon": "./assets/orange_icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icon-blue.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#151F6A"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,10 +21,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.sodalyt.test-app",
+      "buildNumber": "1.0.2"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "android": {
+      "package": "com.sodalyt.test_app",
+      "versionCode": 1
     }
   }
 }
