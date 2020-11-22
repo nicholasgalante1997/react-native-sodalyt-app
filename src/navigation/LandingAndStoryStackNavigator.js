@@ -9,10 +9,17 @@ import QuestionRenderer from '../components/story/QuestionRenderer'
 import PersonalityResultPage from '../screens/PersonalityResultPage'
 import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen'
 import TesterEndScreen from '../screens/TesterEndScreen'
+import LandingCUSearchScreen from '../screens/LandingCUSearchScreen'
 
 const FormStackNavigator = createStackNavigator({
     Welcome: {
         screen: LandingScreen,
+        navigationOptions: {
+            headerShown: false
+        }
+    },
+    LandingSearchScreen: {
+        screen: LandingCUSearchScreen,
         navigationOptions: {
             headerShown: false
         }

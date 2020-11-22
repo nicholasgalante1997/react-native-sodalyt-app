@@ -7,18 +7,22 @@ import VerticalCategories from '../constants/verticalCategoriesData'
 import MTMediumText from '../components/custom/MTMediumText'
 import DropDownPicker from 'react-native-dropdown-picker';
 import Carousel from '../components/custom/Carousel'
+import {useDispatch} from 'react-redux'
+import * as searchActions from '../store/actions/actionCreator'
 
 const LandingCUSearchScreen = (props) => {
 
     const [searchTerm, setSearchTerm] = useState("")
-    const [showSearchIcon, setShowSearchIcon] = useState(true)
+    const dispatch = useDispatch()
    
     const handleSearchInput = (textInput) => {
         setSearchTerm(textInput)
     }
 
-    console.log(searchTerm, "Searched Term")
-    console.log(VerticalCategories, "Vertical Categories")
+    const handlePush = () => {
+        dispatch(searchActions.setSearchedTerm(searchTerm))
+        props.navigation.navigate('Email')
+    }
 
     return ( 
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -68,8 +72,8 @@ const LandingCUSearchScreen = (props) => {
             <View style={{justifyContent: 'center', alignItems: 'center', width: '100%', height: 100, marginTop: Dimensions.get('window').height / 5}}> 
                     <Carousel dataArray={VerticalCategories} />
             </View>
-            <TouchableOpacity style={{position: 'absolute', bottom: 75}}>
-                    {showSearchIcon ? <View>
+            <TouchableOpacity style={{position: 'absolute', bottom: 75}} onPress={handlePush}>
+                    {searchTerm.length > 0 ? <View>
                         <View style={styles.searchIconButton}>
                         <Ionicons name="md-search" size={38} color='white' />
                         </View>

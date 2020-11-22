@@ -7,11 +7,13 @@ import MTBoldText from '../components/custom/MTBoldText'
 import MBLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 import CustomAlert from '../components/custom/CustomDevelopmentAlert'
+import {useSelector} from 'react-redux'
 
 const EmailGatherScreen = (props) => {
 
     const [modalVisible, setModalVisible] = useState(false)
-
+    const searchTerm = useSelector(state => state.search)
+    console.log(searchTerm)
 //    const deadEndNavigator = () => {
 //        props.navigation.navigate('CustomDevelopmentAlert')
 //    }

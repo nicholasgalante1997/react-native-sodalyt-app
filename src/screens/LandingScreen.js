@@ -10,7 +10,7 @@ const LandingScreen = (props) => {
             <TouchableWithoutFeedback 
             onPress={
                 () => {
-                    props.navigation.navigate({routeName: 'Email'})
+                    props.navigation.navigate({routeName: 'LandingSearchScreen'})
                 }
             }>
                 <View>

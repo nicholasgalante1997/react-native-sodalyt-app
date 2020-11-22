@@ -35,39 +35,15 @@ class Carousel extends React.Component {
     render(){
         const {dataArray} = this.props;
         const {selectedIndex} = this.state;
-        // console.log(dataArray)
+
         return (
             <View style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}}>
                 <ScrollView horizontal pagingEnabled onMomentumScrollEnd={this.setSelectedIndex} ref={this.ScrollRef}>
                     {dataArray.map((vertical) => <CarouselRenderItem {...vertical} key={vertical.id} style={{width: DEVICE_WIDTH, height: '100%'}}/>)}
                 </ScrollView>
-                {/* <View style={styles.circleDiv}>
-                    {dataArray.map((vert, ind) => (
-                        <View style={styles.whiteDot}/>
-                    ))}
-                </View> */}
             </View>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    circleDiv: {
-        position: "absolute",
-        bottom: 10,
-        height: 15,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%'
-    },
-    whiteDot: {
-        width: 6,
-        height: 6,
-        margin: 5,
-        borderRadius: 3,
-        backgroundColor: '#fff'
-    }
-})
  
 export default Carousel;

@@ -68,8 +68,8 @@ export default function App(props) {
     <Provider store={store}>
       {/* <FormStackNavigator /> */}
       {/* <MainDrawerNavigator /> */}
-      {/* <FullStackNavigator /> */}
-      <LandingCUSearchScreen />
+      <FullStackNavigator />
+      {/* <LandingCUSearchScreen /> */}
       {/* <View style={{
         justifyContent: 'center',
         alignItems:'center',
