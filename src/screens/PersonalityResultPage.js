@@ -7,13 +7,15 @@ import LearnMoreModal from '../components/story/LearnMoreModal'
 import Modal from 'react-native-modal'
 import CustomButton from '../components/custom/MainButton'
 import MTLightText from '../components/custom/MTLightText';
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import * as actions from '../store/actions/actionCreator'
 
 const PersonalityResultPage = (props) => {
 
     const returnedObject = props.navigation.getParam('personalityResult')
     const [modalVisible, setModalVisible] = useState(false)
     const searchedTerm = useSelector(state => state.search)
+    const dispatch = useDispatch()
 
     const modalOn = () => {
         setModalVisible(true)
@@ -148,7 +150,7 @@ const PersonalityResultPage = (props) => {
 
     typeHandler(returnedObject.MBTI)
     iconHandler()
-
+    dispatch(actions.setDetails(returnedObject))
     return ( 
         <View style={styles.screen}>
             <Modal visible={modalVisible}>

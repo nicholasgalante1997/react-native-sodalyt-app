@@ -7,7 +7,7 @@ import MainButton from '../custom/MainButton'
 import * as Animatable from 'react-native-animatable';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import {useSelector, useDispatch} from 'react-redux'
-import {addAnswer, resetAnswers} from '../../store/actions/actionCreator'
+import {addAnswer, resetAnswers, setCurrentUser} from '../../store/actions/actionCreator'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const QuestionRenderer = (props) => {
@@ -233,7 +233,6 @@ const QuestionRenderer = (props) => {
             setCurrentQuestionOrder(1)
             setChosenAnswer(null)
             resetReduxAnswers()
-
         })
         .catch(error => console.log('error', error))
     }
