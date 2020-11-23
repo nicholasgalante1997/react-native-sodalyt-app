@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {View} from 'react-native'
 import {AppLoading} from 'expo'
 import * as Font from 'expo-font'
 
@@ -22,6 +21,7 @@ import MainDrawerNavigator from './src/navigation/MainDrawerNavigator'
 import MainTabNavigator from './src/navigation/MainTabNavigator';
 import FullStackNavigator from './src/navigation/FullStackNavigator'
 import Colors from './src/constants/Colors';
+import professionalUserDummyData from './src/constants/professionalUserDummyData'
 
 // AWS Configuration
 Amplify.configure(awsconfig)
@@ -64,20 +64,10 @@ export default function App(props) {
     />
   }
 
+  console.log(professionalUserDummyData)
   return (
     <Provider store={store}>
-      {/* <FormStackNavigator /> */}
-      {/* <MainDrawerNavigator /> */}
       <FullStackNavigator />
-      {/* <LandingCUSearchScreen /> */}
-      {/* <View style={{
-        justifyContent: 'center',
-        alignItems:'center',
-        flex: 1,
-        backgroundColor: Colors.ocean.primary
-      }}>
-        <Carousel dataArray={VerticalCategories} />
-      </View> */}
     </Provider>
   );
 }

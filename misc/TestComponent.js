@@ -1,7 +1,7 @@
 import React from 'react';
-import MainButton from './src/components/custom/MainButton'
+import MainButton from '../src/components/custom/MainButton'
 import {View, StyleSheet} from 'react-native'
-import Colors from './src/constants/Colors'
+import Colors from '../src/constants/Colors'
 
 const TestComp = (props) => {
 

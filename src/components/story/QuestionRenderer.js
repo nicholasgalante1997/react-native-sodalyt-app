@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, ScrollView, FlatList} from 'react-native'
+import {View, StyleSheet, ScrollView, FlatList, Dimensions} from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
 import MTMediumText from '../custom/MTMediumText'
@@ -8,6 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import {useSelector, useDispatch} from 'react-redux'
 import {addAnswer, resetAnswers} from '../../store/actions/actionCreator'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const QuestionRenderer = (props) => {
 
@@ -370,12 +371,12 @@ const QuestionRenderer = (props) => {
             {/* ANIMATION */}
                 <Animatable.View 
                 animation="lightSpeedOut" 
-                iterationCount="once" 
+                iterationCount={1}
                 direction="alternate" 
                 style={styles.iconHolder}>
                     <FontAwesome5 
                     name="space-shuttle" 
-                    size={108} 
+                    size={92} 
                     color="white" />
                 </Animatable.View>
             {/* ANSWERS */}
@@ -411,7 +412,39 @@ const QuestionRenderer = (props) => {
                 <MTMediumText style={styles.topText}>{storyInfo.story_title}</MTMediumText>
             </View>
             {/* DYNAMIC CONTENT */}
-            {content}
+            {/* {content} */}
+            <View style={styles.updateQuestionBanner}>
+               <MTMediumText style={{textAlign: 'center'}}>{thisQuestion.prompt}</MTMediumText> 
+            </View>
+            <Animatable.View 
+                animation="wobble" 
+                iterationCount={2}
+                direction="alternate" 
+                style={styles.iconHolder}>
+                    <FontAwesome5 
+                    name="space-shuttle" 
+                    size={92} 
+                    color="white" />
+                </Animatable.View>
+                <View style={{...styles.updateAnswerContainer, bottom: thisQuestion.answers.length > 2 ? Dimensions.get('window').height / 7 : Dimensions.get('window').height / 4 }}>
+                        <FlatList 
+                        data={thisQuestion.answers} 
+                        keyExtractor={item => item.id} 
+                        renderItem={(itemData) => 
+                        <TouchableOpacity style={{height: 70, width: Dimensions.get('window').width * 0.9, marginVertical: 10}} onPress={() => setChosenAnswer(itemData.item)}>
+                        <View style={{height: '100%', width: '100%', backgroundColor: chosenAnswer ? 
+                            chosenAnswer.id === itemData.item.id ? 
+                                Colors.ocean.secondary
+                                : Colors.rugged.secondary
+                            : Colors.rugged.secondary, 
+                             borderRadius: 15, borderColor: 'white', borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                 <MTMediumText style={{fontSize: 12, marginHorizontal: 5}}>
+                                     {itemData.item.text}
+                                 </MTMediumText>
+                        </View>
+                        </TouchableOpacity>}
+                        />
+                </View>
             <View style={styles.nextButtonContainer}>
                     { chosenAnswer ? 
                         <Animatable.View 
@@ -469,8 +502,8 @@ const styles = StyleSheet.create({
     iconHolder: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 60,
-        paddingBottom: 20
+       position: 'absolute',
+       top: Dimensions.get('window').height / 3
     },
     answerContainer: {
         justifyContent: 'center',
@@ -483,7 +516,22 @@ const styles = StyleSheet.create({
     nextButtonContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 10
+        position: 'absolute',
+        bottom: 75
+    },
+    updateQuestionBanner: {
+        position: "absolute",
+        top: Dimensions.get('window').height / 8,
+        height: Dimensions.get('window').height / 8,
+        width: Dimensions.get("window").width,
+        backgroundColor: Colors.ocean.primary,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 8
+    },
+    updateAnswerContainer: {
+        position: 'absolute',
+        bottom: Dimensions.get('window').height / 4
     }
 })
  
