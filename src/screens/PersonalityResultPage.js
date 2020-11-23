@@ -13,6 +13,7 @@ const PersonalityResultPage = (props) => {
 
     const returnedObject = props.navigation.getParam('personalityResult')
     const [modalVisible, setModalVisible] = useState(false)
+    const searchedTerm = useSelector(state => state.search)
 
     const modalOn = () => {
         setModalVisible(true)
@@ -178,7 +179,9 @@ const PersonalityResultPage = (props) => {
                     onPress={() => {
                         // props.navigation.navigate('ExploreDynamicContent')
                         // Test for New Nav
-                        props.navigation.navigate('MainContent')
+                        props.navigation.navigate({routeName: 'MainContent', params: {
+                            search: searchedTerm
+                        }})
                     }}/>
             </View>
             <View style={styles.epilogueHolder}>

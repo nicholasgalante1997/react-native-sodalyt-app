@@ -1,16 +1,21 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack'
 import {createAppContainer} from 'react-navigation'
-import VerticalCategoriesScreen from '../screens/VerticalCategoriesScreen'
-import SpecificServicesScreen from '../screens/SpecificServicesPage'
+import SearchResultScreen from '../screens/SearchResultScreen'
+import Colors from '../constants/Colors';
 
 const ExploreContentNavigator = createStackNavigator({
-    ServicesGeneralPage: {
-        screen: VerticalCategoriesScreen
-    },
-    SpecificServicesPage: {
-        screen: SpecificServicesScreen
-    }
+   SearchResultPage: {
+       screen: SearchResultScreen,
+       navigationOptions: {
+           headerLeft: null,
+           headerTitle: "Search Results",
+           headerTintColor: Colors.ocean.primary,
+           headerTitleStyle: {
+               fontFamily: 'tommy-bold'
+           }
+       }
+   }
 })
 
 export default createAppContainer(ExploreContentNavigator)

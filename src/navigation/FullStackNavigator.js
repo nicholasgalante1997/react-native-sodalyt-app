@@ -1,7 +1,8 @@
 import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 import LandingAndStoryStackNavigator from './LandingAndStoryStackNavigator'
-import MainDrawerNavigator from './MainDrawerNavigator'
+
+import MainTabNavigator from './MainTabNavigator'
 
 const FullStackNavigator = createStackNavigator({
     LandingAndStory: {
@@ -11,7 +12,7 @@ const FullStackNavigator = createStackNavigator({
         }
     },
     MainContent: {
-        screen: MainDrawerNavigator,
+        screen: MainTabNavigator,
         navigationOptions: {
             headerShown: false
         }

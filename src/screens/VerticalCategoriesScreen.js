@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet, FlatList, Platform} from 'react-native'
-import MTBoldText from '../components/custom/MTBoldText'
 import Colors from '../constants/Colors'
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
