@@ -93,7 +93,6 @@ const QuestionRenderer = (props) => {
                 setCurrentQuestionOrder(7.31)
                 setChosenAnswer(null)
                 break;
-            // issues 39 , 40 - quick patch with hard code value
             case 39: 
                 setCurrentQuestionOrder(7.32)
                 setChosenAnswer(null)
@@ -237,6 +236,30 @@ const QuestionRenderer = (props) => {
         .catch(error => console.log('error', error))
     }
 
+    const generateSingleKearseyPreference = (prefOne, prefTwo, prefThree) => {
+        if (prefOne.raw_value === prefTwo.raw_value){
+            return prefTwo.raw_value
+        } else if (prefTwo.raw_value === prefThree.raw_value){
+            return prefThree.raw_value
+        } else if (prefThree.raw_value === prefOne.raw_value){
+            return prefOne.raw_value
+        } else {
+            return prefOne.raw_value
+        }
+    }
+
+    const convertToSodalytPreference = (singleKearseyPreference) => {
+        if (singleKearseyPreference === "The Artist/The Explorer"){
+            return "The Creator"
+        } else if (singleKearseyPreference === "The Guardian/The Sentinel"){
+            return "The Champion"
+        } else if (singleKearseyPreference === "The Rationalist/The Analyst"){
+            return "The Builder"
+        } else {
+            return "The Visionary"
+        }
+    }
+
     const cleanUpAfterLastQuestion = () => {
 
         const currentAnswerList = [...selectedAnswersArray]
@@ -257,14 +280,6 @@ const QuestionRenderer = (props) => {
         let reassurance = selectedAnswersArray.filter(answer => answer.question_id === 31)[0]
         let resilience = selectedAnswersArray.filter(a => a.question_id === 32)[0]
         let resp = selectedAnswersArray.filter(a => a.question_id === 28)[0]
-
-        // const kearseyPrefGenerator = (one, two, three) => {
-        //     let sentinel = 0
-
-        //     if (one.raw_value === "The Guardian/The Sentinel" || two.raw_value === "The Guardian/The Sentinel" || three.raw_value === "The Guardian/The Sentinel"){
-        //         sentinel = sentinel + 1
-        //     } else if 
-        // }
 
         currentAnswerList.forEach(answer => {
             if (answer.raw_value === "E") {
@@ -297,9 +312,10 @@ const QuestionRenderer = (props) => {
             "name": localConcatName,
             "email": userInfo.email,
             "password": userInfo.password,
-            "kearsey-one": kearseyOne.raw_value,
-            "kearsey-two": kearseyTwo.raw_value,
-            "kearsey-three": kearseyThree.raw_value,
+            // "kearsey-one": kearseyOne.raw_value,
+            // "kearsey-two": kearseyTwo.raw_value,
+            // "kearsey-three": kearseyThree.raw_value,
+            "sodalytPreference": convertToSodalytPreference(generateSingleKearseyPreference(kearseyOne, kearseyTwo, kearseyThree)),
             "respect": respect.text,
             "responsibility": resp.text,
             "recognition": recognition.text,
@@ -315,7 +331,8 @@ const QuestionRenderer = (props) => {
             "F": feelingArray.length.toString(),
         }
 
-        postToSageMakerEndPoint(returnData)
+        console.log(returnData)
+        // postToSageMakerEndPoint(returnData)
     }
 
     const resetReduxAnswers = () => {

@@ -5,34 +5,39 @@ import Colors from '../src/constants/Colors'
 
 const TestComp = (props) => {
 
-    const testData = {
-        "email": "nicholas.galante@sodalyt.com",
-        "password": "sodalyt",
-        "kearsey-one": "The Artist/The Explorer",
-        "kearsey-two": "The Artist/The Explorer",
-        "kearsey-three": "The Guardian/The Sentinel",
-        "respect": "Weekly",
-        "responsibility": "I made sure we had a plan to keep communications open.",
-        "recognition": "An Earthly Token",
-        "resilience": "Leave everything where it is and get back to Earth as quickly as possible; help the aliens from a quarantine pod on Earth.",
-        "reassurance": "You tell them you are not sure what to do, but that you will help them figure it out together.",
-        "E": "2",
-        "I": "1",
-        "S": "3",
-        "N": "0",
-        "J": "1",
-        "P": "2",
-        "T": "2",
-        "F": "1",
+    const firstPostTestData = {
+    "name": "demo nick",
+    "email": "demoNick@example.",
+    "password": "password",
+    "sodalytPreference": "The Builder",
+    "respect": "Monthly",
+    "responsibility": "I waited for the alien to open communications when they saw fit.",
+    "recognition": "An Earthly Token",
+    "resilience": "You set up labs and help the alien’s get through the virus; after-all you would not have survived if it were not for their help.",
+    "reassurance": "You tell them you are not sure what to do, but that you will help them figure it out together.",
+    "E": "0",
+    "I": "3",
+    "S": "2",
+    "N": "1",
+    "J": "0",
+    "P": "3",
+    "T": "1",
+    "F": "2"
     }
 
-    const postToSageMakerEndPoint = () => {
+    const secondPostData = {
+        "searchTerm": "personal trainer",
+        "currentUserMbti": "ENFJ",
+        "currentUserSodalytPref": "The Builder" 
+    }
+
+    const postToFirstEndpoint = () => {
         // instantiate a headers object
         let myHeaders = new Headers();
         // add content type header to object
         myHeaders.append("Content-Type", "application/json");
         // using built in JSON utility package turn object to string and store in a variable
-        let raw = JSON.stringify(testData);
+        let raw = JSON.stringify(firstPostTestData);
         // create a JSON object with parameters for API call and store in a variable
         let requestOptions = {
             method: 'POST',
@@ -41,27 +46,45 @@ const TestComp = (props) => {
             redirect: 'follow'
         };
         // make API call with parameters and use promises to get response
-        fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti-1/mbti-predictor", requestOptions)
-        .then(response => response.text())
+        fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getmbti", requestOptions)
+        .then(response => response.json())
         .then(result => {
-            console.log(result, "response from the server")
+            console.log(result, "response from the server from the first post")
+        })
+        .catch(error => console.log('error', error))
+    }
 
-            // props.navigation.navigate({routeName: 'PersonalityResultPage', params: {
-            //     personalityResult: result
-            // }})
-
-            // setCurrentQuestionOrder(1)
-            // setChosenAnswer(null)
-            // resetReduxAnswers()
+    const postToSecondEndpoint = () => {
+        // instantiate a headers object
+        let myHeaders = new Headers();
+        // add content type header to object
+        myHeaders.append("Content-Type", "application/json");
+        // using built in JSON utility package turn object to string and store in a variable
+        let raw = JSON.stringify(secondPostData);
+        // create a JSON object with parameters for API call and store in a variable
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        // make API call with parameters and use promises to get response
+        fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getprofessionals", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result, "response from the server from the first post")
         })
         .catch(error => console.log('error', error))
     }
     
     return (
         <View style={styles.container}>
-            <MainButton style={{backgroundColor: 'black'}} onPress={postToSageMakerEndPoint}>
-                Click for post
-            </MainButton>
+           <MainButton onPress={postToFirstEndpoint}>
+               First Post
+           </MainButton>
+           <MainButton onPress={postToSecondEndpoint}>
+               Second Post 
+           </MainButton>
         </View>
      );
 }

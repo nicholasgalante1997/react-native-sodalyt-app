@@ -13,13 +13,10 @@ import awsconfig from './aws-exports'
 import AWS from 'aws-sdk'
 
 // IMPORTS FOR TESTING SCREENS
-import Carousel from './src/components/custom/Carousel'
-import VerticalCategories from './src/constants/verticalCategoriesData'
 import LandingCUSearchScreen from './src/screens/LandingCUSearchScreen'
-import FormStackNavigator from './src/navigation/FormStackNavigator'
-import MainDrawerNavigator from './src/navigation/MainDrawerNavigator'
 import MainTabNavigator from './src/navigation/MainTabNavigator';
 import FullStackNavigator from './src/navigation/FullStackNavigator'
+import TestC from './misc/TestComponent'
 import Colors from './src/constants/Colors';
 import professionalUserDummyData from './src/constants/professionalUserDummyData'
 
@@ -67,8 +64,9 @@ export default function App(props) {
   console.log(professionalUserDummyData)
   return (
     <Provider store={store}>
-      <FullStackNavigator />
+      {/* <FullStackNavigator /> */}
       {/* <MainTabNavigator /> */}
+      <TestC />
     </Provider>
   );
 }
