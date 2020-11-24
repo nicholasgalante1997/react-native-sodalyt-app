@@ -67,8 +67,8 @@ export default function App(props) {
   console.log(professionalUserDummyData)
   return (
     <Provider store={store}>
-      {/* <FullStackNavigator /> */}
-      <MainTabNavigator />
+      <FullStackNavigator />
+      {/* <MainTabNavigator /> */}
     </Provider>
   );
 }
