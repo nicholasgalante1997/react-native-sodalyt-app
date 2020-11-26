@@ -6,6 +6,7 @@ import {Feather, Ionicons} from '@expo/vector-icons'
 import Input from '../components/custom/Input'
 import MTMediumText from '../components/custom/MTMediumText';
 import {useSelector} from 'react-redux' 
+import MTBoldText from '../components/custom/MTBoldText';
 
 const SearchResultScreen = (props) => {
 
@@ -23,19 +24,31 @@ const SearchResultScreen = (props) => {
         return (
             <View style={styles.profRow}>
                 <View style={{height: 80, width: 80, backgroundColor: 'white'}} >
-                    
+                    <Image style={{height: '100%', width: '100%', resizeMode: 'contain'}} source={{uri: itemData.item.companyProfileImage}} />
                 </View>
                 <View style={styles.moreInfo}>
-                    <MTMediumText>
+                    <MTMediumText style={{borderBottomColor: 'white', borderBottomWidth: 1}}>
                         {itemData.item.companyName}
                     </MTMediumText>
-                    <MTMediumText style={{fontSize: 8}}>
+                    <MTMediumText style={{fontSize: 8}} numberOfLines={2} ellipsizeMode='tail'>
                         {itemData.item.companyDescription}
                     </MTMediumText>
                     <MTMediumText style={{fontSize: 8, marginTop: 3}}>
-                        {itemData.item.companySpecialties.map(spec => spec)}
+                        Specialties: {itemData.item.companySpecialties.map(spec => spec)}
                     </MTMediumText>
+                    <MTMediumText style={{fontSize: 8, marginTop: 3}}>
+                       Certifications: {itemData.item.companyCertifications.map(cert => cert)}
+                    </MTMediumText>
+                <View style={styles.actions}>
+                        <MTBoldText style={{fontSize: 10}}>
+                            Percentage Match X%
+                        </MTBoldText>
+                        <TouchableOpacity>
+                            <MTBoldText style={{fontSize: 10, color: Colors.rugged.primary, marginLeft: 8}}>More Info</MTBoldText>
+                        </TouchableOpacity>
                 </View>
+                </View>
+                
             </View>
         )
     }
@@ -92,7 +105,7 @@ const SearchResultScreen = (props) => {
                 </ScrollView>
                 </View>
                 <MTMediumText style={styles.searchInfoText}>
-                        Showing results for the term "{searchedTerm}"
+                        Showing results for the term "SearchedTerm"
                 </MTMediumText>
             </View>
             <ScrollView>
@@ -144,7 +157,8 @@ const styles = StyleSheet.create({
     },
     searchInfoText: {
         color: Colors.ocean.primary,
-        textAlign: 'right'
+        textAlign: 'right',
+        marginHorizontal: 5
     },
     scrollFilters: {
         flexDirection: 'row',
@@ -168,6 +182,10 @@ const styles = StyleSheet.create({
     moreInfo: {
         marginHorizontal: 10,
         width: '75%'
+    },
+    actions: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
     }
 })
  

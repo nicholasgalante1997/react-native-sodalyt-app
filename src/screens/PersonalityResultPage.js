@@ -9,6 +9,7 @@ import CustomButton from '../components/custom/MainButton'
 import MTLightText from '../components/custom/MTLightText';
 import {useSelector, useDispatch} from 'react-redux'
 import * as actions from '../store/actions/actionCreator'
+import MTMediumText from '../components/custom/MTMediumText';
 
 const PersonalityResultPage = (props) => {
 
@@ -161,16 +162,19 @@ const PersonalityResultPage = (props) => {
                 <MTBoldText style={{fontSize: 48}}>{archetype}</MTBoldText>
             </View>
             <View>
-                <MTBoldText style={{paddingTop: 20, textAlign: 'center'}}>Specifically, you're a {spec}</MTBoldText>
+                {/* <MTBoldText style={{paddingTop: 20, textAlign: 'center'}}>Specifically, you're a {spec}</MTBoldText>
                 <MTBoldText style={{padding: 20, textAlign: 'center'}}>These are individuals with the Meyers-Brigg type </MTBoldText>
-                <MTBoldText  style={{padding: 8, textAlign: 'center', fontSize: 24}}>{returnedObject["MBTI"]}</MTBoldText>
+                <MTBoldText  style={{padding: 8, textAlign: 'center', fontSize: 24}}>{returnedObject["MBTI"]}</MTBoldText> */}
             </View>
             <MaterialCommunityIcons 
-            name={iconName} size={48} style={{margin: 10, padding: 5}} color="white" />
+            name={iconName} size={48} style={{marginTop: 10, padding: 5}} color="white" />
             <MTBoldText style={{padding: 20, textAlign: 'center'}}>{description}</MTBoldText>
+            <View style={{padding: 18, justifyContent: 'center', alignItems: 'center'}}>
+                <MTMediumText style={{fontSize: 14}}>{longFormDesc}</MTMediumText>
+            </View>
             <View style={styles.learnMoreCont}>
-                <CustomButton onPress={modalOn}  style={{backgroundColor: Colors.rugged.primary, width: '40%', height: 50, marginBottom: 20}}>
-                    <MTBoldText color="white" style={{fontSize: 14}}>Learn More</MTBoldText>
+                <CustomButton onPress={modalOn}  style={{backgroundColor: Colors.rugged.primary, width: '40%', height:45, marginBottom: 20}}>
+                    <MTBoldText color="white" style={{fontSize: 16}}>Learn More</MTBoldText>
                 </CustomButton>
             </View>
             <View>
@@ -202,7 +206,7 @@ const styles = StyleSheet.create({
         color: 'black'
     },
     learnMoreCont: {
-        marginVertical: 8,
+        marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center'
     },

@@ -3,7 +3,7 @@ import {Text, StyleSheet} from 'react-native'
 
 const MTMediumText = (props) => {
     return ( 
-        <Text onPress={props.onPress} style={{...styles.text, ...props.style}}>{props.children}</Text>
+        <Text {...props} onPress={props.onPress} style={{...styles.text, ...props.style}}>{props.children}</Text>
      );
 }
 

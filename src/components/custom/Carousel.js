@@ -22,7 +22,7 @@ class Carousel extends React.Component {
                     x: DEVICE_WIDTH * this.state.selectedIndex
                 })
             })
-        }, 3000)
+        }, 1500)
     }
 
     setSelectedIndex = (event) => {

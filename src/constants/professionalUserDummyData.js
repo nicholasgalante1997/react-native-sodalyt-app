@@ -66,7 +66,7 @@ for (let i=0; i <= 100; i++) {
             faker.internet.domainName(),
             faker.address.streetAddress(),
             faker.address.zipCodeByState("texas"),
-            faker.internet.avatar(),
+            faker.image.business(),
             faker.lorem.paragraph(),
            [personalTrainerSpecialties[Math.floor(Math.random() * personalTrainerSpecialties.length)]],
            [personalTrainerCertifications[Math.floor(Math.random() * personalTrainerCertifications.length)]],

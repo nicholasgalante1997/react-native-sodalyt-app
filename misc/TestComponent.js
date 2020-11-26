@@ -28,7 +28,7 @@ const TestComp = (props) => {
     const secondPostData = {
         "searchTerm": "personal trainer",
         "currentUserMbti": "ENFJ",
-        "currentUserSodalytPref": "The Builder" 
+        "currentUserSodalytPref": "Builder" 
     }
 
     const postToFirstEndpoint = () => {

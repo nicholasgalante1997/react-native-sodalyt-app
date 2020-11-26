@@ -221,7 +221,7 @@ const QuestionRenderer = (props) => {
         };
         // make API call with parameters and use promises to get response
                 // "https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti2/mbti-predictor-sansml"
-        fetch("https://c0eezw8cga.execute-api.us-east-2.amazonaws.com/mbti2/mbti-predictor-sansml", requestOptions)
+        fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getmbti", requestOptions)
         .then(response => response.json())
         .then(result => {
             
@@ -331,8 +331,8 @@ const QuestionRenderer = (props) => {
             "F": feelingArray.length.toString(),
         }
 
-        console.log(returnData)
-        // postToSageMakerEndPoint(returnData)
+        // console.log(returnData)
+        postToSageMakerEndPoint(returnData)
     }
 
     const resetReduxAnswers = () => {
