@@ -13,12 +13,7 @@ import awsconfig from './aws-exports'
 import AWS from 'aws-sdk'
 
 // IMPORTS FOR TESTING SCREENS
-import LandingCUSearchScreen from './src/screens/LandingCUSearchScreen'
-import MainTabNavigator from './src/navigation/MainTabNavigator';
 import FullStackNavigator from './src/navigation/FullStackNavigator'
-import TestC from './misc/TestComponent'
-import Colors from './src/constants/Colors';
-import professionalUserDummyData from './src/constants/professionalUserDummyData'
 
 // AWS Configuration
 Amplify.configure(awsconfig)
@@ -61,12 +56,9 @@ export default function App(props) {
     />
   }
 
-  console.log(professionalUserDummyData)
   return (
     <Provider store={store}>
-      {/* <FullStackNavigator /> */}
-      <MainTabNavigator />
-      {/* <TestC /> */}
+      <FullStackNavigator />
     </Provider>
   );
 }

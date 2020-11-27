@@ -14,13 +14,861 @@ const SearchResultScreen = (props) => {
     const searchedTerm = useSelector(state => state.search)
     const currentUserDetails = useSelector(state => state.userDetails)
     const [sodalytVerified, setSodalytVerified] = useState(false)
+    const [personalityType, setPersonalityType] = useState(currentUserDetails.MBTI)
+    const [sodalytPref, setSodalytPref] = useState(currentUserDetails.sodalytPreference)
 
     const handleNewSearchInput = (textInput) => {
         setNewSearchValue(textInput)
     }
 
+    const generateMatchPercentage = () => {
+
+    }
+
+    const generateKearseyPercentage = (sodalytPref) => {
+
+    }
+
+    const generateMBTIPercentage = (mbtiType) => {
+        switch(mbtiType){
+            case "ENTJ":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ENTP":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "INTJ":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "INTP":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ESTJ":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ESFJ":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ISTJ":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ISFJ":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ENFJ":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ENFP":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "INFJ":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "INFP":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ESTP":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ESFP":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ISTP":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            case "ISFP":
+                ProfessionalUserData.forEach(professional => {
+                    if (professional.companyMBTIResponse === "ENTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 100
+                    }
+                    if (professional.companyMBTIResponse === "ESTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 94
+                    }
+                    if (professional.companyMBTIResponse === "INTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 87
+                    }
+                    if (professional.companyMBTIResponse === "ISTJ"){
+                        professional.dynamicMeyersBriggsPercentage = 81
+                    }
+                    if (professional.companyMBTIResponse === "ENFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 75
+                    }
+                    if (professional.companyMBTIResponse === "ESFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 69
+                    }
+                    if (professional.companyMBTIResponse === "INFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 63
+                    }
+                    if (professional.companyMBTIResponse === "ESFP"){
+                        professional.dynamicMeyersBriggsPercentage = 56
+                    }
+                    if (professional.companyMBTIResponse === "ISFP"){
+                        professional.dynamicMeyersBriggsPercentage = 50
+                    }
+                    if (professional.companyMBTIResponse === "ESTP"){
+                        professional.dynamicMeyersBriggsPercentage = 44
+                    }
+                    if (professional.companyMBTIResponse === "ENFP"){
+                        professional.dynamicMeyersBriggsPercentage = 37
+                    }
+                    if (professional.companyMBTIResponse === "INFP"){
+                        professional.dynamicMeyersBriggsPercentage = 31
+                    }
+                    if (professional.companyMBTIResponse === "ISTP"){
+                        professional.dynamicMeyersBriggsPercentage = 25
+                    }
+                    if (professional.companyMBTIResponse === "ISFJ"){
+                        professional.dynamicMeyersBriggsPercentage = 19
+                    }
+                    if (professional.companyMBTIResponse === "INTP"){
+                        professional.dynamicMeyersBriggsPercentage = 12
+                    }
+                    if (professional.companyMBTIResponse === "ENTP"){
+                        professional.dynamicMeyersBriggsPercentage = 6
+                    }
+                })
+                break;
+            default:
+                return
+        }
+    }
+
     const renderItem = (itemData) => {
-        console.log('renderItem', itemData.item.companyProfileImage)
         return (
             <View style={styles.profRow}>
                 <View style={{height: 80, width: 80, backgroundColor: 'white'}} >
@@ -41,7 +889,7 @@ const SearchResultScreen = (props) => {
                     </MTMediumText>
                 <View style={styles.actions}>
                         <MTBoldText style={{fontSize: 10}}>
-                            Percentage Match X%
+                            Percentage Match {itemData.item.dynamicMeyersBriggsPercentage}%
                         </MTBoldText>
                         <TouchableOpacity>
                             <MTBoldText style={{fontSize: 10, color: Colors.rugged.primary, marginLeft: 8}}>More Info</MTBoldText>
@@ -53,7 +901,8 @@ const SearchResultScreen = (props) => {
         )
     }
 
-    console.log(ProfessionalUserData, newSearchValue, currentUserDetails)
+    generateMBTIPercentage(personalityType)
+
     return ( 
         <TouchableWithoutFeedback style={{flex: 1}} onPress={() => Keyboard.dismiss()}>
         <View style={styles.screen}>
@@ -105,12 +954,10 @@ const SearchResultScreen = (props) => {
                 </ScrollView>
                 </View>
                 <MTMediumText style={styles.searchInfoText}>
-                        Showing results for the term "SearchedTerm"
+                        Showing results for the term ""
                 </MTMediumText>
             </View>
-            <ScrollView>
                 <FlatList data={ProfessionalUserData} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} />
-            </ScrollView>
         </View>
         </TouchableWithoutFeedback>
      );

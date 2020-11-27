@@ -71,7 +71,7 @@ for (let i=0; i <= 100; i++) {
            [personalTrainerSpecialties[Math.floor(Math.random() * personalTrainerSpecialties.length)]],
            [personalTrainerCertifications[Math.floor(Math.random() * personalTrainerCertifications.length)]],
             faker.phone.phoneNumber(),
-            [possibleMBTIs[Math.floor(Math.random() * possibleMBTIs.length)]],
+            possibleMBTIs[Math.floor(Math.random() * possibleMBTIs.length)],
             boolean[Math.floor(Math.random() * boolean.length)],
             boolean[Math.floor(Math.random() * boolean.length)],
             boolean[Math.floor(Math.random() * boolean.length)],
@@ -83,7 +83,8 @@ for (let i=0; i <= 100; i++) {
             religiousPrefArr[Math.floor(Math.random() * religiousPrefArr.length)],
             racialIdentity[Math.floor(Math.random() * racialIdentity.length)],
             boolean[Math.floor(Math.random() * boolean.length)],
-            boolean[Math.floor(Math.random() * boolean.length)]
+            boolean[Math.floor(Math.random() * boolean.length)],
+            0
         )
     )
 }

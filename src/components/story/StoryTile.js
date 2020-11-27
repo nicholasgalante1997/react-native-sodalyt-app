@@ -37,10 +37,7 @@ const StoryTile = (props) => {
         }
     }
 
-    console.log(props.story)
-    console.log(conditionalColoring, "before")
     sortColorSchema(props.story.story_id)
-    console.log(conditionalColoring, "after")
 
     return ( 
         <TouchableOpacity 

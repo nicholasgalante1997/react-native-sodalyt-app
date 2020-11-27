@@ -25,6 +25,7 @@ class ProfessionalUser {
         racialIdentity,
         lgbtqSupportive,
         corporateSustainabilityPolicyVerification,
+        dynamicMeyersBriggsPercentage
         ){
             this.id = id;
             this.verticalId = verticalId
@@ -51,6 +52,7 @@ class ProfessionalUser {
             this.racialIdentity = racialIdentity;
             this.lgbtqSupportive = lgbtqSupportive;
             this.corporateSustainabilityPolicyVerification = corporateSustainabilityPolicyVerification;
+            this.dynamicMeyersBriggsPercentage = dynamicMeyersBriggsPercentage
         }
 }
 
