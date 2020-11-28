@@ -17,6 +17,8 @@ const SearchResultScreen = (props) => {
     const [personalityType, setPersonalityType] = useState(currentUserDetails.MBTI)
     const [sodalytPref, setSodalytPref] = useState(currentUserDetails.sodalytPreference)
     const [showCulturalFilter, setShowCulturalFilter] = useState(false)
+    const [showServiceFilter, setShowServiceFilter] = useState(false)
+    const [showPsychologyFilter, setShowPsychologyFilter] = useState(false)
 
     const BuilderTypes = ["INTJ", "INTP", "ENTJ", "ENTP"]
     const VisionaryTypes = ["INFJ", "INFP", "ENFJ", "ENFP"]
@@ -930,14 +932,33 @@ const SearchResultScreen = (props) => {
         )
     }
 
+    const handleCulturalFilterClick = () => {
+        setShowPsychologyFilter(false)
+        setShowServiceFilter(false)
+        setShowCulturalFilter(true)
+    }
+
+    const handlePsychologyFilterClick = () => {
+        setShowServiceFilter(false)
+        setShowCulturalFilter(false)
+        setShowPsychologyFilter(true)
+    }
+
+    const handleServiceFilterClick = () => {
+        setShowPsychologyFilter(false) 
+        setShowCulturalFilter(false)
+        setShowServiceFilter(true)
+       
+    }
+
     generateMBTIPercentage(personalityType)
     assignSodalytTypes(ProfessionalUserData)
 
-    console.log(ProfessionalUserData)
     return ( 
         <TouchableWithoutFeedback style={{flex: 1}} onPress={() => Keyboard.dismiss()}>
         <View style={styles.screen}>
-            <View>
+            {/* Above the list content */}
+            <View> 
             <View style={styles.searchBarCont}>
                 <View style={styles.inputHolder}>
                     <Input style={styles.input} placeholder="Try searching for another professional service" value={newSearchValue} onChangeText={handleNewSearchInput}/>
@@ -958,17 +979,17 @@ const SearchResultScreen = (props) => {
                         <Switch value={sodalytVerified} onValueChange={newState => setSodalytVerified(newState)} trackColor={{true: Colors.ocean.primary}}/>
                     </View>
                 <ScrollView contentContainerStyle={styles.scrollFilters} style={{ marginLeft: 10, flexDirection: 'row', height: 50}}>
-                  <TouchableOpacity onPress={() => {setShowCulturalFilter(prev => !prev)}}>
+                  <TouchableOpacity onPress={handleCulturalFilterClick}>
                       <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
                           <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Cultural</MTMediumText>
                       </View>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{marginLeft: 20}}>
+                  <TouchableOpacity style={{marginLeft: 20}} onPress={handleServiceFilterClick}>
                       <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Social</MTMediumText>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Service Specific</MTMediumText>
                       </View>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{marginLeft: 20}}>
+                  <TouchableOpacity style={{marginLeft: 20}} onPress={handlePsychologyFilterClick}>
                       <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
                           <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Psychological</MTMediumText>
                       </View>
@@ -980,7 +1001,13 @@ const SearchResultScreen = (props) => {
                 </MTMediumText>
             </View>
             { showCulturalFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
-
+                    <Button title="Cultural Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowCulturalFilter(false)}} />
+            </View> : null}
+            { showServiceFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
+                    <Button title=" Service Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowServiceFilter(false)}} />
+            </View> : null}
+            { showPsychologyFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
+                    <Button title="Psych Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowPsychologyFilter(false)}} />
             </View> : null}
             </View>
                 <FlatList data={ProfessionalUserData.sort((a, b) => {
