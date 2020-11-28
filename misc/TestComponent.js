@@ -72,7 +72,7 @@ const TestComp = (props) => {
         fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getprofessionals", requestOptions)
         .then(response => response.json())
         .then(result => {
-            console.log(result, "response from the server from the first post")
+            console.log(result, "response from the server from the second post")
         })
         .catch(error => console.log('error', error))
     }

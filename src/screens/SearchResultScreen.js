@@ -10,12 +10,18 @@ import MTBoldText from '../components/custom/MTBoldText';
 
 const SearchResultScreen = (props) => {
 
-    const [newSearchValue, setNewSearchValue] = useState("")
     const searchedTerm = useSelector(state => state.search)
     const currentUserDetails = useSelector(state => state.userDetails)
+    const [newSearchValue, setNewSearchValue] = useState("")
     const [sodalytVerified, setSodalytVerified] = useState(false)
     const [personalityType, setPersonalityType] = useState(currentUserDetails.MBTI)
     const [sodalytPref, setSodalytPref] = useState(currentUserDetails.sodalytPreference)
+    const [showCulturalFilter, setShowCulturalFilter] = useState(false)
+
+    const BuilderTypes = ["INTJ", "INTP", "ENTJ", "ENTP"]
+    const VisionaryTypes = ["INFJ", "INFP", "ENFJ", "ENFP"]
+    const ChampionTypes = ["ISTJ", "ISFJ", "ESTJ", "ESFJ"]
+    const CreatorTypes = ["ISTP", "ISFP", "ESTP", "ESFP"]
 
     const handleNewSearchInput = (textInput) => {
         setNewSearchValue(textInput)
@@ -25,8 +31,28 @@ const SearchResultScreen = (props) => {
 
     }
 
-    const generateKearseyPercentage = (sodalytPref) => {
+    const assignSodalytTypes = (profUserArray) => {
+        profUserArray.forEach(prof => {
+            if (BuilderTypes.includes(prof.companyMBTIResponse)){
+                prof.sodalytArchetype = "The Builder"
+            }
+            if (VisionaryTypes.includes(prof.companyMBTIResponse)){
+                prof.sodalytArchetype = "The Visionary"
+            }
+            if (ChampionTypes.includes(prof.companyMBTIResponse)){
+                prof.sodalytArchetype = "The Champion"
+            }
+            if (CreatorTypes.includes(prof.companyMBTIResponse)){
+                prof.sodalytArchetype = "The Creator"
+            }
+        })
+    }
 
+    const generateKearseyPercentage = (sodalytPref) => {
+        switch(sodalytPref){
+            default: 
+                return
+        }
     }
 
     const generateMBTIPercentage = (mbtiType) => {
@@ -887,6 +913,9 @@ const SearchResultScreen = (props) => {
                     <MTMediumText style={{fontSize: 8, marginTop: 3}}>
                        Certifications: {itemData.item.companyCertifications.map(cert => cert)}
                     </MTMediumText>
+                    <MTMediumText style={{fontSize: 8, marginTop: 3}}>
+                       Sodalyt Type: <MTMediumText style={{color: Colors.rugged.primary}}> {itemData.item.sodalytArchetype}</MTMediumText>
+                    </MTMediumText>
                 <View style={styles.actions}>
                         <MTBoldText style={{fontSize: 10}}>
                             Percentage Match {itemData.item.dynamicMeyersBriggsPercentage}%
@@ -902,10 +931,13 @@ const SearchResultScreen = (props) => {
     }
 
     generateMBTIPercentage(personalityType)
+    assignSodalytTypes(ProfessionalUserData)
 
+    console.log(ProfessionalUserData)
     return ( 
         <TouchableWithoutFeedback style={{flex: 1}} onPress={() => Keyboard.dismiss()}>
         <View style={styles.screen}>
+            <View>
             <View style={styles.searchBarCont}>
                 <View style={styles.inputHolder}>
                     <Input style={styles.input} placeholder="Try searching for another professional service" value={newSearchValue} onChangeText={handleNewSearchInput}/>
@@ -926,7 +958,7 @@ const SearchResultScreen = (props) => {
                         <Switch value={sodalytVerified} onValueChange={newState => setSodalytVerified(newState)} trackColor={{true: Colors.ocean.primary}}/>
                     </View>
                 <ScrollView contentContainerStyle={styles.scrollFilters} style={{ marginLeft: 10, flexDirection: 'row', height: 50}}>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => {setShowCulturalFilter(prev => !prev)}}>
                       <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
                           <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Cultural</MTMediumText>
                       </View>
@@ -941,23 +973,19 @@ const SearchResultScreen = (props) => {
                           <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Psychological</MTMediumText>
                       </View>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{marginLeft: 20}}>
-                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Cost</MTMediumText>
-                      </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{marginLeft: 20}}>
-                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Location</MTMediumText>
-                      </View>
-                  </TouchableOpacity>
                 </ScrollView>
                 </View>
                 <MTMediumText style={styles.searchInfoText}>
                         Showing results for the term ""
                 </MTMediumText>
             </View>
-                <FlatList data={ProfessionalUserData} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} />
+            { showCulturalFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
+
+            </View> : null}
+            </View>
+                <FlatList data={ProfessionalUserData.sort((a, b) => {
+                    return a.dynamicMeyersBriggsPercentage -b.dynamicMeyersBriggsPercentage
+                }).reverse()} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} />
         </View>
         </TouchableWithoutFeedback>
      );
@@ -1016,7 +1044,7 @@ const styles = StyleSheet.create({
     },
     profRow: {
         width: '100%',
-        height: 100,
+        height: 110,
         borderColor: 'white',
         borderWidth: 1,
         padding: 10,

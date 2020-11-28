@@ -14,6 +14,7 @@ import AWS from 'aws-sdk'
 
 // IMPORTS FOR TESTING SCREENS
 import FullStackNavigator from './src/navigation/FullStackNavigator'
+import Test from './misc/TestComponent'
 
 // AWS Configuration
 Amplify.configure(awsconfig)
@@ -59,6 +60,7 @@ export default function App(props) {
   return (
     <Provider store={store}>
       <FullStackNavigator />
+      {/* <Test /> */}
     </Provider>
   );
 }
