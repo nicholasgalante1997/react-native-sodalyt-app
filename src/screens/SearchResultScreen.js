@@ -932,6 +932,8 @@ const SearchResultScreen = (props) => {
         setShowServiceFilter(true)
     }
 
+    // Search Page Specific Components
+
     // flatlist row item
     const renderItem = (itemData) => {
         return (
@@ -969,59 +971,16 @@ const SearchResultScreen = (props) => {
         )
     }
 
-    console.log(filterManager)
-    generateMBTIPercentage(personalityType)
-    assignSodalytTypes(ProfessionalUserData)
-
-    return ( 
-        <TouchableWithoutFeedback style={{flex: 1}} onPress={() => Keyboard.dismiss()}>
-        <View style={styles.screen}>
-            {/* Above the list content */}
-            <View> 
-            <View style={styles.searchBarCont}>
-                <View style={styles.inputHolder}>
-                    <Input style={styles.input} placeholder="Try searching for another professional service" value={newSearchValue} onChangeText={handleNewSearchInput}/>
-                </View>
-                <View style={styles.iconHolder}>
-                    <Ionicons name="md-search" color="white" size={32} />
-                </View>
-            </View>
-            <View style={styles.filterContainer}>
-                <View style={{flexDirection: 'row'}}>
-                    <View style={{marginLeft: 8, justifyContent: 'center', marginTop: 3}}> 
-                        <MTMediumText style={{fontSize: 14, color: Colors.ocean.primary}}>
-                        Sodalyt 
-                        </MTMediumText>
-                        <MTMediumText style={{fontSize: 14, color: Colors.ocean.primary}}>
-                        Verified
-                        </MTMediumText>
-                        <Switch value={sodalytVerified} onValueChange={newState => setSodalytVerified(newState)} trackColor={{true: Colors.ocean.primary}}/>
-                    </View>
-                <ScrollView contentContainerStyle={styles.scrollFilters} style={{ marginLeft: 10, flexDirection: 'row', height: 50}}>
-                  <TouchableOpacity onPress={handleCulturalFilterClick}>
-                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Cultural</MTMediumText>
-                      </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{marginLeft: 20}} onPress={handleServiceFilterClick}>
-                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Service Specific</MTMediumText>
-                      </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{marginLeft: 20}} onPress={handlePsychologyFilterClick}>
-                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Psychological</MTMediumText>
-                      </View>
-                  </TouchableOpacity>
-                </ScrollView>
-                </View>
-                <MTMediumText style={styles.searchInfoText}>
-                    Showing results for the term "{searchedTerm}"
-                </MTMediumText>
-            </View>
-            { showCulturalFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white', paddingTop: 8}}>
-                <ScrollView>
-                    <MTBoldText style={{color: Colors.ocean.primary}}>Cultural Filters</MTBoldText>
+    const culturalFilterBar = () => {
+        return (
+            <View style={{height: 200, width: Dimensions.get('window').width, backgroundColor: 'white', paddingTop: 8}}>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10}}>
+                  <MTBoldText style={{color: Colors.ocean.primary}}>Cultural Filters</MTBoldText>
+                  <TouchableWithoutFeedback onPress={() => setShowCulturalFilter(false)} style={{justifyContent: 'flex-end'}}><View><MTLightText style={{textAlign: 'right', color: Colors.ocean.primary}}>Save</MTLightText></View></TouchableWithoutFeedback>
+                  </View>
+                <ScrollView style={{marginHorizontal: 10}}>
+                  
+                    <MTLightText style={{color: Colors.ocean.primary}}>Language</MTLightText>
                     <CheckBox 
                     checked={filterManager.cultural.language.spanish} 
                     title="Spanish"
@@ -1112,19 +1071,193 @@ const SearchResultScreen = (props) => {
                         dispatch(actions.toggleCulturalLanguagePunjabiValue(!currValue))
                     }} 
                     checkedColor={Colors.ocean.primary} />
+                    <MTLightText style={{color: Colors.ocean.primary}}>Religious Preference</MTLightText>
+                     <CheckBox 
+                    checked={filterManager.cultural.religion.noPreference}  
+                    title="No Preference"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.religion.noPreference
+                        dispatch(actions.toggleCulturalReligionNoPrefValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.religion.christianity}  
+                    title="Christianity"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.religion.christianity
+                        dispatch(actions.toggleCulturalReligionChristianityValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.religion.judaism}  
+                    title="Judaism"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.religion.judaism
+                        dispatch(actions.toggleCulturalReligionJudaismValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.religion.islam}  
+                    title="Islam"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.religion.islam
+                        dispatch(actions.toggleCulturalReligionIslamValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.religion.other}  
+                    title="Other"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.religion.other
+                        dispatch(actions.toggleCulturalReligionOtherValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <MTLightText style={{color: Colors.ocean.primary}}>Racial Identity</MTLightText>
+                    <CheckBox 
+                    checked={filterManager.cultural.race.hispanic}  
+                    title="Hispanic"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.race.hispanic
+                        dispatch(actions.toggleCulturalRaceHispanicValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.race.white}  
+                    title="White"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.race.white
+                        dispatch(actions.toggleCulturalRaceWhiteValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.race.black}  
+                    title="Black"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.race.black
+                        dispatch(actions.toggleCulturalRaceBlackValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.race.asian}  
+                    title="Asian"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.race.asian
+                        dispatch(actions.toggleCulturalRaceAsianValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.race.nativeAmerican}  
+                    title="Native American"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.race.nativeAmerican
+                        dispatch(actions.toggleCulturalRaceNativeAmericanValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.race.pacificIslander}  
+                    title="Pacific Islander"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.race.nativeAmerican
+                        dispatch(actions.toggleCulturalRaceNativeAmericanValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                     <CheckBox 
+                    checked={filterManager.cultural.race.asianSubcontinent}  
+                    title="Asian Subcontinent"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.race.asianSubcontinent
+                        dispatch(actions.toggleCulturalRaceAsianSubValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                <MTLightText style={{color: Colors.ocean.primary}}>LGBTQ Supportive</MTLightText>
+                    <CheckBox 
+                    checked={filterManager.cultural.lgbtq.supportive}  
+                    title="LGBTQ Supportive"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.lgbtq.supportive
+                        dispatch(actions.toggleCulturalLGBTQSupportiveValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
                     </ScrollView>
-            </View> : null}
-            { showServiceFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
+            </View>
+        )
+    }
+
+    console.log(filterManager)
+    // generateMBTIPercentage(personalityType)
+    // assignSodalytTypes(ProfessionalUserData)
+
+    return ( 
+        <TouchableWithoutFeedback style={{flex: 1}} onPress={() => Keyboard.dismiss()}>
+        <View style={styles.screen}>
+            {/* Above the list content */}
+            <View> 
+            <View style={styles.searchBarCont}>
+                <View style={styles.inputHolder}>
+                    <Input style={styles.input} placeholder="Try searching for another professional service" value={newSearchValue} onChangeText={handleNewSearchInput}/>
+                </View>
+                <View style={styles.iconHolder}>
+                    <Ionicons name="md-search" color="white" size={32} />
+                </View>
+            </View>
+            <View style={styles.filterContainer}>
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{marginLeft: 8, justifyContent: 'center', marginTop: 3}}> 
+                        <MTMediumText style={{fontSize: 14, color: Colors.ocean.primary}}>
+                        Sodalyt 
+                        </MTMediumText>
+                        <MTMediumText style={{fontSize: 14, color: Colors.ocean.primary}}>
+                        Verified
+                        </MTMediumText>
+                        <Switch value={sodalytVerified} onValueChange={newState => setSodalytVerified(newState)} trackColor={{true: Colors.ocean.primary}}/>
+                    </View>
+                <ScrollView contentContainerStyle={styles.scrollFilters} style={{ marginLeft: 10, flexDirection: 'row', height: 50}}>
+                  <TouchableOpacity onPress={handleCulturalFilterClick}>
+                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Cultural</MTMediumText>
+                      </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{marginLeft: 20}} onPress={handleServiceFilterClick}>
+                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Service Specific</MTMediumText>
+                      </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{marginLeft: 20}} onPress={handlePsychologyFilterClick}>
+                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Psychological</MTMediumText>
+                      </View>
+                  </TouchableOpacity>
+                </ScrollView>
+                </View>
+                <MTMediumText style={styles.searchInfoText}>
+                    Showing results for the term ""
+                </MTMediumText>
+            </View>
+            { showCulturalFilter ? culturalFilterBar() : null}
+            { showServiceFilter ? <View style={{height: 200, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
                     <Button title=" Service Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowServiceFilter(false)}} />
             </View> : null}
-            { showPsychologyFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
+            { showPsychologyFilter ? <View style={{height: 200, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
                     <Button title="Psych Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowPsychologyFilter(false)}} />
             </View> : null}
             </View>
             {/* list  content */}
-                <FlatList data={ProfessionalUserData.sort((a, b) => {
+                {/* <FlatList data={ProfessionalUserData.sort((a, b) => {
                     return a.dynamicMeyersBriggsPercentage -b.dynamicMeyersBriggsPercentage
-                }).reverse()} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} />
+                }).reverse()} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} /> */}
         </View>
         </TouchableWithoutFeedback>
      );

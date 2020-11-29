@@ -14,6 +14,7 @@ import AWS from 'aws-sdk'
 
 // IMPORTS FOR TESTING SCREENS
 import FullStackNavigator from './src/navigation/FullStackNavigator'
+import MainTabNavigator from './src/navigation/MainTabNavigator'
 import Test from './misc/TestComponent'
 
 // AWS Configuration
@@ -59,7 +60,8 @@ export default function App(props) {
 
   return (
     <Provider store={store}>
-      <FullStackNavigator />
+      {/* <FullStackNavigator /> */}
+      <MainTabNavigator />
       {/* <Test /> */}
     </Provider>
   );

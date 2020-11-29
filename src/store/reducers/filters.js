@@ -13,7 +13,7 @@ const initialState = {
             punjabi: false
         },
         religion: {
-            noPreference: true,
+            noPreference: false,
             christianity: false,
             judaism: false,
             islam: false,
@@ -185,6 +185,157 @@ const filterReducer = (state = initialState, action) => {
                     }
                 }
             }
+        // CASE CULTURAL / RELIGIONS
+        case 'TOGGLE_CULTURAL_RELIGION_NOPREF':
+            return {
+                ...state,
+                cultural: {
+                    ...state.cultural,
+                    religion: {
+                        ...state.cultural.religion,
+                        noPreference: action.payload.value
+                    }
+                }
+            }
+        case 'TOGGLE_CULTURAL_RELIGION_CHRISTIANITY':
+                return {
+                        ...state,
+                            cultural: {
+                                ...state.cultural,
+                                religion: {
+                                    ...state.cultural.religion,
+                                    christianity: action.payload.value
+                            }
+                        }
+                }
+        case 'TOGGLE_CULTURAL_RELIGION_JUDAISM':
+            return {
+                    ...state,
+                        cultural: {
+                            ...state.cultural,
+                            religion: {
+                                ...state.cultural.religion,
+                                judaism: action.payload.value
+                        }
+                    }
+            }
+        case 'TOGGLE_CULTURAL_RELIGION_ISLAM':
+            return {
+                    ...state,
+                        cultural: {
+                            ...state.cultural,
+                            religion: {
+                                ...state.cultural.religion,
+                                islam: action.payload.value
+                        }
+                    }
+            }
+        case 'TOGGLE_CULTURAL_RELIGION_OTHER':
+        return {
+                ...state,
+                    cultural: {
+                        ...state.cultural,
+                        religion: {
+                            ...state.cultural.religion,
+                            other: action.payload.value
+                    }
+                }
+        }
+
+        // CASE CULTURAL / RACE 
+        case 'TOGGLE_CULTURAL_RACE_HISPANIC':
+            return {
+                    ...state,
+                        cultural: {
+                            ...state.cultural,
+                            race: {
+                                ...state.cultural.race,
+                                hispanic: action.payload.value
+                        }
+                    }
+            }
+        case 'TOGGLE_CULTURAL_RACE_WHITE':
+            return {
+                    ...state,
+                        cultural: {
+                            ...state.cultural,
+                            race: {
+                                ...state.cultural.race,
+                                white: action.payload.value
+                        }
+                    }
+            }
+        case 'TOGGLE_CULTURAL_RACE_BLACK':
+            return {
+                    ...state,
+                        cultural: {
+                            ...state.cultural,
+                            race: {
+                                ...state.cultural.race,
+                                black: action.payload.value
+                        }
+                    }
+            }
+        case 'TOGGLE_CULTURAL_RACE_ASIAN':
+            return {
+                    ...state,
+                        cultural: {
+                            ...state.cultural,
+                            race: {
+                                ...state.cultural.race,
+                                asian: action.payload.value
+                        }
+                    }
+            }
+        case 'TOGGLE_CULTURAL_RACE_NATIVE_AMERICAN':
+            return {
+                    ...state,
+                        cultural: {
+                            ...state.cultural,
+                            race: {
+                                ...state.cultural.race,
+                                nativeAmerican: action.payload.value
+                        }
+                    }
+            }
+        case 'TOGGLE_CULTURAL_RACE_PACIFIC_ISLANDER':
+            return {
+                    ...state,
+                        cultural: {
+                            ...state.cultural,
+                            race: {
+                                ...state.cultural.race,
+                                pacificIslander: action.payload.value
+                        }
+                    }
+            }
+        case 'TOGGLE_CULTURAL_RACE_ASIAN_SUB':
+            return {
+                    ...state,
+                        cultural: {
+                            ...state.cultural,
+                            race: {
+                                ...state.cultural.race,
+                                asianSubcontinent: action.payload.value
+                        }
+                    }
+            }
+    
+            // Cultural / LGBTQ
+        case 'TOGGLE_CULTURAL_LGBTQ':
+            return {
+                ...state,
+                cultural: {
+                    ...state.cultural,
+                    lgbtq: {
+                        supportive: action.payload.value
+                    }
+                }
+            }
+
+        // END CULTURAL FILTERS
+
+        
         default: 
             return state;
     }
