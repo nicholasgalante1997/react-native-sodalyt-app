@@ -1,37 +1,47 @@
 import React, { useState } from 'react';
 import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, ScrollView, TouchableOpacity, Button, Image, Switch, FlatList} from 'react-native'
 import ProfessionalUserData from '../constants/professionalUserDummyData'
+import {useSelector, useDispatch} from 'react-redux' 
+import * as actions from '../store/actions/actionCreator'
+import { CheckBox } from 'react-native-elements'
 
+// STYLE ONLY
 import Colors from '../constants/Colors';
 import {Ionicons} from '@expo/vector-icons'
 import Input from '../components/custom/Input'
 import MTMediumText from '../components/custom/MTMediumText';
 import MTBoldText from '../components/custom/MTBoldText';
-import { CheckBox } from 'react-native-elements'
-
-import {useSelector, useDispatch} from 'react-redux' 
-import * as actions from '../store/actions/actionCreator'
 import MTLightText from '../components/custom/MTLightText';
 
 const SearchResultScreen = (props) => {
+    
+    // VARIABLE ASSIGNMENT
 
+    // Currently searched for phrase
     const searchedTerm = useSelector(state => state.search)
-    const currentUserDetails = useSelector(state => state.userDetails)
-    const filterManager = useSelector(state => state.filters)
     const [newSearchValue, setNewSearchValue] = useState("")
-    const [sodalytVerified, setSodalytVerified] = useState(false)
+    
+    // current user preferences returned from last post
+    const currentUserDetails = useSelector(state => state.userDetails)
     const [personalityType, setPersonalityType] = useState(currentUserDetails.MBTI)
     const [sodalytPref, setSodalytPref] = useState(currentUserDetails.sodalytPreference)
+
+    // filter state management
+    const filterManager = useSelector(state => state.filters)
+    const [sodalytVerified, setSodalytVerified] = useState(false)
     const [showCulturalFilter, setShowCulturalFilter] = useState(false)
     const [showServiceFilter, setShowServiceFilter] = useState(false)
     const [showPsychologyFilter, setShowPsychologyFilter] = useState(false)
 
+    // REDUX ACTION MANAGEMENT
     const dispatch = useDispatch()
 
     const BuilderTypes = ["INTJ", "INTP", "ENTJ", "ENTP"]
     const VisionaryTypes = ["INFJ", "INFP", "ENFJ", "ENFP"]
     const ChampionTypes = ["ISTJ", "ISFJ", "ESTJ", "ESFJ"]
     const CreatorTypes = ["ISTP", "ISFP", "ESTP", "ESFP"]
+
+    // FUNCTIONAL CODE 
 
     const handleNewSearchInput = (textInput) => {
         setNewSearchValue(textInput)
@@ -904,6 +914,25 @@ const SearchResultScreen = (props) => {
         }
     }
 
+    const handleCulturalFilterClick = () => {
+        setShowPsychologyFilter(false)
+        setShowServiceFilter(false)
+        setShowCulturalFilter(true)
+    }
+
+    const handlePsychologyFilterClick = () => {
+        setShowServiceFilter(false)
+        setShowCulturalFilter(false)
+        setShowPsychologyFilter(true)
+    }
+
+    const handleServiceFilterClick = () => {
+        setShowPsychologyFilter(false) 
+        setShowCulturalFilter(false)
+        setShowServiceFilter(true)
+    }
+
+    // flatlist row item
     const renderItem = (itemData) => {
         return (
             <View style={styles.profRow}>
@@ -938,25 +967,6 @@ const SearchResultScreen = (props) => {
                 
             </View>
         )
-    }
-
-    const handleCulturalFilterClick = () => {
-        setShowPsychologyFilter(false)
-        setShowServiceFilter(false)
-        setShowCulturalFilter(true)
-    }
-
-    const handlePsychologyFilterClick = () => {
-        setShowServiceFilter(false)
-        setShowCulturalFilter(false)
-        setShowPsychologyFilter(true)
-    }
-
-    const handleServiceFilterClick = () => {
-        setShowPsychologyFilter(false) 
-        setShowCulturalFilter(false)
-        setShowServiceFilter(true)
-       
     }
 
     console.log(filterManager)
@@ -1010,6 +1020,7 @@ const SearchResultScreen = (props) => {
                 </MTMediumText>
             </View>
             { showCulturalFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white', paddingTop: 8}}>
+                <ScrollView>
                     <MTBoldText style={{color: Colors.ocean.primary}}>Cultural Filters</MTBoldText>
                     <CheckBox 
                     checked={filterManager.cultural.language.spanish} 
@@ -1020,6 +1031,25 @@ const SearchResultScreen = (props) => {
                         dispatch(actions.toggleCulturalLanguageSpanishValue(!currValue))
                     }} 
                     checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.language.chineseMandarin} 
+                    title="Chinese-Mandarin"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.chineseMandarin 
+                        dispatch(actions.toggleCulturalLanguageChineseMandarinValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.language.french} 
+                    title="French"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.french
+                        dispatch(actions.toggleCulturalLanguageFrenchValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    </ScrollView>
             </View> : null}
             { showServiceFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
                     <Button title=" Service Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowServiceFilter(false)}} />
@@ -1028,6 +1058,7 @@ const SearchResultScreen = (props) => {
                     <Button title="Psych Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowPsychologyFilter(false)}} />
             </View> : null}
             </View>
+            {/* list  content */}
                 <FlatList data={ProfessionalUserData.sort((a, b) => {
                     return a.dynamicMeyersBriggsPercentage -b.dynamicMeyersBriggsPercentage
                 }).reverse()} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} />

@@ -86,6 +86,28 @@ const filterReducer = (state = initialState, action) => {
                     }
                 }
             }
+        case 'TOGGLE_CULTURAL_LANGUAGE_CHINESE_MANDARIN':
+            return {
+                ...state,
+                cultural: {
+                    ...state.cultural,
+                    language: {
+                        ...state.cultural.language,
+                        chineseMandarin: action.payload.value 
+                    }
+                }
+            }
+        case 'TOGGLE_CULTURAL_LANGUAGE_FRENCH':
+                return {
+                    ...state,
+                    cultural: {
+                        ...state.cultural,
+                        language: {
+                            ...state.cultural.language,
+                            french: action.payload.value 
+                        }
+                    }
+                }
         default: 
             return state;
     }
