@@ -1049,6 +1049,69 @@ const SearchResultScreen = (props) => {
                         dispatch(actions.toggleCulturalLanguageFrenchValue(!currValue))
                     }} 
                     checkedColor={Colors.ocean.primary} />
+                     <CheckBox 
+                    checked={filterManager.cultural.language.arabic} 
+                    title="Arabic"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.arabic
+                        dispatch(actions.toggleCulturalLanguageArabicValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.language.hindi} 
+                    title="Hindi"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.hindi
+                        dispatch(actions.toggleCulturalLanguageHindiValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.language.portuguese} 
+                    title="Portuguese"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.portuguese
+                        dispatch(actions.toggleCulturalLanguagePortugueseValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.language.banglaBengali}  
+                    title="Bangla/Bengali"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.banglaBengali
+                        dispatch(actions.toggleCulturalLanguageBanglaBengaliValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.language.russian}  
+                    title="Russian"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.russian
+                        dispatch(actions.toggleCulturalLanguageRussianValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.language.japanese}  
+                    title="Japanese"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.japanese
+                        dispatch(actions.toggleCulturalLanguageJapaneseValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
+                    <CheckBox 
+                    checked={filterManager.cultural.language.punjabi}  
+                    title="Punjabi"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.punjabi
+                        dispatch(actions.toggleCulturalLanguagePunjabiValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
                     </ScrollView>
             </View> : null}
             { showServiceFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>

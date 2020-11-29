@@ -74,7 +74,7 @@ const initialState = {
 
 const filterReducer = (state = initialState, action) => {
     switch(action.type){
-        // cultural cases
+        // CULTURAL / LANGUAGE
         case "TOGGLE_CULTURAL_LANGUAGE_SPANISH": 
             return {
                 ...state,
@@ -108,6 +108,83 @@ const filterReducer = (state = initialState, action) => {
                         }
                     }
                 }
+            case 'TOGGLE_CULTURAL_LANGUAGE_ARABIC':
+                    return {
+                        ...state,
+                        cultural: {
+                            ...state.cultural,
+                            language: {
+                                ...state.cultural.language,
+                                arabic: action.payload.value 
+                            }
+                        }
+                    }
+            case 'TOGGLE_CULTURAL_LANGUAGE_HINDI':
+                    return {
+                        ...state,
+                        cultural: {
+                            ...state.cultural,
+                            language: {
+                                ...state.cultural.language,
+                                hindi: action.payload.value 
+                            }
+                        }
+                    }
+            case 'TOGGLE_CULTURAL_LANGUAGE_PORTUGUESE':
+                return {
+                    ...state,
+                    cultural: {
+                        ...state.cultural,
+                        language: {
+                            ...state.cultural.language,
+                            portuguese: action.payload.value 
+                        }
+                    }
+                }
+        case 'TOGGLE_CULTURAL_LANGUAGE_BANGLA_BENGALI':
+            return {
+                ...state,
+                cultural: {
+                    ...state.cultural,
+                    language: {
+                        ...state.cultural.language,
+                        banglaBengali: action.payload.value 
+                    }
+                }
+            }
+        case 'TOGGLE_CULTURAL_LANGUAGE_RUSSIAN':
+            return {
+                ...state,
+                cultural: {
+                    ...state.cultural,
+                    language: {
+                        ...state.cultural.language,
+                        russian: action.payload.value 
+                    }
+                }
+            }
+        case 'TOGGLE_CULTURAL_LANGUAGE_JAPANESE':
+            return {
+                ...state,
+                cultural: {
+                    ...state.cultural,
+                    language: {
+                        ...state.cultural.language,
+                        japanese: action.payload.value 
+                    }
+                }
+            }
+        case 'TOGGLE_CULTURAL_LANGUAGE_PUNJABI':
+            return {
+                ...state,
+                cultural: {
+                    ...state.cultural,
+                    language: {
+                        ...state.cultural.language,
+                        punjabi: action.payload.value 
+                    }
+                }
+            }
         default: 
             return state;
     }
