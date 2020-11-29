@@ -41,3 +41,27 @@ export const toggleCulturalRaceAsianSubValue = (booleanValue) => ({type: 'TOGGLE
 // Cultural => LGBTQ 
 export const toggleCulturalLGBTQSupportiveValue = (booleanValue) => ({type: 'TOGGLE_CULTURAL_LGBTQ', payload: {value: booleanValue}})
 
+// Service => Personal Trainer
+export const toggleServicePersonalTrainerTraumaIPValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_TIP', payload: {value: booleanValue}})
+
+// Service => Meeting Experience
+export const toggleServiceMeetingExpVirtualValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_MEETING_EXP_VIRTUAL', payload: {value: booleanValue}})
+export const toggleServiceMeetingExpInPersonValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_MEETING_EXP_IN_PERSON', payload: {value: booleanValue}})
+export const toggleServiceMeetingExpEitherValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_MEETING_EXP_EITHER', payload: {value: booleanValue}})
+
+// Service => Distance/Location
+// Need to set up permissions and location
+export const toggleServiceDistanceWithin5Miles = (booleanValue) => ({type: 'TOGGLE_SERVICE_DISTANCE_WITHIN_5', payload: {value: booleanValue}})
+export const toggleServiceDistanceWithin10Miles = (booleanValue) => ({type: 'TOGGLE_SERVICE_DISTANCE_WITHIN_10', payload: {value: booleanValue}})
+export const toggleServiceDistanceWithin20Miles = (booleanValue) => ({type: 'TOGGLE_SERVICE_DISTANCE_WITHIN_20', payload: {value: booleanValue}})
+export const toggleServiceDistanceWithin50Miles = (booleanValue) => ({type: 'TOGGLE_SERVICE_DISTANCE_WITHIN_50', payload: {value: booleanValue}})
+
+// Service => Pricing Range
+export const toggleServicePricingRangeShowHourly = (booleanValue) => ({type: 'TOGGLE_SERVICE_PRICING_RANGE_SHOW_HOURLY', payload: {value: booleanValue}})
+export const toggleServicePricingRangePackageDeal = (booleanValue) => ({type: 'TOGGLE_SERVICE_PRICING_RANGE_PACKAGE_DEAL', payload: {value: booleanValue}})
+export const toggleServicePricingRangeInstantQuoteAvailable = (booleanValue) => ({type: 'TOGGLE_SERVICE_PRICING_RANGE_INSTANT_QUOTE', payload: {value: booleanValue}})
+export const toggleServicePricingRangeSodalytDiscountAvailable = (booleanValue) => ({type: 'TOGGLE_SERVICE_PRICING_RANGE_SODALYT_DISCOUNT_AVAILABLE', payload: {value: booleanValue}})
+
+// Service => Corporate Sustainability
+export const toggleServiceCorporateSustainabilityPolicy = (booleanValue) => ({type: 'TOGGLE_SERVICE_CRP', payload: {value: booleanValue}})
+

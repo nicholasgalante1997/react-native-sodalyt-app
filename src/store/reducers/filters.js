@@ -60,6 +60,7 @@ const initialState = {
             within50Miles: false
         },
         pricingRange: {
+            showHourly: false,
             hourly: {
                 ceil: 500,
                 floor: 25
@@ -334,8 +335,163 @@ const filterReducer = (state = initialState, action) => {
             }
 
         // END CULTURAL FILTERS
+        // START SERVICE FILTERS
 
+        // Service => Personal Trainer
+        case 'TOGGLE_SERVICE_PERSONAL_TRAINER_TIP':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        traumaInformedPractitioner: action.payload.value
+                    }
+                }
+            }
+
+        // Service => Meeting Experience
+        case 'TOGGLE_SERVICE_MEETING_EXP_VIRTUAL':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    meetingExperience: {
+                        ...state.service.meetingExperience,
+                        virtual: action.payload.value
+                    }
+                }
+            }
+        case 'TOGGLE_SERVICE_MEETING_EXP_IN_PERSON':
+        return {
+            ...state,
+            service: {
+                ...state.service,
+                meetingExperience: {
+                    ...state.service.meetingExperience,
+                    inPerson: action.payload.value
+                }
+            }
+        }
+        case 'TOGGLE_SERVICE_MEETING_EXP_EITHER':
+        return {
+            ...state,
+            service: {
+                ...state.service,
+                meetingExperience: {
+                    ...state.service.meetingExperience,
+                    noPref: action.payload.value
+                }
+            }
+        }
+
+        // Service => Distance 
+        case 'TOGGLE_SERVICE_DISTANCE_WITHIN_5':
+            return {
+                ...state,
+                service:  {
+                    ...state.service,
+                    distance: {
+                        ...state.service.distance,
+                        within5Miles: action.payload.value
+                    }
+                }
+            }
+            case 'TOGGLE_SERVICE_DISTANCE_WITHIN_10':
+                return {
+                    ...state,
+                    service:  {
+                        ...state.service,
+                        distance: {
+                            ...state.service.distance,
+                            within10Miles: action.payload.value
+                        }
+                    }
+                }
+            case 'TOGGLE_SERVICE_DISTANCE_WITHIN_20':
+                    return {
+                        ...state,
+                        service:  {
+                            ...state.service,
+                            distance: {
+                                ...state.service.distance,
+                                within20Miles: action.payload.value
+                            }
+                        }
+                    }
+         case 'TOGGLE_SERVICE_DISTANCE_WITHIN_50':
+            return {
+                ...state,
+                service:  {
+                    ...state.service,
+                    distance: {
+                        ...state.service.distance,
+                        within50Miles: action.payload.value
+                    }
+                }
+            }
+
+    // SERVICE => PRICING RANGE 
+    case 'TOGGLE_SERVICE_PRICING_RANGE_SHOW_HOURLY':
+        return {
+            ...state,
+            service:  {
+                ...state.service,
+                pricingRange: {
+                    ...state.service.pricingRange,
+                    showHourly: action.payload.value
+                }
+            }
+        }
+
+        case 'TOGGLE_SERVICE_PRICING_RANGE_PACKAGE_DEAL':
+        return {
+            ...state,
+            service:  {
+                ...state.service,
+                pricingRange: {
+                    ...state.service.pricingRange,
+                    packageDeals: action.payload.value
+                }
+            }
+        }
+
+        case 'TOGGLE_SERVICE_PRICING_RANGE_INSTANT_QUOTE':
+        return {
+            ...state,
+            service:  {
+                ...state.service,
+                pricingRange: {
+                    ...state.service.pricingRange,
+                    instantQuote: action.payload.value
+                }
+            }
+        }
         
+        case 'TOGGLE_SERVICE_PRICING_RANGE_SODALYT_DISCOUNT_AVAILABLE':
+        return {
+            ...state,
+            service:  {
+                ...state.service,
+                pricingRange: {
+                    ...state.service.pricingRange,
+                    sodalytDiscount: action.payload.value
+                }
+            }
+        }
+
+      
+
+        case 'TOGGLE_SERVICE_CRP':
+        return {
+            ...state,
+            service:  {
+                ...state.service,
+               corporateSustainabilityPolicy: action.payload.value
+            }
+        }
+
+
         default: 
             return state;
     }

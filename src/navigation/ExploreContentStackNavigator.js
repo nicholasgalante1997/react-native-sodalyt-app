@@ -8,7 +8,7 @@ const ExploreContentNavigator = createStackNavigator({
    SearchResultPage: {
        screen: SearchResultScreen,
        navigationOptions: {
-           headerLeft: null,
+           headerLeft: () => null,
            headerTitle: "Search Results",
            headerTintColor: Colors.ocean.primary,
            headerTitleStyle: {

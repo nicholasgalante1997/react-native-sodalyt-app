@@ -47,6 +47,11 @@ const SearchResultScreen = (props) => {
         setNewSearchValue(textInput)
     }
 
+    // const handleMinimumPriceInput = (textInput) => {
+    //     const convertedTextInput = textInput.toString()
+    //     dispatch(actions.toggleServicePricingRangeSetMinimumValue(convertedTextInput))
+    // }
+
     const generateMatchPercentage = () => {
 
     }
@@ -1248,7 +1253,151 @@ const SearchResultScreen = (props) => {
             </View>
             { showCulturalFilter ? culturalFilterBar() : null}
             { showServiceFilter ? <View style={{height: 200, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
-                    <Button title=" Service Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowServiceFilter(false)}} />
+                        <View style={{flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10}}>
+                            <MTBoldText style={{color: Colors.ocean.primary}}>Service Filters</MTBoldText>
+                            <TouchableWithoutFeedback onPress={() => setShowServiceFilter(false)} style={{justifyContent: 'flex-end'}}>
+                                <View>
+                                    <MTLightText style={{textAlign: 'right', color: Colors.ocean.primary}}>Save</MTLightText>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            </View>
+                            <ScrollView style={{marginHorizontal: 10}}>
+                            
+                            {/* Personal Trainer Section */}
+                            <MTLightText style={{color: Colors.ocean.primary}}>Personal Trainer Filters</MTLightText>
+                            <CheckBox 
+                            checked={filterManager.service.personalTrainer.traumaInformedPractitioner} 
+                            title="Trauma Informed Practitioner"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.personalTrainer.traumaInformedPractitioner
+                                dispatch(actions.toggleServicePersonalTrainerTraumaIPValue(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+
+                            {/* Meeting Experience Section */}
+                            <MTLightText style={{color: Colors.ocean.primary}}>Meeting Experience</MTLightText>
+                            <CheckBox 
+                            checked={filterManager.service.meetingExperience.virtual} 
+                            title="Virtual"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.meetingExperience.virtual
+                                dispatch(actions.toggleServiceMeetingExpVirtualValue(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+                            <CheckBox 
+                            checked={filterManager.service.meetingExperience.inPerson} 
+                            title="In Person"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.meetingExperience.inPerson
+                                dispatch(actions.toggleServiceMeetingExpInPersonValue(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+                             <CheckBox 
+                            checked={filterManager.service.meetingExperience.noPref} 
+                            title="Either is fine"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.meetingExperience.noPref
+                                dispatch(actions.toggleServiceMeetingExpEitherValue(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+
+                            {/* Distance Settings */}
+                            <MTLightText style={{color: Colors.ocean.primary}}>Distance Settings</MTLightText>
+                            <CheckBox 
+                            checked={filterManager.service.distance.within5Miles} 
+                            title="Within 5 Miles"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.distance.within5Miles
+                                dispatch(actions.toggleServiceDistanceWithin5Miles(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+                            <CheckBox 
+                            checked={filterManager.service.distance.within10Miles} 
+                            title="Within 10 Miles"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.distance.within10Miles
+                                dispatch(actions.toggleServiceDistanceWithin10Miles(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+                            <CheckBox 
+                            checked={filterManager.service.distance.within20Miles} 
+                            title="Within 20 Miles"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.distance.within20Miles
+                                dispatch(actions.toggleServiceDistanceWithin20Miles(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+                             <CheckBox 
+                            checked={filterManager.service.distance.within50Miles} 
+                            title="Within 50 Miles"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.distance.within50Miles
+                                dispatch(actions.toggleServiceDistanceWithin50Miles(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+
+                             {/*  Price Settings */}
+                             <MTLightText style={{color: Colors.ocean.primary}}>Price Settings</MTLightText>
+                             <MTLightText style={{color: Colors.ocean.primary}}>Are you looking to pay per session, or in block rates?</MTLightText>
+                             <CheckBox 
+                            checked={filterManager.service.pricingRange.showHourly} 
+                            title="Hourly"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.pricingRange.showHourly
+                                dispatch(actions.toggleServicePricingRangeShowHourly(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+                            {/* {filterManager.service.pricingRange.showHourly ? <View>
+                                    <Input placeholder="Min" value={filterManager.service.pricingRange.hourly.floor.toString()} onChangeText={handleMinimumPriceInput} keyboardType="numeric" />
+                            </View> : null} */}
+                            <CheckBox 
+                            checked={filterManager.service.pricingRange.packageDeals} 
+                            title="Package Deals"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.pricingRange.packageDeals
+                                dispatch(actions.toggleServicePricingRangePackageDeal(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+                              <CheckBox 
+                            checked={filterManager.service.pricingRange.instantQuote} 
+                            title="Instant Quote Available"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.pricingRange.instantQuote
+                                dispatch(actions.toggleServicePricingRangeInstantQuoteAvailable(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+                              <CheckBox 
+                            checked={filterManager.service.pricingRange.sodalytDiscount} 
+                            title="Soadlyt Discount Available"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.pricingRange.sodalytDiscount
+                                dispatch(actions.toggleServicePricingRangeSodalytDiscountAvailable(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+
+                            <MTLightText style={{color: Colors.ocean.primary}}>Ethics</MTLightText>
+                             <CheckBox 
+                            checked={filterManager.service.corporateSustainabilityPolicy} 
+                            title="Corporate Sustainability Policy"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={() => {
+                                const currValue = filterManager.service.corporateSustainabilityPolicy
+                                dispatch(actions.toggleServiceCorporateSustainabilityPolicy(!currValue))
+                            }} 
+                            checkedColor={Colors.ocean.primary} />
+                            </ScrollView>
             </View> : null}
             { showPsychologyFilter ? <View style={{height: 200, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
                     <Button title="Psych Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowPsychologyFilter(false)}} />
