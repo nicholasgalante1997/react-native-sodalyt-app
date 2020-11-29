@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, ScrollView, TouchableOpacity, Button, Image, Switch, FlatList} from 'react-native'
-import Colors from '../constants/Colors';
 import ProfessionalUserData from '../constants/professionalUserDummyData'
-import {Feather, Ionicons} from '@expo/vector-icons'
+
+import Colors from '../constants/Colors';
+import {Ionicons} from '@expo/vector-icons'
 import Input from '../components/custom/Input'
 import MTMediumText from '../components/custom/MTMediumText';
-import {useSelector} from 'react-redux' 
 import MTBoldText from '../components/custom/MTBoldText';
+import { CheckBox } from 'react-native-elements'
+
+import {useSelector, useDispatch} from 'react-redux' 
+import * as actions from '../store/actions/actionCreator'
+import MTLightText from '../components/custom/MTLightText';
 
 const SearchResultScreen = (props) => {
 
     const searchedTerm = useSelector(state => state.search)
     const currentUserDetails = useSelector(state => state.userDetails)
+    const filterManager = useSelector(state => state.filters)
     const [newSearchValue, setNewSearchValue] = useState("")
     const [sodalytVerified, setSodalytVerified] = useState(false)
     const [personalityType, setPersonalityType] = useState(currentUserDetails.MBTI)
@@ -19,6 +25,8 @@ const SearchResultScreen = (props) => {
     const [showCulturalFilter, setShowCulturalFilter] = useState(false)
     const [showServiceFilter, setShowServiceFilter] = useState(false)
     const [showPsychologyFilter, setShowPsychologyFilter] = useState(false)
+
+    const dispatch = useDispatch()
 
     const BuilderTypes = ["INTJ", "INTP", "ENTJ", "ENTP"]
     const VisionaryTypes = ["INFJ", "INFP", "ENFJ", "ENFP"]
@@ -951,6 +959,7 @@ const SearchResultScreen = (props) => {
        
     }
 
+    console.log(filterManager)
     generateMBTIPercentage(personalityType)
     assignSodalytTypes(ProfessionalUserData)
 
@@ -997,11 +1006,20 @@ const SearchResultScreen = (props) => {
                 </ScrollView>
                 </View>
                 <MTMediumText style={styles.searchInfoText}>
-                        Showing results for the term ""
+                    Showing results for the term "{searchedTerm}"
                 </MTMediumText>
             </View>
-            { showCulturalFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
-                    <Button title="Cultural Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowCulturalFilter(false)}} />
+            { showCulturalFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white', paddingTop: 8}}>
+                    <MTBoldText style={{color: Colors.ocean.primary}}>Cultural Filters</MTBoldText>
+                    <CheckBox 
+                    checked={filterManager.cultural.language.spanish} 
+                    title="Spanish"
+                    textStyle={{fontFamily: 'tommy-reg'}} 
+                    onPress={() => {
+                        const currValue = filterManager.cultural.language.spanish 
+                        dispatch(actions.toggleCulturalLanguageSpanishValue(!currValue))
+                    }} 
+                    checkedColor={Colors.ocean.primary} />
             </View> : null}
             { showServiceFilter ? <View style={{height: 100, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
                     <Button title=" Service Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowServiceFilter(false)}} />
