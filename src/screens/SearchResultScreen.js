@@ -32,10 +32,18 @@ const SearchResultScreen = (props) => {
     const [showCulturalFilter, setShowCulturalFilter] = useState(false)
     const [showServiceFilter, setShowServiceFilter] = useState(false)
     const [showPsychologyFilter, setShowPsychologyFilter] = useState(false)
+    const [servicePersonalTrainerA1, setServicePersonalTrainerA1] = useState(false)
+    const [servicePersonalTrainerA2, setServicePersonalTrainerA2] = useState(false)
+    const [servicePersonalTrainerA3, setServicePersonalTrainerA3] = useState(false)
+    const [servicePersonalTrainerA4, setServicePersonalTrainerA4] = useState(false)
+    const [servicePersonalTrainerA5, setServicePersonalTrainerA5] = useState(false)
+    const [servicePersonalTrainerA6, setServicePersonalTrainerA6] = useState(false)
+    const [servicePersonalTrainerA7, setServicePersonalTrainerA7] = useState(false)
 
     // REDUX ACTION MANAGEMENT
     const dispatch = useDispatch()
 
+    // Sodalyt Type Breakdowns
     const BuilderTypes = ["INTJ", "INTP", "ENTJ", "ENTP"]
     const VisionaryTypes = ["INFJ", "INFP", "ENFJ", "ENFP"]
     const ChampionTypes = ["ISTJ", "ISFJ", "ESTJ", "ESFJ"]
@@ -937,6 +945,104 @@ const SearchResultScreen = (props) => {
         setShowServiceFilter(true)
     }
 
+    const handleServicePersonalTrainerA1Click = () => {
+        if (servicePersonalTrainerA1){
+             // if clicked already and we need to turn off, we need to do the opposite   
+             dispatch(actions.toggleServicePersonalTrainerACSMValue(false))
+             dispatch(actions.toggleServicePersonalTrainerACEValue(false))
+             dispatch(actions.toggleServicePersonalTrainerCrossfitValue(false))
+             setServicePersonalTrainerA1(false)
+        } else {
+             // if unclicked
+             setServicePersonalTrainerA1(true)
+             dispatch(actions.toggleServicePersonalTrainerACSMValue(true))
+             dispatch(actions.toggleServicePersonalTrainerACEValue(true))
+             dispatch(actions.toggleServicePersonalTrainerCrossfitValue(true))
+        }
+    }
+
+    const handleServicePersonalTrainerA2Click = () => {
+        if (servicePersonalTrainerA2){
+             // if clicked already and we need to turn off, we need to do the opposite   
+             dispatch(actions.toggleServicePersonalTrainerACSMValue(false))
+             dispatch(actions.toggleServicePersonalTrainerACEValue(false))
+             dispatch(actions.toggleServicePersonalTrainerCrossfitValue(false))
+             setServicePersonalTrainerA2(false)
+        } else {
+             // if unclicked
+             setServicePersonalTrainerA2(true)
+             dispatch(actions.toggleServicePersonalTrainerACSMValue(true))
+             dispatch(actions.toggleServicePersonalTrainerACEValue(true))
+             dispatch(actions.toggleServicePersonalTrainerCrossfitValue(true))
+        }
+    }
+
+    const handleServicePersonalTrainerA3Click = () => {
+        if (servicePersonalTrainerA3){
+             // if clicked already and we need to turn off, we need to do the opposite   
+             dispatch(actions.toggleServicePersonalTrainerACSMValue(false))
+             dispatch(actions.toggleServicePersonalTrainerACEValue(false))
+             dispatch(actions.toggleServicePersonalTrainerCrossfitValue(false))
+             dispatch(actions.toggleServicePersonalNASMValue(false))
+             setServicePersonalTrainerA3(false)
+        } else {
+             // if unclicked
+             setServicePersonalTrainerA3(true)
+             dispatch(actions.toggleServicePersonalTrainerACSMValue(true))
+             dispatch(actions.toggleServicePersonalTrainerACEValue(true))
+             dispatch(actions.toggleServicePersonalTrainerCrossfitValue(true))
+             dispatch(actions.toggleServicePersonalNASMValue(true))
+        }
+    }
+
+    const handleServicePersonalTrainerA4Click = () => {
+        if (servicePersonalTrainerA4){
+             // if clicked already and we need to turn off, we need to do the opposite   
+             dispatch(actions.toggleServicePersonalNASMValue(false))
+             setServicePersonalTrainerA4(false)
+        } else {
+             // if unclicked
+             setServicePersonalTrainerA4(true)
+             dispatch(actions.toggleServicePersonalNASMValue(true))
+        }
+    }
+
+    const handleServicePersonalTrainerA5Click = () => {
+        if (servicePersonalTrainerA5){
+             // if clicked already and we need to turn off, we need to do the opposite   
+             dispatch(actions.toggleServicePersonalNASMValue(false))
+             dispatch(actions.toggleServicePersonalTrainerNASMCNCValue(false))
+             dispatch(actions.toggleServicePersonalTrainerISSAValue(false))
+             dispatch(actions.toggleServicePersonalTrainerPN1Value(false))
+             dispatch(actions.toggleServicePersonalTrainerNESTAValue(false))
+             dispatch(actions.toggleServicePersonalTrainerAFPAValue(false))
+             setServicePersonalTrainerA5(false)
+        } else {
+             // if unclicked
+             setServicePersonalTrainerA5(true)
+             dispatch(actions.toggleServicePersonalTrainerNASMCNCValue(true))
+             dispatch(actions.toggleServicePersonalNASMValue(true))
+             dispatch(actions.toggleServicePersonalTrainerISSAValue(true))
+             dispatch(actions.toggleServicePersonalTrainerPN1Value(true))
+             dispatch(actions.toggleServicePersonalTrainerNESTAValue(true))
+             dispatch(actions.toggleServicePersonalTrainerAFPAValue(true))
+        }
+    }
+
+    const handleServicePersonalTrainerA6Click = () => {
+        if (servicePersonalTrainerA6){
+             // if clicked already and we need to turn off, we need to do the opposite   
+            dispatch(actions.toggleServicePersonalTrainerCSCSValue(false))
+            dispatch(actions.toggleServicePersonalTrainerNSCACPTValue(false))
+             setServicePersonalTrainerA6(false)
+        } else {
+             // if unclicked
+             setServicePersonalTrainerA6(true)
+             dispatch(actions.toggleServicePersonalTrainerCSCSValue(true))
+             dispatch(actions.toggleServicePersonalTrainerNSCACPTValue(true))
+        }
+    }
+
     // Search Page Specific Components
 
     // flatlist row item
@@ -1265,6 +1371,7 @@ const SearchResultScreen = (props) => {
                             
                             {/* Personal Trainer Section */}
                             <MTLightText style={{color: Colors.ocean.primary}}>Personal Trainer Filters</MTLightText>
+                           
                             <CheckBox 
                             checked={filterManager.service.personalTrainer.traumaInformedPractitioner} 
                             title="Trauma Informed Practitioner"
@@ -1275,8 +1382,54 @@ const SearchResultScreen = (props) => {
                             }} 
                             checkedColor={Colors.ocean.primary} />
 
+                            <MTLightText style={{color: Colors.ocean.primary}}>Tell us why you want a personal trainer (you can select more than one option)</MTLightText>
+
+                            <CheckBox 
+                            checked={servicePersonalTrainerA1} 
+                            title="Keep up with my changing life"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={handleServicePersonalTrainerA1Click} 
+                            checkedColor={Colors.ocean.primary} />
+
+                            <CheckBox 
+                            checked={servicePersonalTrainerA2} 
+                            title="Show off...at an event, to an ex, etc"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={handleServicePersonalTrainerA2Click} 
+                            checkedColor={Colors.ocean.primary} />
+
+                            <CheckBox 
+                            checked={servicePersonalTrainerA3} 
+                            title="Doctor recommended it"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={handleServicePersonalTrainerA3Click} 
+                            checkedColor={Colors.ocean.primary} />
+
+                            <CheckBox 
+                            checked={servicePersonalTrainerA4} 
+                            title="Need help with an injury"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={handleServicePersonalTrainerA4Click} 
+                            checkedColor={Colors.ocean.primary} />
+
+                            <CheckBox
+                            checked={servicePersonalTrainerA5} 
+                            title="Diet and Nutrition"
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={handleServicePersonalTrainerA5Click} 
+                            checkedColor={Colors.ocean.primary} />
+
+                            <CheckBox
+                            checked={servicePersonalTrainerA6} 
+                            title="I'd like to be a little bigger, faster, and stronger."
+                            textStyle={{fontFamily: 'tommy-reg'}} 
+                            onPress={handleServicePersonalTrainerA6Click} 
+                            checkedColor={Colors.ocean.primary} />
+
+
                             {/* Meeting Experience Section */}
                             <MTLightText style={{color: Colors.ocean.primary}}>Meeting Experience</MTLightText>
+
                             <CheckBox 
                             checked={filterManager.service.meetingExperience.virtual} 
                             title="Virtual"
@@ -1286,6 +1439,7 @@ const SearchResultScreen = (props) => {
                                 dispatch(actions.toggleServiceMeetingExpVirtualValue(!currValue))
                             }} 
                             checkedColor={Colors.ocean.primary} />
+
                             <CheckBox 
                             checked={filterManager.service.meetingExperience.inPerson} 
                             title="In Person"
@@ -1295,6 +1449,7 @@ const SearchResultScreen = (props) => {
                                 dispatch(actions.toggleServiceMeetingExpInPersonValue(!currValue))
                             }} 
                             checkedColor={Colors.ocean.primary} />
+
                              <CheckBox 
                             checked={filterManager.service.meetingExperience.noPref} 
                             title="Either is fine"
@@ -1307,6 +1462,7 @@ const SearchResultScreen = (props) => {
 
                             {/* Distance Settings */}
                             <MTLightText style={{color: Colors.ocean.primary}}>Distance Settings</MTLightText>
+                            
                             <CheckBox 
                             checked={filterManager.service.distance.within5Miles} 
                             title="Within 5 Miles"
@@ -1316,6 +1472,7 @@ const SearchResultScreen = (props) => {
                                 dispatch(actions.toggleServiceDistanceWithin5Miles(!currValue))
                             }} 
                             checkedColor={Colors.ocean.primary} />
+                            
                             <CheckBox 
                             checked={filterManager.service.distance.within10Miles} 
                             title="Within 10 Miles"
@@ -1325,6 +1482,7 @@ const SearchResultScreen = (props) => {
                                 dispatch(actions.toggleServiceDistanceWithin10Miles(!currValue))
                             }} 
                             checkedColor={Colors.ocean.primary} />
+                           
                             <CheckBox 
                             checked={filterManager.service.distance.within20Miles} 
                             title="Within 20 Miles"
@@ -1334,6 +1492,7 @@ const SearchResultScreen = (props) => {
                                 dispatch(actions.toggleServiceDistanceWithin20Miles(!currValue))
                             }} 
                             checkedColor={Colors.ocean.primary} />
+                            
                              <CheckBox 
                             checked={filterManager.service.distance.within50Miles} 
                             title="Within 50 Miles"
@@ -1346,6 +1505,7 @@ const SearchResultScreen = (props) => {
 
                              {/*  Price Settings */}
                              <MTLightText style={{color: Colors.ocean.primary}}>Price Settings</MTLightText>
+                            
                              <MTLightText style={{color: Colors.ocean.primary}}>Are you looking to pay per session, or in block rates?</MTLightText>
                              <CheckBox 
                             checked={filterManager.service.pricingRange.showHourly} 
@@ -1356,9 +1516,17 @@ const SearchResultScreen = (props) => {
                                 dispatch(actions.toggleServicePricingRangeShowHourly(!currValue))
                             }} 
                             checkedColor={Colors.ocean.primary} />
-                            {/* {filterManager.service.pricingRange.showHourly ? <View>
-                                    <Input placeholder="Min" value={filterManager.service.pricingRange.hourly.floor.toString()} onChangeText={handleMinimumPriceInput} keyboardType="numeric" />
-                            </View> : null} */}
+                            {filterManager.service.pricingRange.showHourly ? <View>
+                              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                  <MTBoldText style={{color: Colors.ocean.primary, fontSize: 14}}>Min</MTBoldText>
+                                  <Input placeholder={filterManager.service.pricingRange.hourly.floor.toString()} style={{width: '10%', marginLeft: 5}} keyboardType="numeric" value={filterManager.service.pricingRange.hourly.floor} onChangeText={(textInput) => dispatch(actions.setServicePricingRangeNewHourlyFloorValue(textInput))}/>
+                                  </View>      
+                                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                  <MTBoldText style={{color: Colors.ocean.primary, fontSize: 14}}>Max</MTBoldText>
+                                  <Input placeholder={filterManager.service.pricingRange.hourly.ceil.toString()} style={{width: '10%', marginLeft: 5}} keyboardType="numeric" value={filterManager.service.pricingRange.hourly.ceil} onChangeText={(textInput) => dispatch(actions.setServicePricingRangeNewHourlyCeilValue(textInput))}/>
+                                  </View>      
+                            </View> : null}
+                            
                             <CheckBox 
                             checked={filterManager.service.pricingRange.packageDeals} 
                             title="Package Deals"
@@ -1368,6 +1536,7 @@ const SearchResultScreen = (props) => {
                                 dispatch(actions.toggleServicePricingRangePackageDeal(!currValue))
                             }} 
                             checkedColor={Colors.ocean.primary} />
+                             
                               <CheckBox 
                             checked={filterManager.service.pricingRange.instantQuote} 
                             title="Instant Quote Available"
@@ -1377,6 +1546,7 @@ const SearchResultScreen = (props) => {
                                 dispatch(actions.toggleServicePricingRangeInstantQuoteAvailable(!currValue))
                             }} 
                             checkedColor={Colors.ocean.primary} />
+                             
                               <CheckBox 
                             checked={filterManager.service.pricingRange.sodalytDiscount} 
                             title="Soadlyt Discount Available"
@@ -1387,7 +1557,9 @@ const SearchResultScreen = (props) => {
                             }} 
                             checkedColor={Colors.ocean.primary} />
 
+                            {/* Corporate Sustainability Response */}
                             <MTLightText style={{color: Colors.ocean.primary}}>Ethics</MTLightText>
+                             
                              <CheckBox 
                             checked={filterManager.service.corporateSustainabilityPolicy} 
                             title="Corporate Sustainability Policy"

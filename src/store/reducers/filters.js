@@ -350,6 +350,151 @@ const filterReducer = (state = initialState, action) => {
                 }
             }
 
+        case 'TOGGLE_SERVICE_PERSONAL_TRAINER_ACSM':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        ACSM: action.payload.value
+                    }
+                }
+            }
+
+        case 'TOGGLE_SERVICE_PERSONAL_TRAINER_ACE':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        ACE: action.payload.value
+                    }
+                }
+            }
+
+        case 'TOGGLE_SERVICE_PERSONAL_TRAINER_CROSSFIT':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        crossFit: action.payload.value
+                    }
+                }
+            }
+
+        case 'TOGGLE_SERVICE_PERSONAL_TRAINER_NASM':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        NASM: action.payload.value
+                    }
+                }
+            }
+
+        case 'TOGGLE_SERVICE_PERSONAL_TRAINER_NASMCNC':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        NASM_CNC: action.payload.value
+                    }
+                }
+            }
+
+    case 'TOGGLE_SERVICE_PERSONAL_TRAINER_ISSA':
+    return {
+        ...state,
+        service: {
+            ...state.service,
+            personalTrainer: {
+                ...state.service.personalTrainer,
+                ISSA: action.payload.value
+            }
+        }
+    }
+
+    case 'TOGGLE_SERVICE_PERSONAL_TRAINER_PN1':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        PN1: action.payload.value
+                    }
+                }
+            }
+
+            case 'TOGGLE_SERVICE_PERSONAL_TRAINER_NESTA':
+                return {
+                    ...state,
+                    service: {
+                        ...state.service,
+                        personalTrainer: {
+                            ...state.service.personalTrainer,
+                            NESTA: action.payload.value
+                        }
+                    }
+                }
+            
+                case 'TOGGLE_SERVICE_PERSONAL_TRAINER_AFPA':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        AFPA: action.payload.value
+                    }
+                }
+            }
+
+            case 'TOGGLE_SERVICE_PERSONAL_TRAINER_CSCS':
+                return {
+                    ...state,
+                    service: {
+                        ...state.service,
+                        personalTrainer: {
+                            ...state.service.personalTrainer,
+                            CSCS: action.payload.value
+                        }
+                    }
+                }
+
+    case 'TOGGLE_SERVICE_PERSONAL_TRAINER_NSCACPT':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        NSCA_CPT: action.payload.value
+                    }
+                }
+            }
+
+            case 'TOGGLE_SERVICE_PERSONAL_TRAINER_RESTORATIVE':
+            return {
+                ...state,
+                service: {
+                    ...state.service,
+                    personalTrainer: {
+                        ...state.service.personalTrainer,
+                        restorativeHolistic: action.payload.value
+                    }
+                }
+            }
+
+
         // Service => Meeting Experience
         case 'TOGGLE_SERVICE_MEETING_EXP_VIRTUAL':
             return {
@@ -362,6 +507,7 @@ const filterReducer = (state = initialState, action) => {
                     }
                 }
             }
+
         case 'TOGGLE_SERVICE_MEETING_EXP_IN_PERSON':
         return {
             ...state,
@@ -373,6 +519,7 @@ const filterReducer = (state = initialState, action) => {
                 }
             }
         }
+
         case 'TOGGLE_SERVICE_MEETING_EXP_EITHER':
         return {
             ...state,
@@ -397,6 +544,7 @@ const filterReducer = (state = initialState, action) => {
                     }
                 }
             }
+
             case 'TOGGLE_SERVICE_DISTANCE_WITHIN_10':
                 return {
                     ...state,
@@ -408,6 +556,7 @@ const filterReducer = (state = initialState, action) => {
                         }
                     }
                 }
+
             case 'TOGGLE_SERVICE_DISTANCE_WITHIN_20':
                     return {
                         ...state,
@@ -419,6 +568,7 @@ const filterReducer = (state = initialState, action) => {
                             }
                         }
                     }
+
          case 'TOGGLE_SERVICE_DISTANCE_WITHIN_50':
             return {
                 ...state,
@@ -480,8 +630,37 @@ const filterReducer = (state = initialState, action) => {
             }
         }
 
-      
+        case 'SET_HOURLY_FLOOR':
+        return {
+            ...state,
+            service:  {
+                ...state.service,
+                pricingRange: {
+                    ...state.service.pricingRange,
+                    hourly: {
+                        ...state.service.pricingRange.hourly,
+                        floor: parseInt(action.payload.value)
+                    }
+                }
+            }
+        }
 
+        case 'SET_HOURLY_CEIL':
+        return {
+            ...state,
+            service:  {
+                ...state.service,
+                pricingRange: {
+                    ...state.service.pricingRange,
+                    hourly: {
+                        ...state.service.pricingRange.hourly,
+                        ceil: parseInt(action.payload.value)
+                    }
+                }
+            }
+        }
+
+        // Corporate Resp and Sus
         case 'TOGGLE_SERVICE_CRP':
         return {
             ...state,

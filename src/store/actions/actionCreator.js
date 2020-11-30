@@ -43,6 +43,18 @@ export const toggleCulturalLGBTQSupportiveValue = (booleanValue) => ({type: 'TOG
 
 // Service => Personal Trainer
 export const toggleServicePersonalTrainerTraumaIPValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_TIP', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerACSMValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_ACSM', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerACEValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_ACE', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerCrossfitValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_CROSSFIT', payload: {value: booleanValue}})
+export const toggleServicePersonalNASMValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_NASM', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerNASMCNCValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_NASMCNC', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerISSAValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_ISSA', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerPN1Value = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_PN1', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerNESTAValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_NESTA', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerAFPAValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_AFPA', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerCSCSValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_CSCS', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerNSCACPTValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_NSCACPT', payload: {value: booleanValue}})
+export const toggleServicePersonalTrainerRestorativeHolisticValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_PERSONAL_TRAINER_RESTORATIVE', payload: {value: booleanValue}})
 
 // Service => Meeting Experience
 export const toggleServiceMeetingExpVirtualValue = (booleanValue) => ({type: 'TOGGLE_SERVICE_MEETING_EXP_VIRTUAL', payload: {value: booleanValue}})
@@ -61,6 +73,8 @@ export const toggleServicePricingRangeShowHourly = (booleanValue) => ({type: 'TO
 export const toggleServicePricingRangePackageDeal = (booleanValue) => ({type: 'TOGGLE_SERVICE_PRICING_RANGE_PACKAGE_DEAL', payload: {value: booleanValue}})
 export const toggleServicePricingRangeInstantQuoteAvailable = (booleanValue) => ({type: 'TOGGLE_SERVICE_PRICING_RANGE_INSTANT_QUOTE', payload: {value: booleanValue}})
 export const toggleServicePricingRangeSodalytDiscountAvailable = (booleanValue) => ({type: 'TOGGLE_SERVICE_PRICING_RANGE_SODALYT_DISCOUNT_AVAILABLE', payload: {value: booleanValue}})
+export const setServicePricingRangeNewHourlyFloorValue = (minVal) => ({type: 'SET_HOURLY_FLOOR', payload: {value: minVal}})
+export const setServicePricingRangeNewHourlyCeilValue = (maxVal) => ({type: 'SET_HOURLY_CEIL', payload: {value: maxVal}})
 
 // Service => Corporate Sustainability
 export const toggleServiceCorporateSustainabilityPolicy = (booleanValue) => ({type: 'TOGGLE_SERVICE_CRP', payload: {value: booleanValue}})
