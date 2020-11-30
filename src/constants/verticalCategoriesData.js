@@ -1,7 +1,7 @@
 import Vertical from '../models/vertical'
 
 export default [
-    new Vertical(1, "Fitness/Personal Trainer", "dumbbell", "FontAwesome5", "#3382CE"),
+    new Vertical(1, "Personal Trainer", "dumbbell", "FontAwesome5", "#3382CE"),
     new Vertical(2, "Music Teacher", "music-clef-treble", "MaterialCommunityIcons", "#CE3335"),
     new Vertical(3, "Doctor", "doctor", "MaterialCommunityIcons", "#56EB7A"),
     new Vertical(4, "Financial Advisor", "money-check-alt", "FontAwesome5", "#7A56EB"),

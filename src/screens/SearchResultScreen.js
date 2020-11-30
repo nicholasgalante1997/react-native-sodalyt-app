@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, ScrollView, TouchableOpacity, Button, Image, Switch, FlatList} from 'react-native'
 import ProfessionalUserData from '../constants/professionalUserDummyData'
 import {useSelector, useDispatch} from 'react-redux' 
@@ -16,6 +16,8 @@ import MTLightText from '../components/custom/MTLightText';
 const SearchResultScreen = (props) => {
     
     // VARIABLE ASSIGNMENT
+
+    const reduxProfArray = useSelector(state => state.expertArray)
 
     // Currently searched for phrase
     const searchedTerm = useSelector(state => state.search)
@@ -39,6 +41,7 @@ const SearchResultScreen = (props) => {
     const [servicePersonalTrainerA5, setServicePersonalTrainerA5] = useState(false)
     const [servicePersonalTrainerA6, setServicePersonalTrainerA6] = useState(false)
     const [servicePersonalTrainerA7, setServicePersonalTrainerA7] = useState(false)
+    const [sodalytTypingActive, setSodalytTypingActive] = useState(true)
 
     // REDUX ACTION MANAGEMENT
     const dispatch = useDispatch()
@@ -50,15 +53,42 @@ const SearchResultScreen = (props) => {
     const CreatorTypes = ["ISTP", "ISFP", "ESTP", "ESFP"]
 
     // FUNCTIONAL CODE 
+    const fetchSearchedForUsers =  () => {
+
+        let headers = new Headers()
+        headers.append("Content-Type", "application/json")
+
+        let content = JSON.stringify({
+            "searchTerm": searchedTerm.toLowerCase(),
+            "currentUserMbti": personalityType,
+            "currentUserSodalytPref": sodalytPref
+        })
+
+        let requestOptions = {
+            method: 'POST',
+            headers: headers,
+            body: content,
+            redirect: 'follow'
+        }
+
+        const ENDPOINT = "https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getprofessionals"
+
+        fetch(ENDPOINT, requestOptions)
+        .then(r => r.json())
+        .then(arrayResponse => {
+            dispatch(actions.setSearchedExpertsResponse(arrayResponse))
+        })
+        .catch(err => console.log(err))
+
+    }
+
+    useEffect(() => {
+        fetchSearchedForUsers()
+    }, [searchedTerm])
 
     const handleNewSearchInput = (textInput) => {
         setNewSearchValue(textInput)
     }
-
-    // const handleMinimumPriceInput = (textInput) => {
-    //     const convertedTextInput = textInput.toString()
-    //     dispatch(actions.toggleServicePricingRangeSetMinimumValue(convertedTextInput))
-    // }
 
     const generateMatchPercentage = () => {
 
@@ -91,7 +121,8 @@ const SearchResultScreen = (props) => {
     const generateMBTIPercentage = (mbtiType) => {
         switch(mbtiType){
             case "ENTJ":
-                ProfessionalUserData.forEach(professional => {
+               reduxProfArray.forEach(professional => {
+                   console.log(professional, professional.companyMBTIResponse)
                     if (professional.companyMBTIResponse === "ISFP"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -143,7 +174,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ENTP":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ISFJ"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -195,7 +226,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "INTJ":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ESFP"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -247,7 +278,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "INTP":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ESFJ"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -299,7 +330,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ESTJ":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "INFP"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -351,7 +382,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ESFJ":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "INTP"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -403,7 +434,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ISTJ":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ENFP"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -455,7 +486,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ISFJ":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ENTP"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -507,7 +538,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ENFJ":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ISTP"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -559,7 +590,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ENFP":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ISTJ"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -611,7 +642,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "INFJ":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ESTP"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -663,7 +694,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "INFP":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ESTJ"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -715,7 +746,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ESTP":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "INFJ"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -767,7 +798,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ESFP":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "INTJ"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -819,7 +850,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ISTP":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ENFJ"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -871,7 +902,7 @@ const SearchResultScreen = (props) => {
                 })
                 break;
             case "ISFP":
-                ProfessionalUserData.forEach(professional => {
+                reduxProfArray.forEach(professional => {
                     if (professional.companyMBTIResponse === "ENTJ"){
                         professional.dynamicMeyersBriggsPercentage = 100
                     }
@@ -1060,10 +1091,10 @@ const SearchResultScreen = (props) => {
                         {itemData.item.companyDescription}
                     </MTMediumText>
                     <MTMediumText style={{fontSize: 8, marginTop: 3}}>
-                        Specialties: {itemData.item.companySpecialties.map(spec => spec)}
+                        Specialties: {itemData.item.companySpecialties.map(spec => spec + ", ")}
                     </MTMediumText>
                     <MTMediumText style={{fontSize: 8, marginTop: 3}}>
-                       Certifications: {itemData.item.companyCertifications.map(cert => cert)}
+                       Certifications: {itemData.item.companyCertifications.map(cert => cert + ", ")}
                     </MTMediumText>
                     <MTMediumText style={{fontSize: 8, marginTop: 3}}>
                        Sodalyt Type: <MTMediumText style={{color: Colors.rugged.primary}}> {itemData.item.sodalytArchetype}</MTMediumText>
@@ -1307,68 +1338,21 @@ const SearchResultScreen = (props) => {
         )
     }
 
-    console.log(filterManager)
-    // generateMBTIPercentage(personalityType)
-    // assignSodalytTypes(ProfessionalUserData)
-
-    return ( 
-        <TouchableWithoutFeedback style={{flex: 1}} onPress={() => Keyboard.dismiss()}>
-        <View style={styles.screen}>
-            {/* Above the list content */}
-            <View> 
-            <View style={styles.searchBarCont}>
-                <View style={styles.inputHolder}>
-                    <Input style={styles.input} placeholder="Try searching for another professional service" value={newSearchValue} onChangeText={handleNewSearchInput}/>
-                </View>
-                <View style={styles.iconHolder}>
-                    <Ionicons name="md-search" color="white" size={32} />
-                </View>
-            </View>
-            <View style={styles.filterContainer}>
-                <View style={{flexDirection: 'row'}}>
-                    <View style={{marginLeft: 8, justifyContent: 'center', marginTop: 3}}> 
-                        <MTMediumText style={{fontSize: 14, color: Colors.ocean.primary}}>
-                        Sodalyt 
-                        </MTMediumText>
-                        <MTMediumText style={{fontSize: 14, color: Colors.ocean.primary}}>
-                        Verified
-                        </MTMediumText>
-                        <Switch value={sodalytVerified} onValueChange={newState => setSodalytVerified(newState)} trackColor={{true: Colors.ocean.primary}}/>
-                    </View>
-                <ScrollView contentContainerStyle={styles.scrollFilters} style={{ marginLeft: 10, flexDirection: 'row', height: 50}}>
-                  <TouchableOpacity onPress={handleCulturalFilterClick}>
-                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Cultural</MTMediumText>
-                      </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{marginLeft: 20}} onPress={handleServiceFilterClick}>
-                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Service Specific</MTMediumText>
-                      </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{marginLeft: 20}} onPress={handlePsychologyFilterClick}>
-                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Psychological</MTMediumText>
-                      </View>
-                  </TouchableOpacity>
-                </ScrollView>
-                </View>
-                <MTMediumText style={styles.searchInfoText}>
-                    Showing results for the term ""
-                </MTMediumText>
-            </View>
-            { showCulturalFilter ? culturalFilterBar() : null}
-            { showServiceFilter ? <View style={{height: 200, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
-                        <View style={{flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10}}>
+    const serviceFilterBar = () => {
+        return (
+            <View style={{height: 200, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
+                      
+                      {/* OUTSIDE SCROLL VIEW */}
+                       <View style={{flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10}}>
                             <MTBoldText style={{color: Colors.ocean.primary}}>Service Filters</MTBoldText>
                             <TouchableWithoutFeedback onPress={() => setShowServiceFilter(false)} style={{justifyContent: 'flex-end'}}>
                                 <View>
                                     <MTLightText style={{textAlign: 'right', color: Colors.ocean.primary}}>Save</MTLightText>
                                 </View>
                             </TouchableWithoutFeedback>
-                            </View>
-                            <ScrollView style={{marginHorizontal: 10}}>
+                         </View>
                             
+                            <ScrollView style={{marginHorizontal: 10}}>      
                             {/* Personal Trainer Section */}
                             <MTLightText style={{color: Colors.ocean.primary}}>Personal Trainer Filters</MTLightText>
                            
@@ -1570,15 +1554,86 @@ const SearchResultScreen = (props) => {
                             }} 
                             checkedColor={Colors.ocean.primary} />
                             </ScrollView>
-            </View> : null}
-            { showPsychologyFilter ? <View style={{height: 200, width: Dimensions.get('window').width, backgroundColor: 'white'}}>
-                    <Button title="Psych Save" style={{fontFamily: 'tommy-bold'}} onPress={() => {setShowPsychologyFilter(false)}} />
+            </View>
+        )
+    }
+ 
+    if (reduxProfArray.length > 0){
+         generateMBTIPercentage(personalityType)
+        assignSodalytTypes(reduxProfArray)
+    }
+   
+    console.log(ProfessionalUserData, "local users")
+    console.log(reduxProfArray, "2, redux users")
+
+    return ( 
+        <TouchableWithoutFeedback style={{flex: 1}} onPress={() => Keyboard.dismiss()}>
+        <View style={styles.screen}>
+            {/* Above the list content */}
+            <View> 
+            <View style={styles.searchBarCont}>
+                <View style={styles.inputHolder}>
+                    <Input style={styles.input} placeholder="Try searching for another professional service" value={newSearchValue} onChangeText={handleNewSearchInput}/>
+                </View>
+                <View style={styles.iconHolder}>
+                    <Ionicons name="md-search" color="white" size={32} />
+                </View>
+            </View>
+            <View style={styles.filterContainer}>
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{marginLeft: 8, justifyContent: 'center', marginTop: 3}}> 
+                        <MTMediumText style={{fontSize: 14, color: Colors.ocean.primary}}>
+                        Sodalyt 
+                        </MTMediumText>
+                        <MTMediumText style={{fontSize: 14, color: Colors.ocean.primary}}>
+                        Verified
+                        </MTMediumText>
+                        <Switch value={sodalytVerified} onValueChange={newState => setSodalytVerified(newState)} trackColor={{true: Colors.ocean.primary}}/>
+                    </View>
+                <ScrollView contentContainerStyle={styles.scrollFilters} style={{ marginLeft: 10, flexDirection: 'row', height: 50}}>
+                  <TouchableOpacity onPress={handleCulturalFilterClick}>
+                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Cultural</MTMediumText>
+                      </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{marginLeft: 20}} onPress={handleServiceFilterClick}>
+                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Service Specific</MTMediumText>
+                      </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{marginLeft: 20}} onPress={handlePsychologyFilterClick}>
+                      <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Psychological</MTMediumText>
+                      </View>
+                  </TouchableOpacity>
+                </ScrollView>
+                </View>
+                <MTMediumText style={styles.searchInfoText}>
+                    Showing results for the term ' {searchedTerm} '
+                </MTMediumText>
+            </View>
+            { showCulturalFilter ? culturalFilterBar() : null}
+            { showServiceFilter ? serviceFilterBar() : null}
+            { showPsychologyFilter ? <View style={{height: 200, width: Dimensions.get('window').width, backgroundColor: 'white', padding: 10}}>
+                  <MTMediumText style={{color: Colors.ocean.primary, fontSize: 12}}>
+                        Here at Soadlyt, we've spent a great deal of time perfecting our recipe for pairing customers with professional experts, and cultivating great relationships. However, we understand that sometimes, you may not want to factor personality into your professional expert choice. For those cases, turn the psychology switch off.
+                  </MTMediumText>
+                  <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginVertical: 20}}>
+                      <MTBoldText style={{color: Colors.ocean.secondary}}>Psychology Matching</MTBoldText>
+                      <Switch style={{marginLeft: 5}} value={sodalytTypingActive} onValueChange={(newValue) => setSodalytTypingActive(newValue)} trackColor={{true: Colors.ocean.primary}} />
+                  </View>
+                <TouchableWithoutFeedback onPress={() => setShowPsychologyFilter(false)} ><View style={{marginTop: 26}}><MTLightText style={{color: Colors.ocean.secondary, textAlign: 'right', fontSize: 12}}>Hide</MTLightText></View></TouchableWithoutFeedback>  
             </View> : null}
             </View>
             {/* list  content */}
-                {/* <FlatList data={ProfessionalUserData.sort((a, b) => {
+            { reduxProfArray.length > 0 ?
+                <FlatList data={reduxProfArray.sort((a, b) => {
                     return a.dynamicMeyersBriggsPercentage -b.dynamicMeyersBriggsPercentage
-                }).reverse()} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} /> */}
+                }).reverse()} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} /> : 
+                <View style={{flex: 1, backgroundColor: Colors.ocean.primary}}>
+                    <MTBoldText>Loading</MTBoldText>
+                </View>
+            }
         </View>
         </TouchableWithoutFeedback>
      );

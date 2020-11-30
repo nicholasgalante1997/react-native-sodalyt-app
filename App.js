@@ -60,8 +60,8 @@ export default function App(props) {
 
   return (
     <Provider store={store}>
-      {/* <FullStackNavigator /> */}
-      <MainTabNavigator />
+      <FullStackNavigator />
+      {/* <MainTabNavigator /> */}
       {/* <Test /> */}
     </Provider>
   );

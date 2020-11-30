@@ -79,3 +79,7 @@ export const setServicePricingRangeNewHourlyCeilValue = (maxVal) => ({type: 'SET
 // Service => Corporate Sustainability
 export const toggleServiceCorporateSustainabilityPolicy = (booleanValue) => ({type: 'TOGGLE_SERVICE_CRP', payload: {value: booleanValue}})
 
+// ASSIGN AWS RESPONSE TO REDUX STATE 
+export const setSearchedExpertsResponse = (awsRespArray) => ({type: 'SET_SEARCHED_EXPERTS_RESPONSE', payload: {value: awsRespArray}})
+
+
