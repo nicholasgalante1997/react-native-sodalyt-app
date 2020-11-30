@@ -4,6 +4,12 @@ import ProfessionalUserData from '../constants/professionalUserDummyData'
 import {useSelector, useDispatch} from 'react-redux' 
 import * as actions from '../store/actions/actionCreator'
 import { CheckBox } from 'react-native-elements'
+import {
+    Placeholder,
+    PlaceholderMedia,
+    PlaceholderLine,
+    Loader
+  } from "rn-placeholder";
 
 // STYLE ONLY
 import Colors from '../constants/Colors';
@@ -1103,8 +1109,12 @@ const SearchResultScreen = (props) => {
                         <MTBoldText style={{fontSize: 10}}>
                             Percentage Match {itemData.item.dynamicMeyersBriggsPercentage}%
                         </MTBoldText>
-                        <TouchableOpacity>
-                            <MTBoldText style={{fontSize: 10, color: Colors.rugged.primary, marginLeft: 8}}>More Info</MTBoldText>
+                        <TouchableOpacity onPress={() => {
+                            props.navigation.navigate({routeName: 'ProfessionalUserShowPage', params: {
+                                thisExpert:  itemData.item
+                            }})
+                        }}>
+                            <MTBoldText style={{fontSize: 10, color: Colors.rugged.primary, marginLeft: 8}}>CONNECT</MTBoldText>
                         </TouchableOpacity>
                 </View>
                 </View>
@@ -1576,7 +1586,7 @@ const SearchResultScreen = (props) => {
                     <Input style={styles.input} placeholder="Try searching for another professional service" value={newSearchValue} onChangeText={handleNewSearchInput}/>
                 </View>
                 <View style={styles.iconHolder}>
-                    <Ionicons name="md-search" color="white" size={32} />
+                    <Ionicons name="md-search" color="white" size={32} onPress={()=>{dispatch(actions.setSearchedTerm(newSearchValue))}}/>
                 </View>
             </View>
             <View style={styles.filterContainer}>
@@ -1609,7 +1619,7 @@ const SearchResultScreen = (props) => {
                 </ScrollView>
                 </View>
                 <MTMediumText style={styles.searchInfoText}>
-                    Showing results for the term ' {searchedTerm} '
+                    Showing {reduxProfArray.length} results for the term ' {searchedTerm} '
                 </MTMediumText>
             </View>
             { showCulturalFilter ? culturalFilterBar() : null}
@@ -1630,8 +1640,14 @@ const SearchResultScreen = (props) => {
                 <FlatList data={reduxProfArray.sort((a, b) => {
                     return a.dynamicMeyersBriggsPercentage -b.dynamicMeyersBriggsPercentage
                 }).reverse()} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} /> : 
-                <View style={{flex: 1, backgroundColor: Colors.ocean.primary}}>
-                    <MTBoldText>Loading</MTBoldText>
+                <View style={{width: '90%', height: '100%', backgroundColor: Colors.ocean.primary}}>
+                       <FlatList contentContainerStyle={{width: '100%', height: '100%'}} data={[1,2,3,4,5,6,7,8]} keyExtractor={(item) => item} numColumns={1} renderItem={() => ( <Placeholder style={{marginVertical: 8}}
+            Left={PlaceholderMedia}
+            Animation={Loader}>
+            <PlaceholderLine width={80} />
+            <PlaceholderLine />
+            <PlaceholderLine width={30} />
+          </Placeholder>)} />
                 </View>
             }
         </View>

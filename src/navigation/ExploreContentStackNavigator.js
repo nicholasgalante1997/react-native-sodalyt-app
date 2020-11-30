@@ -3,6 +3,7 @@ import {createStackNavigator} from 'react-navigation-stack'
 import {createAppContainer} from 'react-navigation'
 import SearchResultScreen from '../screens/SearchResultScreen'
 import Colors from '../constants/Colors';
+import ProfessionalUserShowPage from '../screens/ProfessionalUserShowPage';
 
 const ExploreContentNavigator = createStackNavigator({
    SearchResultPage: {
@@ -14,6 +15,16 @@ const ExploreContentNavigator = createStackNavigator({
            headerTitleStyle: {
                fontFamily: 'tommy-bold'
            }
+       }
+   },
+   ProfessionalUserShowPage: {
+       screen: ProfessionalUserShowPage,
+       navigationOptions: {
+          headerBackTitleStyle: {
+              fontFamily: 'tommy-reg',
+              fontSize: 14,
+              color: Colors.ocean.primary
+          } 
        }
    }
 })

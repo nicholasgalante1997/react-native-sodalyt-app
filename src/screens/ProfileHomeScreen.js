@@ -21,18 +21,7 @@ ProfileHomeScreen.navigationOptions = navData => {
         headerTitleStyle: {
             fontFamily: 'tommy-bold',
             color: Colors.rugged.primary
-        },
-        headerLeft: () => (
-            <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <Item 
-                title="Menu" 
-                iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu' } 
-                onPress={() => {
-                    console.log('click')
-                    navData.navigation.toggleDrawer()
-                }} />
-            </HeaderButtons>
-        )
+        }
     }
 }
 
