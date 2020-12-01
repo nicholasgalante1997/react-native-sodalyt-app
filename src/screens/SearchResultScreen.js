@@ -164,9 +164,20 @@ const SearchResultScreen = (props) => {
     if (copyOfFilters.cultural.religion.noPreference){
         filteredProfessionals = filteredProfessionals
     }
-    // if (copyOfFilters.cultural.religion.christianity){
-    //     filteredProfessionals = filteredProfessionals.filter(prof => prof)
-    // }
+    if (copyOfFilters.cultural.religion.christianity){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.religiousPreference === 'Christianity')
+    }
+    if (copyOfFilters.cultural.religion.judaism){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.religiousPreference === 'Judaism')
+    }
+    if (copyOfFilters.cultural.religion.islam){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.religiousPreference === 'Islam')
+    }
+    if (copyOfFilters.cultural.religion.other){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.religiousPreference === 'Other')
+    }
+
+    // Cultural => Race Filters
       return filteredProfessionals
     }
 
