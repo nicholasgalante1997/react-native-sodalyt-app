@@ -178,6 +178,33 @@ const SearchResultScreen = (props) => {
     }
 
     // Cultural => Race Filters
+    if (copyOfFilters.cultural.race.hispanic){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.racialIdentity === 'Hispanic')
+    }
+    if (copyOfFilters.cultural.race.white){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.racialIdentity === 'White')
+    }
+    if (copyOfFilters.cultural.race.black){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.racialIdentity === 'Black')
+    }
+    if (copyOfFilters.cultural.race.asian){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.racialIdentity === 'Asian')
+    }
+    if (copyOfFilters.cultural.race.nativeAmerican){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.racialIdentity === 'Native American')
+    }
+    if (copyOfFilters.cultural.race.pacificIslander){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.racialIdentity === 'Pacific Islander')
+    }
+    if (copyOfFilters.cultural.race.asianSubcontinent){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.racialIdentity === 'Asian-subcontinent')
+    }
+
+    // Cultural => LGBTQ
+    if (copyOfFilters.cultural.lgbtq.supportive){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.lgbtqSupportive)
+    }
+
       return filteredProfessionals
     }
 
@@ -1409,8 +1436,8 @@ const SearchResultScreen = (props) => {
                     title="Pacific Islander"
                     textStyle={{fontFamily: 'tommy-reg'}} 
                     onPress={() => {
-                        const currValue = filterManager.cultural.race.nativeAmerican
-                        dispatch(actions.toggleCulturalRaceNativeAmericanValue(!currValue))
+                        const currValue = filterManager.cultural.race.pacificIslander
+                        dispatch(actions.toggleCulturalRacePacificIslanderValue(!currValue))
                     }} 
                     checkedColor={Colors.ocean.primary} />
                      <CheckBox 
