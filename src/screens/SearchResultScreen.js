@@ -205,6 +205,11 @@ const SearchResultScreen = (props) => {
         filteredProfessionals = filteredProfessionals.filter(prof => prof.lgbtqSupportive)
     }
 
+    // Service => Personal Trainer 
+    if (copyOfFilters.service.personalTrainer.traumaInformedPractitioner){
+        
+    }
+
       return filteredProfessionals
     }
 
