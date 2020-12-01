@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, ScrollView, TouchableOpacity, Button, Image, Switch, FlatList} from 'react-native'
+import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, ScrollView, TouchableOpacity, Image, Switch, FlatList} from 'react-native'
 import ProfessionalUserData from '../constants/professionalUserDummyData'
 import {useSelector, useDispatch} from 'react-redux' 
 import * as actions from '../store/actions/actionCreator'
@@ -24,6 +24,7 @@ const SearchResultScreen = (props) => {
     // VARIABLE ASSIGNMENT
 
     const reduxProfArray = useSelector(state => state.expertArray)
+    let filteredProfessionals;
 
     // Currently searched for phrase
     const searchedTerm = useSelector(state => state.search)
@@ -59,6 +60,36 @@ const SearchResultScreen = (props) => {
     const CreatorTypes = ["ISTP", "ISFP", "ESTP", "ESFP"]
 
     // FUNCTIONAL CODE 
+
+    const tryCatchFetchForUsers = async function ( ) {
+        try {
+        
+                let headers = new Headers()
+                headers.append("Content-Type", "application/json")
+
+                let content = JSON.stringify({
+                    "searchTerm": searchedTerm.toLowerCase(),
+                    "currentUserMbti": personalityType,
+                    "currentUserSodalytPref": sodalytPref
+                })
+
+                let requestOptions = {
+                    method: 'POST',
+                    headers: headers,
+                    body: content,
+                    redirect: 'follow'
+                }
+
+                const ENDPOINT = "https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getprofessionals"
+
+            let response = await fetch(ENDPOINT, requestOptions)
+            let profUsers = await response.json()
+            return profUsers
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     const fetchSearchedForUsers =  () => {
 
         let headers = new Headers()
@@ -89,8 +120,55 @@ const SearchResultScreen = (props) => {
     }
 
     useEffect(() => {
-        fetchSearchedForUsers()
+        // fetchSearchedForUsers()
+        tryCatchFetchForUsers().then(profUsers => dispatch(actions.setSearchedExpertsResponse(profUsers)))
     }, [searchedTerm])
+
+    const handleFilterSwitch = () => {
+        filteredProfessionals = [...reduxProfArray]
+        const copyOfFilters = {...filterManager}
+
+        // Cultural => Language Filters
+      if (copyOfFilters.cultural.language.spanish){
+         filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Spanish'))
+      }
+      if (copyOfFilters.cultural.language.chineseMandarin){
+          filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Chinese-Mandarin'))
+      }
+      if (copyOfFilters.cultural.language.french){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('French'))
+        }
+    if (copyOfFilters.cultural.language.arabic){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Arabic'))
+    }
+    if (copyOfFilters.cultural.language.hindi){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Hindi'))
+    }
+    if (copyOfFilters.cultural.language.portuguese){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Portuguese'))
+    }
+    if (copyOfFilters.cultural.language.banglaBengali){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Bangla/Bengali'))
+    }
+    if (copyOfFilters.cultural.language.russian){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Russian'))
+    }
+    if (copyOfFilters.cultural.language.japanese){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Japanese'))
+    }
+    if (copyOfFilters.cultural.language.punjabi){
+        filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Punjabi'))
+    }
+
+    // Cultural =>  Religion Filters
+    if (copyOfFilters.cultural.religion.noPreference){
+        filteredProfessionals = filteredProfessionals
+    }
+    // if (copyOfFilters.cultural.religion.christianity){
+    //     filteredProfessionals = filteredProfessionals.filter(prof => prof)
+    // }
+      return filteredProfessionals
+    }
 
     const handleNewSearchInput = (textInput) => {
         setNewSearchValue(textInput)
@@ -1571,6 +1649,7 @@ const SearchResultScreen = (props) => {
     if (reduxProfArray.length > 0){
          generateMBTIPercentage(personalityType)
         assignSodalytTypes(reduxProfArray)
+        console.log(handleFilterSwitch(), "filtered professionals")
     }
    
     console.log(ProfessionalUserData, "local users")
@@ -1619,7 +1698,7 @@ const SearchResultScreen = (props) => {
                 </ScrollView>
                 </View>
                 <MTMediumText style={styles.searchInfoText}>
-                    Showing {reduxProfArray.length} results for the term ' {searchedTerm} '
+                    Showing {handleFilterSwitch().length} results for the term ' {searchedTerm} '
                 </MTMediumText>
             </View>
             { showCulturalFilter ? culturalFilterBar() : null}
@@ -1637,7 +1716,7 @@ const SearchResultScreen = (props) => {
             </View>
             {/* list  content */}
             { reduxProfArray.length > 0 ?
-                <FlatList data={reduxProfArray.sort((a, b) => {
+                <FlatList data={handleFilterSwitch().sort((a, b) => {
                     return a.dynamicMeyersBriggsPercentage -b.dynamicMeyersBriggsPercentage
                 }).reverse()} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} /> : 
                 <View style={{width: '90%', height: '100%', backgroundColor: Colors.ocean.primary}}>
