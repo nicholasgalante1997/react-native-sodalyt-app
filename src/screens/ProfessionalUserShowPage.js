@@ -1,19 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Image, Dimensions, ScrollView, Platform} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText';
 import MTMediumText from '../components/custom/MTMediumText';
 import MTLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
+import Modal from 'react-native-modal'
 import { Feather, FontAwesome5 } from '@expo/vector-icons'; 
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
+import CustomAlert from '../components/custom/CustomDevelopmentAlert'
 import {useSelector} from 'react-redux'
 
 const ProfessionalUserShowPage = (props) => {
 
     const thisExpert = props.navigation.getParam('thisExpert')
     const filters = useSelector(state => state.filters)
-    console.log(thisExpert, filters)
+    const [modalVisible, setModalVisible] = useState(false)
+
+    const modalOn = () => {
+        setModalVisible(true)
+    }
+
+    const modalOff = () => {
+        setModalVisible(false)
+    }
 
     const matchedOn = () => {
         let obj = {
@@ -57,6 +67,9 @@ const ProfessionalUserShowPage = (props) => {
 
     return ( 
         <View style={styles.screen}>
+            <Modal isVisible={modalVisible}>
+                <CustomAlert onPress={modalOff} />
+            </Modal>
              <ScrollView style={styles.body}>
             <View style={styles.header}>
                 <View style={styles.imageHolder}>
@@ -109,7 +122,7 @@ const ProfessionalUserShowPage = (props) => {
                     </View>
                 </ScrollView>
             <View style={{backgroundColor: Colors.rugged.primary, height: 60, width: 60, borderRadius: 30, position: "absolute", bottom: 30, right: 30, justifyContent: 'center', alignItems: 'center'}}>
-                        <FontAwesome5 name="pen-alt" size={24} color="white" />
+                        <FontAwesome5 name="pen-alt" size={32} color="white" onPress={modalOn}/>
             </View>
         </View>
      );

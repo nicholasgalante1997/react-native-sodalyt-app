@@ -1847,7 +1847,9 @@ const SearchResultScreen = (props) => {
                     <Input style={styles.input} placeholder="Try searching for another professional service" value={newSearchValue} onChangeText={handleNewSearchInput}/>
                 </View>
                 <View style={styles.iconHolder}>
-                    <Ionicons name="md-search" color="white" size={32} onPress={()=>{dispatch(actions.setSearchedTerm(newSearchValue))}}/>
+                    <Ionicons name="md-search" color="white" size={32} onPress={()=>{
+                        dispatch(actions.setSearchedTerm(newSearchValue))
+                        }}/>
                 </View>
             </View>
             <View style={styles.filterContainer}>
@@ -1898,23 +1900,24 @@ const SearchResultScreen = (props) => {
             </View>
             {/* list  content */}
             { reduxProfArray.length > 0 ?
-                filteredProfessionals.length > 0 ?
+                // filteredProfessionals.length > 0 ?
                 <FlatList data={
                     sodalytTypingActive ? 
                     filteredProfessionals.sort((a, b) => { return a.dynamicMeyersBriggsPercentage -b.dynamicMeyersBriggsPercentage}).reverse() 
                 : filteredProfessionals} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} /> : 
                 <View style={{flex: 1, backgroundColor: Colors.ocean.primary, justifyContent: 'center', alignItems: 'center'}}>
                     <MTBoldText>No Results Match Those Criteria!</MTBoldText>
-                </View> : 
-                <View style={{width: '90%', height: '100%', backgroundColor: Colors.ocean.primary}}>
-                       <FlatList contentContainerStyle={{width: '100%', height: '100%'}} data={[1,2,3,4,5,6,7,8]} keyExtractor={(item) => item} numColumns={1} renderItem={() => ( <Placeholder style={{marginVertical: 8}}
-            Left={PlaceholderMedia}
-            Animation={Loader}>
-            <PlaceholderLine width={80} />
-            <PlaceholderLine />
-            <PlaceholderLine width={30} />
-          </Placeholder>)} />
-                </View>
+                </View> 
+        //         : 
+        //         <View style={{width: '90%', height: '100%', backgroundColor: Colors.ocean.primary}}>
+        //                <FlatList contentContainerStyle={{width: '100%', height: '100%'}} data={[1,2,3,4,5,6,7,8]} keyExtractor={(item) => item} numColumns={1} renderItem={() => ( <Placeholder style={{marginVertical: 8}}
+        //     Left={PlaceholderMedia}
+        //     Animation={Loader}>
+        //     <PlaceholderLine width={80} />
+        //     <PlaceholderLine />
+        //     <PlaceholderLine width={30} />
+        //   </Placeholder>)} />
+        //         </View>
             }
         </View>
         </TouchableWithoutFeedback>

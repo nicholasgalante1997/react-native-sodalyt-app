@@ -17,7 +17,7 @@ const LearnMoreModal = (props) => {
                 </View>
                 <View style={styles.medRow}>
                     <MTLightText style={{textAlign: 'center', fontStyle: 'italic', marginHorizontal: 5}}>
-                        {props.archetypeDescription}
+                       Our Sodalyt Psychology Department is hard at work, analyzing the data to determine preferences for your specific Sodalyt type. Check back in later for Sodalyt Type Specific Statistics.
                     </MTLightText>
                 </View>
                 <View style={styles.bottomRow}>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     alertContainer: {
-        height: Dimensions.get('window').height > 700 ?  Dimensions.get('window').height / 1.8 : Dimensions.get('window').height / 1.5,
+        height: Dimensions.get('window').height / 3, 
         width:  Dimensions.get('window').width / 1.5,
         backgroundColor: Colors.ocean.secondary,
         borderRadius: 15,
@@ -48,24 +48,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     topRow: {
-        height: '20%',
+        // height: '20%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginBottom: 10
     },
     medRow: {
-        height: '60%',
+        // height: '60%',
         width: '100%',
         alignItems: 'center',
         paddingHorizontal: 5
     },
     bottomRow: {
-        height: '20%',
+        // height: '20%',
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom: 30
+        marginTop: 10
     },
     circle: {
         backgroundColor: 'gray',

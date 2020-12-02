@@ -21,7 +21,8 @@ ProfileHomeScreen.navigationOptions = navData => {
         headerTitleStyle: {
             fontFamily: 'tommy-bold',
             color: Colors.rugged.primary
-        }
+        },
+        headerLeft: () => null
     }
 }
 
