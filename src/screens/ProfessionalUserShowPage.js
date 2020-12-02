@@ -7,11 +7,28 @@ import Colors from '../constants/Colors'
 import { Feather, FontAwesome5 } from '@expo/vector-icons'; 
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
+import {useSelector} from 'react-redux'
 
 const ProfessionalUserShowPage = (props) => {
 
     const thisExpert = props.navigation.getParam('thisExpert')
-    console.log(thisExpert)
+    const filters = useSelector(state => state.filters)
+    console.log(thisExpert, filters)
+
+    const matchedOn = () => {
+        let obj = {
+            langs: [],
+            religiousPref: ""
+        }
+        for (const lang in filters.cultural.language){
+            if (filters.cultural.language[lang]){
+                obj.langs.push(lang)
+            }
+        }
+        return obj;
+    }
+
+    matchedOn()
 
     return ( 
         <View style={styles.screen}>
@@ -54,8 +71,7 @@ const ProfessionalUserShowPage = (props) => {
                         <MTMediumText>Rates from the expert: {thisExpert.price} $</MTMediumText>
                     </View>
                     <View style={styles.contact}>
-                        <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Expert Details</MTBoldText>
-                        <MTMediumText>Gender Identity: <MTLightText>{thisExpert.genderIdentity}</MTLightText></MTMediumText>
+                        <MTBoldText style={{fontSize: 20, marginBottom: 5}}>You Matched On</MTBoldText>
                         <MTMediumText>Religious Preference: <MTLightText>{thisExpert.religiousPreference}</MTLightText></MTMediumText>
                         <MTMediumText>Languages Offered: <MTLightText>{thisExpert.languagesSpoken.map(lang => lang + ", ")}</MTLightText></MTMediumText>
                         <MTMediumText>Self identifies as <MTLightText>{thisExpert.racialIdentity}</MTLightText></MTMediumText>

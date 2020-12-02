@@ -24,7 +24,7 @@ const SearchResultScreen = (props) => {
     // VARIABLE ASSIGNMENT
 
     const reduxProfArray = useSelector(state => state.expertArray)
-    let filteredProfessionals;
+    let filteredProfessionals = [];
 
     // Currently searched for phrase
     const searchedTerm = useSelector(state => state.search)
