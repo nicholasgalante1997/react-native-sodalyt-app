@@ -18,17 +18,42 @@ const ProfessionalUserShowPage = (props) => {
     const matchedOn = () => {
         let obj = {
             langs: [],
-            religiousPref: ""
+            religiousPref: "",
+            race: "",
+            lgbtqSupportive: false,
+            CSR: false
         }
+
         for (const lang in filters.cultural.language){
             if (filters.cultural.language[lang]){
                 obj.langs.push(lang)
             }
         }
+
+        for (const relig in filters.cultural.religion){
+            if (filters.cultural.religion[relig]){
+                obj.religiousPref = `${relig}`
+            }
+        }
+        
+        for (const race in filters.cultural.race){
+            if (filters.cultural.race[race]){
+                obj.race = `${race}`
+            }
+        }
+
+        if (filters.cultural.lgbtq.supportive){
+            obj.lgbtqSupportive = true;
+        }
+
+        if (filters.service.corporateSustainabilityPolicy){
+            obj.CSR = true;
+        }
+
         return obj;
     }
 
-    matchedOn()
+   const matchedOnObject = matchedOn()
 
     return ( 
         <View style={styles.screen}>
@@ -72,14 +97,15 @@ const ProfessionalUserShowPage = (props) => {
                     </View>
                     <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>You Matched On</MTBoldText>
-                        <MTMediumText>Religious Preference: <MTLightText>{thisExpert.religiousPreference}</MTLightText></MTMediumText>
-                        <MTMediumText>Languages Offered: <MTLightText>{thisExpert.languagesSpoken.map(lang => lang + ", ")}</MTLightText></MTMediumText>
-                        <MTMediumText>Self identifies as <MTLightText>{thisExpert.racialIdentity}</MTLightText></MTMediumText>
-                        <MTMediumText>LGBTQ Ally: {thisExpert.lgbtqSupportive ? <Feather name="check-circle" size={12} color="white" /> : <Feather name="x-circle" size={12} color="white" /> }</MTMediumText>
-                        <MTMediumText>Has a Corporate Sustainability Policy: {thisExpert.corporateSustainabilityPolicyVerification ? <Feather name="check-circle" size={12} color="white" /> : <Feather name="x-circle" size={12} color="white" /> }</MTMediumText>
+                            {matchedOnObject.langs.length > 0 ? <MTBoldText>Languages Offered: {matchedOnObject.langs.map(lang => <MTLightText>{lang + ", "}</MTLightText>)}</MTBoldText> : null}
+                            {matchedOnObject.religiousPref.length > 0 ? <MTBoldText>Religious Preference: <MTLightText>{matchedOnObject.religiousPref}</MTLightText></MTBoldText> : null}
+                            {matchedOnObject.race.length > 0 ? <MTBoldText>Self Identifies as <MTLightText>{matchedOnObject.race}</MTLightText></MTBoldText> : null}
+                            {matchedOnObject.lgbtqSupportive ? <MTBoldText>LGBTQ Supportive <Feather name="check-circle" size={12} color="white" /></MTBoldText> : null}
+                            {matchedOnObject.CSR ? <MTBoldText>Corporate Sustainability Policy <Feather name="check-circle" size={12} color="white" /></MTBoldText> : null}
                     </View>
                     <View style={styles.review}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Sodalyt Reviews</MTBoldText>
+                        <MTMediumText>Reviews coming soon!</MTMediumText>
                     </View>
                 </ScrollView>
             <View style={{backgroundColor: Colors.rugged.primary, height: 60, width: 60, borderRadius: 30, position: "absolute", bottom: 30, right: 30, justifyContent: 'center', alignItems: 'center'}}>
