@@ -10,23 +10,23 @@ export default {
                     "question_id": 1,
                     "order": 1,
                     "type": "MBTI",
-                    "spec": "J/P",
+                    "spec": "E/I",
                     "response_type": "binary",
-                    "prompt": "Your spacecraft, the Ambassador, has just entered Mars's atmosphere, and you prepare to land. You detect some commotion, and it appears to be some life form activity, where do you land?",
+                    "prompt": "You are on a solo mission to explore Mars with four android robots helping you. As you enter Mars’ atmosphere you spot some life form activity. Where do you decide to land your spacecraft?",
                     "answers": [
                         {
                             "question_id": 1,
                             "id": 1,
-                            "raw_value": "J",
+                            "raw_value": "I",
                             "value": 0,
-                            "text": "We try to get as close to where NASA told us to land regardless of life form activity."
+                            "text": "I keep with my original landing plans"
                         },
                         {
                             "question_id": 1,
                             "id": 2,
-                            "raw_value": "P",
+                            "raw_value": "E",
                             "value": 1,
-                            "text": "Close to the activity, let’s see what is going on down there!"
+                            "text": "Close to the activity!"
                         }
                     ]
 
@@ -37,21 +37,21 @@ export default {
                     "type": "MBTI",
                     "spec": "S/N",
                     "response_type": "binary",
-                    "prompt": "You've landed safely. Now it's time to set up camp. How do you begin?",
+                    "prompt": "Great, you're on the ground safe! How do you set up your camp?",
                     "answers": [
                         {
                             "question_id": 2,
                             "id": 3,
                             "raw_value": "S",
                             "value": 0,
-                            "text": "Everyone starts with step 1 as instructed in the manual and during training."
+                            "text": "Start with step one just like I did during training."
                         },
                         {
                             "question_id": 2,
                             "id": 4,
                             "raw_value": "N",
                             "value": 1,
-                            "text": "Work with the team to figure out what needs to be done and get to it; manual can be referenced as needed."
+                            "text": "Talk with the Androids about it, and reference the manual as needed."
                         }
                     ]
                 },
@@ -61,35 +61,35 @@ export default {
                     "type": "Kearsey",
                     "spec": "Archetypes (4)",
                     "response_type": "categorical",
-                    "prompt": "Great, camp is ready!  Now for some food, what do you want to cook tonight?",
+                    "prompt": "Great, camp is ready!  Now for some food, what's your choice?",
                     "answers": [
                         {
                             "question_id": 3,
                             "id": 5,
                             "raw_value": "The Artist/The Explorer",
                             "value": ["ISTP", "ISFP", "ESTP", "ESFP"],
-                            "text": "Forage for what is available on Mars."
+                            "text": "Forage for food on Mars."
                         },
                         {
                             "question_id": 3,
                             "id": 6,
                             "raw_value": "The Guardian/The Sentinel",
                             "value": ["ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-                            "text": "Let's get ahead and meal prep for the whole week."
+                            "text": "Meal prep for the week."
                         },
                         {
                             "question_id": 3,
                             "id": 7,
                             "raw_value": "The Rationalist/The Analyst",
                             "value": ["INTJ", "INTP", "ENTJ", "ESFP"],
-                            "text": "We should stick to the ration guide prepped by NASA."
+                            "text": "Stick to the ration guide."
                         },
                         {
                             "question_id": 3,
                             "id": 8,
                             "raw_value": "The Idealist/The Diplomat",
                             "value": ["INFJ", "INFP", "ENFJ", "ENFP"],
-                            "text": "This is a huge achievement, let's have a feast and celebrate right."
+                            "text": "Celebration Feast"
                         }
                     ]
                 }, 
@@ -99,21 +99,21 @@ export default {
                     "type": "MBTI",
                     "spec": "T/F",
                     "response_type": "binary",
-                    "prompt": "Lights go out on your ship!  Uh-oh, you’ve run out of your power source and everyone wants to go explore for sodalyt, a mineral power source. What do you want to do?",
+                    "prompt": "Egads! Your lights go out! Your power source is broken, what do you do?",
                     "answers": [
                         {
                             "question_id": 4,
                             "id": 9,
                             "raw_value": "T",
                             "value": 0,
-                            "text": "I think we should be safe and use what we have on the ship to rig an alternate generator; no need to risk the team on an exploration."
+                            "text": "Stay safe on the ship and use things around the ship to rig an alternate generator."
                         },
                         {
                             "question_id": 4,
                             "id": 10,
                             "raw_value": "F",
                             "value": 1,
-                            "text": "If we all go together we will be able to figure out something with our collective brain power."
+                            "text": "Take the robots to look for sodalyt mineral, an unlimited power source on Mars."
                         }
                     ]
                 },
@@ -121,23 +121,23 @@ export default {
                     "question_id": 5,
                     "order": 5,
                     "type": "MBTI",
-                    "spec": "E/I",
+                    "spec": "J/P",
                     "response_type": "binary",
-                    "prompt": "You weren't able to acquire a power source and time is running out.  What's next?",
+                    "prompt": "Time is running out, even your robots are starting to power down, what next?",
                     "answers": [
                         {
                             "question_id": 5,
                             "id": 11,
-                            "raw_value": "E",
+                            "raw_value": "P",
                             "value": 0,
-                            "text": "Time to make contact with the life forms you saw when you landed.  They have to have something powering their camp."
+                            "text": "Time to try those life forms you saw when you landed."
                         },
                         {
                             "question_id": 5,
                             "id": 12,
-                            "raw_value": "I",
+                            "raw_value": "J",
                             "value": 1,
-                            "text": "Keep trying to call NASA. If they don’t answer, then we abandon mission and go back to earth."
+                            "text": "Call NASA, if they don’t answer, abandon mission"
                         }
                     ] 
                 },
@@ -147,35 +147,35 @@ export default {
                     "type": "Kearsey",
                     "spec": "Archetypal (4)",
                     "response_type": "categorical",
-                    "prompt": "You told NASA the situation and the said try the life forms.  Who do you want to lead you on a diplomatic mission?",
+                    "prompt": "NASA has been keeping tabs on you and sent you a message to visit the life forms.  Which android robot do you choose to come with you?",
                     "answers": [
                         {
                             "question_id": 6,
                             "id": 13,
                             "raw_value": "The Artist/The Explorer",
                             "value": ["ISTP", "ISFP", "ESTP", "ESFP"],
-                            "text": "The Artist; The anthropologist of the group who is there to learn about cultures and any ancient civilizations."
+                            "text": "The anthropologist there to learn about cultures and civilizations."
                         },
                         {
                             "question_id": 6,
                             "id": 14,
                             "raw_value": "The Guardian/The Sentinel",
                             "value": ["ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-                            "text": "The Guardian; The doctor of the group, values the health of the team above all else."
+                            "text": "The doctor programmed only for your health needs."
                         },
                         {
                             "question_id": 6,
                             "id": 15,
                             "raw_value": "The Rationalist/The Analyst",
                             "value": ["INTJ", "INTP", "ENTJ", "ESFP"],
-                            "text": "The Rationalist; Your engineer is the unbiased, objective, unemotional one in the group."
+                            "text": "The engineer prewired for rational problem solving."
                         },
                         {
                             "question_id": 6,
                             "id": 16,
                             "raw_value": "The Idealist/The Diplomat",
                             "value": ["INFJ", "INFP", "ENFJ", "ENFP"],
-                            "text": "The Idealist; The pilot who is adventurous and optimistic that with grit things will turn out okay."
+                            "text": "The pilot which has artificial intelligence ability to think on the fly."
                         }
                     ] 
                 },
@@ -185,7 +185,7 @@ export default {
                     "type": "Kearsey",
                     "spec": "Archetypal (4)",
                     "response_type": "categorical",
-                    "prompt": "What is your negotiation tactic when you meet the aliens?  Put in order of priority of what seems like the best route, to the worst route of action.",
+                    "prompt": "What is your negotiation tactic when you meet the aliens?",
                     "answers": [
                         {
                             "question_id": 7,
@@ -199,21 +199,21 @@ export default {
                             "id": 18,
                             "raw_value": "The Guardian/The Sentinel",
                             "value": ["ISTJ", "ISFJ", "ESTJ", "ESFJ"],
-                            "text": "March directly into the alien camp and ask to speak to their leader, there's no time to waste."
+                            "text": "March into their city and ask to speak to their leader."
                         },
                         {
                             "question_id": 7,
                             "id": 19,
                             "raw_value": "The Rationalist/The Analyst",
                             "value": ["INTJ", "INTP", "ENTJ", "ESFP"],
-                            "text": "Recon around the area before we enter the alien camp."
+                            "text": "Recon around before entering the alien city."
                         },
                         {
                             "question_id": 7,
                             "id": 20,
                             "raw_value": "The Idealist/The Diplomat",
                             "value": ["INFJ", "INFP", "ENFJ", "ENFP"],
-                            "text": "Find something in camp you can trade with them."
+                            "text": "Find something to  trade with them."
                         }
                     ]
                 },
@@ -223,21 +223,21 @@ export default {
                     "type": "MBTI",
                     "spec": "N/S",
                     "response_type": "binary",
-                    "prompt": "Choose your location to start gathering the intel…",
+                    "prompt": "How do you choose to start your recon?",
                     "answers": [
                         {
                             "question_id": 8,
                             "id": 21,
                             "raw_value": "N",
                             "value": 0,
-                            "text": "Your instincts tell you to go to the right."
+                            "text": "Your instincts"
                         },
                         {
                             "question_id": 8,
                             "id": 22,
                             "raw_value": "S",
                             "value": 1,
-                            "text": "You choose to follow an alien sign with what seems like arrows pointing to the left"
+                            "text": "Alien Signs"
                         }
                     ]
                 },
@@ -247,7 +247,7 @@ export default {
                     "type": "MBTI",
                     "spec": "T/F",
                     "response_type": "binary",
-                    "prompt": "You've wound up in the middle of the city somehow, what is your next move?",
+                    "prompt": "Now you are in the middle of the city, what is your next move?",
                     "answers": [
                         {
                             "question_id": 9,
@@ -261,7 +261,7 @@ export default {
                             "id": 24,
                             "raw_value": "F",
                             "value": 1,
-                            "text": "Follow the masses...there seems to be something going on up ahead"
+                            "text": "Follow the traffic flow to the largest building."
                         }
                     ]
                 },
@@ -278,14 +278,14 @@ export default {
                             "id": 25,
                             "raw_value": "E",
                             "value": 0,
-                            "text": "You start the conversation asking about living on mars hoping that your sociability and friendliness will win them over."
+                            "text": "You immediately strike up a conversation."
                         },
                         {
                             "question_id": 10,
                             "id": 26,
                             "raw_value": "I",
                             "value": 1,
-                            "text": "You ask for a private meeting where you can tell them about your power problem."
+                            "text": "You ask for a private meeting."
                         }
                     ]
                 },
@@ -295,7 +295,7 @@ export default {
                     "type": "MBTI",
                     "spec": "J/P",
                     "response_type": "binary",
-                    "prompt": "The aliens offer to help you, but they won’t reveal the secret to their power source.  Which option do you choose?",
+                    "prompt": "The aliens give you two choices to deal with the power.",
                     "answers": [
                         {
                             "question_id": 11,
@@ -309,7 +309,7 @@ export default {
                             "id": 28,
                             "raw_value": "P",
                             "value": 1,
-                            "text": "You live with them until you can figure out how to fix yourself."
+                            "text": "You live with them until you can figure out how to fix it yourself."
                         }
                     ]
                 },
@@ -326,7 +326,7 @@ export default {
                             "id": 29,
                             "raw_value": "F",
                             "value": 0,
-                            "text": "Something from earth with sentimental value."
+                            "text": "A token from earth with sentimental value."
                         },
                         {
                             "question_id": 12,
@@ -343,21 +343,21 @@ export default {
                     "type": "MBTI",
                     "spec": "S/N",
                     "response_type": "binary",
-                    "prompt": "You’ve made it to the city with your trade goods.  Which way do you go?",
+                    "prompt": "You’re in the city.  Which way do you go?",
                     "answers": [
                         {
                             "question_id": 13,
                             "id": 31,
                             "raw_value": "S",
                             "value": 0,
-                            "text": "Your instincts tell you to go to the right."
+                            "text": "Follow my instincts."
                         },
                         {
                             "question_id": 13,
                             "id": 32,
                             "raw_value": "N",
                             "value": 1,
-                            "text": "You choose the alien sign with arrows pointing to the left"
+                            "text": "Look for any alien signs"
                         }
                     ]
                 },
@@ -367,21 +367,21 @@ export default {
                     "type": "MBTI",
                     "spec": "E/I",
                     "response_type": "binary",
-                    "prompt": "Behold!  You made it to the leader of the aliens!",
+                    "prompt": "Behold!  You made it to the leader of the aliens and a crowd of his advisors!",
                     "answers": [
                         {
                             "question_id": 14,
                             "id": 33,
                             "raw_value": "E",
                             "value": 0,
-                            "text": "You start the conversation asking about living on mars hoping that your sociability will win them over."
+                            "text": "You immediately strike up a conversation."
                         },
                         {
                             "question_id": 14,
                             "id": 34,
                             "raw_value": "I",
                             "value": 1,
-                            "text": "You ask for a private meeting where you can tell them about your power problem."
+                            "text": "You ask for a private meeting."
                         }
                     ]
                 },
@@ -391,21 +391,21 @@ export default {
                     "type": "MBTI",
                     "spec": "J/P",
                     "response_type": "binary",
-                    "prompt": "The aliens take your gift of trade and offer to help us yet they are not yet ready to share the secret behind their power.",
+                    "prompt": "The aliens take your gift of trade and offer you two choices to fix the power.",
                     "answers": [
                         {
                             "question_id": 15,
                             "id": 35,
                             "raw_value": "J",
                             "value": 0,
-                            "text": "You take them up on offer for their engineer to go fix it for you."
+                            "text": "They fix it but you don't know how."
                         },
                         {
                             "question_id": 15,
                             "id": 36,
                             "raw_value": "P",
                             "value": 1,
-                            "text": "You agree to live in their city with them until you can figure out how to fix it."
+                            "text": "You live with them until you can fix it yourself."
                         }
                     ]
                 },
@@ -415,21 +415,21 @@ export default {
                     "type": "MBTI",
                     "spec": "E/I",
                     "response_type": "binary",
-                    "prompt": "You and your crewmate have trudged the city and marched directly to the heart of the city. You see the alien leader. What do you do next?",
+                    "prompt": "You marched directly into the city. Now  you're in front of the alien leader and a crowd of his advisors.",
                     "answers": [
                         {
                             "question_id": 16,
                             "id": 37,
                             "raw_value": "E",
                             "value": 0,
-                            "text": "You start the conversation asking about living on mars hoping that your sociability will win them over."
+                            "text": "You immediately strike up a converstaion."
                         },
                         {
                             "question_id": 16,
                             "id": 38,
                             "raw_value": "I",
                             "value": 1,
-                            "text": "You tell them you have a problem with your power source and ask for help."
+                            "text": "You ask for a private meeting."
                         }
                     ]
                 },
@@ -439,21 +439,21 @@ export default {
                     "type": "MBTI",
                     "spec": "F/T",
                     "response_type": "binary",
-                    "prompt": "They offer you a drink before talking, what do you do?",
+                    "prompt": "They offer you a drink before talking, do you take it?",
                     "answers": [
                         {
                             "question_id": 17,
                             "id": 39,
                             "raw_value": "F",
                             "value": 0,
-                            "text": "You don’t want to be rude and accept taking a sip."
+                            "text": "You don’t want to be rude..."
                         },
                         {
                             "question_id": 17,
                             "id": 40,
                             "raw_value": "T",
                             "value": 1,
-                            "text": "You politely decline since you do not know what it will do to you."
+                            "text": "What's in it?"
                         }
                     ]
                 },
@@ -463,21 +463,21 @@ export default {
                     "type": "MBTI",
                     "spec": "S/N",
                     "response_type": "binary",
-                    "prompt": "The aliens offer to help.  Which option do you choose?",
+                    "prompt": "The aliens offer you two choices to fix the power.",
                     "answers": [
                         {
                             "question_id": 18,
                             "id": 41,
                             "raw_value": "S",
                             "value": 0,
-                            "text": "They offer for their engineer to walk you through schematics."
+                            "text": "They offer to fix it, but you don't know how."
                         },
                         {
                             "question_id": 18,
                             "id": 42,
                             "raw_value": "N",
                             "value": 1,
-                            "text": "They can come to your camp and you can co-create a solution."
+                            "text": "You live with them until you can fix it yourself."
                         }
                     ]
                 },
@@ -487,21 +487,21 @@ export default {
                     "type": "MBTI",
                     "spec": "J/P",
                     "response_type": "binary",
-                    "prompt": "You’ve got the help from the alien’s and now it is time to get the colony going. What do you do?",
+                    "prompt": "All's good! Now back to your exploration, how?",
                     "answers": [
                         {
                             "question_id": 19,
                             "id": 43,
                             "raw_value": "J",
                             "value": 0,
-                            "text": "We follow the guidelines outlined by NASA and get things back on track to meet our deadlines."
+                            "text": "I look at the original goals."
                         },
                         {
                             "question_id": 19,
                             "id": 44,
                             "raw_value": "P",
                             "value": 1,
-                            "text": "We continue to work with aliens on adjusting to life on Mars."
+                            "text": "I come up with new goals."
                         }
                     ]
                 },
@@ -511,21 +511,21 @@ export default {
                     "type": "MBTI",
                     "spec": "J/P",
                     "response_type": "binary",
-                    "prompt": "You enter the bar;",
+                    "prompt": "You're in the bar, what is your next move?",
                     "answers": [
                         {
                             "question_id": 20,
                             "id": 45,
                             "raw_value": "J",
                             "value": 0,
-                            "text": "You look around to assess the situation with your back to the door just in case."
+                            "text": "Assess the situation."
                         },
                         {
                             "question_id": 20,
                             "id": 46,
                             "raw_value": "P",
                             "value": 1,
-                            "text": "You go right to the middle of the action and order the same thing he is having!"
+                            "text": "Order an alien drink!"
                         }
                     ]
                 },
@@ -535,21 +535,21 @@ export default {
                     "type": "MBTI",
                     "spec": "F/T",
                     "response_type": "binary",
-                    "prompt": "Oh no you see an alien who appears to be choking what do you do?",
+                    "prompt": "Oh no! An alien is choking!  What do you do?",
                     "answers": [
                         {
                             "question_id": 21,
                             "id": 47,
                             "raw_value": "F",
                             "value": 0,
-                            "text": "Go give them the heimlich maneuver of course!"
+                            "text": "Instincts are telling me to perform the heimlich."
                         },
                         {
                             "question_id": 21,
                             "id": 48,
                             "raw_value": "T",
                             "value": 1,
-                            "text": "I yell for help because they are an alien I don’t know what organs they have!"
+                            "text": "Yell for help, maybe they're just dancing."
                         }
                     ]
                 },
@@ -559,21 +559,21 @@ export default {
                     "type": "MBTI",
                     "spec": "E/I",
                     "response_type": "binary",
-                    "prompt": "Whew!  The alien is okay and the crowd is cheering.  All alien eyes are on you.",
+                    "prompt": "Whew!  The alien is okay and all eyes are on you, how do you transiton to ask about the power?",
                     "answers": [
                         {
                             "question_id": 22,
                             "id": 49,
                             "raw_value": "E",
                             "value": 0,
-                            "text": "You help the alien up and say “another round!” and then you ask the alien for some help with your power source."
+                            "text": "I yell 'another round' and then ask the room."
                         },
                         {
                             "question_id": 22,
                             "id": 50,
                             "raw_value": "I",
                             "value": 1,
-                            "text": "You don’t like to be the center of attention, you slink away to the bar and ask the bartender for help with a power source."
+                            "text": "I back away and ask the bartender."
                         }
                     ]
                 },
@@ -583,21 +583,21 @@ export default {
                     "type": "MBTI",
                     "spec": "S/N",
                     "response_type": "binary",
-                    "prompt": "The aliens offer to help. Which option do you choose?",
+                    "prompt": "You get two options to fix the power.",
                     "answers": [
                         {
                             "question_id": 23,
                             "id": 51,
                             "raw_value": "S",
                             "value": 0,
-                            "text": "They offer for their engineer to walk you through schematics."
+                            "text": "They offer to walk you through the schematics to troubleshoot it yourself."
                         },
                         {
                             "question_id": 23,
                             "id": 52,
                             "raw_value": "N",
                             "value": 1,
-                            "text": "They can come to your camp and you can co-create a solution."
+                            "text": "They come to your camp and co-create a fix."
                         }
                     ]
                 },
@@ -607,21 +607,21 @@ export default {
                     "type": "MBTI",
                     "spec": "S/N",
                     "response_type": "binary",
-                    "prompt": "You’re living the good life on Mars, now NASA wants you to work on your mission to find sodalyt a precious mineral. Where do you start looking?",
+                    "prompt": "Now that your power is back on, NASA asks you to go look for a large quantity of sodalyt mineral.  Where do you start?",
                     "answers": [
                         {
                             "question_id": 24,
                             "id": 53,
                             "raw_value": "S",
                             "value": 0,
-                            "text": "You scour the geological surveys, run the data with your experts, have the Mars rover do an initial pass at specific locations."
+                            "text": "You review the data and have a robot go look at a specific location."
                         },
                         {
                             "question_id": 24,
                             "id": 54,
                             "raw_value": "N",
                             "value": 1,
-                            "text": "You talk to local Martians about minerals, listen to their exploration stories, and decide on some areas to survey with them based upon what they have personally seen."
+                            "text": " You talk to the Martians and go on an adventure  based upon their knowledge."
                         }
                     ]
                 },
@@ -631,21 +631,21 @@ export default {
                     "type": "MBTI",
                     "spec": "F/T",
                     "response_type": "binary",
-                    "prompt": "Eureka! You’ve found a massive amount of the mineral.  Do send it all back to Earth?",
+                    "prompt": "Eureka!  You’ve found a massive amount of sodalyt.  Do you send it all back to Earth?",
                     "answers": [
                         {
                             "question_id": 25,
                             "id": 55,
                             "raw_value": "F",
                             "value": 0,
-                            "text": "You split it 50 / 50 with the aliens, let NASA know half is coming to Earth, and everyone is happy."
+                            "text": "I send half to Earth and give the aliens the other half."
                         },
                         {
                             "question_id": 25,
                             "id": 56,
                             "raw_value": "T",
                             "value": 1,
-                            "text": "You decide not to send it all back because you can use it as leverage to further diplomatic relations with the Aliens."
+                            "text": "No, I send half and keep the other half to further diplomatic relationship with the aliens."
                         }
                     ]
                 },
@@ -655,21 +655,21 @@ export default {
                     "type": "MBTI",
                     "spec": "J/P",
                     "response_type": "binary",
-                    "prompt": "The Martians tell you about a once in a million year meteor shower coming next week.  NASA has specific experiments that you need to run next week which will make you miss the meteor shower.  What do you do?",
+                    "prompt": "The Martians tell you about a once in a million years meteor shower coming next week.  You’re going to miss it because of the experiments NASA wants you to run.  What do you do?",
                     "answers": [
                         {
                             "question_id": 26,
                             "id": 57,
                             "raw_value": "J",
                             "value": 0,
-                            "text": "I ask the aliens to record the shower, after-all I have deadlines I need to meet with these experiments."
+                            "text": "I ask the aliens to record the shower so I can watch later."
                         },
                         {
                             "question_id": 26,
                             "id": 58,
                             "raw_value": "P",
                             "value": 1,
-                            "text": "I decide to go to the meteor shower and will make up a reason why the experiments were delayed."
+                            "text": " I go to the shower and give a reason why the experiments are delayed."
                         }
                     ]
                 },
@@ -679,21 +679,21 @@ export default {
                     "type": "MBTI",
                     "spec": "E/I",
                     "response_type": "binary",
-                    "prompt": "Wow, 6 months went by fast!  Everyone is missing the Earth holidays. How do you choose to recognize the holiday season?",
+                    "prompt": "Wow, three months went by fast!  Your favorite Earth holiday is coming up, how do you choose to observe it?",
                     "answers": [
                         {
                             "question_id": 27,
                             "id": 59,
                             "raw_value": "E",
                             "value": 0,
-                            "text": "Throw a Thanksgiving dinner of course with the Aliens and teach them about Black Friday sales shopping on Earth."
+                            "text": "I throw a feast with the aliens and get them to add it to their calendar."
                         },
                         {
                             "question_id": 27,
                             "id": 60,
                             "raw_value": "I",
                             "value": 1,
-                            "text": "I decorate my cabin and cook a meal for a few close friends."
+                            "text": "I decorate my cabin and ask the robots to celebrate with me."
                         }
                     ]
                 },
@@ -703,21 +703,21 @@ export default {
                     "type": "Five Rs",
                     "spec": "Responsibility",
                     "response_type": "binary",
-                    "prompt": "Well, Now its been 1 year since landing on Mars.  How have you kept in touch with the aliens?",
+                    "prompt": "Fast forward and it is one year later.  How have you kept in touch with the aliens? ",
                     "answers": [
                         {
                             "question_id": 28,
                             "id": 61,
                             "raw_value": "null",
                             "value": 0,
-                            "text": "I made sure we had a plan to keep communications open."
+                            "text": "I made a plan and routine for keeping up communications."
                         },
                         {
                             "question_id": 28,
                             "id": 62,
                             "raw_value": "null",
                             "value": 1,
-                            "text": "I waited for the alien to open communications when they saw fit."
+                            "text": "I let them initiate and keep up periodically."
                         }
                     ]
                 },
@@ -727,7 +727,7 @@ export default {
                     "type": "Five Rs",
                     "spec": "Respect",
                     "response_type": "categorical",
-                    "prompt": "How often did you keep in touch?",
+                    "prompt": "We kept in touch...",
                     "answers": [
                         {
                             "question_id": 29,
@@ -758,7 +758,7 @@ export default {
                     "type": "Five Rs",
                     "spec": "Recognition",
                     "response_type": "categorical",
-                    "prompt": "For your 1 year anniversary, how do you recognize the alien’s for their help?",
+                    "prompt": "For your 1 year anniversary, how do you thank the alien’s for their help?",
                     "answers": [
                         {
                             "question_id": 30,
@@ -779,7 +779,7 @@ export default {
                             "id": 68,
                             "raw_value": "null",
                             "value": 0,
-                            "text": "A Formal Ceremony at Our Base."
+                            "text": "A Formal Ceremony"
                         }
                     ]
                 },
@@ -789,21 +789,21 @@ export default {
                     "type": "Five Rs",
                     "spec": "ReAssurance",
                     "response_type": "binary",
-                    "prompt": "Egads!  When you thank the alien’s they tell you they have a virus they can’t control. What do you say to them?",
+                    "prompt": "OMG!  During your thank-you, the aliens tell you they have a virus they can’t control.  What is your response?",
                     "answers": [
                         {
                             "question_id": 31,
                             "id": 69,
                             "raw_value": "null",
                             "value": 0,
-                            "text": "You reassure them everything is going to be okay after-all you’ve seen viruses on earth before."
+                            "text": "You reassure them everything is going to be okay, you have experience with this on Earth"
                         },
                         {
                             "question_id": 31,
                             "id": 70,
                             "raw_value": "null",
                             "value": 1,
-                            "text": "You tell them you are not sure what to do, but that you will help them figure it out together."
+                            "text": "You let them know you are not sure what to do, but you will help figure it out together."
                         }
                     ]
                 },
@@ -813,21 +813,21 @@ export default {
                     "type": "Five Rs",
                     "spec": "Resilience",
                     "response_type": "binary",
-                    "prompt": "You get the other Earthlings together and tell them the situation with the alien virus. What do you do next?",
+                    "prompt": "What is your next move?",
                     "answers": [
                         {
                             "question_id": 32,
                             "id": 71,
                             "raw_value": "null",
                             "value": 0,
-                            "text": "Leave everything where it is and get back to Earth as quickly as possible; help the aliens from a quarantine pod on Earth."
+                            "text": "Get back to Earth as quickly as possible and help from a quarantine pod at NASA."
                         },
                         {
                             "question_id": 32,
                             "id": 72,
                             "raw_value": "null",
                             "value": 1,
-                            "text": "You set up labs and help the alien’s get through the virus; after-all you would not have survived if it were not for their help."
+                            "text": "You stay, set up labs with the robots and help the aliens just like they helped you."
                         }
                     ]
                 },
@@ -837,7 +837,7 @@ export default {
                     "type": "Final Slide",
                     "spec": "null",
                     "response_type": "null",
-                    "prompt": "Fantastic!  You were able to help them through solving their virus problem and have been able to close out your mission colonizing mars, finding sodalyt the precious mineral, and setting up diplomatic relations with an alien race!",
+                    "prompt": "Mission Accomplished!  You charted Mars, found the sodalyt, and helped save the Martians.",
                     "answers": [
                         {
                             "question_id": 33,
