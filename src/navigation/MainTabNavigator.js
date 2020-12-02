@@ -35,7 +35,6 @@ const TabScreenConfig = {
 
 const ExploreTabsContentNavigator = Platform.OS === 'android' ? createMaterialBottomTabNavigator(
     TabScreenConfig, {
-    activeColor: Colors.ocean.primary,
     shifting: true,
     navigationOptions: {
         drawerIcon: drawerConfig => <FontAwesome5 

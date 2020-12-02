@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     alertContainer: {
-        height: Dimensions.get('window').height / 3, 
+        height: Platform.OS === 'ios' ? Dimensions.get('window').height / 3 : Dimensions.get('window').height / 2.5, 
         width:  Dimensions.get('window').width / 1.5,
         backgroundColor: Colors.ocean.secondary,
         borderRadius: 15,
@@ -53,13 +53,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        marginBottom: 10
+        marginBottom: 20
     },
     medRow: {
         // height: '60%',
         width: '100%',
         alignItems: 'center',
-        paddingHorizontal: 5
+        paddingHorizontal: 5,
+        marginBottom: 20
     },
     bottomRow: {
         // height: '20%',

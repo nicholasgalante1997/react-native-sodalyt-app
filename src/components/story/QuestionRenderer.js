@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, ScrollView, FlatList, Dimensions} from 'react-native'
+import {View, StyleSheet, ScrollView, FlatList, Dimensions, Platform} from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
 import MTMediumText from '../custom/MTMediumText'
@@ -519,7 +519,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
        position: 'absolute',
-       top: Dimensions.get('window').height / 3
+       top: Platform.OS ===  'ios' ? Dimensions.get('window').height / 3 : Dimensions.get('window').height / 3.3
     },
     answerContainer: {
         justifyContent: 'center',
@@ -533,7 +533,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        bottom: 75
+        bottom: Platform.OS === 'android' ? 30 : 75,
     },
     updateQuestionBanner: {
         position: "absolute",

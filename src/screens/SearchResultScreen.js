@@ -1895,7 +1895,7 @@ const SearchResultScreen = (props) => {
                       <MTBoldText style={{color: Colors.ocean.secondary}}>Psychology Matching</MTBoldText>
                       <Switch style={{marginLeft: 5}} value={sodalytTypingActive} onValueChange={(newValue) => setSodalytTypingActive(newValue)} trackColor={{true: Colors.ocean.primary}} />
                   </View>
-                <TouchableWithoutFeedback onPress={() => setShowPsychologyFilter(false)} ><View style={{marginTop: 26}}><MTLightText style={{color: Colors.ocean.secondary, textAlign: 'right', fontSize: 12}}>Hide</MTLightText></View></TouchableWithoutFeedback>  
+                <TouchableWithoutFeedback onPress={() => setShowPsychologyFilter(false)} ><View style={Platform.OS === 'ios' ? {marginTop: 26} : {marginTop: 15}}><MTLightText style={{color: Colors.ocean.secondary, textAlign: 'right', fontSize: 12}}>Hide</MTLightText></View></TouchableWithoutFeedback>  
             </View> : null}
             </View>
             {/* list  content */}
