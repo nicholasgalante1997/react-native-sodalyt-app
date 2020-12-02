@@ -27,7 +27,8 @@
     },
     "android": {
       "package": "com.sodalyt.test_app",
-      "versionCode": 1
+      "versionCode": 1,
+      "permissions": []
     }
   }
 }
