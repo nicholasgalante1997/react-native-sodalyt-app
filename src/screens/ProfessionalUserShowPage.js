@@ -25,7 +25,7 @@ const ProfessionalUserShowPage = (props) => {
                             {thisExpert.companyName} {thisExpert.sodalytVerified ? <Feather name="check-circle" size={24} color="white" /> : null} 
                     </MTBoldText>
                     <MTBoldText style={{color: Colors.rugged.primary}}>
-                        {thisExpert.sodalytArchetype} || {thisExpert.dynamicMeyersBriggsPercentage} % Match
+                        {thisExpert.dynamicMeyersBriggsPercentage} % Match
                     </MTBoldText>
                   <MTMediumText style={{paddingRight: 5}}>
                       About Me: {thisExpert.companyDescription}
@@ -36,7 +36,7 @@ const ProfessionalUserShowPage = (props) => {
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Let's get in touch!</MTBoldText>
                         <MTMediumText>{thisExpert.companyAddress} {thisExpert.companyZipCode}</MTMediumText>
                         <MTMediumText>Call us at {thisExpert.companyPhoneNumber}</MTMediumText>
-                        <MTMediumText>Or you can find us online at <MTLightText style={{color: Colors.ocean.secondary}}>{thisExpert.websiteAddress}</MTLightText></MTMediumText>
+                        <MTMediumText>Or you can find us online at <MTLightText style={{color: Colors.rugged.primary}}>{thisExpert.websiteAddress}</MTLightText></MTMediumText>
                        <MTMediumText>Want to set up an appointment? Reach us at {thisExpert.companyEmail} </MTMediumText>
                     </View>
                     <View style={styles.specs}>

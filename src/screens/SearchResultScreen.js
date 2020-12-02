@@ -127,6 +127,12 @@ const SearchResultScreen = (props) => {
         filteredProfessionals = [...reduxProfArray]
         const copyOfFilters = {...filterManager}
 
+        // Sodalyt Verified
+
+        if (sodalytVerified){
+            filteredProfessionals = filteredProfessionals.filter(prof => prof.sodalytVerified)
+        }
+
         // Cultural => Language Filters
       if (copyOfFilters.cultural.language.spanish){
          filteredProfessionals = filteredProfessionals.filter(prof => prof.languagesSpoken.includes('Spanish'))
@@ -310,9 +316,41 @@ const SearchResultScreen = (props) => {
         }
 
         // Service => Distance
-        
+        // When utilizing phone geolocation, we can implement filtering of Distance
+        // Stash an alert on those checkboxes
 
-      return filteredProfessionals
+        // Service => Pricing Range 
+        if (copyOfFilters.service.pricingRange.showHourly){
+            filteredProfessionals = filteredProfessionals.filter(prof => prof.pricingModel === 'hourly')
+            filteredProfessionals = filteredProfessionals.filter(prof => {
+                if (parseInt(prof.price) > parseInt(copyOfFilters.service.pricingRange.hourly.floor)){
+                    return true
+                } else {
+                    return false
+                }
+            })
+            filteredProfessionals = filteredProfessionals.filter(prof => {
+                if (parseInt(prof.price) < parseInt(copyOfFilters.service.pricingRange.hourly.ceil)){
+                    return true
+                } else {
+                    return false
+                }
+            })
+        }
+
+        if (copyOfFilters.service.pricingRange.packageDeals){
+            filteredProfessionals = filteredProfessionals.filter(prof => prof.pricingModel === 'package')
+        }
+
+        //  No Instant Quote Attribute on the Professional Side yet
+        //  No Sodalyt Discount on the Professional Side yet
+
+        // Service => Corporate Sustainability Policy
+        if (copyOfFilters.service.corporateSustainabilityPolicy){
+            filteredProfessionals = filteredProfessionals.filter(prof => prof.corporateSustainabilityPolicyVerification)
+        }
+
+    //   return filteredProfessionals
     }
 
     const handleNewSearchInput = (textInput) => {
@@ -1325,13 +1363,12 @@ const SearchResultScreen = (props) => {
                     <MTMediumText style={{fontSize: 8, marginTop: 3}}>
                        Certifications: {itemData.item.companyCertifications.map(cert => cert + ", ")}
                     </MTMediumText>
-                    <MTMediumText style={{fontSize: 8, marginTop: 3}}>
-                       Sodalyt Type: <MTMediumText style={{color: Colors.rugged.primary}}> {itemData.item.sodalytArchetype}</MTMediumText>
-                    </MTMediumText>
+                   
                 <View style={styles.actions}>
-                        <MTBoldText style={{fontSize: 10}}>
+                      {  sodalytTypingActive ? <MTBoldText style={{fontSize: 10}}>
                             Percentage Match {itemData.item.dynamicMeyersBriggsPercentage}%
-                        </MTBoldText>
+                        </MTBoldText> : null
+                    }
                         <TouchableOpacity onPress={() => {
                             props.navigation.navigate({routeName: 'ProfessionalUserShowPage', params: {
                                 thisExpert:  itemData.item
@@ -1678,7 +1715,7 @@ const SearchResultScreen = (props) => {
                             checkedColor={Colors.ocean.primary} />
 
                             {/* Distance Settings */}
-                            <MTLightText style={{color: Colors.ocean.primary}}>Distance Settings</MTLightText>
+                            <MTLightText style={{color: Colors.ocean.primary}}>Distance Settings Coming Soon!</MTLightText>
                             
                             <CheckBox 
                             checked={filterManager.service.distance.within5Miles} 
@@ -1794,7 +1831,7 @@ const SearchResultScreen = (props) => {
     if (reduxProfArray.length > 0){
          generateMBTIPercentage(personalityType)
         assignSodalytTypes(reduxProfArray)
-        console.log(handleFilterSwitch(), "filtered professionals")
+        handleFilterSwitch()
     }
    
     console.log(ProfessionalUserData, "local users")
@@ -1843,7 +1880,7 @@ const SearchResultScreen = (props) => {
                 </ScrollView>
                 </View>
                 <MTMediumText style={styles.searchInfoText}>
-                    Showing {handleFilterSwitch().length} results for the term ' {searchedTerm} '
+                    Showing {filteredProfessionals.length} results for the term ' {searchedTerm} '
                 </MTMediumText>
             </View>
             { showCulturalFilter ? culturalFilterBar() : null}
@@ -1861,9 +1898,14 @@ const SearchResultScreen = (props) => {
             </View>
             {/* list  content */}
             { reduxProfArray.length > 0 ?
-                <FlatList data={handleFilterSwitch().sort((a, b) => {
-                    return a.dynamicMeyersBriggsPercentage -b.dynamicMeyersBriggsPercentage
-                }).reverse()} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} /> : 
+                filteredProfessionals.length > 0 ?
+                <FlatList data={
+                    sodalytTypingActive ? 
+                    filteredProfessionals.sort((a, b) => { return a.dynamicMeyersBriggsPercentage -b.dynamicMeyersBriggsPercentage}).reverse() 
+                : filteredProfessionals} keyExtractor={p => p.id} renderItem={renderItem} style={styles.flatList} /> : 
+                <View style={{flex: 1, backgroundColor: Colors.ocean.primary, justifyContent: 'center', alignItems: 'center'}}>
+                    <MTBoldText>No Results Match Those Criteria!</MTBoldText>
+                </View> : 
                 <View style={{width: '90%', height: '100%', backgroundColor: Colors.ocean.primary}}>
                        <FlatList contentContainerStyle={{width: '100%', height: '100%'}} data={[1,2,3,4,5,6,7,8]} keyExtractor={(item) => item} numColumns={1} renderItem={() => ( <Placeholder style={{marginVertical: 8}}
             Left={PlaceholderMedia}
@@ -1932,7 +1974,7 @@ const styles = StyleSheet.create({
     },
     profRow: {
         width: '100%',
-        height: 110,
+        height: 100,
         borderColor: 'white',
         borderWidth: 1,
         padding: 10,
