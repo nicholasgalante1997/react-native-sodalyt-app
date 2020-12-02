@@ -46,8 +46,7 @@ const SearchResultScreen = (props) => {
     const [servicePersonalTrainerA3, setServicePersonalTrainerA3] = useState(false)
     const [servicePersonalTrainerA4, setServicePersonalTrainerA4] = useState(false)
     const [servicePersonalTrainerA5, setServicePersonalTrainerA5] = useState(false)
-    const [servicePersonalTrainerA6, setServicePersonalTrainerA6] = useState(false)
-    const [servicePersonalTrainerA7, setServicePersonalTrainerA7] = useState(false)
+    // const [servicePersonalTrainerA6, setServicePersonalTrainerA6] = useState(false)
     const [sodalytTypingActive, setSodalytTypingActive] = useState(true)
 
     // REDUX ACTION MANAGEMENT
@@ -207,8 +206,111 @@ const SearchResultScreen = (props) => {
 
     // Service => Personal Trainer 
     if (copyOfFilters.service.personalTrainer.traumaInformedPractitioner){
-        
+        filteredProfessionals = filteredProfessionals
     }
+
+    if (servicePersonalTrainerA1){
+        filteredProfessionals = filteredProfessionals.filter(prof => {
+            if (prof.companyCertifications.includes("ACSM")){
+                return true
+            } else if (prof.companyCertifications.includes("ACE")){
+                return true
+            } else if (prof.companyCertifications.includes("Cross-Fit")){
+                return true
+            } else {
+                return false 
+            }
+        })
+    }
+
+    if (servicePersonalTrainerA2){
+        filteredProfessionals = filteredProfessionals.filter(prof => {
+            if (prof.companyCertifications.includes("ACSM")){
+                return true
+            } else if (prof.companyCertifications.includes("ACE")){
+                return true
+            } else if (prof.companyCertifications.includes("Cross-Fit")){
+                return true
+            } else {
+                return false 
+            }
+        })
+    }
+
+    if (servicePersonalTrainerA3){
+        filteredProfessionals = filteredProfessionals.filter(prof => {
+            if (prof.companyCertifications.includes("ACSM")){
+                return true
+            } else if (prof.companyCertifications.includes("ACE")){
+                return true
+            } else if (prof.companyCertifications.includes("Cross-Fit")){
+                return true
+            } else if (prof.companyCertifications.includes("NASM")){
+                return true
+            } else {
+                return false 
+            }
+        })
+    }
+
+    if (servicePersonalTrainerA4){
+        filteredProfessionals = filteredProfessionals.filter(prof => {
+            if (prof.companyCertifications.includes("NASM")){
+                return true
+            } else {
+                return false 
+            }
+        })
+    }
+
+    if (servicePersonalTrainerA5){
+        filteredProfessionals = filteredProfessionals.filter(prof => {
+            if (prof.companyCertifications.includes("NASM")){
+                return true
+            } else if (prof.companyCertifications.includes("NASM-CNC")) {
+                return true
+            } else if (prof.companyCertifications.includes("ISSA")) {
+                return true
+            } else if (prof.companyCertifications.includes("PN1")) {
+                return true
+            } else if (prof.companyCertifications.includes("NESTA")) {
+                return true
+            } else if (prof.companyCertifications.includes("AFPA")) {
+                return true
+            } else {
+                return false 
+            }
+        })
+    }
+
+    // if (servicePersonalTrainerA6){
+    //     filteredProfessionals = filteredProfessionals.filter(prof => {
+    //         if (prof.companyCertifications.includes("CSCS") || prof.companySpecialties.includes('CSCS')){
+    //             return true
+    //         } else if (prof.companyCertifications.includes("NSCA-CPT")) {
+    //             return true
+    //         } else {
+    //             return false 
+    //         }
+    //     })
+    // }
+
+        // Service => Meeting Experience
+
+        if (copyOfFilters.service.meetingExperience.noPref){
+            filteredProfessionals = filteredProfessionals
+        }
+
+        if (copyOfFilters.service.meetingExperience.virtual){
+            filteredProfessionals = filteredProfessionals.filter(prof => prof.virtualMeetStatus)
+        }
+
+        if (copyOfFilters.service.meetingExperience.inPerson){
+            filteredProfessionals = filteredProfessionals.filter(prof => prof.inPersonMeetStatus)
+        }
+
+        // Service => Distance
+        
 
       return filteredProfessionals
     }
@@ -1534,12 +1636,12 @@ const SearchResultScreen = (props) => {
                             onPress={handleServicePersonalTrainerA5Click} 
                             checkedColor={Colors.ocean.primary} />
 
-                            <CheckBox
+                            {/* <CheckBox
                             checked={servicePersonalTrainerA6} 
                             title="I'd like to be a little bigger, faster, and stronger."
                             textStyle={{fontFamily: 'tommy-reg'}} 
                             onPress={handleServicePersonalTrainerA6Click} 
-                            checkedColor={Colors.ocean.primary} />
+                            checkedColor={Colors.ocean.primary} /> */}
 
 
                             {/* Meeting Experience Section */}
