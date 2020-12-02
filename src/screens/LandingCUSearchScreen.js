@@ -73,7 +73,7 @@ const LandingCUSearchScreen = (props) => {
             <View style={{justifyContent: 'center', alignItems: 'center', width: '100%', height: 100, marginTop: Dimensions.get('window').height / 5}}> 
                     <Carousel dataArray={VerticalCategories} />
             </View>
-            <TouchableOpacity style={Platform.OS === 'ios' ? {position: 'absolute', bottom: 75} : {marginTop: 40}} onPress={handlePush}>
+            <TouchableOpacity style={Platform.OS === 'ios' ? Dimensions.get('window').height > 750 ? {position: 'absolute', bottom: 75} :  {position: 'absolute', bottom: 10, right: 10} : {marginTop: 40}} onPress={handlePush}>
                     {searchTerm.length > 0 ? <View>
                         <View style={styles.searchIconButton}>
                         <Ionicons name="md-search" size={38} color='white' />

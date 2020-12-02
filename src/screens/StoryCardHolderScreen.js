@@ -33,7 +33,7 @@ const StoryCardScreen = (props) => {
              <Modal isVisible={modalVisible}>
                 <CustomAlert onPress={modalOff} />
             </Modal>
-            <MTBoldText style={styles.titleText}>
+            <MTBoldText style={styles.titleTextTop}>
                 In order to pair you with the professional that best suits your needs, 
                 and better yet your personality, we have to get to know you 
                 just a little bit.  
@@ -95,6 +95,11 @@ const styles = StyleSheet.create({
     underItem: {
         justifyContent: 'center',
         alignItems: 'center',  
+    },
+    titleTextTop: {
+        paddingHorizontal: 20,
+        paddingVertical: 5,
+        marginTop: Dimensions.get('window').height < 780 ? 20 : 0
     }
 })
  
