@@ -8,10 +8,10 @@ import {useDispatch} from 'react-redux'
 import {setCurrentUser} from '../store/actions/actionCreator'
 
 const demoUserInfo = {
-    email: "demoNick@example.",
+    email: "",
     password: "password",
-    firstName: "demo",
-    lastName: "nick"
+    firstName: "",
+    lastName: ""
 }
 
 const NewUserEmailSignUpScreen = (props) => {
