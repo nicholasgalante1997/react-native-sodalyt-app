@@ -447,7 +447,7 @@ const QuestionRenderer = (props) => {
                         data={thisQuestion.answers} 
                         keyExtractor={item => item.id} 
                         renderItem={(itemData) => 
-                        <TouchableOpacity style={{height: Dimensions.get('window').height > 780 ? 70 : 40, width: Dimensions.get('window').width * 0.9, marginVertical: 10}} onPress={() => setChosenAnswer(itemData.item)}>
+                        <TouchableOpacity style={{height: Dimensions.get('window').height > 700 ? 70 : 40, width: Dimensions.get('window').width * 0.9, marginVertical: 10}} onPress={() => setChosenAnswer(itemData.item)}>
                         <View style={{height: '100%', width: '100%', backgroundColor: chosenAnswer ? 
                             chosenAnswer.id === itemData.item.id ? 
                                 Colors.ocean.secondary
