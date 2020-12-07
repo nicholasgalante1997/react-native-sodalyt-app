@@ -6,29 +6,14 @@ import Colors from '../src/constants/Colors'
 const TestComp = (props) => {
 
     const firstPostTestData = {
-    "name": "demo nick",
-    "email": "demoNick@example.",
-    "password": "password",
-    "sodalytPreference": "The Builder",
-    "respect": "Monthly",
-    "responsibility": "I waited for the alien to open communications when they saw fit.",
-    "recognition": "An Earthly Token",
-    "resilience": "You set up labs and help the alien’s get through the virus; after-all you would not have survived if it were not for their help.",
-    "reassurance": "You tell them you are not sure what to do, but that you will help them figure it out together.",
-    "E": "0",
-    "I": "3",
-    "S": "2",
-    "N": "1",
-    "J": "0",
-    "P": "3",
-    "T": "1",
-    "F": "2"
+        "professionalId":"5308526114884096491"
     }
 
     const secondPostData = {
-        "searchTerm": "personal trainer",
-        "currentUserMbti": "ENFJ",
-        "currentUserSodalytPref": "Builder" 
+        "customerId":"5308514174875013611",
+        "professionalId": "5308526114884096491",
+        "rating": 4,
+        "review": "making new review test"
     }
 
     const postToFirstEndpoint = () => {
@@ -46,7 +31,7 @@ const TestComp = (props) => {
             redirect: 'follow'
         };
         // make API call with parameters and use promises to get response
-        fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getmbti", requestOptions)
+        fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/getreviews/getprofessionalreviews", requestOptions)
         .then(response => response.json())
         .then(result => {
             console.log(result, "response from the server from the first post")
@@ -69,7 +54,7 @@ const TestComp = (props) => {
             redirect: 'follow'
         };
         // make API call with parameters and use promises to get response
-        fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getprofessionals", requestOptions)
+        fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/getreviews/makereview", requestOptions)
         .then(response => response.json())
         .then(result => {
             console.log(result, "response from the server from the second post")

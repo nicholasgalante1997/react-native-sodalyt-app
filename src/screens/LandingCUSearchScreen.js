@@ -5,6 +5,7 @@ import SearchBar from '../components/custom/SearchBar'
 import Colors from '../constants/Colors'
 import VerticalCategories from '../constants/verticalCategoriesData'
 import MTMediumText from '../components/custom/MTMediumText'
+import MTBoldText from '../components/custom/MTBoldText'
 import DropDownPicker from 'react-native-dropdown-picker';
 import Carousel from '../components/custom/Carousel'
 import {useDispatch} from 'react-redux'
@@ -29,10 +30,10 @@ const LandingCUSearchScreen = (props) => {
         <View style={styles.screen}>
             <View style={styles.message}>
                 <MTMediumText style={{fontSize: 32, marginBottom: 15}}>
-                        Give us an idea of what you're looking for.
+                        Who can we help you find?
                 </MTMediumText>
                 <MTMediumText style={{fontSize: 14}}>
-                        You can search for a specific service, or take a look through some of the services our experts offer by selecting the dropdown below.
+                        Type your search or use our preselected options.
                 </MTMediumText>
             </View>
             <View style={{width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}} >
@@ -70,10 +71,30 @@ const LandingCUSearchScreen = (props) => {
                 />
             </View> : null
         }
-            <View style={{justifyContent: 'center', alignItems: 'center', width: '100%', height: 100, marginTop: Dimensions.get('window').height / 5}}> 
+        <View style={styles.cardHolder}>
+            <TouchableOpacity 
+            style={styles.gridItem} 
+            onPress={() => {}} >
+                <View style={styles.container}>
+                    <MTBoldText style={styles.title}>
+                        Returning Sodalyt User?  Over Here!
+                    </MTBoldText>
+                </View>
+        </TouchableOpacity>
+        <TouchableOpacity 
+            style={styles.gridItem} 
+            onPress={() => {}} >
+                <View style={styles.container}>
+                    <MTBoldText style={styles.title}>
+                        Registering as a Professional? Over here!
+                    </MTBoldText>
+                </View>
+        </TouchableOpacity>
+        </View>
+            <View style={{justifyContent: 'center', alignItems: 'center', width: '100%', height: 100, marginTop: 20}}> 
                     <Carousel dataArray={VerticalCategories} />
             </View>
-            <TouchableOpacity style={Platform.OS === 'ios' ? Dimensions.get('window').height > 750 ? {position: 'absolute', bottom: 75} :  {position: 'absolute', bottom: 10, right: 10} : {marginTop: 40}} onPress={handlePush}>
+            <TouchableOpacity style={Platform.OS === 'ios' ? Dimensions.get('window').height > 750 ? {position: 'absolute', bottom: Dimensions.get('window').height / 2, zIndex: -1} :  {position: 'absolute', bottom: 10, right: 10} : {marginTop: 40}} onPress={handlePush}>
                     {searchTerm.length > 0 ? <View>
                         <View style={styles.searchIconButton}>
                         <Ionicons name="md-search" size={38} color='white' />
@@ -86,6 +107,10 @@ const LandingCUSearchScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
+    cardHolder: {
+        flexDirection: 'row',
+        marginTop: 150
+    },
     screen: {
         backgroundColor: Colors.ocean.primary,
         flex: 1,
@@ -93,7 +118,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     message: {
-        marginHorizontal: 8,
+        marginHorizontal: 3,
         marginBottom: 20
     },
     search: {
@@ -111,7 +136,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 100,
         height: 100,
-        marginTop: 30,
         alignSelf: 'center'
     },
     carouselItem: {
@@ -132,9 +156,33 @@ const styles = StyleSheet.create({
             borderWidth: 2,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: Colors.rugged.primary,
+            backgroundColor: Colors.ocean.secondary,
             marginTop: 8
-      }
+      },
+      gridItem: {
+        flex: 1,
+        margin: 15,
+        height: 150,
+        // marginVertical: Dimensions.get('window').width / 5,
+    },
+    container: {
+        flex: 1,
+        borderRadius: 10,
+        shadowColor: 'black',
+        shadowOpacity: 0.56,
+        shadowOffset: { width: 0, height: 2},
+        shadowRadius: 10,
+        elevation: 3,
+        padding: 15,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        backgroundColor: Colors.rugged.primary
+    },
+    title: {
+        textAlign: 'right',
+        fontSize: 20,
+        color: 'white'
+    } 
 })
  
 export default LandingCUSearchScreen;

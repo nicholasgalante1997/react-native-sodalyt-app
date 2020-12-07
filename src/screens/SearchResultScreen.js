@@ -1866,23 +1866,23 @@ const SearchResultScreen = (props) => {
                 <ScrollView contentContainerStyle={styles.scrollFilters} style={{ marginLeft: 10, flexDirection: 'row', height: 50}}>
                   <TouchableOpacity onPress={handleCulturalFilterClick}>
                       <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Cultural</MTMediumText>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Culture</MTMediumText>
                       </View>
                   </TouchableOpacity>
                   <TouchableOpacity style={{marginLeft: 20}} onPress={handleServiceFilterClick}>
                       <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Service Specific</MTMediumText>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Service</MTMediumText>
                       </View>
                   </TouchableOpacity>
                   <TouchableOpacity style={{marginLeft: 20}} onPress={handlePsychologyFilterClick}>
                       <View style={{borderBottomWidth: 3, borderBottomColor: Colors.vertical.one, borderBottomRightRadius: 3, borderBottomLeftRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
-                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Psychological</MTMediumText>
+                          <MTMediumText style={{color: Colors.ocean.secondary, fontSize: 20}}>Personality</MTMediumText>
                       </View>
                   </TouchableOpacity>
                 </ScrollView>
                 </View>
                 <MTMediumText style={styles.searchInfoText}>
-                    Showing {filteredProfessionals.length} results for the term ' {searchedTerm} '
+                    Showing {filteredProfessionals.length} matches for the term ' {searchedTerm} '
                 </MTMediumText>
             </View>
             { showCulturalFilter ? culturalFilterBar() : null}

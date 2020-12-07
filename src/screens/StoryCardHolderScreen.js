@@ -34,17 +34,10 @@ const StoryCardScreen = (props) => {
                 <CustomAlert onPress={modalOff} />
             </Modal>
             <MTBoldText style={styles.titleTextTop}>
-                In order to pair you with the professional that best suits your needs, 
-                and better yet your personality, we have to get to know you 
-                just a little bit.  
-            </MTBoldText>
-            <MTBoldText style={styles.titleText}>
-                We here at Sodalyt, felt that the best way to get to know you and what you're like, 
-                is to see what it's like to be in your shoes. So, we've developed four little Adventure Stories 
-                to choose from, each one just 15 questions. 
-            </MTBoldText>
-            <MTBoldText style={styles.titleText}>
-                Choose any one of the stories below to get started.
+            Let’s get started with your personality
+            preferences. Choose one of the following story
+            adventures to play. At the end get your
+            personality results and initial matches.
             </MTBoldText>
             <View>
                 <FlatList 
@@ -97,7 +90,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',  
     },
     titleTextTop: {
-        paddingHorizontal: 20,
+        paddingHorizontal: 23,
         paddingVertical: 5,
         marginTop: Dimensions.get('window').height < 780 ? 20 : 0
     }

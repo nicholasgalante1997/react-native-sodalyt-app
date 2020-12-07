@@ -173,20 +173,18 @@ const PersonalityResultPage = (props) => {
                 <MTMediumText style={{fontSize: 14}}>{longFormDesc}</MTMediumText>
             </View>
             <View style={styles.learnMoreCont}>
-                <CustomButton onPress={modalOn}  style={{backgroundColor: Colors.rugged.primary, width: '40%', height:45, marginBottom: 20}}>
-                    <MTBoldText color="white" style={{fontSize: 16}}>Learn More</MTBoldText>
-                </CustomButton>
-            </View>
-            <View>
-                    <MaterialCommunityIcons 
-                    name="arrow-right-bold-circle-outline" 
-                    size={48} 
-                    color="white" 
-                    onPress={() => {
+                <CustomButton onPress={() => {
                         props.navigation.navigate({routeName: 'MainContent', params: {
                             search: searchedTerm
                         }})
-                    }}/>
+                    }}  style={{backgroundColor: Colors.rugged.primary, width: '80%', height:45, marginBottom: 20}}>
+                    <MTBoldText color="white" style={{fontSize: 16}}>Show Me My Personality Matches</MTBoldText>
+                </CustomButton>
+            </View>
+            <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 30, marginBottom: 20}}>
+                <CustomButton onPress={modalOn}  style={{backgroundColor: Colors.ocean.secondary, width: '40%', height:45}}>
+                    <MTBoldText color="white" style={{fontSize: 16}}>Learn More</MTBoldText>
+                </CustomButton>
             </View>
             <View style={styles.epilogueHolder}>
                 <MTLightText style={{fontSize: 8, textAlign: 'center'}}>{epilogue}</MTLightText>

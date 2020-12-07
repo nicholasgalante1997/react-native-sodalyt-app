@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Dimensions, Image} from 'react-native'
+import {View, StyleSheet, Dimensions, Image, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native'
 import Modal from 'react-native-modal'
 
 import {AntDesign, MaterialCommunityIcons} from '@expo/vector-icons'
@@ -7,16 +7,81 @@ import MTBoldText from '../components/custom/MTBoldText'
 import MBLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 import CustomAlert from '../components/custom/CustomDevelopmentAlert'
-import {useSelector} from 'react-redux'
+import Input from '../components/custom/Input'
+import {useSelector, useDispatch} from 'react-redux'
+import * as actions from '../store/actions/actionCreator'
+
+const demoUserInfo = {
+    email: "",
+    password: "password",
+    firstName: "",
+    lastName: ""
+}
 
 const EmailGatherScreen = (props) => {
 
     const [modalVisible, setModalVisible] = useState(false)
-    const searchTerm = useSelector(state => state.search)
-    console.log(searchTerm)
-//    const deadEndNavigator = () => {
-//        props.navigation.navigate('CustomDevelopmentAlert')
-//    }
+
+    const dispatch = useDispatch();
+
+    const [userInfo, setUserInfo] = useState(demoUserInfo)
+
+    const handleEmailInput = (inputText) => {
+        setUserInfo(currentState => ({
+            ...currentState, email: inputText
+        }))
+    }
+
+    const handlePasswordInput = (inputText) => {
+        setUserInfo(currentState => ({
+            ...currentState, password: inputText
+        }))
+    }
+
+    const handleFirstNameInput = (inputText) => {
+        setUserInfo(currentState => ({
+            ...currentState, firstName: inputText
+        }))
+    }
+
+    const handleLastNameInput = (inputText) => {
+        setUserInfo(currentState => ({
+            ...currentState, lastName: inputText
+        }))
+    }
+
+    const checkValidity = () => {
+        if (userInfo.email.includes(' ')){
+            return false
+        } else if (!userInfo.email.includes('@')){
+            return false
+        } else if (!userInfo.email.includes('.')){
+            return false
+        } else if (userInfo.password.length < 4){
+            return false 
+        } else if (userInfo.firstName === '' || userInfo.firstName.trim() === ''){
+            return false
+        } else if (userInfo.lastName === '' || userInfo.firstName.trim() === ''){
+            return false
+        } else {
+            return true
+        }
+    }
+
+    const pushToStoryPage = () => {
+        dispatch(actions.setCurrentUser(userInfo))
+        props.navigation.navigate({routeName: 'StoryCardPage'})
+    }
+
+    const checkValidityAndPushtoStoryPage = () => {
+        if (checkValidity()){
+        pushToStoryPage()
+        } else {
+            Alert.alert(
+                "Hey there", "Emails can't contain spaces and they must be valid email addresses. Passwords must be at least 4 characters.", [{text: "Dismiss", style: 'default'}]
+            )
+        }
+    }
 
     const pushToNewUserEmailScreen = () => {
         props.navigation.navigate({routeName: 'NewUserEmailSignUp'})
@@ -31,23 +96,56 @@ const EmailGatherScreen = (props) => {
     }
 
     return ( 
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1}}>
         <View style={styles.container}>
             <Modal isVisible={modalVisible}>
                 <CustomAlert onPress={modalOff} />
             </Modal>
             <View style={styles.banner}>
-                <MTBoldText>Our mission is to make the customer-to-professional relationship more meaningful.</MTBoldText>
+                <MTBoldText>To find the professional just right for you, we will use AI power to match you on personality, culture, and service. It will take about 3 minutes total.</MTBoldText>
                 <MTBoldText></MTBoldText>
-                <MTBoldText>We do that through AI powered matching, based upon your needs and your personality. After this, you'll take a brief 2 minute survey, where we'll determine your personality preference.</MTBoldText>
-                <MTBoldText></MTBoldText>
-                <MTBoldText>Sign up with us as a Sodalyt User to store your personality results for future professional searches.</MTBoldText>
             </View>
-            <View style={styles.imageContainer}>
-                <Image 
-                source={require('../images/circle-logo.png')} 
-                style={styles.image} 
-                resizeMode='cover' 
+            <View style={styles.signInContainer}>
+                <MTBoldText>Let us know you're a real person by signing in.</MTBoldText>
+                <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
+                <Input 
+                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0}} 
+                blurOnSubmit 
+                autoCapitalize="none" 
+                autoCorrect={false} 
+                keyboardType="default" 
+                value={userInfo.firstName}
+                onChangeText={handleFirstNameInput}
+                placeholder="First Name"
+                placeholderTextColor={Colors.ocean.primary}
                 />
+            </View>
+            <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
+                <Input 
+                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0}} 
+                blurOnSubmit 
+                autoCapitalize="none" 
+                autoCorrect={false} 
+                keyboardType="default" 
+                value={userInfo.lastName}
+                onChangeText={handleLastNameInput}
+                placeholder="Last Name"
+                placeholderTextColor={Colors.ocean.primary}
+                />
+            </View>
+            <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
+                <Input 
+                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0}} 
+                blurOnSubmit 
+                autoCapitalize="none" 
+                autoCorrect={false} 
+                keyboardType="default" 
+                value={userInfo.email}
+                onChangeText={handleEmailInput}
+                placeholder="Email"
+                placeholderTextColor={Colors.ocean.primary}
+                />
+            </View>
             </View>
             <View style={styles.lowerContent}>
                 <MTBoldText style={styles.textSmall}>
@@ -76,26 +174,21 @@ const EmailGatherScreen = (props) => {
                     style={styles.icon} 
                     onPress={modalOn} />
                 </View>
-                <View style={styles.arrowHolder}>
-                    <MaterialCommunityIcons 
-                    name="email-multiple-outline" 
-                    size={48} 
-                    color="white" 
-                    onPress={pushToNewUserEmailScreen}
-                    />
-                </View>
-                <View style={styles.profTextContainer}>
-                    <MBLightText onPress={modalOn}>
-                        Trying to register your company? Click here to sign up.
-                    </MBLightText>
-                </View>
-                <View style={styles.returningUserTab}>
-                    <MBLightText onPress={modalOn}>
-                        Returning User?
-                    </MBLightText>
-                </View>
             </View>
+            <TouchableWithoutFeedback onPress={checkValidityAndPushtoStoryPage}>
+                <View style={{alignItems: 'center'}}>
+            <View style={styles.imageContainer}>
+            <Image 
+                source={require('../images/circle-logo.png')} 
+                style={styles.image} 
+                resizeMode='cover' 
+                />
+            </View>
+                <MTBoldText>Start</MTBoldText>
+            </View>
+            </TouchableWithoutFeedback>
         </View>
+        </TouchableWithoutFeedback>
      );
 }
 
@@ -111,9 +204,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     imageContainer: {
-        borderRadius: Dimensions.get('window').width * 0.5 / 18,
-        width: Dimensions.get('window').width * 0.5,
-        height: Dimensions.get('window').width * 0.5,
+        borderRadius: 50,
+        width: 100,
+        height: 100,
         overflow: 'hidden',
         // marginBottom: Dimensions.get('window').height / 20
     },
@@ -134,7 +227,8 @@ const styles = StyleSheet.create({
         fontSize: 10
     },
     lowerContent: {
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 30
     },
     profTextContainer: {
         paddingVertical: 10,
