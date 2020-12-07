@@ -271,7 +271,7 @@ export default {
                     "type": "MBTI",
                     "spec": "E/I",
                     "response_type": "binary",
-                    "prompt": "Behold!  You made it to the leader of the aliens and a crowd of his advisors!",
+                    "prompt": "Behold!  You made it to the leader of the aliens and a crowd of advisors!",
                     "answers": [
                         {
                             "question_id": 10,
@@ -367,7 +367,7 @@ export default {
                     "type": "MBTI",
                     "spec": "E/I",
                     "response_type": "binary",
-                    "prompt": "Behold!  You made it to the leader of the aliens and a crowd of his advisors!",
+                    "prompt": "Behold!  You made it to the leader of the aliens and a crowd of advisors!",
                     "answers": [
                         {
                             "question_id": 14,
@@ -415,7 +415,7 @@ export default {
                     "type": "MBTI",
                     "spec": "E/I",
                     "response_type": "binary",
-                    "prompt": "You marched directly into the city. Now  you're in front of the alien leader and a crowd of his advisors.",
+                    "prompt": "You marched directly into the city. Now  you're in front of the alien leader and a crowd of advisors.",
                     "answers": [
                         {
                             "question_id": 16,

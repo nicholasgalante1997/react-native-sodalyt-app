@@ -29,10 +29,10 @@ const LandingCUSearchScreen = (props) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <View style={styles.screen}>
             <View style={styles.message}>
-                <MTMediumText style={{fontSize: 32, marginBottom: 15}}>
+                <MTMediumText style={{fontSize: 28, marginBottom: 15,  textAlign: 'center'}}>
                         Who can we help you find?
                 </MTMediumText>
-                <MTMediumText style={{fontSize: 14}}>
+                <MTMediumText style={{fontSize: 14, textAlign: 'center'}}>
                         Type your search or use our preselected options.
                 </MTMediumText>
             </View>
