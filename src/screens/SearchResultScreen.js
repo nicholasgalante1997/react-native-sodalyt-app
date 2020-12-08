@@ -56,21 +56,11 @@ const SearchResultScreen = props => {
   const [showCulturalFilter, setShowCulturalFilter] = useState (false);
   const [showServiceFilter, setShowServiceFilter] = useState (false);
   const [showPsychologyFilter, setShowPsychologyFilter] = useState (false);
-  const [servicePersonalTrainerA1, setServicePersonalTrainerA1] = useState (
-    false
-  );
-  const [servicePersonalTrainerA2, setServicePersonalTrainerA2] = useState (
-    false
-  );
-  const [servicePersonalTrainerA3, setServicePersonalTrainerA3] = useState (
-    false
-  );
-  const [servicePersonalTrainerA4, setServicePersonalTrainerA4] = useState (
-    false
-  );
-  const [servicePersonalTrainerA5, setServicePersonalTrainerA5] = useState (
-    false
-  );
+  const [servicePersonalTrainerA1, setServicePersonalTrainerA1] = useState (false);
+  const [servicePersonalTrainerA2, setServicePersonalTrainerA2] = useState (false);
+  const [servicePersonalTrainerA3, setServicePersonalTrainerA3] = useState (false);
+  const [servicePersonalTrainerA4, setServicePersonalTrainerA4] = useState (false);
+  const [servicePersonalTrainerA5, setServicePersonalTrainerA5] = useState ( false);
   // const [servicePersonalTrainerA6, setServicePersonalTrainerA6] = useState(false)
   const [sodalytTypingActive, setSodalytTypingActive] = useState (true);
   const [initialLoad, setInitialLoad] = useState (false);
@@ -107,8 +97,8 @@ const SearchResultScreen = props => {
       const ENDPOINT =
         'https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getprofessionals';
 
-      let response = await fetch (ENDPOINT, requestOptions);
-      let profUsers = await response.json ();
+      let response = await fetch(ENDPOINT, requestOptions);
+      let profUsers = await response.json();
       return profUsers;
     } catch (err) {
       console.log (err);
@@ -132,8 +122,7 @@ const SearchResultScreen = props => {
       redirect: 'follow',
     };
 
-    const ENDPOINT =
-      'https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getprofessionals';
+    const ENDPOINT = 'https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getprofessionals';
 
     fetch (ENDPOINT, requestOptions)
       .then (r => r.json ())

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Image, Dimensions, ScrollView, Platform} from 'react-native'
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, Image, Dimensions, ScrollView, Platform, FlatList} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText';
 import MTMediumText from '../components/custom/MTMediumText';
 import MTLightText from '../components/custom/MTLightText'
@@ -14,8 +14,44 @@ import {useSelector} from 'react-redux'
 const ProfessionalUserShowPage = (props) => {
 
     const thisExpert = props.navigation.getParam('thisExpert')
+    const currentUser = useSelector(state => state.userDetails)
     const filters = useSelector(state => state.filters)
     const [modalVisible, setModalVisible] = useState(false)
+    const [reviews, setReviews] = useState([])
+
+    const fetchReviews = async function () {
+        try {
+
+            let myHeaders = new Headers ();
+            myHeaders.append ('Content-Type', 'application/json');
+
+            const content = { 
+                "professionalId": thisExpert.id.toString()
+            } 
+
+            const JSONPackage = JSON.stringify(content)
+
+            const ENDPOINT = "https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/getreviews/getprofessionalreviews";
+
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: JSONPackage,
+                redirect: 'follow'
+            }
+
+            let response = await fetch(ENDPOINT, requestOptions);
+            let reviews = await response.json()
+            return reviews
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        fetchReviews().then(reviews => setReviews(reviews))
+    }, [])
 
     const modalOn = () => {
         setModalVisible(true)
@@ -64,6 +100,9 @@ const ProfessionalUserShowPage = (props) => {
     }
 
    const matchedOnObject = matchedOn()
+
+   console.log(thisExpert)
+   console.log(reviews)
 
     return ( 
         <View style={styles.screen}>
@@ -118,7 +157,7 @@ const ProfessionalUserShowPage = (props) => {
                     </View>
                     <View style={styles.review}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Sodalyt Reviews</MTBoldText>
-                        <MTMediumText>Reviews coming soon!</MTMediumText>
+                        <FlatList data={reviews} keyExtractor={(item) => item.reviewId} renderItem={(itemData) => <MTLightText>{itemData.item.review}</MTLightText>} />
                     </View>
                 </ScrollView>
             <View style={{backgroundColor: Colors.rugged.primary, height: 60, width: 60, borderRadius: 30, position: "absolute", bottom: 30, right: 30, justifyContent: 'center', alignItems: 'center'}}>
