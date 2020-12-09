@@ -194,7 +194,12 @@ const ProfessionalUserShowPage = (props) => {
                 </ScrollView>
             <View style={{backgroundColor: Colors.rugged.primary, height: 60, width: 60, borderRadius: 30, position: "absolute", bottom: 30, right: 30, justifyContent: 'center', alignItems: 'center'}}>
                         <FontAwesome5 name="pen-alt" size={32} color="white" onPress={() => {
-                            props.navigation.navigate('ReviewScreen')
+                            props.navigation.navigate ({
+                                routeName: 'ReviewScreen',
+                                params: {
+                                  professionalId: thisExpert.id
+                                },
+                              });
                         }}/>
             </View>
         </View>

@@ -4,6 +4,7 @@ import MTBoldText from '../components/custom/MTBoldText'
 import Colors from '../constants/Colors'
 import {AntDesign} from '@expo/vector-icons'
 import Input from '../components/custom/Input';
+import {useSelector} from 'react-redux'
 
 const ReviewFormScreen = (props) => {
 
@@ -13,12 +14,77 @@ const ReviewFormScreen = (props) => {
     const [fourthStar, setFourthStar] = useState(false)
     const [fifthStar, setFifthStar] = useState(false)
 
+    const [reviewText, setReviewText] = useState("")
+    const [rating, setRating] = useState(0)
+    const [submittedReviewStatusObject, setSubmittedReviewStatusObject] = useState({})
+    const [successfulPost, setSuccessfulPost] = useState(false)
+
+    const resetState = () => {
+        setFirstStar(false)
+        setSecondStar(false)
+        setThirdStar(false)
+        setFourthStar(false)
+        setFifthStar(false)
+        setReviewText("")
+        setRating("")
+    }
+    
+    console.log(submittedReviewStatusObject)
+
+    const currentUser = useSelector(state => state.userDetails)
+    const professionalId = props.navigation.getParam('professionalId')
+
+    const postObject = {
+        "customerId": currentUser.id,
+        "professionalId": professionalId,
+        "rating": rating,
+        "review": reviewText
+    }
+
+    const tryCatchReviewPost = async function () {
+        try {
+            const ENDPOINT = "https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/getreviews/makereview"
+            const myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/json');
+            const payload = JSON.stringify(postObject)
+
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: payload,
+                redirect: 'follow'
+            }
+            const response = await fetch(ENDPOINT, requestOptions);
+            const responseObject = response.json();
+            return responseObject;
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const handlePress = async function () {
+        try {
+            const returnedReview = await tryCatchReviewPost();
+            setSubmittedReviewStatusObject(returnedReview)
+            resetState();
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const handleChangeText = (textInput) => {
+        setReviewText(textInput)
+    }
+
     const toggleFirstStar = () => {
         if (secondStar){
             return
+        } else if (firstStar){
+            setFirstStar(false)
+            setRating(0)
         } else {
-        const currValue = firstStar
-        setFirstStar(!currValue)
+            setFirstStar(true)
+            setRating(1)
         }
     }
 
@@ -29,9 +95,11 @@ const ReviewFormScreen = (props) => {
        if (secondStar){
             setSecondStar(false)
             setFirstStar(false)
+            setRating(0)
        } else {
            setSecondStar(true)
            setFirstStar(true)
+           setRating(2)
        }
         }
     }
@@ -44,10 +112,12 @@ const ReviewFormScreen = (props) => {
             setThirdStar(false)
             setSecondStar(false)
             setFirstStar(false)
+            setRating(0)
         } else {
             setFirstStar(true)
             setSecondStar(true)
             setThirdStar(true)
+            setRating(3)
         }}
     }
 
@@ -60,11 +130,13 @@ const ReviewFormScreen = (props) => {
                 setThirdStar(false)
                 setSecondStar(false)
                 setFirstStar(false)
+                setRating(0)
             } else {
                 setFourthStar(true)
                 setFirstStar(true)
                 setSecondStar(true)
                 setThirdStar(true)
+                setRating(4)
             }}
     }
 
@@ -75,16 +147,16 @@ const ReviewFormScreen = (props) => {
             setThirdStar(false)
             setSecondStar(false)
             setFirstStar(false)
+            setRating(0)
         } else {
             setFifthStar(true)
             setFourthStar(true)
             setFirstStar(true)
             setSecondStar(true)
             setThirdStar(true)
+            setRating(5)
         }
-    }
-
-
+    } 
 
     return (  
     
@@ -116,13 +188,19 @@ const ReviewFormScreen = (props) => {
                 maxLength={40}
                 multiline
                 numberOfLines={4}
-                placeholder="leave a review" />
+                placeholder="leave a review" 
+                value={reviewText} 
+                onChangeText={handleChangeText}/>
             </View>
+
             <View style={styles.submitHolder}>
-                <View style={styles.button}>
+                <TouchableOpacity style={{height: '100%', width: '100%'}} onPress={handlePress} >
+                    <View style={styles.button}>
                     <MTBoldText>Submit</MTBoldText>
                 </View>
+                </TouchableOpacity>
             </View>
+
         </View>
     </TouchableWithoutFeedback>
      );
