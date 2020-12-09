@@ -99,7 +99,39 @@ const ProfessionalUserShowPage = (props) => {
         return obj;
     }
 
+    const starGenerator = (itemData, returnIcon) => {
+        let a = []
+        for (let i=1; i < parseInt(itemData.item.rating); i++){
+            a.push(returnIcon)
+        }
+        return a
+    }
+
    const matchedOnObject = matchedOn()
+
+   const ReviewRenderItem = (itemData) => {
+       return (
+           <View style={{height: 40, width: Dimensions.get('window').width * 0.9, alignSelf: 'center', backgroundColor: Colors.ocean.secondary, padding: 8}}>
+               <View style={{flexDirection: 'row', height: '85%', width: '100%', justifyContent: 'space-between'}}>
+                   <View style={{width: '75%'}}>
+                   <MTMediumText
+                        style={{fontSize: 8}}
+                        numberOfLines={2}
+                        ellipsizeMode="tail"
+                    >
+                        {itemData.item.review}
+                    </MTMediumText>
+                   </View>
+                   <View style={{flexDirection: 'row'}}>
+                        {
+                    starGenerator(itemData, <Feather name="star" size={20} color="white" />)
+                    }
+                   </View>
+               </View>
+                <MTLightText style={{fontSize: 6, textAlign: 'right'}}>{itemData.item.timeCreated}</MTLightText>
+           </View>
+       )
+   }
 
    console.log(thisExpert)
    console.log(reviews)
@@ -157,7 +189,7 @@ const ProfessionalUserShowPage = (props) => {
                     </View>
                     <View style={styles.review}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Sodalyt Reviews</MTBoldText>
-                        <FlatList data={reviews} keyExtractor={(item) => item.reviewId} renderItem={(itemData) => <MTLightText>{itemData.item.review}</MTLightText>} />
+                        <FlatList data={reviews} keyExtractor={(item) => item.reviewId} renderItem={(itemData) => ReviewRenderItem(itemData)} />
                     </View>
                 </ScrollView>
             <View style={{backgroundColor: Colors.rugged.primary, height: 60, width: 60, borderRadius: 30, position: "absolute", bottom: 30, right: 30, justifyContent: 'center', alignItems: 'center'}}>
