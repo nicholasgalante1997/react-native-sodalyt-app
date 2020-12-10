@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import {View, StyleSheet, TouchableOpacity, Dimensions, TextInput, TouchableWithoutFeedback, Keyboard} from 'react-native'
+import {View, StyleSheet, TouchableOpacity, Dimensions, TextInput, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText'
 import Colors from '../constants/Colors'
 import {AntDesign} from '@expo/vector-icons'
@@ -19,7 +19,7 @@ const ReviewFormScreen = (props) => {
 
     const [reviewText, setReviewText] = useState("")
     const [rating, setRating] = useState(0)
-    const [submittedReviewStatusObject, setSubmittedReviewStatusObject] = useState({})
+    // const [submittedReviewStatusObject, setSubmittedReviewStatusObject] = useState({})
     const [successfulPost, setSuccessfulPost] = useState(false)
 
     const dispatch = useDispatch();
@@ -37,8 +37,6 @@ const ReviewFormScreen = (props) => {
         setReviewText("")
         setRating("")
     }
-    
-    console.log(submittedReviewStatusObject)
 
     const currentUser = useSelector(state => state.userDetails)
     const professionalId = props.navigation.getParam('professionalId')
@@ -168,6 +166,26 @@ const ReviewFormScreen = (props) => {
         }
     } 
 
+    const verifyReview = () => {
+        if (rating === 0){
+            return false
+        } else if (reviewText.length < 5){
+            return false
+        } else if (review.length > 150){
+            return false
+        } else {
+            return true
+        }
+    }
+
+    const verifyAndHandlePost = () => {
+        if (verifyReview()){
+            handlePress()
+        } else {
+            Alert.alert("Oops!", "Reviews must have a rating, and must be more than 5 characters, and less than 150.", [{style: 'default', text: "Got it!"}])
+        }
+    }
+
     return (  
     
     <TouchableWithoutFeedback style={{flex: 1, alignItems: 'center'}} onPress={Keyboard.dismiss}>
@@ -207,7 +225,7 @@ const ReviewFormScreen = (props) => {
             </View>
 
             <View style={styles.submitHolder}>
-                <TouchableOpacity style={{height: '100%', width: '100%'}} onPress={handlePress} >
+                <TouchableOpacity style={{height: '100%', width: '100%'}} onPress={verifyAndHandlePost} >
                     <View style={styles.button}>
                     <MTBoldText>Submit</MTBoldText>
                 </View>
