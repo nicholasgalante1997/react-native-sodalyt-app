@@ -74,7 +74,9 @@ const LandingCUSearchScreen = (props) => {
         <View style={styles.cardHolder}>
             <TouchableOpacity 
             style={styles.gridItem} 
-            onPress={() => {}} >
+            onPress={() => {
+                props.navigation.navigate('ReturningUserScreen')
+            }} >
                 <View style={styles.container}>
                     <MTBoldText style={styles.title}>
                         Returning Sodalyt User?  Over Here!

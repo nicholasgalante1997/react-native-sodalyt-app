@@ -10,6 +10,7 @@ import PersonalityResultPage from '../screens/PersonalityResultPage'
 import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen'
 import TesterEndScreen from '../screens/TesterEndScreen'
 import LandingCUSearchScreen from '../screens/LandingCUSearchScreen'
+import ReturningUserScreen from '../screens/ReturningUserScreen'
 
 const FormStackNavigator = createStackNavigator({
     Welcome: {
@@ -26,6 +27,12 @@ const FormStackNavigator = createStackNavigator({
     },
     Email: {
         screen: EmailGatherScreen,
+        navigationOptions: {
+            headerShown: false
+        }
+    },
+    ReturningUserScreen: {
+        screen: ReturningUserScreen,
         navigationOptions: {
             headerShown: false
         }

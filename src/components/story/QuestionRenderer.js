@@ -309,7 +309,7 @@ const QuestionRenderer = (props) => {
         })
 
         const returnData = {
-            "accountType": "customer",
+            "accountType": userInfo.accountType,
             "name": localConcatName,
             "email": userInfo.email,
             "password": userInfo.password,

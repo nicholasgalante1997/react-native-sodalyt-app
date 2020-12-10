@@ -14,6 +14,7 @@ import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen'
 import TesterEndScreen from '../screens/TesterEndScreen'
 import VerticalCategoriesScreen from '../screens/VerticalCategoriesScreen'
 import ProfileHomeScreen from '../screens/ProfileHomeScreen'
+import ReturningUserScreen from '../screens/ReturningUserScreen'
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Platform } from 'react-native'
 import Colors from '../constants/Colors'
@@ -114,16 +115,12 @@ const FormStackNavigator = createStackNavigator({
     },
     ExploreDynamicContent: {
         screen: ExploreTabsContentNavigator
-        // navigationOptions: {
-        //     headerBackTitleVisible: false,
-        //     headerTitle: 'Services',
-        //     headerLeftContainerStyle: {
-        //         marginLeft: 20
-        //     },
-        //     headerLeft: () => {
-        //         return <Ionicons name="ios-menu" color="black" size={24} />
-        //     }
-        // }
+    },
+    ReturningUserScreen: {
+        screen: ReturningUserScreen,
+        navigationOptions: {
+            headerShown: false
+        }
     }
 })
 

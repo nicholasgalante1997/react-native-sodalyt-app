@@ -13,9 +13,10 @@ import * as actions from '../store/actions/actionCreator'
 
 const demoUserInfo = {
     email: "",
-    password: "password",
+    password: "",
     firstName: "",
-    lastName: ""
+    lastName: "",
+    accountType: "customer"
 }
 
 const EmailGatherScreen = (props) => {
@@ -83,9 +84,9 @@ const EmailGatherScreen = (props) => {
         }
     }
 
-    const pushToNewUserEmailScreen = () => {
-        props.navigation.navigate({routeName: 'NewUserEmailSignUp'})
-    }
+    // const pushToNewUserEmailScreen = () => {
+    //     props.navigation.navigate({routeName: 'NewUserEmailSignUp'})
+    // }
 
     const modalOn = () => {
         setModalVisible(true)
@@ -117,7 +118,7 @@ const EmailGatherScreen = (props) => {
                 value={userInfo.firstName}
                 onChangeText={handleFirstNameInput}
                 placeholder="First Name"
-                placeholderTextColor={Colors.ocean.primary}
+                placeholderTextColor={Colors.ocean.secondary}
                 />
             </View>
             <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
@@ -130,7 +131,7 @@ const EmailGatherScreen = (props) => {
                 value={userInfo.lastName}
                 onChangeText={handleLastNameInput}
                 placeholder="Last Name"
-                placeholderTextColor={Colors.ocean.primary}
+                placeholderTextColor={Colors.ocean.secondary}
                 />
             </View>
             <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
@@ -143,7 +144,21 @@ const EmailGatherScreen = (props) => {
                 value={userInfo.email}
                 onChangeText={handleEmailInput}
                 placeholder="Email"
-                placeholderTextColor={Colors.ocean.primary}
+                placeholderTextColor={Colors.ocean.secondary}
+                />
+            </View>
+             <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
+                <Input 
+               style={{fontFamily: 'tommy-reg', borderBottomWidth: 0}} 
+                secureTextEntry={true}
+                blurOnSubmit 
+                autoCapitalize="none" 
+                autoCorrect={false} 
+                keyboardType="default" 
+                value={userInfo.password}
+                onChangeText={handlePasswordInput}
+                placeholder="Password"
+                placeholderTextColor={Colors.ocean.secondary}
                 />
             </View>
             </View>
