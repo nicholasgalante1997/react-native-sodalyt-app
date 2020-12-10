@@ -9,7 +9,8 @@ import { Feather, FontAwesome5 } from '@expo/vector-icons';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
 import CustomAlert from '../components/custom/CustomDevelopmentAlert'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import * as actions from '../store/actions/actionCreator'
 
 const ProfessionalUserShowPage = (props) => {
 
@@ -17,12 +18,15 @@ const ProfessionalUserShowPage = (props) => {
     const currentUser = useSelector(state => state.userDetails)
     const filters = useSelector(state => state.filters)
     const [modalVisible, setModalVisible] = useState(false)
-    const [reviews, setReviews] = useState([])
+    // const [reviews, setReviews] = useState([])
+    const reviews = useSelector(state => state.reviews)
+
+    const dispatch = useDispatch();
 
     const fetchReviews = async function () {
         try {
 
-            let myHeaders = new Headers ();
+            let myHeaders = new Headers();
             myHeaders.append ('Content-Type', 'application/json');
 
             const content = { 
@@ -50,7 +54,7 @@ const ProfessionalUserShowPage = (props) => {
     }
 
     useEffect(() => {
-        fetchReviews().then(reviews => setReviews(reviews))
+        fetchReviews().then(reviews => dispatch(actions.setReviews(reviews)))
     }, [])
 
     const modalOn = () => {

@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, Dimensions, Platform} from 'react-native'
 import Colors from '../../constants/Colors'
-import MTLightText from './MTLightText'
-import MTBoldText from './MTBoldText'
-import { Ionicons } from '@expo/vector-icons'; 
+import MTLightText from '../custom/MTLightText'
+import MTBoldText from '../custom/MTBoldText'
+import { Ionicons, EvilIcons } from '@expo/vector-icons'; 
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const CustomAlert = (props) => {
@@ -12,15 +13,17 @@ const CustomAlert = (props) => {
         <View style={styles.screen}>
             <View style={styles.alertContainer}>
                 <View style={styles.topRow}>
-                    <Ionicons name="md-construct" size={24} color="white" style={{paddingRight: 10}}/>
-                    <MTBoldText>Oh No!</MTBoldText>
+                <EvilIcons name="check" size={24} color="black" style={{paddingRight: 10}} />
+                <MTBoldText>Success!</MTBoldText>
                 </View>
                 <View style={styles.medRow}>
-                    <MTLightText style={{textAlign: 'center'}}>We're sorry! This app is still under development, so not all features are operational. Check back in at a later time to get the full experience. Thank you for understanding!</MTLightText>
+                    <MTLightText style={{textAlign: 'center'}}>You've successfully posted your review.</MTLightText>
                 </View>
                 <View style={styles.bottomRow}>
                     <View style={styles.circle}>
-                    <Ionicons name="md-thumbs-up" size={24} color="white" onPress={props.onPress} />
+                        <TouchableOpacity onPress={props.onPress}>
+                            <MTLightText style={{fontSize: 6}}>Close</MTLightText>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -36,7 +39,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     alertContainer: {
-        height: Dimensions.get('window').width / 1.5,
+        height: Dimensions.get('window').width / 2.8,
         width:  Dimensions.get('window').width / 2,
         backgroundColor: Colors.ocean.secondary,
         borderRadius: 15,

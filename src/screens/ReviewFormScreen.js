@@ -4,7 +4,10 @@ import MTBoldText from '../components/custom/MTBoldText'
 import Colors from '../constants/Colors'
 import {AntDesign} from '@expo/vector-icons'
 import Input from '../components/custom/Input';
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import * as actions from '../store/actions/actionCreator'
+import Modal from 'react-native-modal'
+import SuccessfulPostModal from '../components/explore/SuccessfulPostModal'
 
 const ReviewFormScreen = (props) => {
 
@@ -18,6 +21,12 @@ const ReviewFormScreen = (props) => {
     const [rating, setRating] = useState(0)
     const [submittedReviewStatusObject, setSubmittedReviewStatusObject] = useState({})
     const [successfulPost, setSuccessfulPost] = useState(false)
+
+    const dispatch = useDispatch();
+
+    const modalOff = () => {
+        setSuccessfulPost(false)
+    }
 
     const resetState = () => {
         setFirstStar(false)
@@ -65,8 +74,9 @@ const ReviewFormScreen = (props) => {
     const handlePress = async function () {
         try {
             const returnedReview = await tryCatchReviewPost();
-            setSubmittedReviewStatusObject(returnedReview)
+            dispatch(actions.addReview(returnedReview))
             resetState();
+            setSuccessfulPost(true)
         } catch (err) {
             console.log(err)
         }
@@ -162,6 +172,9 @@ const ReviewFormScreen = (props) => {
     
     <TouchableWithoutFeedback style={{flex: 1, alignItems: 'center'}} onPress={Keyboard.dismiss}>
         <View style={styles.screen}>
+            <Modal isVisible={successfulPost}>
+                <SuccessfulPostModal onPress={modalOff} />
+            </Modal>
             <View style={styles.topHolder}>
             <MTBoldText style={{marginBottom: 20}}>Leave a review for {props.prof}</MTBoldText>
             <View style={styles.starHolder}>

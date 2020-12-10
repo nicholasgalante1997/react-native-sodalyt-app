@@ -82,4 +82,6 @@ export const toggleServiceCorporateSustainabilityPolicy = (booleanValue) => ({ty
 // ASSIGN AWS RESPONSE TO REDUX STATE 
 export const setSearchedExpertsResponse = (awsRespArray) => ({type: 'SET_SEARCHED_EXPERTS_RESPONSE', payload: {value: awsRespArray}})
 
-
+// REVIEWS FOR PROFESSIONALS
+export const setReviews = (reviews) => ({type: 'SET_REVIEWS', payload: {value: reviews}})
+export const addReview = (review) => ({type: 'ADD_REVIEW', payload: {value: review}})

@@ -5,6 +5,7 @@ import currentUserReducer from './currentUser'
 import searchedTermReducer from './searchedTerm'
 import filtersReducer from './filters'
 import searchedExpertsReducer from './searchedExperts'
+import reviewsReducer from './reviews'
 
 const rootReducer = combineReducers({
     answers: answersReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     search: searchedTermReducer,
     expertArray: searchedExpertsReducer,
     userDetails: cuDetailsReducer,
-    filters: filtersReducer
+    filters: filtersReducer,
+    reviews: reviewsReducer
 })
 
 export default rootReducer
