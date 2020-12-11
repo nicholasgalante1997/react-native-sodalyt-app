@@ -11,19 +11,21 @@ import Input from '../components/custom/Input'
 import {useSelector, useDispatch} from 'react-redux'
 import * as actions from '../store/actions/actionCreator'
 
-const demoUserInfo = {
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    accountType: "customer"
-}
-
 const EmailGatherScreen = (props) => {
 
     const [modalVisible, setModalVisible] = useState(false)
 
     const dispatch = useDispatch();
+
+    const isProfessional = props.navigation.getParam('isProfessional')
+
+    const demoUserInfo = {
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        accountType: isProfessional ? "professional" : "customer"
+    }
 
     const [userInfo, setUserInfo] = useState(demoUserInfo)
 
@@ -84,6 +86,21 @@ const EmailGatherScreen = (props) => {
         }
     }
 
+    const pushToProfessionalSurveys = () => {
+        dispatch(actions.setCurrentUser(userInfo))
+        props.navigation.navigate({routeName: 'ProfessionalSurveyScreenOne'})
+    }
+
+    const checkValidityAndPushToProfSurveys = () => {
+        if (checkValidity()){
+            pushToProfessionalSurveys()
+        } else {
+            Alert.alert(
+                "Hey there", "Emails can't contain spaces and they must be valid email addresses. Passwords must be at least 4 characters.", [{text: "Dismiss", style: 'default'}]
+            )
+        }
+    }
+
     // const pushToNewUserEmailScreen = () => {
     //     props.navigation.navigate({routeName: 'NewUserEmailSignUp'})
     // }
@@ -96,21 +113,31 @@ const EmailGatherScreen = (props) => {
         setModalVisible(false)
     }
 
+    console.log(isProfessional)
+    console.log(userInfo)
+
     return ( 
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1}}>
         <View style={styles.container}>
             <Modal isVisible={modalVisible}>
                 <CustomAlert onPress={modalOff} />
             </Modal>
-            <View style={styles.banner}>
+          {  isProfessional ?  
+          <View style={styles.banner}>
+                <MTBoldText style={{textAlign: 'center', marginHorizontal: Dimensions.get('window').width / 6}}>Welcome to Sodalyt, where we send you customers that are right for you.</MTBoldText>
+                <MTBoldText style={{textAlign: 'center', marginHorizontal: Dimensions.get('window').width / 12, marginTop: 20}}>To get your name out there, we are going to ask you to login, complete a form, and play a 3 minute game. </MTBoldText>
+            </View>
+           : <View style={styles.banner}>
                 <MTBoldText>To find the professional just right for you, we will use AI power to match you on personality, culture, and service. It will take about 3 minutes total.</MTBoldText>
                 <MTBoldText></MTBoldText>
             </View>
+           
+        }
             <View style={styles.signInContainer}>
-                <MTBoldText>Let us know you're a real person by signing in.</MTBoldText>
+    { isProfessional ? null :  <MTBoldText>Let us know you're a real person by signing in.</MTBoldText> }
                 <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
                 <Input 
-                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0}} 
+                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0, width: Dimensions.get('window').width * 0.65}} 
                 blurOnSubmit 
                 autoCapitalize="none" 
                 autoCorrect={false} 
@@ -123,7 +150,7 @@ const EmailGatherScreen = (props) => {
             </View>
             <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
                 <Input 
-                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0}} 
+                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0, width: Dimensions.get('window').width * 0.65}} 
                 blurOnSubmit 
                 autoCapitalize="none" 
                 autoCorrect={false} 
@@ -136,7 +163,7 @@ const EmailGatherScreen = (props) => {
             </View>
             <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
                 <Input 
-                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0}} 
+                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0, width: Dimensions.get('window').width * 0.65}} 
                 blurOnSubmit 
                 autoCapitalize="none" 
                 autoCorrect={false} 
@@ -149,7 +176,7 @@ const EmailGatherScreen = (props) => {
             </View>
              <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
                 <Input 
-               style={{fontFamily: 'tommy-reg', borderBottomWidth: 0}} 
+               style={{fontFamily: 'tommy-reg', borderBottomWidth: 0, width: Dimensions.get('window').width * 0.65}} 
                 secureTextEntry={true}
                 blurOnSubmit 
                 autoCapitalize="none" 
@@ -190,7 +217,7 @@ const EmailGatherScreen = (props) => {
                     onPress={modalOn} />
                 </View>
             </View>
-            <TouchableWithoutFeedback onPress={checkValidityAndPushtoStoryPage}>
+            <TouchableWithoutFeedback onPress={isProfessional ? checkValidityAndPushToProfSurveys : checkValidityAndPushtoStoryPage}>
                 <View style={{alignItems: 'center'}}>
             <View style={styles.imageContainer}>
             <Image 

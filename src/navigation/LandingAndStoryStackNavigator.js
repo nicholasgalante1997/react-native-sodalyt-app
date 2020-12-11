@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack'
 import {createAppContainer} from 'react-navigation'
+import Colors from '../constants/Colors'
 
 import LandingScreen from '../screens/LandingScreen'
 import EmailGatherScreen from '../screens/EmailGatherScreen'
@@ -11,6 +12,8 @@ import NewUserEmailSignUpScreen from '../screens/NewUserEmailSignUpScreen'
 import TesterEndScreen from '../screens/TesterEndScreen'
 import LandingCUSearchScreen from '../screens/LandingCUSearchScreen'
 import ReturningUserScreen from '../screens/ReturningUserScreen'
+import WhySodalytScreen from '../screens/WhySodalytScreen'
+import ProfessionalSurveyScreenOne from '../screens/ProfessionalSurveyScreenOne'
 
 const FormStackNavigator = createStackNavigator({
     Welcome: {
@@ -29,6 +32,23 @@ const FormStackNavigator = createStackNavigator({
         screen: EmailGatherScreen,
         navigationOptions: {
             headerShown: false
+        }
+    },
+    WhySodalyt: {
+        screen: WhySodalytScreen,
+        navigationOptions: {
+            headerShown: false
+        }
+    },
+    ProfessionalSurveyScreenOne: {
+        screen: ProfessionalSurveyScreenOne,
+        navigationOptions: {
+            headerLeft: () => null,
+            headerTitle: "Company Registration",
+            headerStyle: {
+                fontFamily: 'tommy-bold',
+                color: Colors.ocean.primary
+            }
         }
     },
     ReturningUserScreen: {

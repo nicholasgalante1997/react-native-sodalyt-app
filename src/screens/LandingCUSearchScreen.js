@@ -25,6 +25,7 @@ const LandingCUSearchScreen = (props) => {
         props.navigation.navigate('Email')
     }
 
+
     return ( 
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <View style={styles.screen}>
@@ -90,10 +91,14 @@ const LandingCUSearchScreen = (props) => {
         </TouchableOpacity>
         <TouchableOpacity 
             style={styles.gridItem} 
-            onPress={() => {}} >
+            onPress={() => {
+                props.navigation.navigate({routeName: 'WhySodalyt', params: {
+                    isProfessional: true
+                }})
+            }} >
                 <View style={styles.container}>
                     <MTBoldText style={styles.title}>
-                        Registering as a Professional? Over here!
+                        Registering for the first time as a Professional? 
                     </MTBoldText>
                 </View>
         </TouchableOpacity>
