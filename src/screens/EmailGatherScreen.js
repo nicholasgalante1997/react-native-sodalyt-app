@@ -20,10 +20,10 @@ const EmailGatherScreen = (props) => {
     const isProfessional = props.navigation.getParam('isProfessional')
 
     const demoUserInfo = {
-        email: "",
-        password: "",
-        firstName: "",
-        lastName: "",
+        email: "nick@.",
+        password: "password",
+        firstName: "nick",
+        lastName: "g",
         accountType: isProfessional ? "professional" : "customer"
     }
 
@@ -145,7 +145,7 @@ const EmailGatherScreen = (props) => {
                 value={userInfo.firstName}
                 onChangeText={handleFirstNameInput}
                 placeholder="First Name"
-                placeholderTextColor={Colors.ocean.secondary}
+                placeholderTextColor='#C7CBCE'
                 />
             </View>
             <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
@@ -158,7 +158,7 @@ const EmailGatherScreen = (props) => {
                 value={userInfo.lastName}
                 onChangeText={handleLastNameInput}
                 placeholder="Last Name"
-                placeholderTextColor={Colors.ocean.secondary}
+              placeholderTextColor='#C7CBCE'
                 />
             </View>
             <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
@@ -171,7 +171,7 @@ const EmailGatherScreen = (props) => {
                 value={userInfo.email}
                 onChangeText={handleEmailInput}
                 placeholder="Email"
-                placeholderTextColor={Colors.ocean.secondary}
+                placeholderTextColor='#C7CBCE'
                 />
             </View>
              <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
@@ -185,7 +185,7 @@ const EmailGatherScreen = (props) => {
                 value={userInfo.password}
                 onChangeText={handlePasswordInput}
                 placeholder="Password"
-                placeholderTextColor={Colors.ocean.secondary}
+                placeholderTextColor='#C7CBCE'
                 />
             </View>
             </View>

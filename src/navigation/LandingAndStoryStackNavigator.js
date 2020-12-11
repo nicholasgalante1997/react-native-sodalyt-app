@@ -45,7 +45,7 @@ const FormStackNavigator = createStackNavigator({
         navigationOptions: {
             headerLeft: () => null,
             headerTitle: "Company Registration",
-            headerStyle: {
+            headerTitleStyle: {
                 fontFamily: 'tommy-bold',
                 color: Colors.ocean.primary
             }

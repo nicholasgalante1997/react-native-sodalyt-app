@@ -14,9 +14,6 @@ import AWS from 'aws-sdk'
 
 // IMPORTS FOR TESTING SCREENS
 import FullStackNavigator from './src/navigation/FullStackNavigator'
-import MainTabNavigator from './src/navigation/MainTabNavigator'
-import ReviewFormScreen from './src/screens/ReviewFormScreen'
-import Test from './misc/TestComponent'
 
 // AWS Configuration
 Amplify.configure(awsconfig)

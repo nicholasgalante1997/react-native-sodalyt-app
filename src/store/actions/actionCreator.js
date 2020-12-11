@@ -85,3 +85,7 @@ export const setSearchedExpertsResponse = (awsRespArray) => ({type: 'SET_SEARCHE
 // REVIEWS FOR PROFESSIONALS
 export const setReviews = (reviews) => ({type: 'SET_REVIEWS', payload: {value: reviews}})
 export const addReview = (review) => ({type: 'ADD_REVIEW', payload: {value: review}})
+
+// NEW PROFESSIONAL INFO STORAGE 
+export const setNewProfInfo = (info) => ({type: 'SET_INFO', payload: {value: info}})
+export const addToProfInfo = (info) => ({type: 'ADD_INFO', payload: {value: info}})
