@@ -61,14 +61,38 @@ const TestComp = (props) => {
         })
         .catch(error => console.log('error', error))
     }
+
+    const postToThirdEndpoint = () => {
+        // instantiate a headers object
+        let myHeaders = new Headers();
+        // add content type header to object
+        myHeaders.append("Content-Type", "application/json");
+        // using built in JSON utility package turn object to string and store in a variable
+        let raw = JSON.stringify({
+            "accountType": "professional",
+            "email": "mlee@synthmail.com",
+            "password": "andradestreets"
+          });
+        // create a JSON object with parameters for API call and store in a variable
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        // make API call with parameters and use promises to get response
+        fetch("https://08o65vjga3.execute-api.us-east-2.amazonaws.com/alpha/returninguser", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result, "response from the server from the third post")
+        })
+        .catch(error => console.log('error', error))
+    }
     
     return (
         <View style={styles.container}>
-           <MainButton onPress={postToFirstEndpoint}>
-               First Post
-           </MainButton>
-           <MainButton onPress={postToSecondEndpoint}>
-               Second Post 
+           <MainButton onPress={postToThirdEndpoint}>
+               third
            </MainButton>
         </View>
      );
