@@ -171,7 +171,7 @@ const ReviewFormScreen = (props) => {
             return false
         } else if (reviewText.length < 5){
             return false
-        } else if (review.length > 150){
+        } else if (reviewText.length > 150){
             return false
         } else {
             return true

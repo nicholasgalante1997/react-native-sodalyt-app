@@ -7,6 +7,8 @@ import MTLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 import {CheckBox} from 'react-native-elements';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {useDispatch, useSelector} from 'react-redux'
+import * as actions from '../store/actions/actionCreator'
 
 const ReturningUserScreen = (props) => {
 
@@ -15,12 +17,24 @@ const ReturningUserScreen = (props) => {
     const [professional, setProfessional] = useState(false)
     const [customer, setCustomer] = useState(false)
 
+    const searchedTerm = useSelector(state => state.search)
+
+    const dispatch = useDispatch()
+
     const handleEmailInput = (textInput) => {
       setEmail(textInput)
     }
 
     const handlePasswordInput = (textInput) => {
       setPassword(textInput)
+    }
+    
+    const assignAccountType = (object) => {
+      if (customer) {
+        object.accountType = "customer"
+      } else {
+        object.accountType = "professional"
+      }
     }
 
     const verifyPost = () => {
@@ -84,7 +98,14 @@ const ReturningUserScreen = (props) => {
           if (r.status === 'Email could not be found'){
             Alert.alert('Woops', "It seems either your email or password is incorrect.", [{text: "Got it!", style: "default"}])
           } else if (r.status === 'Login Successful!') {
-           Alert.alert('Success!', "Nice!", [{style: 'default', text: 'You Rock'}])
+            assignAccountType(r)
+            dispatch(actions.setDetails(r))
+            // console.log(r)
+            if (r.accountType === 'customer'){
+              props.navigation.navigate({routeName: 'MainContent', params: {
+                search: searchedTerm
+            }})
+            }
           }
         })
       } else {

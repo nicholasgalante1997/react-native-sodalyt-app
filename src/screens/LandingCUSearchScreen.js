@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Platform} from 'react-native'
+import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Platform, Alert} from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
 import SearchBar from '../components/custom/SearchBar'
 import Colors from '../constants/Colors'
@@ -75,7 +75,12 @@ const LandingCUSearchScreen = (props) => {
             <TouchableOpacity 
             style={styles.gridItem} 
             onPress={() => {
+                if (searchTerm.length > 0){
+                dispatch(searchActions.setSearchedTerm(searchTerm))
                 props.navigation.navigate('ReturningUserScreen')
+                } else {
+                    Alert.alert("Wait", "If you're a returning customer, make sure to set a searched term before signing in. If you're a professional user, click continue.", [{style: 'default', text: 'Back'}, {text: 'Continue', onPress: () =>{  props.navigation.navigate('ReturningUserScreen') }}])
+                }
             }} >
                 <View style={styles.container}>
                     <MTBoldText style={styles.title}>
