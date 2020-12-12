@@ -101,8 +101,6 @@ const ProfessionalSurveyScreenThree = (props) => {
     }
 
     const newProfInfo = useSelector(state => state.newProfInfo)
-    console.log(newProfInfo)
-    console.log(racialIdentity, religiousPreference)
 
     return ( 
         <KeyboardAvoidingView
