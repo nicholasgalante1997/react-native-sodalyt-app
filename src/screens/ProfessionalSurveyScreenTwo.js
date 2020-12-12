@@ -49,7 +49,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
     
     const dispatchObject = {
         verticalId: verticalId,
-       inPersonMeetStatus: inPerson,
+        inPersonMeetStatus: inPerson,
         virtualMeetStatus: virtual,
         pricingModel: hourly ? "hourly" : "package",
         price: averageRate,
@@ -58,7 +58,54 @@ const ProfessionalSurveyScreenTwo = (props) => {
     }
 
     const generateDispatchObject = () => {
-        
+        if (nsca){
+            dispatchObject.companyCertifications.push('NSCA')
+        }
+        if (nasm){
+            dispatchObject.companyCertifications,push('NASM')
+        }
+        if (acsm){
+            dispatchObject.companyCertifications.push('ACSM')
+        }
+        if (ace){
+            dispatchObject.companyCertifications.push('ACE')
+        }
+        if (crossfit){
+            dispatchObject.companyCertifications.push('Cross-Fit')
+        }
+        if (cnc){
+            dispatchObject.companyCertifications.push('NASM CNC')
+        }
+        if (issa){
+            dispatchObject.companyCertifications.push('ISSA')
+        }
+        if (pn1){
+            dispatchObject.companyCertifications.push('PN1')
+        }
+        if (nesta){
+            dispatchObject.companyCertifications.push('NESTA')
+        }
+        if (afpa){
+            dispatchObject.companyCertifications.push('AFPA')
+        }
+        if (athPerformance){
+            dispatchObject.companySpecialties.push('Atheltic Performance')
+        }
+        if (strengthProgram){
+            dispatchObject.companySpecialties.push('Strength Training')
+        }
+        if (injuryRelated){
+            dispatchObject.companySpecialties.push('Injury Related')
+        }
+        if (nutrition){
+            dispatchObject.companySpecialties.push('Nutrition')
+        }
+        if (restorative){
+            dispatchObject.companySpecialties.push('Restorative and Holistic')
+        }
+        if (genFitness){
+            dispatchObject.companySpecialties.push('General Fitness')
+        }
     }
 
     const verifyBasicObjectValues = () => {
@@ -75,6 +122,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
 
     const verifyAndDispatchObject = () => {
         if (verifyBasicObjectValues()){
+            generateDispatchObject()
             dispatch(actions.addToProfInfo(dispatchObject))
             props.navigation.navigate('ProfessionalSurveyScreenThree')
         } else {
