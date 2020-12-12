@@ -15,6 +15,7 @@ import ReturningUserScreen from '../screens/ReturningUserScreen'
 import WhySodalytScreen from '../screens/WhySodalytScreen'
 import ProfessionalSurveyScreenOne from '../screens/ProfessionalSurveyScreenOne'
 import ProfessionalSurveyScreenTwo from '../screens/ProfessionalSurveyScreenTwo';
+import ProfessionalSurveyScreenThree from '../screens/ProfessionalSurveyScreenThree';
 
 const FormStackNavigator = createStackNavigator({
     Welcome: {
@@ -56,6 +57,17 @@ const FormStackNavigator = createStackNavigator({
         screen: ProfessionalSurveyScreenTwo,
         navigationOptions: {
             headerTitle: "Company Information",
+            headerBackTitleVisible: false,
+            headerTitleStyle: {
+                fontFamily: 'tommy-bold',
+                color: Colors.ocean.primary
+            }
+        }
+    },
+    ProfessionalSurveyScreenThree: {
+        screen: ProfessionalSurveyScreenThree,
+        navigationOptions: {
+            headerTitle: "Culture Information",
             headerBackTitleVisible: false,
             headerTitleStyle: {
                 fontFamily: 'tommy-bold',

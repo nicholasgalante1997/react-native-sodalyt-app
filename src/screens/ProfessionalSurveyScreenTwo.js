@@ -43,9 +43,9 @@ const ProfessionalSurveyScreenTwo = (props) => {
     const [genFitness, setGenFitness] = useState(false)
     const [nutrition, setNutrition] = useState(false)
     const [restorative, setRestorative] = useState(false)
+    const [traumaIP, setTraumaIP] = useState(false)
 
     const dispatch = useDispatch();
-    const newProfInfo = useSelector(state => state.newProfInfo)
     
     const dispatchObject = {
         verticalId: verticalId,
@@ -53,6 +53,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
         virtualMeetStatus: virtual,
         pricingModel: hourly ? "hourly" : "package",
         price: averageRate,
+        traumaIP: traumaIP,
         companyCertifications: [],
         companySpecialties: []
     }
@@ -62,7 +63,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
             dispatchObject.companyCertifications.push('NSCA')
         }
         if (nasm){
-            dispatchObject.companyCertifications,push('NASM')
+            dispatchObject.companyCertifications.push('NASM')
         }
         if (acsm){
             dispatchObject.companyCertifications.push('ACSM')
@@ -273,6 +274,9 @@ const ProfessionalSurveyScreenTwo = (props) => {
                         onPress={() => {
                             const currValue = hasCSRP
                             setHasCSRP(!currValue)
+                            if (!hasCSRP && lacksCSRP){
+                                setLacksCSRP(false)
+                            }
                         }}
                         checkedColor={Colors.rugged.primary}
                     />
@@ -282,6 +286,9 @@ const ProfessionalSurveyScreenTwo = (props) => {
                         onPress={() => {
                             const currValue = lacksCSRP;
                             setLacksCSRP(!currValue)
+                            if (!lacksCSRP && hasCSRP){
+                                setHasCSRP(false)
+                            }
                         }}
                         checkedColor={Colors.rugged.primary}
                     />
@@ -295,6 +302,16 @@ const ProfessionalSurveyScreenTwo = (props) => {
                         <MTLightText style={{color: 'black'}}>
                             Select All That Apply
                         </MTLightText>
+                        <CheckBox 
+                            title="Trauma Informed Practitioner"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={traumaIP} 
+                            onPress={() => {
+                                const currValue = traumaIP
+                                setTraumaIP(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
                         <CheckBox 
                             title="NSCA"
                             textStyle={{fontFamily: 'tommy-light'}}
