@@ -32,31 +32,69 @@ const ProfessionalSurveyScreenThree = (props) => {
     const [japanese, setJapanese] = useState(false)
     const [punjabi, setPunjabi] = useState(false)
 
-    const [noPreferenceReligion, setNoPreferenceReligion] = useState(false)
-    const [christianity, setChristianity] = useState(false)
-    const [judaism, setJudaism] = useState(false)
-    const [islam, setIslam] = useState(false)
-    const [otherReligion, setOtherReligion] = useState(false)
-
     const dispatch = useDispatch();
     
     const dispatchObject = {
-       
+       genderIdentity: male ? 'Male' : 'Female',
+       lgbtqSupportive: lgbtqSupportive,
+       religiousPreference: religiousPreference,
+       religiousPreferenceOpted: false,
+       racialIdentity: racialIdentity,
+       spokenLanguages: []
     }
 
     const generateDispatchObject = () => {
-        
+        if (spanish){
+            dispatchObject.spokenLanguages.push('Spanish')
+        }
+        if (chineseMandarin){
+            dispatchObject.spokenLanguages.push('Chinese-Mandarin')
+        }
+        if (french){
+            dispatchObject.spokenLanguages.push('French')
+        }
+        if (arabic){
+            dispatchObject.spokenLanguages.push('Arabic')
+        }
+        if (hindi){
+            dispatchObject.spokenLanguages.push('Hindi')
+        }
+        if (portuguese){
+            dispatchObject.spokenLanguages.push('Portuguese')
+        }
+        if (banglaBengali){
+            dispatchObject.spokenLanguages.push('Bangla/Bengali')
+        }
+        if (russian){
+            dispatchObject.spokenLanguages.push('Russian')
+        }
+        if (japanese){
+            dispatchObject.spokenLanguages.push('Japanese')
+        }
+        if (punjabi){
+            dispatchObject.spokenLanguages.push('Punjabi')
+        }
     }
 
     const verifyBasicObjectValues = () => {
-       
+        if (!male && !female){
+            return false
+        } else if (!lgbtqSupportive && !sansLQGBT){
+            return false
+        } else if (racialIdentity.length < 1){
+            return false
+        } else if (religiousPreference.length < 1){
+            return false
+        } else {
+            return true
+        }
     }
 
     const verifyAndDispatchObject = () => {
         if (verifyBasicObjectValues()){
             generateDispatchObject()
             dispatch(actions.addToProfInfo(dispatchObject))
-            props.navigation.navigate('')
+            props.navigation.navigate('StoryCardPage')
         } else {
             Alert.alert('Wait!', "It appears one or more of your mandatory sections has been left blank. Double check your info before moving to the next form.", [{style: 'default', text: 'Ok'}])
         }
@@ -85,10 +123,10 @@ const ProfessionalSurveyScreenThree = (props) => {
                 <MTBoldText style={{color: 'black'}}>
                     How do you self-identify?
                 </MTBoldText>
-                <ScrollView>
-                <MTLightText>
+                <ScrollView style={{height: '110%'}}>
+                <MTBoldText style={{color: 'black', marginTop: 10}}>
                     Gender*
-                </MTLightText>
+                </MTBoldText>
                   <View style={{flexDirection: 'row', width: '90%',  justifyContent: 'space-between', alignItems: 'center'}}>
                       <MTBoldText style={{color: 'black'}}>Male</MTBoldText>
                       <CheckBox 
@@ -115,35 +153,6 @@ const ProfessionalSurveyScreenThree = (props) => {
                           checkedColor={Colors.rugged.primary}
                       />
                   </View>
-                  <MTLightText style={{color: 'black'}}>
-                    Is your company an LGBTQ Supportive Company?*
-                  </MTLightText>
-                  <View style={{flexDirection: 'row', width: '90%',  justifyContent: 'space-between', alignItems: 'center'}}>
-                      <MTBoldText style={{color: 'black'}}>Yes</MTBoldText>
-                      <CheckBox 
-                          checked={lgbtqSupportive} 
-                          onPress={() => {
-                              const currValue = lgbtqSupportive
-                              setLGBTQSupportive(!currValue)
-                              if (!lgbtqSupportive && sansLQGBT){
-                                  setSansLGBTQ(false)
-                              }
-                          }}
-                          checkedColor={Colors.rugged.primary}
-                        />
-                      <MTBoldText style={{color: 'black'}}>No</MTBoldText>
-                      <CheckBox 
-                          checked={sansLQGBT} 
-                          onPress={() => {
-                              const currValue = sansLQGBT
-                              setSansLGBTQ(!currValue)
-                              if (!sansLQGBT && lgbtqSupportive){
-                                  setLGBTQSupportive(false)
-                              }
-                          }}
-                          checkedColor={Colors.rugged.primary}
-                        />
-                    </View> 
                     <View style={{width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                         <View style={{width: '20%'}}>
                             <MTBoldText style={{color: 'black'}}>
@@ -174,7 +183,7 @@ const ProfessionalSurveyScreenThree = (props) => {
                             />
                     </View>
                 </View>
-                <View>
+                <View style={{zIndex: -1, marginTop: 10}}>
                             <MTBoldText style={{color: 'black'}}>
                                 What languages do you offer?
                             </MTBoldText>
@@ -188,8 +197,98 @@ const ProfessionalSurveyScreenThree = (props) => {
                                 }}
                                 checkedColor={Colors.ocean.primary}
                             />
+                            <CheckBox
+                                checked={chineseMandarin}
+                                title="Chinese-Mandarin"
+                                textStyle={{fontFamily: 'tommy-reg'}}
+                                onPress={() => {
+                                    const currValue = chineseMandarin
+                                    setChineseMandarin(!currValue)
+                                }}
+                                checkedColor={Colors.ocean.primary}
+                            />
+                             <CheckBox
+                                checked={french}
+                                title="French"
+                                textStyle={{fontFamily: 'tommy-reg'}}
+                                onPress={() => {
+                                    const currValue = french
+                                    setFrench(!currValue)
+                                }}
+                                checkedColor={Colors.ocean.primary}
+                            />
+                             <CheckBox
+                                checked={arabic}
+                                title="Arabic"
+                                textStyle={{fontFamily: 'tommy-reg'}}
+                                onPress={() => {
+                                    const currValue = arabic
+                                    setArabic(!currValue)
+                                }}
+                                checkedColor={Colors.ocean.primary}
+                            />
+                             <CheckBox
+                                checked={hindi}
+                                title="Hindi"
+                                textStyle={{fontFamily: 'tommy-reg'}}
+                                onPress={() => {
+                                    const currValue = hindi
+                                    setHindi(!currValue)
+                                }}
+                                checkedColor={Colors.ocean.primary}
+                            />
+                             <CheckBox
+                                checked={portuguese}
+                                title="Portuguese"
+                                textStyle={{fontFamily: 'tommy-reg'}}
+                                onPress={() => {
+                                    const currValue = portuguese
+                                    setPortuguese(!currValue)
+                                }}
+                                checkedColor={Colors.ocean.primary}
+                            />
+                             <CheckBox
+                                checked={banglaBengali}
+                                title="Bangla/Bengali"
+                                textStyle={{fontFamily: 'tommy-reg'}}
+                                onPress={() => {
+                                    const currValue = banglaBengali
+                                    setBanglaBengali(!currValue)
+                                }}
+                                checkedColor={Colors.ocean.primary}
+                            />
+                             <CheckBox
+                                checked={russian}
+                                title="Russian"
+                                textStyle={{fontFamily: 'tommy-reg'}}
+                                onPress={() => {
+                                    const currValue = russian
+                                    setRussian(!currValue)
+                                }}
+                                checkedColor={Colors.ocean.primary}
+                            />
+                             <CheckBox
+                                checked={japanese}
+                                title="Japanese"
+                                textStyle={{fontFamily: 'tommy-reg'}}
+                                onPress={() => {
+                                    const currValue = japanese
+                                    setJapanese(!currValue)
+                                }}
+                                checkedColor={Colors.ocean.primary}
+                            />
+                             <CheckBox
+                                checked={punjabi}
+                                title="Punjabi"
+                                textStyle={{fontFamily: 'tommy-reg'}}
+                                onPress={() => {
+                                    const currValue = punjabi
+                                    setPunjabi(!currValue)
+                                }}
+                                checkedColor={Colors.ocean.primary}
+                            />
                         </View>
-                <View style={{width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <View style={{width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                         <View style={{width: '60%'}}>
                             <MTBoldText style={{color: 'black', zIndex: 0}}>
                                 Religious Preference*
@@ -209,6 +308,7 @@ const ProfessionalSurveyScreenThree = (props) => {
                                     justifyContent: 'flex-start',
                                 }}
                                 placeholder="Select"
+                                dropDownMaxHeight={85}
                                 containerStyle={{
                                     height: 40, 
                                     fontFamily: 'tommy-medium'
@@ -216,6 +316,37 @@ const ProfessionalSurveyScreenThree = (props) => {
                                 onChangeItem={(item) => setReligiousPreference(item.value)}
                             />
                     </View>
+                </View>
+                <View style={{zIndex: -1, marginTop: 10}}>
+                <MTLightText style={{color: 'black'}}>
+                    Is your company an LGBTQ Supportive Company?*
+                  </MTLightText>
+                  <View style={{flexDirection: 'row', width: '90%',  justifyContent: 'space-between', alignItems: 'center'}}>
+                      <MTBoldText style={{color: 'black'}}>Yes</MTBoldText>
+                      <CheckBox 
+                          checked={lgbtqSupportive} 
+                          onPress={() => {
+                              const currValue = lgbtqSupportive
+                              setLGBTQSupportive(!currValue)
+                              if (!lgbtqSupportive && sansLQGBT){
+                                  setSansLGBTQ(false)
+                              }
+                          }}
+                          checkedColor={Colors.rugged.primary}
+                        />
+                      <MTBoldText style={{color: 'black'}}>No</MTBoldText>
+                      <CheckBox 
+                          checked={sansLQGBT} 
+                          onPress={() => {
+                              const currValue = sansLQGBT
+                              setSansLGBTQ(!currValue)
+                              if (!sansLQGBT && lgbtqSupportive){
+                                  setLGBTQSupportive(false)
+                              }
+                          }}
+                          checkedColor={Colors.rugged.primary}
+                        />
+                    </View> 
                 </View>
               </ScrollView>
               </View>
@@ -247,7 +378,7 @@ const styles = StyleSheet.create({
         // marginTop: 20,
         alignItems: 'flex-start',
         width: Dimensions.get('window').width * 0.9,
-        height: Dimensions.get('window').height / 5,
+        height: Dimensions.get('window').height / 6,
         backgroundColor: Colors.rugged.primary,
         padding: 10,
         borderRadius: 15,

@@ -33,12 +33,20 @@ const StoryCardScreen = (props) => {
              <Modal isVisible={modalVisible}>
                 <CustomAlert onPress={modalOff} />
             </Modal>
+            {   currentUser.accountType === 'professional' ?
             <MTBoldText style={styles.titleTextTop}>
+            Now let’s get started with your personality
+            profile. Choose one of the following story
+            adventures to play. At the end, you'll get your
+            personality results, which will be used to better match customers to you.
+            </MTBoldText>  :  
+             <MTBoldText style={styles.titleTextTop}>
             Let’s get started with your personality
             preferences. Choose one of the following story
-            adventures to play. At the end get your
+            adventures to play. At the end you'll get your
             personality results and initial matches.
             </MTBoldText>
+            }
             <View>
                 <FlatList 
                 keyExtractor={(item, index) => index}

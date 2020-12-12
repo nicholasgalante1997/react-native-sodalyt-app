@@ -17,6 +17,7 @@ const ProfessionalSurveyScreenOne = (props) => {
     const [companyPhoneNumber, setCompanyPhoneNumber] = useState('(111) 111-1111')
     const [companyWebsite, setCompanyWebsite] = useState("www.notreal.com")
     const [companyProfilePhotoLink, setCompanyProfilePhotoLink] = useState("http://notaphoto.jpeg")
+    const [companyDesc, setCompanyDesc] = useState("little fake bio")
 
     const dispatch = useDispatch();
 
@@ -26,7 +27,8 @@ const ProfessionalSurveyScreenOne = (props) => {
         companyZipCode: companyZipCode,
         companyPhoneNumber: companyPhoneNumber,
         companyWebsite: companyWebsite,
-        companyProfilePhotoLink: companyProfilePhotoLink
+        companyProfilePhotoLink: companyProfilePhotoLink,
+        companyDescription: companyDesc
     }
 
     const verifyObjectValues = () => {
@@ -74,6 +76,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 </MTMediumText>
             </View>
             <View style={styles.card}>
+                <ScrollView>
                 <MTMediumText style={{color: 'black'}}>
                     Company Name*
                 </MTMediumText>
@@ -196,6 +199,27 @@ const ProfessionalSurveyScreenOne = (props) => {
                 placeholder="https://images.unsplash.com/photo-1607637433813-9e3c41861836?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2468&q=80"
                 placeholderTextColor='#C7CBCE'
                 />
+                  <MTMediumText style={{color: 'black'}}>
+                    Company Blurb*
+                </MTMediumText>
+                <Input 
+                style={{
+                        width: '90%',
+                        fontFamily: 'tommy-light'
+                    }}
+                ellipsizeMode="tail"
+                blurOnSubmit 
+                autoCapitalize="none" 
+                multiline={true}
+                editable={true}
+                autoCorrect={false} 
+                keyboardType="default" 
+                value={companyDesc}
+                onChangeText={(text) => setCompanyDesc(text)}
+                placeholder="A little about you..."
+                placeholderTextColor='#C7CBCE'
+                />
+                </ScrollView>
             </View>
             <View style={{height: 150, width: Dimensions.get('window').width, justifyContent: 'center', alignItems:'center'}}> 
             <TouchableWithoutFeedback onPress={verifyAndDispatchObject} style={{backgroundColor: Colors.ocean.secondary, height: 60, width: 60, borderRadius: 30, justifyContent: 'center', alignItems: 'center'}}>

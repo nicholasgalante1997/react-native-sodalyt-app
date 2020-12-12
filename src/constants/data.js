@@ -844,7 +844,7 @@ export default {
                             "id": 73,
                             "raw_value": "null",
                             "value": 0,
-                            "text": "Ready to get matched?"
+                            "text": "Ready for your results?"
                         }
                     ]
                 }

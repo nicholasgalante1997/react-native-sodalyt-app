@@ -14,6 +14,7 @@ const QuestionRenderer = (props) => {
 
     const storyInfo = props.navigation.getParam('storyInfo')
     const { questions } = storyInfo;
+    const currentUser = useSelector(state => state.currentUser)
 
     let content = null;
     let bannerContent = null;

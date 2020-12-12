@@ -152,6 +152,7 @@ const PersonalityResultPage = (props) => {
     typeHandler(returnedObject.MBTI)
     iconHandler()
     dispatch(actions.setDetails(returnedObject))
+    
     return ( 
         <View style={styles.screen}>
             <Modal visible={modalVisible}>
