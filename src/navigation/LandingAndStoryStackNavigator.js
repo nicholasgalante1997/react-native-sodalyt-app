@@ -56,7 +56,7 @@ const FormStackNavigator = createStackNavigator({
         screen: ProfessionalSurveyScreenTwo,
         navigationOptions: {
             headerTitle: "Company Information",
-            headerBackTitle: "",
+            headerBackTitleVisible: false,
             headerTitleStyle: {
                 fontFamily: 'tommy-bold',
                 color: Colors.ocean.primary

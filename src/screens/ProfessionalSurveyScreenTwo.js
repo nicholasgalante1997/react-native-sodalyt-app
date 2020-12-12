@@ -16,27 +16,69 @@ const ProfessionalSurveyScreenTwo = (props) => {
     const [verticalId, setVerticalId] = useState("")
     const [virtual, setVirtual] = useState(false)
     const [inPerson, setInPerson] = useState(false)
+   
     const [hourly, setHourly] = useState(false)
     const [packageDeals, setPackageDeals] = useState(false)
     const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(0)
+    const [averageRate, setAverageRate] = useState(0)
+   
+    const [hasCSRP, setHasCSRP] = useState(false)
+    const [lacksCSRP, setLacksCSRP] = useState(false)
+
+    const [nsca, setNSCA] = useState(false)
+    const [nasm, setNASM] = useState(false)
+    const [acsm, setACSM] = useState(false)
+    const [ace, setACE] = useState(false)
+    const [crossfit, setCROSSFIT] = useState(false)
+    const [cnc, setCNC] = useState(false)
+    const [issa, setISSA] = useState(false)
+    const [pn1, setPN1] = useState(false)
+    const [nesta, setNESTA] = useState(false)
+    const [afpa, setAFPA] = useState(false)
+
+    const [athPerformance, setAthPerformance] = useState(false)
+    const [strengthProgram, setStrengthProgram] = useState(false)
+    const [injuryRelated, setInjuryRelated] = useState(false)
+    const [genFitness, setGenFitness] = useState(false)
+    const [nutrition, setNutrition] = useState(false)
+    const [restorative, setRestorative] = useState(false)
 
     const dispatch = useDispatch();
     const newProfInfo = useSelector(state => state.newProfInfo)
+    
     const dispatchObject = {
-       
+        verticalId: verticalId,
+       inPersonMeetStatus: inPerson,
+        virtualMeetStatus: virtual,
+        pricingModel: hourly ? "hourly" : "package",
+        price: averageRate,
+        companyCertifications: [],
+        companySpecialties: []
     }
 
-    const verifyObjectValues = () => {
+    const generateDispatchObject = () => {
         
     }
 
+    const verifyBasicObjectValues = () => {
+        if (!virtual && !inPerson){
+            return false
+        } else if (!hourly && !packageDeals){
+            return false
+        } else if (!hasCSRP && !lacksCSRP){
+            return false
+        } else {
+            return true
+        }
+    }
+
     const verifyAndDispatchObject = () => {
-        if (verifyObjectValues()){
+        if (verifyBasicObjectValues()){
             dispatch(actions.addToProfInfo(dispatchObject))
             props.navigation.navigate('ProfessionalSurveyScreenThree')
         } else {
-            Alert.alert('Wait!', "It appears one or more of your sections have been filled in incorrectly. Double check your info before moving to the next form.", [{style: 'default', text: 'Ok'}])
+            Alert.alert('Wait!', "It appears one or more of your mandatory sections has been left blank. Double check your info before moving to the next form.", [{style: 'default', text: 'Ok'}])
         }
     }
 
@@ -60,7 +102,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
           <View style={styles.card}>
               <ScrollView>
                 <MTLightText style={{color: 'black'}}>
-                    We know times have changed, how do you offer your service now?
+                    We know times have changed, how do you offer your service now?*
                 </MTLightText>
                 <MTLightText style={{color: 'black'}}>
                  (You can select both)
@@ -86,7 +128,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
                     />
                 </View>
                 <MTLightText style={{color: 'black'}}>
-                  Do you charge by the hour or offer package deals?
+                  Do you charge by the hour or offer package deals?*
                 </MTLightText>
                 <View style={{flexDirection: 'row', width: '90%',  justifyContent: 'space-between', alignItems: 'center'}}>
                     <MTBoldText style={{color: 'black'}}>Hourly</MTBoldText>
@@ -95,6 +137,9 @@ const ProfessionalSurveyScreenTwo = (props) => {
                         onPress={() => {
                             const currValue = hourly
                             setHourly(!currValue)
+                            if (!hourly && packageDeals){
+                                setPackageDeals(false)
+                            }
                         }}
                         checkedColor={Colors.rugged.primary}
                     />
@@ -104,6 +149,9 @@ const ProfessionalSurveyScreenTwo = (props) => {
                         onPress={() => {
                             const currValue = packageDeals;
                             setPackageDeals(!currValue)
+                            if (hourly && !packageDeals){
+                                setHourly(false)
+                            }
                         }}
                         checkedColor={Colors.rugged.primary}
                     />
@@ -147,6 +195,224 @@ const ProfessionalSurveyScreenTwo = (props) => {
                             placeholder="500"
                             placeholderTextColor='#C7CBCE'
                             />
+                            <MTLightText style={{color: 'black'}}>
+                            Avg. Rate
+                        </MTLightText>
+                        <Input 
+                            style={{
+                                    width: '15%',
+                                    fontFamily: 'tommy-light',
+                                    textAlign: 'center'
+                                }}
+                            blurOnSubmit 
+                            autoCapitalize="none" 
+                            autoCorrect={false} 
+                            keyboardType="numeric" 
+                            value={averageRate}
+                            onChangeText={(text) => setAverageRate(text.toString())}
+                            placeholder="100$"
+                            placeholderTextColor='#C7CBCE'
+                            />
+                    </View> : null
+                }
+                <MTLightText style={{color: 'black', marginTop: 10}}>
+                    Does your company have a Corporate Sustainability and Responsibility Policy?*
+                </MTLightText>
+                <View style={{flexDirection: 'row', width: '90%',  justifyContent: 'space-between', alignItems: 'center'}}>
+                    <MTBoldText style={{color: 'black'}}>Yes</MTBoldText>
+                    <CheckBox 
+                        checked={hasCSRP} 
+                        onPress={() => {
+                            const currValue = hasCSRP
+                            setHasCSRP(!currValue)
+                        }}
+                        checkedColor={Colors.rugged.primary}
+                    />
+                    <MTBoldText style={{color: 'black'}}>No</MTBoldText>
+                    <CheckBox 
+                        checked={lacksCSRP} 
+                        onPress={() => {
+                            const currValue = lacksCSRP;
+                            setLacksCSRP(!currValue)
+                        }}
+                        checkedColor={Colors.rugged.primary}
+                    />
+                </View>
+                {
+                    verticalId === "1" ? 
+                    <View>
+                        <MTBoldText style={{color: 'black'}}>
+                            Licensing and Certifications
+                        </MTBoldText>
+                        <MTLightText style={{color: 'black'}}>
+                            Select All That Apply
+                        </MTLightText>
+                        <CheckBox 
+                            title="NSCA"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={nsca} 
+                            onPress={() => {
+                                const currValue = nsca
+                                setNSCA(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="NASM"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={nasm} 
+                            onPress={() => {
+                                const currValue = nasm
+                                setNASM(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="ACSM"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={acsm} 
+                            onPress={() => {
+                                const currValue = acsm
+                                setACSM(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="ACE"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={ace} 
+                            onPress={() => {
+                                const currValue = ace
+                                setACE(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="Cross-Fit"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={crossfit} 
+                            onPress={() => {
+                                const currValue = crossfit
+                                setCROSSFIT(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="NASM-CNC"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={cnc} 
+                            onPress={() => {
+                                const currValue = cnc
+                                setCNC(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="ISSA"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={issa} 
+                            onPress={() => {
+                                const currValue = issa
+                                setISSA(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="PN1"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={pn1} 
+                            onPress={() => {
+                                const currValue = pn1
+                                setPN1(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="NESTA"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={nesta} 
+                            onPress={() => {
+                                const currValue = nesta
+                                setNESTA(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="AFPA"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={afpa} 
+                            onPress={() => {
+                                const currValue = afpa
+                                setAFPA(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                        <MTBoldText style={{color: 'black'}}>
+                            Do you provide any specialty services?
+                        </MTBoldText>
+                        <MTLightText style={{color: 'black'}}>
+                            Select All That Apply
+                        </MTLightText>
+                        <CheckBox 
+                            title="Athletic Performance Training"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={athPerformance} 
+                            onPress={() => {
+                                const currValue = athPerformance
+                                setAthPerformance(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="Strength Program"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={strengthProgram} 
+                            onPress={() => {
+                                const currValue = strengthProgram
+                                setStrengthProgram(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="Injury Related"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={injuryRelated} 
+                            onPress={() => {
+                                const currValue = injuryRelated
+                                setInjuryRelated(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="General Fitness"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={genFitness} 
+                            onPress={() => {
+                                const currValue = genFitness
+                                setGenFitness(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="Nutrition Specialist"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={nutrition} 
+                            onPress={() => {
+                                const currValue = nutrition
+                                setNutrition(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
+                         <CheckBox 
+                            title="Restorative and Holistic"
+                            textStyle={{fontFamily: 'tommy-light'}}
+                            checked={restorative} 
+                            onPress={() => {
+                                const currValue = restorative
+                                setRestorative(!currValue)
+                            }}
+                            checkedColor={Colors.rugged.primary}
+                        />
                     </View> : null
                 }
             </ScrollView>
@@ -207,7 +473,7 @@ const styles = StyleSheet.create({
     },
     card: {
         marginTop: 40,
-        width: Dimensions.get('window').width * 0.6,
+        width: Dimensions.get('window').width * 0.7,
         height: Dimensions.get('window').height / 2.1,
         backgroundColor: 'white',
         padding: 10,

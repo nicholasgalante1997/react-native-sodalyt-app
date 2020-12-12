@@ -75,7 +75,7 @@ const ProfessionalSurveyScreenOne = (props) => {
             </View>
             <View style={styles.card}>
                 <MTMediumText style={{color: 'black'}}>
-                    Company Name: 
+                    Company Name*
                 </MTMediumText>
                 <Input 
                 style={{
@@ -92,7 +92,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 placeholderTextColor='#C7CBCE'
                 />
                  <MTMediumText style={{color: 'black'}}>
-                    Company Address: 
+                    Company Address*
                 </MTMediumText>
                 <Input 
                 style={{
@@ -110,7 +110,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 />
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                 <MTMediumText style={{color: 'black', marginRight: 5}}>
-                    State: 
+                    State*
                 </MTMediumText>
                 <Input 
                 style={{
@@ -127,7 +127,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 placeholderTextColor='#C7CBCE'
                 />
                 <MTMediumText style={{color: 'black', marginRight: 5}}>
-                    Zip Code: 
+                    Zip Code*
                 </MTMediumText>
                 <Input 
                 style={{
@@ -146,7 +146,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 />
                 </View>
                 <MTMediumText style={{color: 'black'}}>
-                    Phone Number: 
+                    Phone Number*
                 </MTMediumText>
                 <Input 
                 style={{
@@ -163,7 +163,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 placeholderTextColor='#C7CBCE'
                 />
                 <MTMediumText style={{color: 'black'}}>
-                    Company Website: 
+                    Company Website*
                 </MTMediumText>
                 <Input 
                 style={{
@@ -180,7 +180,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 placeholderTextColor='#C7CBCE'
                 />
                   <MTMediumText style={{color: 'black'}}>
-                    Company Profile Photo URL: 
+                    Company Profile Photo URL*
                 </MTMediumText>
                 <Input 
                 style={{
