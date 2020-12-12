@@ -4,7 +4,10 @@ export const resetAnswers = () => ({type: 'RESET_ANSWERS'})
 
 // currentUser Information
 export const setCurrentUser = currentUser => ({type: 'SET_CURRENT_USER', payload: {value: currentUser}})
-export const setDetails = (detailsObj) => ({type: 'SET_DETAILS', payload: {value: detailsObj}})
+// currentUser Customer Information
+export const setCustomerDetails = (detailsObj) => ({type: 'SET_DETAILS', payload: {value: detailsObj}})
+// currentUser Professional  Information
+export const setProfessionalDetails = detailsObj => ({type: 'SET_PROF_DETAILS', payload: {detailsObj}})
 
 // SearchActions
 export const setSearchedTerm = (searchedTerm) => ({type: 'SET_SEARCH_TERM', payload: {value: searchedTerm}})

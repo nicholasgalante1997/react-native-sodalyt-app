@@ -54,6 +54,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
         pricingModel: hourly ? "hourly" : "package",
         price: averageRate,
         traumaIP: traumaIP,
+        corporateSustainabilityPolicyVerification: hasCSRP,
         companyCertifications: [],
         companySpecialties: []
     }

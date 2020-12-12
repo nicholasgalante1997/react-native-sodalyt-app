@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText'
 import Colors from '../constants/Colors'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import LearnMoreModal from '../components/story/LearnMoreModal'
 import Modal from 'react-native-modal'
 import CustomButton from '../components/custom/MainButton'
@@ -16,7 +16,83 @@ const PersonalityResultPage = (props) => {
     const returnedObject = props.navigation.getParam('personalityResult')
     const [modalVisible, setModalVisible] = useState(false)
     const searchedTerm = useSelector(state => state.search)
+    const newProfInfo = useSelector(state => state.newProfInfo)
+    const userInfo = useSelector(state => state.currentUser)
     const dispatch = useDispatch()
+
+    let completeProfessionalInformation = {...userInfo, ...newProfInfo, ...returnedObject}
+    let dispatchObject;
+    const completeCustomerInformation = {...userInfo, ...returnedObject}
+
+    const postObjectForUpdatingProfessionalData = {
+        "companyZipCode": completeProfessionalInformation.companyZipCode,
+        "religiousPreference": completeProfessionalInformation.religiousPreference,
+        "companyDescription": completeProfessionalInformation.companyDescription,
+        "genderIdentity": completeProfessionalInformation.genderIdentity,
+        "religiousPreferenceOpted": false,
+        "inPersonMeetStatus": completeProfessionalInformation.inPersonMeetStatus,
+        "verticalId": completeProfessionalInformation.verticalId,
+        "companyMBTIResponse": completeProfessionalInformation.MBTI,
+        "id": completeProfessionalInformation.id,
+        "lgbtqSupportive": completeProfessionalInformation.lgbtqSupportive,
+        "companyProfileImage": completeProfessionalInformation.companyProfilePhotoLink,
+        "resilience": completeProfessionalInformation.resilience,
+        "pricingModel": completeProfessionalInformation.pricingModel,
+        "companyAddress": completeProfessionalInformation.companyAddress,
+        "languagesSpoken": completeProfessionalInformation.spokenLanguages.length > 0 ? completeProfessionalInformation.spokenLanguages : [""],
+        "virtualMeetStatus": completeProfessionalInformation.virtualMeetStatus,
+        "racialIdentity": completeProfessionalInformation.racialIdentity,
+        "companyName": completeProfessionalInformation.companyName,
+        "reassurance": completeProfessionalInformation.reassurance,
+        "recognition": completeProfessionalInformation.recognition,
+        "companyCertifications": completeProfessionalInformation.companyCertifications.length > 0 ? completeProfessionalInformation.companyCertifications :  [""],
+        "companyPhoneNumber": completeProfessionalInformation.companyPhoneNumber,
+        "sodalytVerified": false,
+        "companyEmail": completeProfessionalInformation.email,
+        "respect": completeProfessionalInformation.respect,
+        "websiteAddress": completeProfessionalInformation.companyWebsite,
+        "corporateSustainabilityPolicyVerification": completeProfessionalInformation.corporateSustainabilityPolicyVerification,
+        "responsibility": completeProfessionalInformation.responsibility,
+        "companySpecialties": completeProfessionalInformation.companySpecialties.length > 0 ? completeProfessionalInformation.companySpecialties : [""],
+        "price": completeProfessionalInformation.price.toString(),
+        "sodalytType": completeProfessionalInformation.sodalytPreference.slice(4)
+    }
+
+    const updateWithFullProfInfo = async () => {
+        try {
+
+            const ENDPOINT = "https://08o65vjga3.execute-api.us-east-2.amazonaws.com/alpha/inputprofessionalinfo"
+            
+            const myHeaders = new Headers();
+            myHeaders.append('Content-Type', "application/json")
+            const JSONPackage = JSON.stringify(postObjectForUpdatingProfessionalData)
+
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: JSONPackage,
+                redirect: 'follow'
+            }
+
+            const response = await fetch(ENDPOINT, requestOptions)
+            const alpha = await response.json()
+            return alpha 
+
+        } catch (err){
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        if (userInfo.accountType === 'professional'){
+            updateWithFullProfInfo().then(alpha => {
+                console.log(alpha, "alpha")
+               dispatchObject = {...completeProfessionalInformation, ...alpha}
+            })
+        } else {
+            return
+        }
+    }, [])
 
     const modalOn = () => {
         setModalVisible(true)
@@ -151,8 +227,11 @@ const PersonalityResultPage = (props) => {
 
     typeHandler(returnedObject.MBTI)
     iconHandler()
-    dispatch(actions.setDetails(returnedObject))
-    
+    dispatch(actions.setCustomerDetails(returnedObject))
+    if (dispatchObject){
+        dispatch(actions.addToProfInfo(dispatchObject))
+    }
+
     return ( 
         <View style={styles.screen}>
             <Modal visible={modalVisible}>
@@ -173,7 +252,8 @@ const PersonalityResultPage = (props) => {
             <View style={{padding: 18, justifyContent: 'center', alignItems: 'center'}}>
                 <MTMediumText style={{fontSize: 14}}>{longFormDesc}</MTMediumText>
             </View>
-            <View style={styles.learnMoreCont}>
+          {  userInfo.accountType === 'customer' ? 
+          <View style={styles.nextCont}>
                 <CustomButton onPress={() => {
                         props.navigation.navigate({routeName: 'MainContent', params: {
                             search: searchedTerm
@@ -181,7 +261,18 @@ const PersonalityResultPage = (props) => {
                     }}  style={{backgroundColor: Colors.rugged.primary, width: '80%', height:45, marginBottom: 20}}>
                     <MTBoldText color="white" style={{fontSize: 16}}>Show Me My Personality Matches</MTBoldText>
                 </CustomButton>
-            </View>
+            </View> : 
+            <View style={styles.nextCont}>
+            <CustomButton onPress={() => {
+                    props.navigation.navigate('MainProfessionalContent')
+                }}  style={{backgroundColor: Colors.rugged.primary, width: '80%', height:45, marginBottom: 20, justifyContent: 'center', alignItems: 'cemter'}}>
+                <MTBoldText color="white" style={{fontSize: 16}}> 
+                Complete Registration 
+                </MTBoldText>
+                <AntDesign name="rightsquare" size={36} color="white" />
+            </CustomButton>
+        </View>
+        }
             <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 30, marginBottom: 20}}>
                 <CustomButton onPress={modalOn}  style={{backgroundColor: Colors.ocean.secondary, width: '40%', height:45}}>
                     <MTBoldText color="white" style={{fontSize: 16}}>Learn More</MTBoldText>
@@ -204,7 +295,7 @@ const styles = StyleSheet.create({
     text: {
         color: 'black'
     },
-    learnMoreCont: {
+    nextCont: {
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center'
