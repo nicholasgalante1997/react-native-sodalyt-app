@@ -355,18 +355,6 @@ const SearchResultScreen = props => {
       });
     }
 
-    // if (servicePersonalTrainerA6){
-    //     filteredProfessionals = filteredProfessionals.filter(prof => {
-    //         if (prof.companyCertifications.includes("CSCS") || prof.companySpecialties.includes('CSCS')){
-    //             return true
-    //         } else if (prof.companyCertifications.includes("NSCA-CPT")) {
-    //             return true
-    //         } else {
-    //             return false
-    //         }
-    //     })
-    // }
-
     // Service => Meeting Experience
 
     if (copyOfFilters.service.meetingExperience.noPref) {

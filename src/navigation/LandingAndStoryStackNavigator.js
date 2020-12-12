@@ -14,6 +14,7 @@ import LandingCUSearchScreen from '../screens/LandingCUSearchScreen'
 import ReturningUserScreen from '../screens/ReturningUserScreen'
 import WhySodalytScreen from '../screens/WhySodalytScreen'
 import ProfessionalSurveyScreenOne from '../screens/ProfessionalSurveyScreenOne'
+import ProfessionalSurveyScreenTwo from '../screens/ProfessionalSurveyScreenTwo';
 
 const FormStackNavigator = createStackNavigator({
     Welcome: {
@@ -45,6 +46,17 @@ const FormStackNavigator = createStackNavigator({
         navigationOptions: {
             headerLeft: () => null,
             headerTitle: "Company Registration",
+            headerTitleStyle: {
+                fontFamily: 'tommy-bold',
+                color: Colors.ocean.primary
+            }
+        }
+    },
+    ProfessionalSurveyScreenTwo: {
+        screen: ProfessionalSurveyScreenTwo,
+        navigationOptions: {
+            headerTitle: "Company Information",
+            headerBackTitle: "",
             headerTitleStyle: {
                 fontFamily: 'tommy-bold',
                 color: Colors.ocean.primary

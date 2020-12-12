@@ -10,13 +10,13 @@ import * as actions from '../store/actions/actionCreator'
 
 const ProfessionalSurveyScreenOne = (props) => {
 
-    const [companyName, setCompanyName] = useState("")
-    const [companyAddress, setCompanyAddress] = useState("")
-    const [compState, setCompState] = useState("")
-    const [companyZipCode, setCompanyZipCode] = useState("")
-    const [companyPhoneNumber, setCompanyPhoneNumber] = useState('')
-    const [companyWebsite, setCompanyWebsite] = useState("")
-    const [companyProfilePhotoLink, setCompanyProfilePhotoLink] = useState("")
+    const [companyName, setCompanyName] = useState("fake company")
+    const [companyAddress, setCompanyAddress] = useState("123 fake st")
+    const [compState, setCompState] = useState("FA")
+    const [companyZipCode, setCompanyZipCode] = useState("00000")
+    const [companyPhoneNumber, setCompanyPhoneNumber] = useState('(111) 111-1111')
+    const [companyWebsite, setCompanyWebsite] = useState("www.notreal.com")
+    const [companyProfilePhotoLink, setCompanyProfilePhotoLink] = useState("http://notaphoto.jpeg")
 
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const ProfessionalSurveyScreenOne = (props) => {
         companyZipCode: companyZipCode,
         companyPhoneNumber: companyPhoneNumber,
         companyWebsite: companyWebsite,
-        companyProfilePhotoLink: setCompanyProfilePhotoLink
+        companyProfilePhotoLink: companyProfilePhotoLink
     }
 
     const verifyObjectValues = () => {
@@ -38,7 +38,7 @@ const ProfessionalSurveyScreenOne = (props) => {
             return false
         } else if (companyZipCode.length !== 5){
             return false
-        } else if (phoneNumber.length !== 14){
+        } else if (companyPhoneNumber.length !== 14){
             return false
         } else if (companyWebsite.length < 6){
             return false 
@@ -138,7 +138,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 blurOnSubmit 
                 autoCapitalize="none" 
                 autoCorrect={false} 
-                keyboardType="default" 
+                keyboardType="numeric" 
                 value={companyZipCode}
                 onChangeText={(text) => setCompanyZipCode(text)}
                 placeholder="00000"

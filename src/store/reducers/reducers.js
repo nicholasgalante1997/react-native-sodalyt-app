@@ -15,7 +15,8 @@ const rootReducer = combineReducers({
     expertArray: searchedExpertsReducer,
     userDetails: cuDetailsReducer,
     filters: filtersReducer,
-    reviews: reviewsReducer
+    reviews: reviewsReducer,
+    newProfInfo: newProfReducer
 })
 
 export default rootReducer
