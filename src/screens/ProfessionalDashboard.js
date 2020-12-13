@@ -159,7 +159,9 @@ const ProfessionalDashboard = (props) => {
                     </View>
                 </ScrollView>
             <View style={{backgroundColor: Colors.rugged.primary, height: 60, width: 60, borderRadius: 30, position: "absolute", bottom: 30, right: 30, justifyContent: 'center', alignItems: 'center'}}>
-                        <FontAwesome name="gear" size={32} color="white" onPress={() => setModalVisible(true)} />
+                        <FontAwesome name="gear" size={32} color="white" onPress={() => {
+                            props.navigation.navigate({routeName: "EditInfo", params: {...proUserInfo}})
+            }} />
             </View>
         </View>
      );
@@ -189,7 +191,7 @@ ProfessionalDashboard.navigationOptions = navData => {
             title="Analytics" 
             iconName="chart-bar" 
             onPress={() => {
-                console.log('click')
+                navData.navigation.navigate('Analytics')
             }} />
         </HeaderButtons>
         )

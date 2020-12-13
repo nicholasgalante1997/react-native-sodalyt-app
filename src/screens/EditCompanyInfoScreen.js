@@ -14,9 +14,10 @@ import * as actions from '../store/actions/actionCreator'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { CheckBox } from 'react-native-elements';
 
-const EditCompanyInfoModal = (props) => {
+const EditCompanyInfoScreen= (props) => {
 
     const proUserInfo = useSelector(state => state.newProfInfo)
+    console.log(props, "props")
 
     // Survey One
     const [companyName, setCompanyName] = useState(proUserInfo.companyName)
@@ -81,28 +82,28 @@ const EditCompanyInfoModal = (props) => {
     const [japanese, setJapanese] = useState(proUserInfo.spokenLanguages.includes('Japanese'))
     const [punjabi, setPunjabi] = useState(proUserInfo.spokenLanguages.includes('Punjabi'))
 
-    const dispatchObject = {
-        companyName: companyName,
-        companyAddress: companyAddress,
-        companyZipCode: companyZipCode,
-        companyPhoneNumber: companyPhoneNumber,
-        companyWebsite: companyWebsite,
-        companyProfilePhotoLink: companyProfilePhotoLink,
-        companyDescription: companyDesc,
-        inPersonMeetStatus: inPerson,
-        virtualMeetStatus: virtual,
-        pricingModel: hourly ? "hourly" : "package",
-        price: averageRate,
-        traumaIP: traumaIP,
-        corporateSustainabilityPolicyVerification: hasCSRP,
-        companyCertifications: [],
-        companySpecialties: [],
-        genderIdentity: male ? 'Male' : 'Female',
-        lgbtqSupportive: lgbtqSupportive,
-        religiousPreference: religiousPreference,
-        religiousPreferenceOpted: false,
-        racialIdentity: racialIdentity,
-        spokenLanguages: []
+    let dispatchObject = {
+        'id': proUserInfo.id,
+        "companyName": companyName,
+        "companyAddress": companyAddress,
+        "companyZipCode": companyZipCode,
+        "companyPhoneNumber": companyPhoneNumber,
+        "websiteAddress": companyWebsite,
+        "companyProfileImage": companyProfilePhotoLink,
+        "companyDescription": companyDesc,
+        "inPersonMeetStatus": inPerson,
+        "virtualMeetStatus": virtual,
+        "pricingModel": hourly ? "hourly" : "package",
+        "price": averageRate,
+        "corporateSustainabilityPolicyVerification": hasCSRP,
+        "companyCertifications": [],
+        "companySpecialties": [],
+        "genderIdentity": male ? 'Male' : 'Female',
+        "lgbtqSupportive": lgbtqSupportive,
+        "religiousPreference": religiousPreference,
+        "religiousPreferenceOpted": false,
+       "racialIdentity": racialIdentity,
+        "languagesSpoken": []
     }
 
     const generateDispatchObject = () => {
@@ -155,35 +156,68 @@ const EditCompanyInfoModal = (props) => {
             dispatchObject.companySpecialties.push('General Fitness')
         }
         if (spanish){
-            dispatchObject.spokenLanguages.push('Spanish')
+            dispatchObject.languagesSpoken.push('Spanish')
         }
         if (chineseMandarin){
-            dispatchObject.spokenLanguages.push('Chinese-Mandarin')
+            dispatchObject.languagesSpoken.push('Chinese-Mandarin')
         }
         if (french){
-            dispatchObject.spokenLanguages.push('French')
+            dispatchObject.languagesSpoken.push('French')
         }
         if (arabic){
-            dispatchObject.spokenLanguages.push('Arabic')
+            dispatchObject.languagesSpoken.push('Arabic')
         }
         if (hindi){
-            dispatchObject.spokenLanguages.push('Hindi')
+            dispatchObject.languagesSpoken.push('Hindi')
         }
         if (portuguese){
-            dispatchObject.spokenLanguages.push('Portuguese')
+            dispatchObject.languagesSpoken.push('Portuguese')
         }
         if (banglaBengali){
-            dispatchObject.spokenLanguages.push('Bangla/Bengali')
+            dispatchObject.languagesSpoken.push('Bangla/Bengali')
         }
         if (russian){
-            dispatchObject.spokenLanguages.push('Russian')
+            dispatchObject.languagesSpoken.push('Russian')
         }
         if (japanese){
-            dispatchObject.spokenLanguages.push('Japanese')
+            dispatchObject.languagesSpoken.push('Japanese')
         }
         if (punjabi){
-            dispatchObject.spokenLanguages.push('Punjabi')
+            dispatchObject.languagesSpoken.push('Punjabi')
         }
+    }
+
+    const tryCatchForUpdatingProfessionalInformation = async function () {
+        try {
+
+            const ENDPOINT = "https://08o65vjga3.execute-api.us-east-2.amazonaws.com/alpha/updateprofessionalinfo"
+
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json")
+            const content = dispatchObject
+            const JSONPackage = JSON.stringify(content)
+
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: JSONPackage,
+                redirect: 'follow'
+            }
+
+            const response = await fetch(ENDPOINT, requestOptions)
+            const returnObj = await response.json()
+            
+            return returnObj
+
+        } catch (err){
+            console.log(err)
+        }
+    }
+
+    const handleSaveClick = () => {
+        generateDispatchObject()
+        tryCatchForUpdatingProfessionalInformation()
+        .then(response => console.log(response.stackTrace[0]))
     }
 
     return (
@@ -192,14 +226,14 @@ const EditCompanyInfoModal = (props) => {
      style={{flex: 1}}
    >
        <TouchableWithoutFeedback style={{alignItems: 'center'}} onPress={Keyboard.dismiss}>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <View style={styles.card}>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: Colors.ocean.primary}}>
+            <View style={{height: '90%', width: '90%', backgroundColor: 'white', alignItems: 'center', padding: 5, borderRadius: 10, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3,}}>
                  <View style={{borderRadius: 15, width: '100%', height: '5%', justifyContent: 'center', alignItems: 'center'}}>
-                     <MTBoldText style={{color: Colors.ocean.primary}}>Edit Info</MTBoldText>
+                     <MTBoldText style={{color: Colors.ocean.primary, textAlign: 'center'}}>Edit Info</MTBoldText>
                  </View>
-                 <ScrollView>
+                 <ScrollView contentContainerStyle={{alignItems: 'center'}} style={{width: '90%'}}>
                      {/* General Info */}
-                     <MTMediumText style={{color: 'black'}}>
+                     <MTMediumText style={{color: 'black', textAlign: 'center'}}>
                          Company Name*
                      </MTMediumText>
                          <Input 
@@ -216,7 +250,7 @@ const EditCompanyInfoModal = (props) => {
                          placeholder="The Best Company Inc."
                          placeholderTextColor='#C7CBCE'
                          />
-              <MTMediumText style={{color: 'black'}}>
+              <MTMediumText style={{color: 'black', textAlign: 'center'}}>
                  Company Address*
              </MTMediumText>
                      <Input 
@@ -270,7 +304,7 @@ const EditCompanyInfoModal = (props) => {
                      placeholderTextColor='#C7CBCE'
                      />
              </View>
-             <MTMediumText style={{color: 'black'}}>
+             <MTMediumText style={{color: 'black', textAlign: 'center'}}>
                  Phone Number*
              </MTMediumText>
                      <Input 
@@ -287,7 +321,7 @@ const EditCompanyInfoModal = (props) => {
                      placeholder="(xxx) xxx-xxxx"
                      placeholderTextColor='#C7CBCE'
                      />
-             <MTMediumText style={{color: 'black'}}>
+             <MTMediumText style={{color: 'black', textAlign: 'center'}}>
                  Company Website*
              </MTMediumText>
                      <Input 
@@ -304,7 +338,7 @@ const EditCompanyInfoModal = (props) => {
                      placeholder="www.thebestcompany.com"
                      placeholderTextColor='#C7CBCE'
                      />
-               <MTMediumText style={{color: 'black'}}>
+               <MTMediumText style={{color: 'black', textAlign: 'center'}}>
                  Company Profile Photo URL*
              </MTMediumText>
                      <Input 
@@ -321,7 +355,7 @@ const EditCompanyInfoModal = (props) => {
                      placeholder="https://images.unsplash.com/photo-1607637433813-9e3c41861836?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2468&q=80"
                      placeholderTextColor='#C7CBCE'
                      />
-               <MTMediumText style={{color: 'black'}}>
+               <MTMediumText style={{color: 'black', textAlign: 'center'}}>
                  Company Blurb*
              </MTMediumText>
                  <Input 
@@ -537,10 +571,10 @@ const EditCompanyInfoModal = (props) => {
                  </View>
              </View>
              <View style={{zIndex: -1, marginTop: 10}}>
-             <MTLightText style={{color: 'black'}}>
+             <MTLightText style={{color: 'black', textAlign: 'center'}}>
                  Is your company an LGBTQ Supportive Company?*
                </MTLightText>
-               <View style={{flexDirection: 'row', width: '90%',  justifyContent: 'space-between', alignItems: 'center'}}>
+               <View style={{flexDirection: 'row',  justifyContent: 'space-between', alignItems: 'center'}}>
                    <MTBoldText style={{color: 'black'}}>Yes</MTBoldText>
                    <CheckBox 
                        checked={lgbtqSupportive} 
@@ -901,10 +935,7 @@ const EditCompanyInfoModal = (props) => {
                  </View> : null
                  }
                  </ScrollView>  
-                 <TouchableWithoutFeedback style={{justifyContent: 'center', alignItems: 'center'}} onPress={() => {
-                     generateDispatchObject()
-                     console.log(dispatchObject)
-                 }}>
+                 <TouchableWithoutFeedback style={{justifyContent: 'center', alignItems: 'center'}} onPress={handleSaveClick}>
                  <View style={{borderRadius: 15, width: '100%', height: '10%', borderWidth: 1, borderColor: 'black', justifyContent: 'center', alignItems: 'center'}}>
                      <MTBoldText style={{color: 'black'}}>
                          Save
@@ -917,3 +948,9 @@ const EditCompanyInfoModal = (props) => {
         </KeyboardAvoidingView>
     )
 }
+
+const styles = StyleSheet.create({
+
+})
+
+export default EditCompanyInfoScreen;
