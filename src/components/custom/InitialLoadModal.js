@@ -8,7 +8,7 @@ const InitialLoadModal = (props) => {
     return (  
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <View style={{height: Dimensions.get('window').height * 0.47, width: Dimensions.get('window').width / 1.2, backgroundColor: Colors.ocean.primary, borderRadius: 15, justifyContent:'flex-end', alignItems: 'center'}}>
-                <View style={{width: Dimensions.get('window').width, height: '10%', justifyContent: 'center', alignItems: 'center', bottomBorderWidth: 5, borderBottomWidth: Colors.rugged.primary, bottomBorderStyle: ''}}>
+                <View style={{width: '80%', height: '10%', justifyContent: 'center', alignItems: 'center', borderBottomWidth: 3, borderBottomColor: Colors.rugged.primary, marginBottom: 10}}>
                     <MTBoldText style={{fontSize: 22, }}>
                         Welcome {props.companyName}!
                     </MTBoldText>
