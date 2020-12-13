@@ -265,11 +265,10 @@ const PersonalityResultPage = (props) => {
             <View style={styles.nextCont}>
             <CustomButton onPress={() => {
                     props.navigation.navigate('MainProfessionalContent')
-                }}  style={{backgroundColor: Colors.rugged.primary, width: '80%', height:45, marginBottom: 20, justifyContent: 'center', alignItems: 'cemter'}}>
+                }}  style={{backgroundColor: Colors.rugged.primary, width: '80%', marginBottom: 20, justifyContent: 'center', alignItems: 'center'}}>
                 <MTBoldText color="white" style={{fontSize: 16}}> 
                 Complete Registration 
                 </MTBoldText>
-                <AntDesign name="rightsquare" size={36} color="white" />
             </CustomButton>
         </View>
         }
