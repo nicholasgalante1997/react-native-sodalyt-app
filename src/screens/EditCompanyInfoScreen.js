@@ -105,7 +105,7 @@ const EditCompanyInfoScreen= (props) => {
         "religiousPreference": religiousPreference,
         "religiousPreferenceOpted": false,
        "racialIdentity": racialIdentity,
-        "languagesSpoken": []
+        "spokenLanguages": []
     }
 
     const generateDispatchObject = () => {
@@ -158,34 +158,34 @@ const EditCompanyInfoScreen= (props) => {
             dispatchObject.companySpecialties.push('General Fitness')
         }
         if (spanish){
-            dispatchObject.languagesSpoken.push('Spanish')
+            dispatchObject.spokenLanguages.push('Spanish')
         }
         if (chineseMandarin){
-            dispatchObject.languagesSpoken.push('Chinese-Mandarin')
+            dispatchObject.spokenLanguages.push('Chinese-Mandarin')
         }
         if (french){
-            dispatchObject.languagesSpoken.push('French')
+            dispatchObject.spokenLanguages.push('French')
         }
         if (arabic){
-            dispatchObject.languagesSpoken.push('Arabic')
+            dispatchObject.spokenLanguages.push('Arabic')
         }
         if (hindi){
-            dispatchObject.languagesSpoken.push('Hindi')
+            dispatchObject.spokenLanguages.push('Hindi')
         }
         if (portuguese){
-            dispatchObject.languagesSpoken.push('Portuguese')
+            dispatchObject.spokenLanguages.push('Portuguese')
         }
         if (banglaBengali){
-            dispatchObject.languagesSpoken.push('Bangla/Bengali')
+            dispatchObject.spokenLanguages.push('Bangla/Bengali')
         }
         if (russian){
-            dispatchObject.languagesSpoken.push('Russian')
+            dispatchObject.spokenLanguages.push('Russian')
         }
         if (japanese){
-            dispatchObject.languagesSpoken.push('Japanese')
+            dispatchObject.spokenLanguages.push('Japanese')
         }
         if (punjabi){
-            dispatchObject.languagesSpoken.push('Punjabi')
+            dispatchObject.spokenLanguages.push('Punjabi')
         }
     }
 
@@ -219,7 +219,7 @@ const EditCompanyInfoScreen= (props) => {
     const handleSaveClick = () => {
         generateDispatchObject()
 
-        if (dispatchObject.languagesSpoken.length < 1){
+        if (dispatchObject.spokenLanguages.length < 1){
             dispatchObject.languages.push("")
         }
         if (dispatchObject.companyCertifications.length < 1){

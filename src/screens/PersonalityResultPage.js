@@ -24,7 +24,8 @@ const PersonalityResultPage = (props) => {
     let dispatchObject;
     const completeCustomerInformation = {...userInfo, ...returnedObject}
 
-    const postObjectForUpdatingProfessionalData = {
+    const postObjectForUpdatingProfessionalData = userInfo.accountType === 'professional' ? 
+    {
         "companyZipCode": completeProfessionalInformation.companyZipCode,
         "religiousPreference": completeProfessionalInformation.religiousPreference,
         "companyDescription": completeProfessionalInformation.companyDescription,
@@ -56,7 +57,7 @@ const PersonalityResultPage = (props) => {
         "companySpecialties": completeProfessionalInformation.companySpecialties.length > 0 ? completeProfessionalInformation.companySpecialties : [""],
         "price": completeProfessionalInformation.price.toString(),
         "sodalytType": completeProfessionalInformation.sodalytPreference.slice(4)
-    }
+    } : null
 
     const updateWithFullProfInfo = async () => {
         try {
@@ -264,7 +265,8 @@ const PersonalityResultPage = (props) => {
             </View> : 
             <View style={styles.nextCont}>
             <CustomButton onPress={() => {
-                    props.navigation.navigate('MainProfessionalContent')
+                    dispatch(actions.toggleNewProf(true))
+                    props.navigation.navigate({routeName: 'MainProfessionalContent', params: {isNew: true}})
                 }}  style={{backgroundColor: Colors.rugged.primary, width: '80%', marginBottom: 20, justifyContent: 'center', alignItems: 'center'}}>
                 <MTBoldText color="white" style={{fontSize: 16}}> 
                 Complete Registration 

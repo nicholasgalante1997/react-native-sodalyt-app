@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Platform, Alert} from 'react-native'
+import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Image, Platform, Alert} from 'react-native'
 import Colors from '../constants/Colors'
 import MTMediumText from '../components/custom/MTMediumText'
 import MTBoldText from '../components/custom/MTBoldText'
@@ -8,6 +8,9 @@ import MTLightText from '../components/custom/MTLightText'
 const GetPremiumScreen = (props) => {
     return ( 
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: Colors.rugged.primary}}>
+            <View style={{height: 90, width: 90, overflow: 'hidden', borderRadius: 45, marginBottom: 20}}>
+                <Image source={ require('../../assets/orange_icon.png')} style={{height: '100%', width: '100%', resizeMode: 'contain'}} />
+            </View>
             <View style={{height: '10%', width: Dimensions.get('window').width * 0.9, backgroundColor: Colors.ocean.primary, justifyContent: 'center', alignItems: 'center' , borderRadius: 15, padding: 8,  marginBottom: 20}}>
                 <MTBoldText>
                     Sodalyt Premium!
@@ -45,12 +48,15 @@ const GetPremiumScreen = (props) => {
                         And so much more!
                     </MTBoldText>
             </View>
-            <TouchableOpacity style={{height: '5%', width: '80%', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', marginTop: 10, borderRadius: 15}} onPress={() => {
+            <MTBoldText style={{textAlign: 'center', marginTop:10}}>
+                If you'd like to be added to our mailing list, and be notified when these features are available...
+            </MTBoldText>
+            <TouchableOpacity style={{height: '5%',  padding: 8, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', marginTop: 10, borderRadius: 15}} onPress={() => {
                 Alert.alert('Nice!', "You've been added to our Sodalyt Premium Mailing List. We'll let you know when these features will be available to you!", [{text: 'Woo!', onPress: () => props.navigation.goBack() }])
             }}>
                 <View style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', borderRadius: 15}}>
                 <MTMediumText style={{color: Colors.ocean.primary, textAlign: 'center'}}>
-                    Click here if you'd like to be added to our mailing list when Sodalyt Premium is available!
+                    Click here
                 </MTMediumText>
             </View>
             </TouchableOpacity>

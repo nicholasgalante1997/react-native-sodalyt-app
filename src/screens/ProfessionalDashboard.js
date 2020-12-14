@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import callNumber from '../utilities/callNumberFunction'
 import {View, StyleSheet, Image, Dimensions, ScrollView, Platform, FlatList, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText';
 import MTMediumText from '../components/custom/MTMediumText';
@@ -14,11 +15,16 @@ import InitialLoadModal from '../components/custom/InitialLoadModal'
 
 const ProfessionalDashboard = (props) => {
 
+    console.log(props, "props")
+    console.log(props.navigation.isFirstRouteInParent())
 
     const [modalVisible, setModalVisible] = useState(false)
     const proUserInfo = useSelector(state => state.newProfInfo)
+    const initInfo = useSelector(state => state.userDetails)
     const reviews = useSelector(state => state.reviews)
+    const newStatus = useSelector(state => state.isNewProf)
 
+    console.log(proUserInfo)
     const dispatch = useDispatch();
 
     const fetchReviews = async function () {
@@ -60,9 +66,12 @@ const ProfessionalDashboard = (props) => {
     }, [proUserInfo])
 
     useEffect(() => {
-        setTimeout(() => {
+        if (newStatus){
+            dispatch(actions.toggleNewProf(false))
+              setTimeout(() => {
             setModalVisible(true)
         }, 1000)
+        }
     }, [])
 
     const modalOn = () => {
@@ -127,9 +136,9 @@ const ProfessionalDashboard = (props) => {
                     <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Let's get in touch!</MTBoldText>
                         <MTMediumText>{proUserInfo.companyAddress} {proUserInfo.companyZipCode}</MTMediumText>
-                        <MTMediumText>Call us at {proUserInfo.companyPhoneNumber}</MTMediumText>
-                        <MTMediumText>Or you can find us online at <MTLightText style={{color: Colors.rugged.primary}}>{proUserInfo.companyWebsite}</MTLightText></MTMediumText>
-                       <MTMediumText>Want to set up an appointment? Reach us at {proUserInfo.companyEmail} </MTMediumText>
+                        <MTMediumText onPress={() => callNumber(proUserInfo.companyPhoneNumber)}>Call us at {proUserInfo.companyPhoneNumber}</MTMediumText>
+                        <MTMediumText>Or you can find us online at <MTLightText style={{color: Colors.rugged.primary}}>{proUserInfo.websiteAddress}</MTLightText></MTMediumText>
+                       <MTMediumText>Want to set up an appointment? Reach us at {proUserInfo.companyEmail && proUserInfo.email} </MTMediumText>
                     </View>
                     <View style={styles.specs}>
                     <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Specialties and Certifications</MTBoldText>

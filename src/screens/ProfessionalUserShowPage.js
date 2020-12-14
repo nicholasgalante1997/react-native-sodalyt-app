@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Image, Dimensions, ScrollView, Platform, FlatList} from 'react-native'
+import callNumber from '../utilities/callNumberFunction'
 import MTBoldText from '../components/custom/MTBoldText';
 import MTMediumText from '../components/custom/MTMediumText';
 import MTLightText from '../components/custom/MTLightText'
@@ -165,7 +166,7 @@ const ProfessionalUserShowPage = (props) => {
                     <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Let's get in touch!</MTBoldText>
                         <MTMediumText>{thisExpert.companyAddress} {thisExpert.companyZipCode}</MTMediumText>
-                        <MTMediumText>Call us at {thisExpert.companyPhoneNumber}</MTMediumText>
+                        <MTMediumText onPress={() => callNumber(thisExpert.companyPhoneNumber)}>Call us at {thisExpert.companyPhoneNumber}</MTMediumText>
                         <MTMediumText>Or you can find us online at <MTLightText style={{color: Colors.rugged.primary}}>{thisExpert.websiteAddress}</MTLightText></MTMediumText>
                        <MTMediumText>Want to set up an appointment? Reach us at {thisExpert.companyEmail} </MTMediumText>
                     </View>

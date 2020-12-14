@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native'
+import {View, StyleSheet, ScrollView, TouchableOpacity, Dimensions} from 'react-native'
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import AnalyticsCard from '../components/custom/AnalyticsCard'
 import MTBoldText from '../components/custom/MTBoldText'
@@ -14,7 +14,7 @@ const ProAnalyticsScreen = (props) => {
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Modal isVisible={modal} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <View style={{height: '45%', width: '50%', alignItems: 'center', backgroundColor: Colors.ocean.primary, borderRadius: 15, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3}}>
+                <View style={{width: '70%', alignItems: 'center', backgroundColor: Colors.ocean.primary, borderRadius: 15, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3, padding: 8}}>
                     <View style={{marginVertical: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}> 
                         <MTBoldText>
                         Not So Fast! 
@@ -32,11 +32,16 @@ const ProAnalyticsScreen = (props) => {
                             Check back in soon for updates on when the Analytics platform will be live. 
                         </MTMediumText>
                     </View>
-                    <TouchableOpacity onPress={() => {setModal(false)}} style={{marginTop: 10}}>
+                    <View style={{width: Dimensions.get('window').width * 0.4, height: '8%', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', borderRadius: 15, marginTop: 10}}>
+                        <TouchableOpacity  onPress={() => {setModal(false)}} >
+                        <View style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}}>
                         <MTBoldText style={{color: Colors.rugged.primary}}>
-                            Close
+                        Close
                         </MTBoldText>
-                    </TouchableOpacity>
+                        </View>
+                        </TouchableOpacity>
+                    </View>
+                   
                 </View>
             </Modal>
             <View style={{height: '90%', width: '90%', justifyContent: 'center', alignItems: 'center',  shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3,}}>

@@ -94,20 +94,22 @@ const ReturningUserScreen = (props) => {
     const verifyAndHandlePost = () => {
       if (verifyPost()){
         tryCatchForSignIn().then(r =>{
+          console.log(r)
           if (r.status === 'Email could not be found'){
             Alert.alert('Woops', "It seems either your email or password is incorrect.", [{text: "Got it!", style: "default"}])
           } else if (r.status === 'Login Successful!') {
-            const langs = [...r.languagesSpoken]
-            r["spokenLanguages"] = langs;
-            console.log(r)
-            console.log(langs)
             assignAccountType(r)
-            dispatch(actions.setCustomerDetails(r))
             if (r.accountType === 'customer'){
+              dispatch(actions.setCustomerDetails(r))
               props.navigation.navigate({routeName: 'MainContent', params: {
                 search: searchedTerm
             }}) 
             } else {
+              const langs = [...r.languagesSpoken]
+              r["spokenLanguages"] = langs;
+              console.log(r)
+              console.log(langs)
+              dispatch(actions.setCustomerDetails(r))
               dispatch(actions.setNewProfInfo(r))
               props.navigation.navigate({routeName: 'MainProfessionalContent'}) 
             }

@@ -92,3 +92,5 @@ export const addReview = (review) => ({type: 'ADD_REVIEW', payload: {value: revi
 // NEW PROFESSIONAL INFO STORAGE 
 export const setNewProfInfo = (info) => ({type: 'SET_INFO', payload: {value: info}})
 export const addToProfInfo = (info) => ({type: 'ADD_INFO', payload: {value: info}})
+
+export const toggleNewProf = bool => ({type: 'TOGGLE_NEW_PROF', payload: {value: bool}})

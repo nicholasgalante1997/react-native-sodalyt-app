@@ -7,6 +7,7 @@ import filtersReducer from './filters'
 import searchedExpertsReducer from './searchedExperts'
 import reviewsReducer from './reviews'
 import newProfReducer from './newProfessionalInfo'
+import newStatusReducer from './newStatus'
 
 const rootReducer = combineReducers({
     answers: answersReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     userDetails: cuDetailsReducer,
     filters: filtersReducer,
     reviews: reviewsReducer,
-    newProfInfo: newProfReducer
+    newProfInfo: newProfReducer,
+    isNewProf: newStatusReducer
 })
 
 export default rootReducer
