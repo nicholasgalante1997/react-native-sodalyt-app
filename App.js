@@ -14,6 +14,7 @@ import AWS from 'aws-sdk'
 
 // IMPORTS FOR TESTING SCREENS
 import FullStackNavigator from './src/navigation/FullStackNavigator'
+import GetPrem from './src/screens/GetPremiumScreen'
 
 // AWS Configuration
 Amplify.configure(awsconfig)

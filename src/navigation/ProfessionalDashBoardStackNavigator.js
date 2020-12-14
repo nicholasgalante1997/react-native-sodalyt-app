@@ -5,6 +5,7 @@ import Colors from '../constants/Colors';
 import ProfessionalDashboard from '../screens/ProfessionalDashboard';
 import EditProfInfoScreen from '../screens/EditCompanyInfoScreen'
 import ProfessionalAnalyticsCategoryScreen from '../screens/ProfessionalAnalyticsCategoryScreen'
+import GetPrem from '../screens/GetPremiumScreen'
 
 const ProfessionalDashboardStackNavigator = createStackNavigator({
    ProfessionalDashboard: {
@@ -34,6 +35,17 @@ const ProfessionalDashboardStackNavigator = createStackNavigator({
             color: Colors.ocean.primary
         }
        }
+   },
+   Premium: {
+       screen: GetPrem,
+       navigationOptions: {
+        headerBackTitleVisible: false,
+        headerTitle: "Premium",
+        headerTitleStyle: {
+            fontFamily: 'tommy-bold',
+            color: Colors.ocean.primary
+        }
+    }
    }
 })
 

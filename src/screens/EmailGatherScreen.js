@@ -20,10 +20,10 @@ const EmailGatherScreen = (props) => {
     const isProfessional = props.navigation.getParam('isProfessional')
 
     const demoUserInfo = {
-        email: "nick@.",
-        password: "password",
-        firstName: "nick",
-        lastName: "g",
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
         accountType: isProfessional ? "professional" : "customer"
     }
 

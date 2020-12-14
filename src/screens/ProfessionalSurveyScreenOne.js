@@ -10,14 +10,14 @@ import * as actions from '../store/actions/actionCreator'
 
 const ProfessionalSurveyScreenOne = (props) => {
 
-    const [companyName, setCompanyName] = useState("fake company")
-    const [companyAddress, setCompanyAddress] = useState("123 fake st")
-    const [compState, setCompState] = useState("FA")
-    const [companyZipCode, setCompanyZipCode] = useState("00000")
-    const [companyPhoneNumber, setCompanyPhoneNumber] = useState('(111) 111-1111')
-    const [companyWebsite, setCompanyWebsite] = useState("www.notreal.com")
-    const [companyProfilePhotoLink, setCompanyProfilePhotoLink] = useState("http://notaphoto.jpeg")
-    const [companyDesc, setCompanyDesc] = useState("little fake bio")
+    const [companyName, setCompanyName] = useState("")
+    const [companyAddress, setCompanyAddress] = useState("")
+    const [compState, setCompState] = useState("")
+    const [companyZipCode, setCompanyZipCode] = useState("")
+    const [companyPhoneNumber, setCompanyPhoneNumber] = useState('')
+    const [companyWebsite, setCompanyWebsite] = useState("")
+    const [companyProfilePhotoLink, setCompanyProfilePhotoLink] = useState("")
+    const [companyDesc, setCompanyDesc] = useState("")
 
     const dispatch = useDispatch();
 

@@ -98,7 +98,7 @@ const LandingCUSearchScreen = (props) => {
             }} >
                 <View style={styles.container}>
                     <MTBoldText style={styles.title}>
-                        Registering for the first time as a Professional? 
+                        Registering as a Professional? 
                     </MTBoldText>
                 </View>
         </TouchableOpacity>

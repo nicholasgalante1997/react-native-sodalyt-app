@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, Image, Dimensions, ScrollView, Platform, FlatList, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView} from 'react-native'
+import {View, StyleSheet, Image, Dimensions, ScrollView, Platform, FlatList, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Alert} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText';
 import MTMediumText from '../components/custom/MTMediumText';
 import MTLightText from '../components/custom/MTLightText'
@@ -17,7 +17,9 @@ import { CheckBox } from 'react-native-elements';
 const EditCompanyInfoScreen= (props) => {
 
     const proUserInfo = useSelector(state => state.newProfInfo)
-    console.log(props, "props")
+    const userData = useSelector(state => state.userDetails)
+    console.log(userData)
+    const dispatch = useDispatch();
 
     // Survey One
     const [companyName, setCompanyName] = useState(proUserInfo.companyName)
@@ -83,7 +85,7 @@ const EditCompanyInfoScreen= (props) => {
     const [punjabi, setPunjabi] = useState(proUserInfo.spokenLanguages.includes('Punjabi'))
 
     let dispatchObject = {
-        'id': proUserInfo.id,
+        "id": userData.id,
         "companyName": companyName,
         "companyAddress": companyAddress,
         "companyZipCode": companyZipCode,
@@ -216,8 +218,29 @@ const EditCompanyInfoScreen= (props) => {
 
     const handleSaveClick = () => {
         generateDispatchObject()
+
+        if (dispatchObject.languagesSpoken.length < 1){
+            dispatchObject.languages.push("")
+        }
+        if (dispatchObject.companyCertifications.length < 1){
+            dispatchObject.companyCertifications.push("")
+        }
+        if (dispatchObject.companySpecialties.length < 1){
+            dispatchObject.companySpecialties.push("")
+        }
+
+        console.log(dispatchObject, "right before the post")
+
         tryCatchForUpdatingProfessionalInformation()
-        .then(response => console.log(response.stackTrace[0]))
+        .then(response => {
+            console.log(response)
+            if (response.id){
+                dispatch(actions.addToProfInfo(response))
+                Alert.alert('Success!', "You've successfully updated your information. Changes should be reflected in your company profile now.", [{text: 'Awesome!', onPress: () => props.navigation.goBack() }])
+            } else {
+                Alert.alert("Hmm", "It seems like we couldn't update your records. Check your wireless connection and try again.", [{text: 'Ok', style: 'default'}])
+            }
+        })
     }
 
     return (

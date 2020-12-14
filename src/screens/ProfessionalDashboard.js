@@ -57,7 +57,7 @@ const ProfessionalDashboard = (props) => {
 
     useEffect(() => {
         props.navigation.setParams({companyName: proUserInfo.companyName})
-    }, [])
+    }, [proUserInfo])
 
     useEffect(() => {
         setTimeout(() => {
@@ -181,7 +181,7 @@ ProfessionalDashboard.navigationOptions = navData => {
                 title="Chat" 
                 iconName="checkbox-marked-circle-outline" 
                 onPress={() => {
-                    console.log('click')
+                   navData.navigation.navigate('Premium')
                 }} />
             </HeaderButtons>
         ),
