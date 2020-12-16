@@ -96,7 +96,9 @@ const ReturningUserScreen = (props) => {
         tryCatchForSignIn().then(r =>{
           console.log(r)
           if (r.status === 'Email could not be found'){
-            Alert.alert('Woops', "It seems either your email or password is incorrect.", [{text: "Got it!", style: "default"}])
+            Alert.alert('Woops', "It seems that email doesn't exist in our database.", [{text: "Got it!", style: "default"}])
+          } else if (r.status === 'Password is incorrect'){
+            Alert.alert('Woops', "It appears that's not the right password for this email.", [{text: "Got it!", style: "default"}])
           } else if (r.status === 'Login Successful!') {
             assignAccountType(r)
             if (r.accountType === 'customer'){
@@ -107,8 +109,6 @@ const ReturningUserScreen = (props) => {
             } else {
               const langs = [...r.languagesSpoken]
               r["spokenLanguages"] = langs;
-              console.log(r)
-              console.log(langs)
               dispatch(actions.setCustomerDetails(r))
               dispatch(actions.setNewProfInfo(r))
               props.navigation.navigate({routeName: 'MainProfessionalContent'}) 
@@ -122,6 +122,13 @@ const ReturningUserScreen = (props) => {
 
     return (
         <View style={styles.screen}>
+          <View style={{position: 'absolute', top: 50, left: 30, height: 60, width: 60, backgroundColor: 'white', borderRadius: 30, overflow: 'hidden', justifyContent: 'center', alignItems: 'center'}}>
+                <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={() => {props.navigation.navigate('LandingSearchScreen')}}>
+                  <MTBoldText style={{color: Colors.ocean.primary}}>
+                    Back
+                  </MTBoldText>
+                </TouchableOpacity>
+                </View>
           {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{justifyContent: 'center', alignItems: 'center'}}> */}
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

@@ -4,15 +4,19 @@ export const resetAnswers = () => ({type: 'RESET_ANSWERS'})
 
 // currentUser Information
 export const setCurrentUser = currentUser => ({type: 'SET_CURRENT_USER', payload: {value: currentUser}})
+export const resetCurrentUser = () => ({type: 'RESET_CURRENT_USER'})
 // currentUser Customer Information
 export const setCustomerDetails = (detailsObj) => ({type: 'SET_DETAILS', payload: {value: detailsObj}})
+export const resetCustomerDetails = () => ({type: 'RESET_USER_DETAILS'})
 // currentUser Professional  Information
 export const setProfessionalDetails = detailsObj => ({type: 'SET_PROF_DETAILS', payload: {detailsObj}})
-
+export const resetProfessionalDetails = () => ({type: 'RESET_PROF_DETAILS'})
 // SearchActions
 export const setSearchedTerm = (searchedTerm) => ({type: 'SET_SEARCH_TERM', payload: {value: searchedTerm}})
-
+export const resetSearchedTerm = () => ({type: 'RESET_SEARCHED_TERM'})
 // FilterActions 
+
+export const resetFilters = () => ({type: 'RESET_FILTERS'})
 // Cultural => Language
 export const toggleCulturalLanguageSpanishValue = (booleanValue) => ({type: 'TOGGLE_CULTURAL_LANGUAGE_SPANISH', payload: {value: booleanValue}})
 export const toggleCulturalLanguageChineseMandarinValue = (booleanValue) => ({type: 'TOGGLE_CULTURAL_LANGUAGE_CHINESE_MANDARIN', payload: {value: booleanValue}})
@@ -92,5 +96,6 @@ export const addReview = (review) => ({type: 'ADD_REVIEW', payload: {value: revi
 // NEW PROFESSIONAL INFO STORAGE 
 export const setNewProfInfo = (info) => ({type: 'SET_INFO', payload: {value: info}})
 export const addToProfInfo = (info) => ({type: 'ADD_INFO', payload: {value: info}})
+export const resetProfInfo = () => ({type: 'RESET_INFO'})
 
 export const toggleNewProf = bool => ({type: 'TOGGLE_NEW_PROF', payload: {value: bool}})

@@ -670,6 +670,9 @@ const filterReducer = (state = initialState, action) => {
             }
         }
 
+        case 'RESET_FILTERS': 
+            state = initialState;
+            return state;
 
         default: 
             return state;

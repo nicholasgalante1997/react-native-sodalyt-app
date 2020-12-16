@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Platform, Alert} from 'react-native'
+import {View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Platform, Alert, Image} from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
 import SearchBar from '../components/custom/SearchBar'
 import Colors from '../constants/Colors'
@@ -84,8 +84,11 @@ const LandingCUSearchScreen = (props) => {
                 }
             }} >
                 <View style={styles.container}>
+                <View style={{height: 60, width: 60, overflow: 'hidden', borderRadius: 30, marginBottom: 10}}>
+                <Image source={ require('../../assets/orange_icon.png')} style={{height: '100%', width: '100%', resizeMode: 'contain'}} />
+            </View>
                     <MTBoldText style={styles.title}>
-                        Returning Sodalyt User?  Over Here!
+                        Current User Sign In
                     </MTBoldText>
                 </View>
         </TouchableOpacity>
@@ -97,8 +100,11 @@ const LandingCUSearchScreen = (props) => {
                 }})
             }} >
                 <View style={styles.container}>
+                <View style={{height: 60, width: 60, overflow: 'hidden', borderRadius: 30, marginBottom: 10}}>
+                <Image source={ require('../../assets/orange_icon.png')} style={{height: '100%', width: '100%', resizeMode: 'contain'}} />
+            </View>
                     <MTBoldText style={styles.title}>
-                        Registering as a Professional? 
+                        Professional Enter Here
                     </MTBoldText>
                 </View>
         </TouchableOpacity>
@@ -107,9 +113,14 @@ const LandingCUSearchScreen = (props) => {
                     <Carousel dataArray={VerticalCategories} />
             </View>
             <TouchableOpacity style={Platform.OS === 'ios' ? Dimensions.get('window').height > 750 ? {position: 'absolute', bottom: Dimensions.get('window').height / 2, zIndex: -1} :  {position: 'absolute', bottom: 10, right: 10} : {marginTop: 40}} onPress={handlePush}>
-                    {searchTerm.length > 0 ? <View>
+                    {searchTerm.length > 0 ? <View style={{justifyContent: 'center', alignItems: 'center'}}>
                         <View style={styles.searchIconButton}>
                         <Ionicons name="md-search" size={38} color='white' />
+                        </View>
+                        <View style={{width: '75%', marginTop: 10}}>
+                            <MTBoldText style={{textAlign: 'center'}}>
+                                If youre a first time user, select the search icon to move forward.
+                            </MTBoldText>
                         </View>
                     </View> : null}
                 </TouchableOpacity>
@@ -186,12 +197,12 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         elevation: 3,
         padding: 15,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
-        backgroundColor: Colors.rugged.primary
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Colors.ocean.secondary
     },
     title: {
-        textAlign: 'right',
+        textAlign: 'center',
         fontSize: 20,
         color: 'white'
     } 

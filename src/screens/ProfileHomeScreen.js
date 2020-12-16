@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native'
+import {View, StyleSheet, Dimensions, Alert} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import * as actions from '../store/actions/actionCreator'
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
 import Colors from '../constants/Colors'
@@ -12,7 +13,26 @@ import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 const ProfileHomeScreen = (props) => {
 
     const userInfo = useSelector(state => state.userDetails)
-    console.log(userInfo)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        props.navigation.setParams({signOutClickHandler: verifySignOut})
+    }, [])
+
+
+    const completelyResetStateAndSignOut = () => {
+        props.navigation.navigate('LandingSearchScreen')
+        // dispatch(actions.resetCurrentUser())
+        dispatch(actions.resetCustomerDetails())
+        dispatch(actions.resetFilters())    
+        // dispatch(actions.resetProfInfo())
+        // dispatch(actions.resetProfessionalDetails())
+        dispatch(actions.resetSearchedTerm())
+    }
+
+    const verifySignOut = () => {
+        Alert.alert('Wait', "You are about to sign out, is this what you want to do?", [{text: 'No', style: 'default'}, {text: 'Yes', onPress: () => completelyResetStateAndSignOut()} ])
+    }
 
     let archetype;
     let spec;
@@ -179,7 +199,21 @@ ProfileHomeScreen.navigationOptions = navData => {
             fontFamily: 'tommy-bold',
             color: Colors.rugged.primary
         },
-        headerLeft: () => null
+        headerLeft: () => null,
+        headerRight: () => {
+            const signOut = navData.navigation.getParam('signOutClickHandler')
+
+            return ( 
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item 
+            title="Sign Out" 
+            iconName="logout" 
+            onPress={() => {
+                signOut()
+            }} />
+        </HeaderButtons>
+        )
+        }
     }
 }
 
