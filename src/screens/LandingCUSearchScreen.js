@@ -88,7 +88,7 @@ const LandingCUSearchScreen = (props) => {
                 <Image source={ require('../../assets/orange_icon.png')} style={{height: '100%', width: '100%', resizeMode: 'contain'}} />
             </View>
                     <MTBoldText style={styles.title}>
-                        Current User Sign In
+                        Current User
                     </MTBoldText>
                 </View>
         </TouchableOpacity>
@@ -104,7 +104,7 @@ const LandingCUSearchScreen = (props) => {
                 <Image source={ require('../../assets/orange_icon.png')} style={{height: '100%', width: '100%', resizeMode: 'contain'}} />
             </View>
                     <MTBoldText style={styles.title}>
-                        Professional Enter Here
+                        Professional
                     </MTBoldText>
                 </View>
         </TouchableOpacity>
