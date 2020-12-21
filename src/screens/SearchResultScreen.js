@@ -32,6 +32,8 @@ import MTBoldText from '../components/custom/MTBoldText';
 import MTLightText from '../components/custom/MTLightText';
 
 const SearchResultScreen = props => {
+
+
   // VARIABLE ASSIGNMENT
 
   const reduxProfArray = useSelector (state => state.expertArray);
@@ -1524,9 +1526,11 @@ const SearchResultScreen = props => {
         </MTLightText>
         <ScrollView style={{marginHorizontal: 10}}>
 
-          <MTLightText style={{color: Colors.ocean.primary}}>
+        <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+          <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             Language
-          </MTLightText>
+          </MTBoldText>
+        </View>
           <CheckBox
             checked={filterManager.cultural.language.spanish}
             title="Spanish"

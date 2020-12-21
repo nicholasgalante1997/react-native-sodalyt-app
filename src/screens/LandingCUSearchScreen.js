@@ -83,15 +83,16 @@ const LandingCUSearchScreen = (props) => {
                     Alert.alert("Wait", "If you're a returning customer, make sure to set a searched term before signing in. If you're a professional user, click continue.", [{style: 'default', text: 'Back'}, {text: 'Continue', onPress: () =>{  props.navigation.navigate('ReturningUserScreen') }}])
                 }
             }} >
-                <View style={styles.container}>
-                <View style={{height: 60, width: 60, overflow: 'hidden', borderRadius: 30, marginBottom: 10}}>
-                <Image source={ require('../../assets/orange_icon.png')} style={{height: '100%', width: '100%', resizeMode: 'contain'}} />
+                <View style={{...styles.container, backgroundColor: Colors.rugged.primary}}>
+                {/* <View style={{height: 60, width: 60, overflow: 'hidden', borderRadius: 30, marginBottom: 10}}>
+                    <Image source={ require('../../assets/orange_icon.png')} style={{height: '100%', width: '100%', resizeMode: 'contain'}} />
+                </View> */}
+                <MTBoldText style={styles.title}>
+                    Current User
+                </MTBoldText>
             </View>
-                    <MTBoldText style={styles.title}>
-                        Current User
-                    </MTBoldText>
-                </View>
         </TouchableOpacity>
+        
         <TouchableOpacity 
             style={styles.gridItem} 
             onPress={() => {
@@ -100,9 +101,9 @@ const LandingCUSearchScreen = (props) => {
                 }})
             }} >
                 <View style={styles.container}>
-                <View style={{height: 60, width: 60, overflow: 'hidden', borderRadius: 30, marginBottom: 10}}>
+                {/* <View style={{height: 60, width: 60, overflow: 'hidden', borderRadius: 30, marginBottom: 10}}>
                 <Image source={ require('../../assets/orange_icon.png')} style={{height: '100%', width: '100%', resizeMode: 'contain'}} />
-            </View>
+                </View> */}
                     <MTBoldText style={styles.title}>
                         Professional
                     </MTBoldText>
@@ -132,7 +133,9 @@ const LandingCUSearchScreen = (props) => {
 const styles = StyleSheet.create({
     cardHolder: {
         flexDirection: 'row',
-        marginTop: 150
+        marginTop: 150,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     screen: {
         backgroundColor: Colors.ocean.primary,
@@ -186,11 +189,17 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 15,
         height: 150,
+        width: 150,
+        borderRadius: 75,
         // marginVertical: Dimensions.get('window').width / 5,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     container: {
+        height: 150,
+        width: 150,
+        borderRadius: 75,
         flex: 1,
-        borderRadius: 10,
         shadowColor: 'black',
         shadowOpacity: 0.56,
         shadowOffset: { width: 0, height: 2},
