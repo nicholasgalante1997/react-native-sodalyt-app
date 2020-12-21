@@ -25,7 +25,7 @@ import {
 
 // STYLE ONLY
 import Colors from '../constants/Colors';
-import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import {Ionicons, MaterialCommunityIcons, AntDesign} from '@expo/vector-icons';
 import Input from '../components/custom/Input';
 import MTMediumText from '../components/custom/MTMediumText';
 import MTBoldText from '../components/custom/MTBoldText';
@@ -1526,10 +1526,11 @@ const SearchResultScreen = props => {
         </MTLightText>
         <ScrollView style={{marginHorizontal: 10}}>
 
-        <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+        <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
           <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             Language
           </MTBoldText>
+          <AntDesign name="caretdown" size={32} color={Colors.rugged.primary} style={{marginLeft: 5}}/>
         </View>
           <CheckBox
             checked={filterManager.cultural.language.spanish}
