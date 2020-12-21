@@ -25,7 +25,7 @@ import {
 
 // STYLE ONLY
 import Colors from '../constants/Colors';
-import {Ionicons, MaterialCommunityIcons, AntDesign} from '@expo/vector-icons';
+import {Ionicons, MaterialCommunityIcons, AntDesign, Feather} from '@expo/vector-icons';
 import Input from '../components/custom/Input';
 import MTMediumText from '../components/custom/MTMediumText';
 import MTBoldText from '../components/custom/MTBoldText';
@@ -1305,6 +1305,14 @@ const SearchResultScreen = props => {
     }
   };
 
+  const generateRandomInternetReview = (array) => {
+    const arr = [4, 5, 6]
+    array.forEach(obj => {
+      obj["internetRating"] = arr[Math.floor(Math.random() * arr.length)]
+    })
+    console.log(array)
+  }
+
   const handleCulturalFilterClick = () => {
     setShowPsychologyFilter (false);
     setShowServiceFilter (false);
@@ -1423,50 +1431,29 @@ const SearchResultScreen = props => {
 
   // Search Page Specific Components
 
+  const starGenerator = ( rating , returnIcon ) => {
+    let a = []
+    for (let i=1; i < rating ; i++){
+        a.push(returnIcon)
+    }
+    return a
+}
+
+  const generateDemoSodalytRating = (array) => {
+    const arr = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C"]
+    array.forEach(obj => {
+      const ran = Math.floor(Math.random() * arr.length)
+      obj['demoSodalytRating'] = arr[ran]
+    })
+  }
+
   // flatlist row item
   const renderItem = itemData => {
     return (
       <View style={styles.profRow}>
-        <View style={{height: 80, width: 80, backgroundColor: 'white'}}>
-          <Image
-            style={{height: '100%', width: '100%', resizeMode: 'contain'}}
-            source={{uri: itemData.item.companyProfileImage}}
-          />
-        </View>
-        <View style={styles.moreInfo}>
-          <MTMediumText
-            style={{borderBottomColor: 'white', borderBottomWidth: 1}}
-          >
-            {itemData.item.companyName}
-          </MTMediumText>
-          <MTMediumText
-            style={{fontSize: 8}}
-            numberOfLines={2}
-            ellipsizeMode="tail"
-          >
-            {itemData.item.companyDescription}
-          </MTMediumText>
-          <MTMediumText style={{fontSize: 8, marginTop: 3}}>
-            Specialties:
-            {' '}
-            {itemData.item.companySpecialties.map (spec => spec + ', ')}
-          </MTMediumText>
-          <MTMediumText style={{fontSize: 8, marginTop: 3}}>
-            Certifications:
-            {' '}
-            {itemData.item.companyCertifications.map (cert => cert + ', ')}
-          </MTMediumText>
-
-          <View style={styles.actions}>
-            {sodalytTypingActive
-              ? <MTBoldText style={{fontSize: 10}}>
-                  Percentage Match
-                  {' '}
-                  {itemData.item.dynamicMeyersBriggsPercentage}
-                  %
-                </MTBoldText>
-              : null}
-            <TouchableOpacity
+        <View>
+        <View style={{height: 60, width: 60, backgroundColor: 'white', borderRadius: 30, overflow: 'hidden'}}>
+        <TouchableOpacity
               onPress={() => {
                 props.navigation.navigate ({
                   routeName: 'ProfessionalUserShowPage',
@@ -1475,17 +1462,69 @@ const SearchResultScreen = props => {
                   },
                 });
               }}
+            style={{height: '100%', width: '100%'}}
             >
-              <MTBoldText
-                style={{
-                  fontSize: 10,
-                  color: Colors.rugged.primary,
-                  marginLeft: 8,
-                }}
-              >
-                CONNECT
-              </MTBoldText>
+              <Image
+            style={{height: '100%', width: '100%', resizeMode: 'contain'}}
+            source={{uri: itemData.item.companyProfileImage}}
+          />
             </TouchableOpacity>
+        </View>
+          <MTMediumText style={{fontSize: 10, textAlign: 'center', marginTop: 5}}>
+            {itemData.item.price}$ per Hour
+          </MTMediumText>
+        </View>
+        <View style={styles.moreInfo}>
+          <MTMediumText
+            style={{borderBottomColor: 'white', borderBottomWidth: 1, fontSize: 14, marginBottom: 3}}
+          >
+            {itemData.item.companyName}
+          </MTMediumText>
+          <MTMediumText
+            style={{fontSize: 8}}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
+            {itemData.item.companyEmail}
+          </MTMediumText>
+          {/* <MTMediumText style={{fontSize: 8, marginTop: 3}}>
+            Specialties:
+            {' '}
+            {itemData.item.companySpecialties.map (spec => spec + ', ')}
+          </MTMediumText>
+          <MTMediumText style={{fontSize: 8, marginTop: 3}}>
+            Certifications:
+            {' '}
+            {itemData.item.companyCertifications.map (cert => cert + ', ')}
+          </MTMediumText> */}
+          <View style={{flexDirection: 'row', height: '50%', width: '90%', justifyContent: 'space-between'}}>
+            <View style={{alignItems: 'center'}}>
+              <MTBoldText>
+                Internet Reviews
+              </MTBoldText>
+              <View style={{flexDirection: 'row'}}>
+              {starGenerator(itemData.item.internetRating, <AntDesign name="star" size={16} color="white"/>)}
+             {/* <MTMediumText>{itemData.item.internetRating}</MTMediumText>  */}
+              </View>
+            </View>
+            <View style={{alignItems: 'center'}}>
+              <MTBoldText>
+                Sodalyt Reviews
+              </MTBoldText>
+             <MTBoldText>
+               {itemData.item.demoSodalytRating}
+              </MTBoldText> 
+            </View>
+          </View>
+          <View style={styles.actions}>
+            {sodalytTypingActive
+              ? <MTBoldText style={{fontSize: 10, color: Colors.rugged.primary}}>
+                  Percentage Match
+                  {' '}
+                  {itemData.item.dynamicMeyersBriggsPercentage}
+                  %
+                </MTBoldText>
+              : null}
           </View>
         </View>
 
@@ -2246,6 +2285,8 @@ const SearchResultScreen = props => {
   if (reduxProfArray.length > 0) {
     generateMBTIPercentage (personalityType);
     assignSodalytTypes (reduxProfArray);
+    generateRandomInternetReview(reduxProfArray)
+    generateDemoSodalytRating(reduxProfArray)
     handleFilterSwitch ();
   }
 
@@ -2600,6 +2641,8 @@ const styles = StyleSheet.create ({
   moreInfo: {
     marginHorizontal: 10,
     width: '75%',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   actions: {
     flexDirection: 'row',
