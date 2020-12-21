@@ -52,6 +52,18 @@ const SearchResultScreen = props => {
     currentUserDetails.sodalytPreference
   );
 
+  // Showing Specific Filter Folders
+  const [showLanguageFolder, setShowLanguageFolder] = useState(false)
+  const [showReligionFolder, setShowReligionFolder] = useState(false)
+  const [showRacialIdentityFolder, setShowRacialIdentityFolder] = useState(false)
+  const [showLGBTQFolder, setShowLGBTQFolder] = useState(false)
+
+  const [showPersonalTrainerQs, setShowPersonalTrainerQs] = useState(false)
+  const [showMeetingExperienceFolder, setShowMeetingExperienceFolder] = useState(false)
+  const [showDistanceFolder, setShowDistanceFolder] = useState(false)
+  const [showPriceFolder, setShowPriceFolder] = useState(false)
+  const [showEthicsFolder, setShowEthicsFolder] = useState(false)
+
   // filter state management
   const filterManager = useSelector (state => state.filters);
   const [sodalytVerified, setSodalytVerified] = useState (false);
@@ -1530,8 +1542,13 @@ const SearchResultScreen = props => {
           <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             Language
           </MTBoldText>
-          <AntDesign name="caretdown" size={32} color={Colors.rugged.primary} style={{marginLeft: 5}}/>
+         { showLanguageFolder ? 
+         <AntDesign name="caretup" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowLanguageFolder(false)} /> 
+         : <AntDesign name="caretdown" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowLanguageFolder(true)}/> 
+         }
         </View>
+        { showLanguageFolder ? 
+        <View>
           <CheckBox
             checked={filterManager.cultural.language.spanish}
             title="Spanish"
@@ -1646,9 +1663,19 @@ const SearchResultScreen = props => {
             }}
             checkedColor={Colors.ocean.primary}
           />
-          <MTLightText style={{color: Colors.ocean.primary}}>
+          </View> : null 
+        }
+        <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+          <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             Religious Preference
-          </MTLightText>
+          </MTBoldText>
+          { showReligionFolder ? 
+            <AntDesign name="caretup" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowReligionFolder(false)} /> 
+            : <AntDesign name="caretdown" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowReligionFolder(true)}/> 
+          }
+        </View>
+        { showReligionFolder ?
+        <View>
           <CheckBox
             checked={filterManager.cultural.religion.noPreference}
             title="No Preference"
@@ -1703,9 +1730,19 @@ const SearchResultScreen = props => {
             }}
             checkedColor={Colors.ocean.primary}
           />
-          <MTLightText style={{color: Colors.ocean.primary}}>
-            Racial Identity
-          </MTLightText>
+          </View> : null
+        }
+         <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center',  marginTop: 10}}>
+            <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
+              Racial Identity
+            </MTBoldText>
+            { showRacialIdentityFolder ? 
+            <AntDesign name="caretup" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowRacialIdentityFolder(false)} /> 
+            : <AntDesign name="caretdown" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowRacialIdentityFolder(true)}/> 
+            }
+          </View>
+        { showRacialIdentityFolder ? 
+        <View>
           <CheckBox
             checked={filterManager.cultural.race.hispanic}
             title="Hispanic"
@@ -1780,9 +1817,18 @@ const SearchResultScreen = props => {
             }}
             checkedColor={Colors.ocean.primary}
           />
-          <MTLightText style={{color: Colors.ocean.primary}}>
+          </View> : null 
+        }
+        <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+          <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             LGBTQ Supportive
-          </MTLightText>
+          </MTBoldText>
+          { showLGBTQFolder ? 
+            <AntDesign name="caretup" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowLGBTQFolder(false)} /> 
+            : <AntDesign name="caretdown" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowLGBTQFolder(true)}/> 
+            }
+        </View>
+        { showLGBTQFolder ?
           <CheckBox
             checked={filterManager.cultural.lgbtq.supportive}
             title="LGBTQ Supportive"
@@ -1794,7 +1840,19 @@ const SearchResultScreen = props => {
               );
             }}
             checkedColor={Colors.ocean.primary}
-          />
+          /> : null 
+        }
+        <View style={{justifyContent:'center', alignItems:'center', height: 40, width: Dimensions.get('window').width, marginTop: 10 }}>
+          <TouchableOpacity onPress={() => {
+            Alert.alert("Stop", "You are about to reset all of your filters. Are you sure you would like to do this?", [{style: 'default', text: 'No'}, {text: 'Yes', onPress: () => {
+              dispatch(actions.resetFilters())
+            }}])
+          }} style={{justifyContent: 'center', alignItems: 'flex-end'}}>
+            <MTBoldText style={{color: 'red'}}>
+              Reset All Filters
+            </MTBoldText>
+          </TouchableOpacity>
+        </View>
         </ScrollView>
       </View>
     );
@@ -1837,14 +1895,20 @@ const SearchResultScreen = props => {
 
         <ScrollView style={{marginHorizontal: 10}}>
           {/* Personal Trainer Section */}
-          <MTLightText style={{color: Colors.ocean.primary}}>
-            Personal Trainer Filters
-          </MTLightText>
-
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+            <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
+              Personal Trainer Filters
+            </MTBoldText>
+            { showPersonalTrainerQs ? 
+            <AntDesign name="caretup" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowPersonalTrainerQs(false)} /> 
+            : <AntDesign name="caretdown" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowPersonalTrainerQs(true)}/> 
+            }
+          </View>
+        { showPersonalTrainerQs ? 
+        <View>
           <MTLightText style={{color: Colors.ocean.primary, marginTop: 5}}>
             Tell us why you want a personal trainer (you can select more than one option)
           </MTLightText>
-
           <CheckBox
             checked={servicePersonalTrainerA1}
             title="Keep up with my changing life"
@@ -1908,12 +1972,20 @@ const SearchResultScreen = props => {
             }}
             checkedColor={Colors.ocean.primary}
           />
-
+        </View> : null 
+          }
           {/* Meeting Experience Section */}
-          <MTLightText style={{color: Colors.ocean.primary}}>
-            Meeting Experience
-          </MTLightText>
-
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+            <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
+              Meeting Experience
+            </MTBoldText>
+            { showMeetingExperienceFolder ? 
+            <AntDesign name="caretup" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowMeetingExperienceFolder(false)} /> 
+            : <AntDesign name="caretdown" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowMeetingExperienceFolder(true)}/> 
+            }
+          </View>
+          { showMeetingExperienceFolder ?
+          <View>
           <CheckBox
             checked={filterManager.service.meetingExperience.virtual}
             title="Virtual"
@@ -1953,12 +2025,20 @@ const SearchResultScreen = props => {
             }}
             checkedColor={Colors.ocean.primary}
           />
-
+          </View> : null 
+        }
           {/* Distance Settings */}
-          <MTLightText style={{color: Colors.ocean.primary}}>
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}} >
+          <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             Distance Settings Coming Soon!
-          </MTLightText>
-
+          </MTBoldText>
+          { showDistanceFolder ? 
+            <AntDesign name="caretup" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowDistanceFolder(false)} /> 
+            : <AntDesign name="caretdown" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowDistanceFolder(true)}/> 
+            }
+          </View>
+          { showDistanceFolder ?
+          <View>
           <CheckBox
             checked={filterManager.service.distance.within5Miles}
             title="Within 5 Miles"
@@ -2008,27 +2088,38 @@ const SearchResultScreen = props => {
             }}
             checkedColor={Colors.ocean.primary}
           />
-
+          </View> : null 
+          }
           {/*  Price Settings */}
-          <MTLightText style={{color: Colors.ocean.primary}}>
-            Price Settings
-          </MTLightText>
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+            <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
+              Price Settings
+            </MTBoldText>
+            { showPriceFolder ? 
+            <AntDesign name="caretup" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowPriceFolder(false)} /> 
+            : <AntDesign name="caretdown" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowPriceFolder(true)}/> 
+            }
+          </View>
+          { showPriceFolder ?
+          <View>
+            
+            <MTLightText style={{color: Colors.ocean.primary}}>
+              Are you looking to pay per session, or in block rates?
+            </MTLightText>
 
-          <MTLightText style={{color: Colors.ocean.primary}}>
-            Are you looking to pay per session, or in block rates?
-          </MTLightText>
-          <CheckBox
-            checked={filterManager.service.pricingRange.showHourly}
-            title="Hourly"
-            textStyle={{fontFamily: 'tommy-reg'}}
-            onPress={() => {
-              const currValue = filterManager.service.pricingRange.showHourly;
-              dispatch (
-                actions.toggleServicePricingRangeShowHourly (!currValue)
-              );
-            }}
-            checkedColor={Colors.ocean.primary}
-          />
+            <CheckBox
+              checked={filterManager.service.pricingRange.showHourly}
+              title="Hourly"
+              textStyle={{fontFamily: 'tommy-reg'}}
+              onPress={() => {
+                const currValue = filterManager.service.pricingRange.showHourly;
+                dispatch (
+                  actions.toggleServicePricingRangeShowHourly (!currValue)
+                );
+              }}
+              checkedColor={Colors.ocean.primary}
+            />
+
           {filterManager.service.pricingRange.showHourly
             ? <View>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -2099,7 +2190,8 @@ const SearchResultScreen = props => {
             }}
             checkedColor={Colors.ocean.primary}
           />
-
+          </View> : null 
+          }
           {/* <CheckBox 
                             checked={filterManager.service.pricingRange.sodalytDiscount} 
                             title="Soadlyt Discount Available"
@@ -2111,10 +2203,16 @@ const SearchResultScreen = props => {
                             checkedColor={Colors.ocean.primary} /> */}
 
           {/* Corporate Sustainability Response */}
-          <MTLightText style={{color: Colors.ocean.primary}}>
-            Ethics
-          </MTLightText>
-
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+            <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
+              Ethics
+            </MTBoldText>
+            { showEthicsFolder ? 
+            <AntDesign name="caretup" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowEthicsFolder(false)} /> 
+            : <AntDesign name="caretdown" size={24} color={Colors.rugged.primary} style={{marginLeft: 10}} onPress={() => setShowEthicsFolder(true)}/> 
+            }
+          </View>
+        { showEthicsFolder ?
           <CheckBox
             checked={filterManager.service.corporateSustainabilityPolicy}
             title="Corporate Sustainability Policy"
@@ -2127,8 +2225,19 @@ const SearchResultScreen = props => {
               );
             }}
             checkedColor={Colors.ocean.primary}
-          />
-
+          /> : null
+        }
+         <View style={{justifyContent:'center', alignItems:'center', height: 40, width: Dimensions.get('window').width, marginTop: 10 }}>
+          <TouchableOpacity onPress={() => {
+            Alert.alert("Stop", "You are about to reset all of your filters. Are you sure you would like to do this?", [{style: 'default', text: 'No'}, {text: 'Yes', onPress: () => {
+              dispatch(actions.resetFilters())
+            }}])
+          }} style={{justifyContent: 'center', alignItems: 'flex-end'}}>
+            <MTBoldText style={{color: 'red'}}>
+              Reset All Filters
+            </MTBoldText>
+          </TouchableOpacity>
+        </View>
         </ScrollView>
       </View>
     );
