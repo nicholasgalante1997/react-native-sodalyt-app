@@ -1,5 +1,5 @@
 import ProfessionalDashboardStackNavigator from './ProfessionalDashBoardStackNavigator'
-import ProfileStackNavigator from './ProfileStackNavigator'
+import ProfProfileStackNavigator from './ProfessionalProfileStackNavigator'
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 import {createBottomTabNavigator} from 'react-navigation-tabs'
 import {createAppContainer} from 'react-navigation'
@@ -9,23 +9,23 @@ import { Platform } from 'react-native'
 import Colors from '../constants/Colors'
 
 const TabScreenConfig = {
-    DashBoard: {
-        screen: ProfessionalDashboardStackNavigator,
+    Profile: {
+        screen:  ProfessionalDashboardStackNavigator,
         navigationOptions: {
             tabBarIcon: (tabInfo) => {
                 return <FontAwesome 
-                name='wpexplorer' 
+                name='grav' 
                 size={25} 
                 color={tabInfo.tintColor} />
             } 
         }
     },
-    Profile: {
-        screen: ProfileStackNavigator,
+    DashBoard: {
+        screen: ProfProfileStackNavigator,
         navigationOptions: {
             tabBarIcon: (tabInfo) => {
                 return <FontAwesome 
-                name='grav' 
+                name='wpexplorer' 
                 size={25} 
                 color={tabInfo.tintColor} />
             } 

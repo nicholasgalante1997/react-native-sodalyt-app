@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import callNumber from '../utilities/callNumberFunction'
-import {View, StyleSheet, Image, Dimensions, ScrollView, Platform, FlatList, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView} from 'react-native'
+import {View, StyleSheet, Image, Dimensions, ScrollView, Platform, FlatList, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Linking, TouchableOpacity} from 'react-native'
 import MTBoldText from '../components/custom/MTBoldText';
 import MTMediumText from '../components/custom/MTMediumText';
 import MTLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 import Modal from 'react-native-modal'
-import { Feather, FontAwesome } from '@expo/vector-icons'; 
+import { Feather, FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Octicons } from '@expo/vector-icons'; 
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
 import {useDispatch, useSelector} from 'react-redux'
@@ -90,6 +90,28 @@ const ProfessionalDashboard = (props) => {
         return a
     }
 
+    const phoneCall = () => {
+        const phoneNumber = proUserInfo.companyPhoneNumber
+        Linking.openURL(`tel:${phoneNumber}`)
+    }
+ 
+    const textMessage = () => {
+     const phoneNumber = proUserInfo.companyPhoneNumber
+     const defaultMessage = `Hello! We matched on Sodalyt! I'm looking for an expert in...`
+     Linking.openURL(`sms:${phoneNumber}&body=${defaultMessage}`)
+     //   Linking.openURL(`sms:${phoneNumber}?body=${defaultMessage}`) For Android
+    }
+ 
+    const sendEmail = () => {
+        const email = proUserInfo.companyEmail;
+         Linking.openURL(`mailto:${email}`)
+     }
+ 
+     const visitWebpage = () => {
+         const onlineAddress = proUserInfo.websiteAddress
+         Linking.openURL(`https:${onlineAddress}`)
+     }
+
    const ReviewRenderItem = (itemData) => {
        return (
            <View style={{height: 40, width: Dimensions.get('window').width * 0.9, alignSelf: 'center', backgroundColor: Colors.ocean.secondary, padding: 8}}>
@@ -128,17 +150,40 @@ const ProfessionalDashboard = (props) => {
                     <MTBoldText style={styles.headerText}>
                             {proUserInfo.companyName} { proUserInfo.sodalytVerified ? <Feather name="check-circle" size={24} color="white" /> : null} 
                     </MTBoldText>
-                  <MTMediumText style={{paddingRight: 5}}>
-                      About Me: {proUserInfo.companyDescription}
-                  </MTMediumText>
+                    <View style={{justifyContent: 'center', alignItems: 'center', width: '60%', height: '40%', backgroundColor: 'white', borderRadius: 15, marginTop: 10, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3,}}>
+                        <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center',}} onPress={() => Alert.alert("Great!", "You've added this professional to your favorites!", [{style: 'default', text: 'Ok'}])}>
+                            <MTBoldText style={{color: Colors.ocean.primary}}>
+                                Click Here to Favorite
+                            </MTBoldText>
+
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
                     <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Let's get in touch!</MTBoldText>
-                        <MTMediumText>{proUserInfo.companyAddress} {proUserInfo.companyZipCode}</MTMediumText>
-                        <MTMediumText onPress={() => callNumber(proUserInfo.companyPhoneNumber)}>Call us at {proUserInfo.companyPhoneNumber}</MTMediumText>
-                        <MTMediumText>Or you can find us online at <MTLightText style={{color: Colors.rugged.primary}}>{proUserInfo.websiteAddress}</MTLightText></MTMediumText>
-                       <MTMediumText>Want to set up an appointment? Reach us at {proUserInfo.companyEmail && proUserInfo.email} </MTMediumText>
+                        <View style={{width: '90%', height: 70, backgroundColor: Colors.rugged.primary, alignSelf: 'center', borderRadius: 20, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3, marginTop: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+                            <View style={{height: 40, width: 40, borderRadius: 20, backgroundColor: 'white'}}>
+                                <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={phoneCall}>
+                                <Entypo name="phone" size={28} color={Colors.ocean.primary} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{height: 40, width: 40, borderRadius: 20, backgroundColor: 'white'}}>
+                                <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={textMessage}>
+                                    <MaterialIcons name="textsms" size={28} color={Colors.ocean.primary}/>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{height: 40, width: 40, borderRadius: 20, backgroundColor: 'white'}}>
+                                <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={sendEmail}>
+                                <MaterialCommunityIcons name="email-check" size={24} color={Colors.ocean.primary} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{height: 40, width: 40, borderRadius: 20, backgroundColor: 'white'}}>
+                                <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={visitWebpage}>
+                           <Octicons name="browser" size={24} color={Colors.ocean.primary} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
                     <View style={styles.specs}>
                     <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Specialties and Certifications</MTBoldText>
@@ -149,6 +194,12 @@ const ProfessionalDashboard = (props) => {
                     <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Meeting Experience</MTBoldText>
                         {proUserInfo.virtualMeetStatus ? <MTMediumText>Offers Virtual Meetings</MTMediumText> : null }
                         {proUserInfo.inPersonMeetStatus ? <MTMediumText>Offers In Person Meetings</MTMediumText> : null }
+                    </View>
+                    <View style={styles.contact}>
+                    <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Company Location</MTBoldText>
+                        <MTMediumText>
+                            {proUserInfo.companyAddress}, {proUserInfo.companyZipCode}
+                        </MTMediumText>
                     </View>
                     <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>This expert offers {proUserInfo.pricingModel} price deals.</MTBoldText>
@@ -194,16 +245,7 @@ ProfessionalDashboard.navigationOptions = navData => {
                 }} />
             </HeaderButtons>
         ),
-        headerLeft: () => (
-            <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item 
-            title="Analytics" 
-            iconName="chart-bar" 
-            onPress={() => {
-                navData.navigation.navigate('Analytics')
-            }} />
-        </HeaderButtons>
-        )
+        headerLeft: () => null
     }
 }
 

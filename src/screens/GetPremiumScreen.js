@@ -11,42 +11,42 @@ const GetPremiumScreen = (props) => {
             <View style={{height: 90, width: 90, overflow: 'hidden', borderRadius: 45, marginBottom: 20}}>
                 <Image source={ require('../../assets/orange_icon.png')} style={{height: '100%', width: '100%', resizeMode: 'contain'}} />
             </View>
-            <View style={{height: '10%', width: Dimensions.get('window').width * 0.9, backgroundColor: Colors.ocean.primary, justifyContent: 'center', alignItems: 'center' , borderRadius: 15, padding: 8,  marginBottom: 20}}>
+            <View style={{height: '12%', width: Dimensions.get('window').width * 0.9, backgroundColor: Colors.ocean.primary, justifyContent: 'center', alignItems: 'center' , borderRadius: 15, padding: 8,  marginBottom: 20}}>
                 <MTBoldText>
-                    Sodalyt Premium!
+                    Sodalyt Membership!
                 </MTBoldText>
                 <MTMediumText style={{textAlign: 'center'}}>
-                    If you're happy with the growth of your customer base, why not try out out premium model and get even more perks?
+                  Thank you for being an early adopter! Our gift to you is free membership for a year. 
+                </MTMediumText>
+                <MTMediumText style={{textAlign: 'center'}}>
+                    Arriving first to the party is finally a good thing!
                 </MTMediumText>
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center', marginHorizontal: 10}}>
                 <MTBoldText style={{textAlign: 'center', marginBottom: 10}}>
-                    Right now, we're offering Sodalyt Premium features to all of our Beta users, as a thank you for sticking with us from the beginning.
+                    With a Sodalyt Membership, you'll have access to...
                 </MTBoldText>
-                <MTBoldText style={{textAlign: 'center', marginBottom: 10}}>
-                    After the launch of Sodalyt Premium, you'll have access to...
-                </MTBoldText>
-                <MTMediumText style={{marginHorizontal: 10, textAlign: 'center'}}>
-                    1. Inside access to Sodalyt Analytics. With Sodalyt Analytics, you'll be among the first to have access to Sodalyt insider information. You'll be the first to know on...
-                    </MTMediumText>
                     <MTLightText style={{marginLeft: 15,  marginRight: 5, textAlign: 'center', marginTop: 10}}>
-                        - Service Specific Data on what's working in your market. 
+                        - Higher Quality Leads via our client verification process.
                     </MTLightText>
                     <MTLightText style={{marginLeft: 15,  marginRight: 5,  textAlign: 'center'}}>
-                        - Analytics on your profile page's visits and conversions, see what's working and what's not.
+                        - Sodalyt Verification to increase your market presence.
                     </MTLightText>
                     <MTLightText style={{marginLeft: 15,  marginRight: 5,  textAlign: 'center'}}>
-                        - Analytics on what Sodalyt users are asking for next!
+                        - In app direct contact, improving your lead conversion.
+                    </MTLightText>
+                    <MTLightText style={{marginLeft: 15,  marginRight: 5,  textAlign: 'center'}}>
+                        - Lead Generation Analytics
+                    </MTLightText>
+                    <MTLightText style={{marginLeft: 15,  marginRight: 5,  textAlign: 'center'}}>
+                        - Service Analytics
+                    </MTLightText>
+                    <MTLightText style={{marginLeft: 15,  marginRight: 5,  textAlign: 'center'}}>
+                        - Competitive Intelligence
                     </MTLightText>
                     <MTMediumText style={{marginHorizontal: 10, textAlign: 'center', marginTop: 10}}>
-                    2. In App calendar scheduling and messaging with clients.
+                        We will update you as we begin to roll out these new features. 
                     </MTMediumText>
-                    <MTMediumText style={{marginHorizontal: 10, textAlign: 'center', marginTop: 10}}>
-                    3. Prime Marketing Placement and advertisement placing within our feed.
-                    </MTMediumText>
-                    <MTBoldText style={{marginTop: 20}}>
-                        And so much more!
-                    </MTBoldText>
             </View>
             <MTBoldText style={{textAlign: 'center', marginTop:10}}>
                 If you'd like to be added to our mailing list, and be notified when these features are available...

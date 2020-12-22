@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, Image, Dimensions, ScrollView, Platform, FlatList} from 'react-native'
+import {View, StyleSheet, Image, Dimensions, ScrollView, Platform, FlatList, TouchableOpacity, Alert, Linking} from 'react-native'
 import callNumber from '../utilities/callNumberFunction'
+// import * as Linking from 'expo-linking';
 import MTBoldText from '../components/custom/MTBoldText';
 import MTMediumText from '../components/custom/MTMediumText';
 import MTLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 import Modal from 'react-native-modal'
-import { Feather, FontAwesome5 } from '@expo/vector-icons'; 
+import { Entypo, Feather, FontAwesome5, FontAwesome, MaterialIcons, MaterialCommunityIcons, Ionicons, Octicons} from '@expo/vector-icons'; 
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
 import CustomAlert from '../components/custom/CustomDevelopmentAlert'
@@ -23,6 +24,8 @@ const ProfessionalUserShowPage = (props) => {
     const reviews = useSelector(state => state.reviews)
 
     const dispatch = useDispatch();
+
+    console.log(thisExpert)
 
     const fetchReviews = async function () {
         try {
@@ -114,6 +117,29 @@ const ProfessionalUserShowPage = (props) => {
 
    const matchedOnObject = matchedOn()
 
+   const phoneCall = () => {
+       const phoneNumber = thisExpert.companyPhoneNumber
+       Linking.openURL(`tel:${phoneNumber}`)
+   }
+
+   const textMessage = () => {
+    const phoneNumber = thisExpert.companyPhoneNumber
+    const defaultMessage = `Hello! We matched on Sodalyt! I'm looking for an expert in...`
+    Linking.openURL(`sms:${phoneNumber}&body=${defaultMessage}`)
+    //   Linking.openURL(`sms:${phoneNumber}?body=${defaultMessage}`) For Android
+   }
+
+   const sendEmail = () => {
+       const email = thisExpert.companyEmail;
+        Linking.openURL(`mailto:${email}`)
+    }
+
+    const visitWebpage = () => {
+        const onlineAddress = thisExpert.websiteAddress
+        Linking.openURL(`https:${onlineAddress}`)
+    }
+
+
    const ReviewRenderItem = (itemData) => {
        return (
            <View style={{height: 40, width: Dimensions.get('window').width * 0.9, alignSelf: 'center', backgroundColor: Colors.ocean.secondary, padding: 8}}>
@@ -155,20 +181,40 @@ const ProfessionalUserShowPage = (props) => {
                     <MTBoldText style={styles.headerText}>
                             {thisExpert.companyName} {thisExpert.sodalytVerified ? <Feather name="check-circle" size={24} color="white" /> : null} 
                     </MTBoldText>
-                    <MTBoldText style={{color: Colors.rugged.primary}}>
-                        {thisExpert.dynamicMeyersBriggsPercentage} % Match
-                    </MTBoldText>
-                  <MTMediumText style={{paddingRight: 5}}>
-                      About Me: {thisExpert.companyDescription}
-                  </MTMediumText>
+                    <View style={{justifyContent: 'center', alignItems: 'center', width: '60%', height: '40%', backgroundColor: 'white', borderRadius: 15, marginTop: 10, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3,}}>
+                        <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center',}} onPress={() => Alert.alert("Great!", "You've added this professional to your favorites!", [{style: 'default', text: 'Ok'}])}>
+                            <MTBoldText style={{color: Colors.ocean.primary}}>
+                                Click Here to Favorite
+                            </MTBoldText>
+
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
                     <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Let's get in touch!</MTBoldText>
-                        <MTMediumText>{thisExpert.companyAddress} {thisExpert.companyZipCode}</MTMediumText>
-                        <MTMediumText onPress={() => callNumber(thisExpert.companyPhoneNumber)}>Call us at {thisExpert.companyPhoneNumber}</MTMediumText>
-                        <MTMediumText>Or you can find us online at <MTLightText style={{color: Colors.rugged.primary}}>{thisExpert.websiteAddress}</MTLightText></MTMediumText>
-                       <MTMediumText>Want to set up an appointment? Reach us at {thisExpert.companyEmail} </MTMediumText>
+                        <View style={{width: '90%', height: 70, backgroundColor: Colors.rugged.primary, alignSelf: 'center', borderRadius: 20, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3, marginTop: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+                            <View style={{height: 40, width: 40, borderRadius: 20, backgroundColor: 'white'}}>
+                                <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={phoneCall}>
+                                <Entypo name="phone" size={28} color={Colors.ocean.primary} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{height: 40, width: 40, borderRadius: 20, backgroundColor: 'white'}}>
+                                <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={textMessage}>
+                                    <MaterialIcons name="textsms" size={28} color={Colors.ocean.primary}/>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{height: 40, width: 40, borderRadius: 20, backgroundColor: 'white'}}>
+                                <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={sendEmail}>
+                                <MaterialCommunityIcons name="email-check" size={24} color={Colors.ocean.primary} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{height: 40, width: 40, borderRadius: 20, backgroundColor: 'white'}}>
+                                <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={visitWebpage}>
+                           <Octicons name="browser" size={24} color={Colors.ocean.primary} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
                     <View style={styles.specs}>
                     <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Specialties and Certifications</MTBoldText>
@@ -181,11 +227,18 @@ const ProfessionalUserShowPage = (props) => {
                         {thisExpert.inPersonMeetStatus ? <MTMediumText>Offers In Person Meetings</MTMediumText> : null }
                     </View>
                     <View style={styles.contact}>
+                    <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Company Location</MTBoldText>
+                        <MTMediumText>
+                            {thisExpert.companyAddress}, {thisExpert.companyZipCode}
+                        </MTMediumText>
+                    </View>
+                    <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>This expert offers {thisExpert.pricingModel} price deals.</MTBoldText>
                         <MTMediumText>Rates from the expert: {thisExpert.price} $</MTMediumText>
                     </View>
                     <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>You Matched On</MTBoldText>
+                            <MTBoldText>You had a match percentage of {thisExpert.dynamicMeyersBriggsPercentage}%</MTBoldText>
                             {matchedOnObject.langs.length > 0 ? <MTBoldText>Languages Offered: {matchedOnObject.langs.map(lang => <MTLightText>{lang + ", "}</MTLightText>)}</MTBoldText> : null}
                             {matchedOnObject.religiousPref.length > 0 ? <MTBoldText>Religious Preference: <MTLightText>{matchedOnObject.religiousPref}</MTLightText></MTBoldText> : null}
                             {matchedOnObject.race.length > 0 ? <MTBoldText>Self Identifies as <MTLightText>{matchedOnObject.race}</MTLightText></MTBoldText> : null}
@@ -255,7 +308,7 @@ const styles = StyleSheet.create({
     },
     header: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height / 6,
+        height: Dimensions.get('window').height / 10,
         padding: 10,
         flexDirection: 'row',
         backgroundColor: Colors.ocean.secondary,

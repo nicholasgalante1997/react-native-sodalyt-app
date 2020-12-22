@@ -193,9 +193,6 @@ const EmailGatherScreen = (props) => {
                 <MTBoldText style={styles.textSmall}>
                     One tap sign in coming soon!
                 </MTBoldText>
-                <MTBoldText style={styles.textSmall}>
-                    For now, tap the email icon to register!
-                </MTBoldText>
                 <View style={styles.buttonHolder}>
                     <AntDesign 
                     name="facebook-square" 
