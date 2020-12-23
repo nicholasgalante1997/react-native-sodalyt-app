@@ -7,7 +7,7 @@ import MTMediumText from '../components/custom/MTMediumText';
 import MTLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 import Modal from 'react-native-modal'
-import { Entypo, Feather, FontAwesome5, FontAwesome, MaterialIcons, MaterialCommunityIcons, Ionicons, Octicons} from '@expo/vector-icons'; 
+import { Entypo, Feather, FontAwesome5, AntDesign, MaterialIcons, MaterialCommunityIcons, Ionicons, Octicons} from '@expo/vector-icons'; 
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
 import CustomAlert from '../components/custom/CustomDevelopmentAlert'
@@ -181,12 +181,10 @@ const ProfessionalUserShowPage = (props) => {
                     <MTBoldText style={styles.headerText}>
                             {thisExpert.companyName} {thisExpert.sodalytVerified ? <Feather name="check-circle" size={24} color="white" /> : null} 
                     </MTBoldText>
-                    <View style={{justifyContent: 'center', alignItems: 'center', width: '60%', height: '40%', backgroundColor: 'white', borderRadius: 15, marginTop: 10, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3,}}>
-                        <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center',}} onPress={() => Alert.alert("Great!", "You've added this professional to your favorites!", [{style: 'default', text: 'Ok'}])}>
-                            <MTBoldText style={{color: Colors.ocean.primary}}>
-                                Click Here to Favorite
-                            </MTBoldText>
-
+                    <View style={{justifyContent: 'flex-start', alignItems: 'center', borderRadius: 15, flexDirection: 'row'}}>
+                        <MTBoldText>{thisExpert.companyDescription}</MTBoldText>
+                        <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', marginLeft: 10}} onPress={() => Alert.alert("Great!", "You've added this professional to your favorites!", [{style: 'default', text: 'Ok'}])}>
+                            <AntDesign name="heart" size={32} color="white" />
                         </TouchableOpacity>
                     </View>
                 </View>
