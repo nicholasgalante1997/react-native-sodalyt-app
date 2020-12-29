@@ -182,7 +182,9 @@ const ProfessionalUserShowPage = (props) => {
                             {thisExpert.companyName} {thisExpert.sodalytVerified ? <Feather name="check-circle" size={24} color="white" /> : null} 
                     </MTBoldText>
                     <View style={{justifyContent: 'flex-start', alignItems: 'center', borderRadius: 15, flexDirection: 'row'}}>
-                        <MTBoldText>{thisExpert.companyDescription}</MTBoldText>
+                        <View  style={{justifyContent: 'center', width: '70%'}}>
+                            <MTBoldText>{thisExpert.companyDescription}</MTBoldText>
+                        </View>
                         <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', marginLeft: 10}} onPress={() => Alert.alert("Great!", "You've added this professional to your favorites!", [{style: 'default', text: 'Ok'}])}>
                             <AntDesign name="heart" size={32} color="white" />
                         </TouchableOpacity>

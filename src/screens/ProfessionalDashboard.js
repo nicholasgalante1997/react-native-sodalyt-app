@@ -150,12 +150,12 @@ const ProfessionalDashboard = (props) => {
                     <MTBoldText style={styles.headerText}>
                             {proUserInfo.companyName} { proUserInfo.sodalytVerified ? <Feather name="check-circle" size={24} color="white" /> : null} 
                     </MTBoldText>
-                    <View style={{justifyContent: 'center', alignItems: 'center', width: '60%', height: '40%', backgroundColor: 'white', borderRadius: 15, marginTop: 10, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3,}}>
-                        <TouchableOpacity style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center',}} onPress={() => Alert.alert("Great!", "You've added this professional to your favorites!", [{style: 'default', text: 'Ok'}])}>
-                            <MTBoldText style={{color: Colors.ocean.primary}}>
-                                Click Here to Favorite
-                            </MTBoldText>
-
+                    <View style={{justifyContent: 'flex-start', alignItems: 'center', borderRadius: 15, flexDirection: 'row'}}>
+                        <View  style={{justifyContent: 'center', alignItems: 'center', width: '70%'}}>
+                            <MTBoldText>{thisExpert.companyDescription}</MTBoldText>
+                        </View>
+                        <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', marginLeft: 10}} onPress={() =>{}} >
+                            <AntDesign name="heart" size={32} color="white" />
                         </TouchableOpacity>
                     </View>
                 </View>
