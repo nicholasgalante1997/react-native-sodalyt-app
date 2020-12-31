@@ -20,6 +20,7 @@ const LandingScreen = (props) => {
                         style={styles.image} 
                         resizeMode='cover' />
                     </View>
+                {/* testing */}
                     <View style={styles.imageContainer}>
                         <Image 
                         source={require('../images/logo_w_text.png')}
