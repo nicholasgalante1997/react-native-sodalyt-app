@@ -3,7 +3,7 @@ import {AppLoading} from 'expo'
 import * as Font from 'expo-font'
 
 import {createStore} from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension';
+// import { composeWithDevTools } from 'redux-devtools-extension';
 import {Provider} from 'react-redux'
 import rootReducer from './src/store/reducers/reducers'
 
@@ -24,7 +24,8 @@ Amplify.configure(awsconfig)
 enableScreens();
 
 // Redux Store
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+// const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(rootReducer)
 
 // Custom Fonts
 const fetchFonts = () => {

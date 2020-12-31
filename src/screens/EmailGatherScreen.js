@@ -19,6 +19,8 @@ const EmailGatherScreen = (props) => {
 
     const isProfessional = props.navigation.getParam('isProfessional')
 
+    // We use isProfessional based on different screens they entered
+    // accountType keeps track of whether person is professional
     const demoUserInfo = {
         email: "",
         password: "",
@@ -71,15 +73,19 @@ const EmailGatherScreen = (props) => {
         }
     }
 
+    // Handles the navigation 
+    // If the validity is good, then we handle going to the next page
     const pushToStoryPage = () => {
         dispatch(actions.setCurrentUser(userInfo))
         props.navigation.navigate({routeName: 'StoryCardPage'})
     }
 
+    // If the validity is not met, receive the alert
     const checkValidityAndPushtoStoryPage = () => {
         if (checkValidity()){
         pushToStoryPage()
         } else {
+            // style: 'default' makes the button turn off the alert by default. Only when using Alert.alert
             Alert.alert(
                 "Hey there", "Emails can't contain spaces and they must be valid email addresses. Passwords must be at least 4 characters.", [{text: "Dismiss", style: 'default'}]
             )
@@ -104,7 +110,8 @@ const EmailGatherScreen = (props) => {
     // const pushToNewUserEmailScreen = () => {
     //     props.navigation.navigate({routeName: 'NewUserEmailSignUp'})
     // }
-
+    
+    // Create a function to change state hook
     const modalOn = () => {
         setModalVisible(true)
     }
@@ -113,10 +120,10 @@ const EmailGatherScreen = (props) => {
         setModalVisible(false)
     }
 
-    console.log(isProfessional)
-    console.log(userInfo)
+
 
     return ( 
+        // Everything without keyboard dismalls would instead be TouchableOpacity
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1}}>
         <View style={styles.container}>
             <Modal isVisible={modalVisible}>
@@ -124,18 +131,19 @@ const EmailGatherScreen = (props) => {
             </Modal>
           {  isProfessional ?  
           <View style={styles.banner}>
-                <MTBoldText style={{textAlign: 'center', marginHorizontal: Dimensions.get('window').width / 6}}>Welcome to Sodalyt, where we send you customers that are right for you.</MTBoldText>
-                <MTBoldText style={{textAlign: 'center', marginHorizontal: Dimensions.get('window').width / 12, marginTop: 20}}>To get your name out there, we are going to ask you to login, complete a form, and play a 3 minute game. </MTBoldText>
+                <MTBoldText style={styles.topBannerText}>Welcome to Sodalyt, where we send you customers that are right for you.</MTBoldText>
+                <MTBoldText style={topBannerInstructionsText}>To get your name out there, we are going to ask you to login, complete a form, and play a 3 minute game. </MTBoldText>
             </View>
            : <View style={styles.banner}>
                 <MTBoldText>To find the professional just right for you, we will use AI power to match you on personality, culture, and service. It will take about 3 minutes total.</MTBoldText>
+                {/* Used to create extra space on screen */}
                 <MTBoldText></MTBoldText>
             </View>
            
         }
             <View style={styles.signInContainer}>
     { isProfessional ? null :  <MTBoldText>Let us know you're a real person by signing in.</MTBoldText> }
-                <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
+                <View style={styles.inputFirstNameContainer}>
                 <Input 
                 style={{fontFamily: 'tommy-reg', borderBottomWidth: 0, width: Dimensions.get('window').width * 0.65}} 
                 blurOnSubmit 
@@ -148,7 +156,8 @@ const EmailGatherScreen = (props) => {
                 placeholderTextColor='#C7CBCE'
                 />
             </View>
-            <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
+            <View style={styles.inputContainer}>
+            {/* value of input will tell me which input handles which registration form */}
                 <Input 
                 style={{fontFamily: 'tommy-reg', borderBottomWidth: 0, width: Dimensions.get('window').width * 0.65}} 
                 blurOnSubmit 
@@ -161,7 +170,7 @@ const EmailGatherScreen = (props) => {
               placeholderTextColor='#C7CBCE'
                 />
             </View>
-            <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
+            <View style={styles.inputContainer}>
                 <Input 
                 style={{fontFamily: 'tommy-reg', borderBottomWidth: 0, width: Dimensions.get('window').width * 0.65}} 
                 blurOnSubmit 
@@ -174,7 +183,7 @@ const EmailGatherScreen = (props) => {
                 placeholderTextColor='#C7CBCE'
                 />
             </View>
-             <View style={{backgroundColor: 'white', borderRadius: 15, padding: 3, marginTop: 10}}>
+             <View style={styles.inputContainer}>
                 <Input 
                style={{fontFamily: 'tommy-reg', borderBottomWidth: 0, width: Dimensions.get('window').width * 0.65}} 
                 secureTextEntry={true}
@@ -193,6 +202,8 @@ const EmailGatherScreen = (props) => {
                 <MTBoldText style={styles.textSmall}>
                     One tap sign in coming soon!
                 </MTBoldText>
+                {/* click facebook/google/insta icons to show an alert via modal
+                click the thumb to remove the modal. Modal works like an alert */}
                 <View style={styles.buttonHolder}>
                     <AntDesign 
                     name="facebook-square" 
@@ -214,8 +225,11 @@ const EmailGatherScreen = (props) => {
                     onPress={modalOn} />
                 </View>
             </View>
+            {/* Where we send them next. Depending on if professional or customer */}
+            {/* 2 lines below for button that says start */}
             <TouchableWithoutFeedback onPress={isProfessional ? checkValidityAndPushToProfSurveys : checkValidityAndPushtoStoryPage}>
                 <View style={{alignItems: 'center'}}>
+            {/* Holds image */}
             <View style={styles.imageContainer}>
             <Image 
                 source={require('../images/circle-logo.png')} 
@@ -281,6 +295,27 @@ const styles = StyleSheet.create({
     arrowHolder: {
         flexDirection: 'row',
         paddingVertical: 10
+    },
+    topBannerText: {
+        textAlign: 'center',
+        marginHorizontal: Dimensions.get('window').width / 6
+    },
+    topBannerInstructionsText: {
+        textAlign: 'center', 
+        marginHorizontal: Dimensions.get('window').width / 12, 
+        marginTop: 20
+    }, 
+    inputFirstNameContainer: {
+        backgroundColor: 'white',
+        borderRadius: 15,
+        padding: 3, 
+        marginTop: 10
+    },
+    inputContainer: {
+    backgroundColor: 'white', 
+    borderRadius: 15, 
+    padding: 3, 
+    marginTop: 10
     }
 })
  

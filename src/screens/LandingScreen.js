@@ -13,7 +13,7 @@ const LandingScreen = (props) => {
                     props.navigation.navigate({routeName: 'LandingSearchScreen'})
                 }
             }>
-                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <View style={styles.sodalytImageText}>
                     <View style={styles.headerImageContainer}>
                         <Image 
                         source={require('../images/box_crest_logo.png')}
@@ -38,6 +38,10 @@ const LandingScreen = (props) => {
  
 
 const styles = StyleSheet.create({
+    sodalytImageText: {
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
     headerImageContainer: {
         borderRadius: Dimensions.get('window').width * 0.7 / 18,
         width: Dimensions.get('window').width * 0.7,

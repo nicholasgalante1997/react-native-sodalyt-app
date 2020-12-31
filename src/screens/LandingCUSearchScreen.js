@@ -27,17 +27,18 @@ const LandingCUSearchScreen = (props) => {
 
 
     return ( 
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.screen}>
+        {/* Need this for keyboard inputs to dismiss the Keyboard.dismiss onPress to remove keyboard */}
         <View style={styles.screen}>
             <View style={styles.message}>
-                <MTMediumText style={{fontSize: 28, marginBottom: 15,  textAlign: 'center'}}>
+                <MTMediumText style={styles.helpFindText}>
                         Who can we help you find?
                 </MTMediumText>
-                <MTMediumText style={{fontSize: 14, textAlign: 'center'}}>
+                <MTMediumText style={styles.typeSearchText}>
                         Type your search or use our preselected options.
                 </MTMediumText>
             </View>
-            <View style={{width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}} >
+            <View style={styles.searchContainer} >
             <View style={styles.search}>
                 <SearchBar 
                     inputSpecific={
@@ -72,6 +73,7 @@ const LandingCUSearchScreen = (props) => {
                 />
             </View> : null
         }
+        {/* for two circles for current user and professional  */}
         <View style={styles.cardHolder}>
             <TouchableOpacity 
             style={styles.gridItem} 
@@ -110,16 +112,22 @@ const LandingCUSearchScreen = (props) => {
                 </View>
         </TouchableOpacity>
         </View>
-            <View style={{justifyContent: 'center', alignItems: 'center', width: '100%', height: 100, marginTop: 20}}> 
+            <View style={styles.carouselContainer}> 
                     <Carousel dataArray={VerticalCategories} />
             </View>
-            <TouchableOpacity style={Platform.OS === 'ios' ? Dimensions.get('window').height > 750 ? {position: 'absolute', bottom: Dimensions.get('window').height / 2, zIndex: -1} :  {position: 'absolute', bottom: 10, right: 10} : {marginTop: 40}} onPress={handlePush}>
+            {/* first terniary for ios, second ternary of the size of the screen
+            if the size of the screen is greater than 750, it is the first style object
+            If it's an iphone that's less than 750px, it's the second style object.
+            If it's an android, 3rd style object. */}
+            {/* zIndex when you set implicit zIndex, use negative or positive numbers so things can show up on top or behind each other
+            Higher zIndex means shows up, stacks on top. Lower zIndex falls behind views with a higher zIndex */}
+            <TouchableOpacity style={Platform.OS === 'ios' ? Dimensions.get('window').height > 750 ? {position: 'absolute', bottom: Dimensions.get('window').height / 2, zIndex: -1} :  {position: 'absolute', bottom: Dimensions.get('window').height / 2} : {marginTop: 40}} onPress={handlePush}>
                     {searchTerm.length > 0 ? <View style={{justifyContent: 'center', alignItems: 'center'}}>
                         <View style={styles.searchIconButton}>
                         <Ionicons name="md-search" size={38} color='white' />
                         </View>
-                        <View style={{width: '75%', marginTop: 10}}>
-                            <MTBoldText style={{textAlign: 'center'}}>
+                        <View style={styles.firstTimeUserTextContainer}>
+                            <MTBoldText style={styles.firstTimeUserText}>
                                 If youre a first time user, select the search icon to move forward.
                             </MTBoldText>
                         </View>
@@ -131,6 +139,35 @@ const LandingCUSearchScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
+    firstTimeUserText: {
+        textAlign: 'center'
+    },
+    firstTimeUserTextContainer: {
+        width: '75%', 
+        marginTop: 10
+    },
+    carouselContainer: {
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        width: '100%', 
+        height: 100, 
+        marginTop: 20
+    },
+    searchContainer: {
+        width: '100%', 
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    helpSearchText: {
+        fontSize: 14, 
+        textAlign: 'center'
+    },
+    helpFindText: {
+        fontSize: 28,
+        marginBottom: 15,  
+        textAlign: 'center'
+    },
     cardHolder: {
         flexDirection: 'row',
         marginTop: 150,
