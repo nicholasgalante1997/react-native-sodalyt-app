@@ -13,13 +13,18 @@ import MTMediumText from '../components/custom/MTMediumText';
 
 const PersonalityResultPage = (props) => {
 
+    //the returned object from the post sent to back end
     const returnedObject = props.navigation.getParam('personalityResult')
     const [modalVisible, setModalVisible] = useState(false)
+    //retrieve search term from state we kept earlier
     const searchedTerm = useSelector(state => state.search)
+    //Professionals have additional info compared to customer
     const newProfInfo = useSelector(state => state.newProfInfo)
+    //Basic info for customer and professional
     const userInfo = useSelector(state => state.currentUser)
     const dispatch = useDispatch()
 
+    //Professional versus Customer info 
     let completeProfessionalInformation = {...userInfo, ...newProfInfo, ...returnedObject}
     let dispatchObject;
     const completeCustomerInformation = {...userInfo, ...returnedObject}
@@ -59,6 +64,7 @@ const PersonalityResultPage = (props) => {
         "sodalytType": completeProfessionalInformation.sodalytPreference.slice(4)
     } : null
 
+    //Post with Professional info to update their information 
     const updateWithFullProfInfo = async () => {
         try {
 
@@ -87,7 +93,7 @@ const PersonalityResultPage = (props) => {
     useEffect(() => {
         if (userInfo.accountType === 'professional'){
             updateWithFullProfInfo().then(alpha => {
-                console.log(alpha, "alpha")
+                // console.log(alpha, "alpha")
                dispatchObject = {...completeProfessionalInformation, ...alpha}
             })
         } else {
@@ -226,16 +232,24 @@ const PersonalityResultPage = (props) => {
         }
     }
 
+    //calling functions in code above
     typeHandler(returnedObject.MBTI)
     iconHandler()
+    //Checking if dispatchObject even exists. 
+    //If it does not exist, we know its a custoer info with 
+    //Set up a details object in redux
     dispatch(actions.setCustomerDetails(returnedObject))
+    //If professional, they have more info and put them here
+    //dispatchObject only exists if you are professional profile
     if (dispatchObject){
         dispatch(actions.addToProfInfo(dispatchObject))
     }
 
+
     return ( 
         <View style={styles.screen}>
             <Modal visible={modalVisible}>
+                {/* Custom component  */}
                 <LearnMoreModal icon={iconName} archetype={archetype} archetypeDescription={longFormDesc} onPress={modalOff} />
             </Modal>
             <View>
@@ -247,12 +261,14 @@ const PersonalityResultPage = (props) => {
                 <MTBoldText style={{padding: 20, textAlign: 'center'}}>These are individuals with the Meyers-Brigg type </MTBoldText>
                 <MTBoldText  style={{padding: 8, textAlign: 'center', fontSize: 24}}>{returnedObject["MBTI"]}</MTBoldText> */}
             </View>
+            {/* An icon that corresponds to their type.  */}
             <MaterialCommunityIcons 
             name={iconName} size={48} style={{marginTop: 10, padding: 5}} color="white" />
             <MTBoldText style={{padding: 20, textAlign: 'center'}}>{description}</MTBoldText>
             <View style={{padding: 18, justifyContent: 'center', alignItems: 'center'}}>
                 <MTMediumText style={{fontSize: 14}}>{longFormDesc}</MTMediumText>
             </View>
+            {/* Takes customer and professional to different places  */}
           {  userInfo.accountType === 'customer' ? 
           <View style={styles.nextCont}>
                 <CustomButton onPress={() => {

@@ -5,7 +5,7 @@ import MTLightText from './MTLightText'
 import MTBoldText from './MTBoldText'
 import { Ionicons } from '@expo/vector-icons'; 
 
-
+// View with construction icon, Still under development message 
 const CustomAlert = (props) => {
 
     return ( 

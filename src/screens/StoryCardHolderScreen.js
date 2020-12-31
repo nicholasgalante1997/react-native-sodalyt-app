@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, FlatList, Dimensions} from 'react-native'
+//For alert to mention feature isn't there yet
 import Modal from 'react-native-modal'
 import CustomAlert from '../components/custom/CustomDevelopmentAlert'
 import DATA from '../constants/data'
@@ -24,8 +25,13 @@ const StoryCardScreen = (props) => {
         setModalVisible(false)
     }
 
+    // had to pass down navigation props. only screens receive navigation props 
+    // FlatList automatically. 
+    // itemData is automatically rendered by Flatilist. itemData.item used for the object passed in for each iteration
     const renderGridItem = (itemData) => {
+        console.log(itemData, itemData.item)
         return (<StoryTile modalOn={modalOn} navigation={props.navigation} story={{...itemData.item}} title={itemData.item.story_title} icon={itemData.item.icon} />)
+        
     }
 
     return ( 
@@ -48,6 +54,14 @@ const StoryCardScreen = (props) => {
             </MTBoldText>
             }
             <View>
+            {/* Preferable choice to list things and optimizes */}
+            {/* Has props to fetch more users. Back end primed to receive 10 users at a time  */}
+            {/* Every 10 users, they load next 10 */}
+            {/* keyExtractor has item as first argument, index as second.  */}
+            {/* keyExtractor is for key, but used for id for components so they can be unique */}
+            {/* data is what the FlatList is mapping through, data always must be an array     */}
+            {/* numColumns defaults to 1, how many columns you want per row  */}
+            {/* renderItem is the callback function that is returning inside the map */}
                 <FlatList 
                 keyExtractor={(item, index) => index}
                 data={storiesArray} 

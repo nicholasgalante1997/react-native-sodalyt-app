@@ -10,35 +10,49 @@ import {useSelector, useDispatch} from 'react-redux'
 import {addAnswer, resetAnswers, setCurrentUser} from '../../store/actions/actionCreator'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+//this is a screen for questions for each screen
 const QuestionRenderer = (props) => {
 
+    //always have to pick up the param from navigation.
+    //this was passed in from StoryCardHolderScreen as param:  in key/value pair 
+    //Do this to avoid passing
     const storyInfo = props.navigation.getParam('storyInfo')
     const { questions } = storyInfo;
 
-    let content = null;
-    let bannerContent = null;
-    let flightAnimation = null;
-    let answerScrollList = null;
     let thisQuestion;
 
     const dispatch = useDispatch();
-
+    //start with first question with id of 1
     const [currentQuestionOrder, setCurrentQuestionOrder] = useState(1)
 
+    //This is where we hold selected answer in local state before sending to Redux
     const [chosenAnswer, setChosenAnswer] = useState(null)
+    // Redux slice that saves the chosen answers
+    // userSelector, argument is the entire state, the return value is the slice of state that you want
     const selectedAnswersArray = useSelector(state => state.answers)
     const userInfo = useSelector(state => state.currentUser)
+    // Because back end takes a full name. Concat first and last name with a space 
     const localConcatName  = userInfo.firstName.concat(" ", userInfo.lastName)
 
+    // Pushed answers into this user's selected answers array. One answer at a time. 
+    // Persisting this to our redux before persisting to backend. 
+    // Save all answers first in front end, then send them to back end when finished with story questions
     const pushAnswerToRedux = () => {
         dispatch(addAnswer(chosenAnswer));
     }
     
+    // Finds what questions we are on
+    // Filters entire questions array and only returns the one item, not in the array, in the object itself 
     const findThisQuestion = (orderNumber) => {
         let found = questions.filter(question => question.order === orderNumber)
+        //filter returns an array. We want to return the object
         return found[0]
     }
 
+    // At question 7 about negotiaton tactic. Whatever answer they choose 
+    // Will determine question 7 variations. 
+    // They all wind up going back to question 8. 
+    // Also responsible for handling last question
     const switchContent = (chosenAnswerId) => {
         switch(chosenAnswerId){
 
@@ -205,8 +219,9 @@ const QuestionRenderer = (props) => {
         }
     }
 
+    //this is the way AWS prefers for fetches to be sent 
     const postToSageMakerEndPoint = (answersObj) => {
-        // instantiate a headers object
+        // instantiate a headers object with JS built in Headers class
         let myHeaders = new Headers();
         // add content type header to object
         myHeaders.append("Content-Type", "application/json");
@@ -224,11 +239,12 @@ const QuestionRenderer = (props) => {
         fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getmbti", requestOptions)
         .then(response => response.json())
         .then(result => {
-            
+            //pass entire result into a params     
             props.navigation.navigate({routeName: 'PersonalityResultPage', params: {
                 personalityResult: result
             }})
 
+            //reset the board of the game to initial state at start of a game.
             setCurrentQuestionOrder(1)
             setChosenAnswer(null)
             resetReduxAnswers()
@@ -236,6 +252,7 @@ const QuestionRenderer = (props) => {
         .catch(error => console.log('error', error))
     }
 
+    //If any two Kearsey answers same, then that is their Sodalyt preference
     const generateSingleKearseyPreference = (prefOne, prefTwo, prefThree) => {
         if (prefOne.raw_value === prefTwo.raw_value){
             return prefTwo.raw_value
@@ -248,6 +265,7 @@ const QuestionRenderer = (props) => {
         }
     }
 
+    // What we send to Marco. 
     const convertToSodalytPreference = (singleKearseyPreference) => {
         if (singleKearseyPreference === "The Artist/The Explorer"){
             return "The Creator"
@@ -260,6 +278,7 @@ const QuestionRenderer = (props) => {
         }
     }
 
+    //at the end of quiz, we want to send a post with the answers to back end
     const cleanUpAfterLastQuestion = () => {
 
         const currentAnswerList = [...selectedAnswersArray]
@@ -271,7 +290,7 @@ const QuestionRenderer = (props) => {
         const intuitionArray = []
         const thinkingArray = []
         const feelingArray = []
-        
+        // Using answers to kearsey questions
         let kearseyOne = selectedAnswersArray.filter(answer => answer.question_id === 3)[0]
         let kearseyTwo = selectedAnswersArray.filter(answer => answer.question_id === 6)[0]
         let kearseyThree = selectedAnswersArray.filter(answer => answer.question_id === 7)[0]
@@ -281,6 +300,7 @@ const QuestionRenderer = (props) => {
         let resilience = selectedAnswersArray.filter(a => a.question_id === 32)[0]
         let resp = selectedAnswersArray.filter(a => a.question_id === 28)[0]
 
+        //map through all the answers and push different result into its own selected array
         currentAnswerList.forEach(answer => {
             if (answer.raw_value === "E") {
                 extrovertArray.push(answer)
@@ -308,6 +328,8 @@ const QuestionRenderer = (props) => {
             }
         })
 
+        //this is being sent to Marco's back end
+        // userInfo from form screen
         const returnData = {
             "accountType": userInfo.accountType,
             "name": localConcatName,
@@ -316,6 +338,7 @@ const QuestionRenderer = (props) => {
             // "kearsey-one": kearseyOne.raw_value,
             // "kearsey-two": kearseyTwo.raw_value,
             // "kearsey-three": kearseyThree.raw_value,
+            //chaining sodalytPreference with respect to kearsey
             "sodalytPreference": convertToSodalytPreference(generateSingleKearseyPreference(kearseyOne, kearseyTwo, kearseyThree)),
             "respect": respect.text,
             "responsibility": resp.text,
@@ -340,86 +363,63 @@ const QuestionRenderer = (props) => {
         dispatch(resetAnswers())
     }
 
+    //figures out chosen answer, sends to Redux, calls switchContent to update question number based on answer selected
     const pushTo = () => {
         const chosenAnswerId = chosenAnswer.id 
         pushAnswerToRedux();
         switchContent(chosenAnswerId);
     }
 
-    const generateDynamicQuestionBanner = (thisQuestion) => {
-        return (
-           <View>
 
-           </View>
-        )
-    }
-
-    const generateAnimationSection = (thisQuestion) => {
-        return (
-            <View>
-
-            </View>
-        )
-    }
-
-    const renderAnswerItem = (itemData) => {
-        return (
-            <View>
-
-            </View>
-        )
-    }
-
-    const renderAnswerList = (thisQuestion) => {
-        <FlatList />
-    }
-
-    const defaultBinaryQuestionLayout = (thisQuestion) => {
-        return (
-            <View style={styles.defaultBinary}>
-            {/* BANNER */}
-                <View style={styles.bannerWrapper}>
-                    <View style={styles.banner}>
-                        <MTMediumText style={styles.bannerText}>
-                            {thisQuestion.prompt}
-                        </MTMediumText>
-                    </View>
-                </View>
-            {/* ANIMATION */}
-                <Animatable.View 
-                animation="lightSpeedOut" 
-                iterationCount={1}
-                direction="alternate" 
-                style={styles.iconHolder}>
-                    <FontAwesome5 
-                    name="space-shuttle" 
-                    size={92} 
-                    color="white" />
-                </Animatable.View>
-            {/* ANSWERS */}
-            <ScrollView>
-                <View style={styles.answerContainer}>
-                    { thisQuestion.answers.map(answer => 
-                        <View key={answer.id} style={styles.buttonHolder}>
-                            <MainButton 
-                            style={chosenAnswer ? 
-                            chosenAnswer.id === answer.id ? 
-                                {backgroundColor: Colors.ocean.secondary} 
-                                : {backgroundColor: Colors.rugged.secondary}
-                            : {backgroundColor: Colors.rugged.secondary}} 
-                            onPress={() => setChosenAnswer(answer)}>
-                                {answer.text}
-                            </MainButton>
-                        </View>
-                    )}
-                </View>
-            </ScrollView>
-        </View>
-        )
-    }
+    // const defaultBinaryQuestionLayout = (thisQuestion) => {
+    //     return (
+    //         <View style={styles.defaultBinary}>
+    //         {/* BANNER */}
+    //             <View style={styles.bannerWrapper}>
+    //                 <View style={styles.banner}>
+    //                     <MTMediumText style={styles.bannerText}>
+    //                         {thisQuestion.prompt}
+    //                     </MTMediumText>
+    //                 </View>
+    //             </View>
+    //         {/* ANIMATION */}
+    //             <Animatable.View 
+    //             animation="lightSpeedOut" 
+    //             iterationCount={1}
+    //             direction="alternate" 
+    //             style={styles.iconHolder}>
+    //                 <FontAwesome5 
+    //                 name="space-shuttle" 
+    //                 size={92} 
+    //                 color="white" />
+    //             </Animatable.View>
+    //         {/* ANSWERS */}
+    //         {/* This is where chosen answers matter */}
+    //         <ScrollView>
+    //             <View style={styles.answerContainer}>
+    //                 {/* mapping through answers of questions we are on and each answer becomes a MainButton  */}
+    //                 {/* Changes color of answer you are choosing before submitting answer */}
+    //                 { thisQuestion.answers.map(answer => 
+    //                     <View key={answer.id} style={styles.buttonHolder}>
+    //                         <MainButton 
+    //                         style={chosenAnswer ? 
+    //                         chosenAnswer.id === answer.id ? 
+    //                             {backgroundColor: Colors.ocean.secondary} 
+    //                             : {backgroundColor: Colors.rugged.secondary}
+    //                         : {backgroundColor: Colors.rugged.secondary}} 
+    //                         onPress={() => setChosenAnswer(answer)}>
+    //                             {answer.text}
+    //                         </MainButton>
+    //                     </View>
+    //                 )}
+    //             </View>
+    //         </ScrollView>
+    //     </View>
+    //     )
+    // }
 
     thisQuestion = findThisQuestion(currentQuestionOrder)
-    content = defaultBinaryQuestionLayout(thisQuestion)
+    // content = defaultBinaryQuestionLayout(thisQuestion)
 
     return (
         // WHOLE SCREEN
@@ -429,7 +429,6 @@ const QuestionRenderer = (props) => {
                 <MTMediumText style={styles.topText}>{storyInfo.story_title}</MTMediumText>
             </View>
             {/* DYNAMIC CONTENT */}
-            {/* {content} */}
             <View style={styles.updateQuestionBanner}>
                <MTMediumText style={{textAlign: 'center'}}>{thisQuestion.prompt}</MTMediumText> 
             </View>

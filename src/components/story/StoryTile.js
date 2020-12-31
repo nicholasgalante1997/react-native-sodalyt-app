@@ -4,7 +4,13 @@ import {Ionicons} from '@expo/vector-icons'
 import Colors from '../../constants/Colors'
 import MTBoldText from '../custom/MTBoldText'
 
+//Mars Exploration, Atlantic Discovery, New Settlers on Plum, Heights of History 
+//Card options. Imported by StoryCardHolderScreen
 const StoryTile = (props) => {
+
+    //navigation.nativate takes in two object key/value pairs 
+    //routeName where you're going 
+    //params are objects you are sending over
 
     const onPress = () => {
       if (props.story.story_id === 1){  

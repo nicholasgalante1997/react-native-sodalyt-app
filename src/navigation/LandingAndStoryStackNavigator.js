@@ -45,6 +45,7 @@ const FormStackNavigator = createStackNavigator({
     ProfessionalSurveyScreenOne: {
         screen: ProfessionalSurveyScreenOne,
         navigationOptions: {
+            // automatically sets to headerLeft is a back button. Removing that here.
             headerLeft: () => null,
             headerTitle: "Company Registration",
             headerTitleStyle: {
