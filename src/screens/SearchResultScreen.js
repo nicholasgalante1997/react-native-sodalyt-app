@@ -45,9 +45,11 @@ const SearchResultScreen = props => {
 
   // current user preferences returned from last post
   const currentUserDetails = useSelector (state => state.userDetails);
+  //Raw MBTI score
   const [personalityType, setPersonalityType] = useState (
     currentUserDetails.MBTI
   );
+  //Builder or creator archetypal groups
   const [sodalytPref, setSodalytPref] = useState (
     currentUserDetails.sodalytPreference
   );
@@ -76,6 +78,8 @@ const SearchResultScreen = props => {
   const [servicePersonalTrainerA4, setServicePersonalTrainerA4] = useState (false);
   const [servicePersonalTrainerA5, setServicePersonalTrainerA5] = useState ( false);
   // const [servicePersonalTrainerA6, setServicePersonalTrainerA6] = useState(false)
+  //true because always start with psychological match 
+  //if false turns off the percentage matches
   const [sodalytTypingActive, setSodalytTypingActive] = useState (true);
   const [initialLoad, setInitialLoad] = useState (false);
 
@@ -90,11 +94,16 @@ const SearchResultScreen = props => {
 
   // FUNCTIONAL CODE
 
+  //endpoint where search term comes to play
+  //standard AWS form
+  //Fires on the actual load of the page after the personality test
+  //Ends up in the use effect
   const tryCatchFetchForUsers = async function () {
     try {
       let headers = new Headers ();
       headers.append ('Content-Type', 'application/json');
 
+      //Sending to back end
       let content = JSON.stringify ({
         searchTerm: searchedTerm.toLowerCase (),
         currentUserMbti: personalityType,
@@ -119,6 +128,8 @@ const SearchResultScreen = props => {
     }
   };
 
+  //Called when someone clicks the search button at the top
+  //Different than the one that fires on the actual load
   const fetchSearchedForUsers = () => {
     let headers = new Headers ();
     headers.append ('Content-Type', 'application/json');
@@ -146,19 +157,26 @@ const SearchResultScreen = props => {
       .catch (err => console.log (err));
   };
 
+
   useEffect (
     () => {
       // fetchSearchedForUsers()
       tryCatchFetchForUsers ().then (profUsers => {
+        //Turns off placeholders 
         setInitialLoad (true);
+        //Send the returned array of professional users to redux
         dispatch (actions.setSearchedExpertsResponse (profUsers));
       });
     },
+    //updates every time searchedTerm changes
     [searchedTerm]
   );
 
+  //Handles everything
   const handleFilterSwitch = () => {
+    //Originally empty array, assign from redux Professional arrays
     filteredProfessionals = [...reduxProfArray];
+    //Managed in redux as well, copy for use here
     const copyOfFilters = {...filterManager};
 
     // Sodalyt Verified
@@ -294,7 +312,7 @@ const SearchResultScreen = props => {
     if (copyOfFilters.service.personalTrainer.traumaInformedPractitioner) {
       filteredProfessionals = filteredProfessionals;
     }
-
+    //Certifications for personal trainers
     if (servicePersonalTrainerA1) {
       filteredProfessionals = filteredProfessionals.filter (prof => {
         if (prof.companyCertifications.includes ('ACSM')) {
@@ -309,6 +327,7 @@ const SearchResultScreen = props => {
       });
     }
 
+    //Certifications for personal trainers
     if (servicePersonalTrainerA2) {
       filteredProfessionals = filteredProfessionals.filter (prof => {
         if (prof.companyCertifications.includes ('ACSM')) {
@@ -437,10 +456,14 @@ const SearchResultScreen = props => {
     //   return filteredProfessionals
   };
 
+  //Event handler for search bar at the top
   const handleNewSearchInput = textInput => {
     setNewSearchValue (textInput);
   };
 
+  //Professionals don't have their own sodalyt types persisted in database
+  //Only thing persisted is personality type
+  //Iterate once and assign them sodalyt Archetype based on MBTIResponse
   const assignSodalytTypes = profUserArray => {
     profUserArray.forEach (prof => {
       if (BuilderTypes.includes (prof.companyMBTIResponse)) {
@@ -458,13 +481,16 @@ const SearchResultScreen = props => {
     });
   };
 
-  const generateKearseyPercentage = sodalytPref => {
-    switch (sodalytPref) {
-      default:
-        return;
-    }
-  };
+  // Not existing now. Could be used if 3 questions factored in
+  // const generateKearseyPercentage = sodalytPref => {
+  //   switch (sodalytPref) {
+  //     default:
+  //       return;
+  //   }
+  // };
 
+  // We put the current users personality type as mbtiType
+  // Check it with other personality types and get percentage of match as a result
   const generateMBTIPercentage = mbtiType => {
     switch (mbtiType) {
       case 'ENTJ':
@@ -1305,6 +1331,8 @@ const SearchResultScreen = props => {
     }
   };
 
+  //See the way cut up professional.
+  //Create dummy review info b/c not professionals yet
   const generateRandomInternetReview = (array) => {
     const arr = [4, 5, 6]
     array.forEach(obj => {
@@ -1313,24 +1341,27 @@ const SearchResultScreen = props => {
     console.log(array)
   }
 
+  //Turning on and off other folders
   const handleCulturalFilterClick = () => {
     setShowPsychologyFilter (false);
     setShowServiceFilter (false);
     setShowCulturalFilter (true);
   };
-
+  //Turning on and off other folders
   const handlePsychologyFilterClick = () => {
     setShowServiceFilter (false);
     setShowCulturalFilter (false);
     setShowPsychologyFilter (true);
   };
 
+  //Turning on and off other folders
   const handleServiceFilterClick = () => {
     setShowPsychologyFilter (false);
     setShowCulturalFilter (false);
     setShowServiceFilter (true);
   };
 
+  //Handles specific personality trainer cases
   const handleServicePersonalTrainerA1Click = () => {
     if (servicePersonalTrainerA1) {
       // if clicked already and we need to turn off, we need to do the opposite
@@ -1430,7 +1461,8 @@ const SearchResultScreen = props => {
   };
 
   // Search Page Specific Components
-
+  //Don't have sodalyt internal reivews. This essentially acts as a dummy feature 
+  //to display the sodalyt ratings 
   const starGenerator = ( rating , returnIcon ) => {
     let a = []
     for (let i=1; i < rating ; i++){
@@ -1439,6 +1471,7 @@ const SearchResultScreen = props => {
     return a
 }
 
+//Generates dummy Sodalyt ratings
   const generateDemoSodalytRating = (array) => {
     const arr = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C"]
     array.forEach(obj => {
@@ -1447,7 +1480,10 @@ const SearchResultScreen = props => {
     })
   }
 
-  // flatlist row item
+
+  // flatlist row item.
+  //This is the renderItem. 
+  //This is what each row of a professional user looks like
   const renderItem = itemData => {
     return (
       <View style={styles.profRow}>
@@ -1532,6 +1568,11 @@ const SearchResultScreen = props => {
     );
   };
 
+  //This is what the cultural filters live on
+  //When cultural filter is set to true, this is displayed.
+  //Not used anywhere else
+  //Custom component, that could be in its own folder, but kept here b/c no props, relying on local state
+  //in this file
   const culturalFilterBar = () => {
     return (
       <View
@@ -1588,6 +1629,7 @@ const SearchResultScreen = props => {
         </View>
         { showLanguageFolder ? 
         <View>
+        {/* EVERY FILTER FUNCTION ABOVE RUNS OFF OF THESE CHECKBOXES */}
           <CheckBox
             checked={filterManager.cultural.language.spanish}
             title="Spanish"
@@ -1897,6 +1939,8 @@ const SearchResultScreen = props => {
     );
   };
 
+  //Same as cultural filter bar, but just holds services:
+  //Personal trainer certifications, price, speciaties and distance
   const serviceFilterBar = () => {
     return (
       <View
@@ -2282,6 +2326,12 @@ const SearchResultScreen = props => {
     );
   };
 
+  //Very important
+  //If the fetch is successful on component load and the redux array is set to 
+  // something greater than 0, we are going to generalMBTI percentage 
+  // We are going to assign the professionals sodalyt types
+  // Goign to give them a demo sodalyt review
+  // Then handleFilterSwitch to filter the professionals who match and display on the page
   if (reduxProfArray.length > 0) {
     generateMBTIPercentage (personalityType);
     assignSodalytTypes (reduxProfArray);
@@ -2339,6 +2389,7 @@ const SearchResultScreen = props => {
                   trackColor={{true: Colors.ocean.primary}}
                 />
               </View>
+              {/* Culture, service and psychological tabs you would click to open folders  */}
               <ScrollView
                 contentContainerStyle={styles.scrollFilters}
                 style={{marginLeft: 10, flexDirection: 'row', height: 50}}
@@ -2475,12 +2526,14 @@ const SearchResultScreen = props => {
             : null}
         </View>
         {/* list  content */}
+        {/* If loaded and professionals filtered, then going to list them all  */}
         {initialLoad
           ? filteredProfessionals.length > 0
               ? <FlatList
                   data={
                     sodalytTypingActive
                       ? filteredProfessionals
+                      //If Sodalyt type is active then MeyersBriggs are sorted to match percentage
                           .sort ((a, b) => {
                             return (
                               a.dynamicMeyersBriggsPercentage -
@@ -2489,7 +2542,9 @@ const SearchResultScreen = props => {
                           })
                           .reverse ()
                       : filteredProfessionals
+                      //If checkbox unclicked, then just show professionals
                   }
+                  //takes the id
                   keyExtractor={p => p.id}
                   renderItem={renderItem}
                   style={styles.flatList}
@@ -2509,9 +2564,11 @@ const SearchResultScreen = props => {
                     {' '}
                   </MTBoldText>
                   <MTBoldText />
+                   {/* To do, add this email to our mailing list. Dummy functionality right now */}
                   <MTBoldText>
                     Don't worry though! Our platform is growing everyday, if you'd like to receive a notification when this search will be available, you can add this phrase to your wacthlist below.
                   </MTBoldText>
+
                   <View
                     style={{
                       width: Dimensions.get ('window').width * 0.8,
@@ -2545,6 +2602,9 @@ const SearchResultScreen = props => {
                     </TouchableOpacity>
                   </View>
                 </View>
+          {/* displayed when did not get the response yet. Use a React Native Placeholder
+          Make a FlatList, it has the same number of columns as the other one 
+          Placeholder is styled so it looks similar to how the results queue looks  */}
           : <View
               style={{
                 width: '90%',
@@ -2552,6 +2612,7 @@ const SearchResultScreen = props => {
                 backgroundColor: Colors.ocean.primary,
               }}
             >
+            {/* FlatList renders when fetch does not load/do not have results yet */}
               <FlatList
                 contentContainerStyle={{width: '100%', height: '100%'}}
                 data={[1, 2, 3, 4, 5, 6, 7, 8]}
@@ -2644,6 +2705,7 @@ const styles = StyleSheet.create ({
     justifyContent: 'center',
     alignItems: 'center'
   },
+
   actions: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
