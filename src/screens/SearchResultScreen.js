@@ -2552,7 +2552,7 @@ const SearchResultScreen = props => {
                   renderItem={renderItem}
                   style={styles.flatList}
                 />
-              {/* If no results in redux array, we send text that there are no results  */}
+
               : <View
                   style={{
                     flex: 1,
@@ -2561,6 +2561,7 @@ const SearchResultScreen = props => {
                     alignItems: 'center',
                   }}
                 >
+                  {/* If no results in redux array, we send text that there are no results  */}
                   <MTBoldText
                     style={{textAlign: 'center', marginHorizontal: 6}}
                   >
@@ -2606,9 +2607,6 @@ const SearchResultScreen = props => {
                     </TouchableOpacity>
                   </View>
                 </View>
-          {/* displayed when did not get the response yet/DATA not returned YET. Use a React Native Placeholder
-          Make a FlatList, it has the same number of columns as the other one 
-          Placeholder is styled so it looks similar to how the results queue looks  */}
           : <View
               style={{
                 width: '90%',
@@ -2616,6 +2614,9 @@ const SearchResultScreen = props => {
                 backgroundColor: Colors.ocean.primary,
               }}
             >
+              {/* displayed when did not get the response yet/DATA not returned YET. Use a React Native Placeholder
+          Make a FlatList, it has the same number of columns as the other one 
+          Placeholder is styled so it looks similar to how the results queue looks  */}
             {/* FlatList renders when fetch does not load/do not have results yet */}
               <FlatList
                 contentContainerStyle={{width: '100%', height: '100%'}}

@@ -245,7 +245,7 @@ const ProfessionalUserShowPage = (props) => {
                     {thisExpert.companyCertifications.map( c => <MTLightText>{c}</MTLightText>)}
                     {thisExpert.companySpecialties.map( s => <MTLightText>{s}</MTLightText>)}
                     </View>
-                Rules for contacting people in person or social distancing rules
+                {/* Rules for contacting people in person or social distancing rules */}
                     <View style={styles.contact}>
                     <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Meeting Experience</MTBoldText>
                         {thisExpert.virtualMeetStatus ? <MTMediumText>Offers Virtual Meetings</MTMediumText> : null }
