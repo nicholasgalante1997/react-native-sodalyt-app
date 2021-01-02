@@ -1484,11 +1484,14 @@ const SearchResultScreen = props => {
   // flatlist row item.
   //This is the renderItem. 
   //This is what each row of a professional user looks like
+  // This is what rows of professionals are 
   const renderItem = itemData => {
     return (
       <View style={styles.profRow}>
         <View>
+        {/* This view manages image */}
         <View style={{height: 60, width: 60, backgroundColor: 'white', borderRadius: 30, overflow: 'hidden'}}>
+        {/* Click on the picture of the company will take you to that company, why we use TouchableOpacity */}
         <TouchableOpacity
               onPress={() => {
                 props.navigation.navigate ({
@@ -1510,10 +1513,12 @@ const SearchResultScreen = props => {
             {itemData.item.price}$ per Hour
           </MTMediumText>
         </View>
+        {/* Dummy image, names, Sodalyt reviews all handled in moreInfo View */}
         <View style={styles.moreInfo}>
           <MTMediumText
             style={{borderBottomColor: 'white', borderBottomWidth: 1, fontSize: 14, marginBottom: 3}}
           >
+          {/* Company name */}
             {itemData.item.companyName}
           </MTMediumText>
           <MTMediumText
@@ -1523,22 +1528,14 @@ const SearchResultScreen = props => {
           >
             {itemData.item.companyEmail}
           </MTMediumText>
-          {/* <MTMediumText style={{fontSize: 8, marginTop: 3}}>
-            Specialties:
-            {' '}
-            {itemData.item.companySpecialties.map (spec => spec + ', ')}
-          </MTMediumText>
-          <MTMediumText style={{fontSize: 8, marginTop: 3}}>
-            Certifications:
-            {' '}
-            {itemData.item.companyCertifications.map (cert => cert + ', ')}
-          </MTMediumText> */}
+          {/* Internet reviews */}
           <View style={{flexDirection: 'row', height: '50%', width: '90%', justifyContent: 'space-between'}}>
             <View style={{alignItems: 'center'}}>
               <MTBoldText>
                 Internet Reviews
               </MTBoldText>
               <View style={{flexDirection: 'row'}}>
+            {/* Makes stars for rating based on reviews */}
               {starGenerator(itemData.item.internetRating, <AntDesign name="star" size={16} color="white"/>)}
              {/* <MTMediumText>{itemData.item.internetRating}</MTMediumText>  */}
               </View>
@@ -1547,12 +1544,14 @@ const SearchResultScreen = props => {
               <MTBoldText>
                 Sodalyt Reviews
               </MTBoldText>
+              {/* No need to convert the ratings, just give the rating in bold text  */}
              <MTBoldText>
                {itemData.item.demoSodalytRating}
               </MTBoldText> 
             </View>
           </View>
           <View style={styles.actions}>
+          {/* If sodalyt type is active will see the numerical number score for a match  */}
             {sodalytTypingActive
               ? <MTBoldText style={{fontSize: 10, color: Colors.rugged.primary}}>
                   Percentage Match
@@ -1573,22 +1572,17 @@ const SearchResultScreen = props => {
   //Not used anywhere else
   //Custom component, that could be in its own folder, but kept here b/c no props, relying on local state
   //in this file
+
+  //used prettier on file 
+  
   const culturalFilterBar = () => {
     return (
       <View
-        style={{
-          height: 200,
-          width: Dimensions.get ('window').width,
-          backgroundColor: 'white',
-          paddingTop: 8,
-        }}
+        style={styles.culturalAndServiceFilterContainer}
       >
+      
         <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: 10,
-          }}
+          style={styles.culturalAndServiceFilterHeading}
         >
           <MTBoldText style={{color: Colors.ocean.primary}}>
             Cultural Filters
@@ -1606,19 +1600,19 @@ const SearchResultScreen = props => {
             </View>
           </TouchableWithoutFeedback>
         </View>
+        {/* disclaimer based off of US Census Bureau */}
         <MTLightText
-          style={{
-            fontSize: 10,
-            color: Colors.ocean.primary,
-            marginHorizontal: 8,
-            marginBottom: 5,
-          }}
+          style={styles.disclaimerFilter}
         >
           Cultural options are based upon what is designated in the US Census and what is requested by Sodalyt customers.  Email us if you think of another preference to add which could help people connect more meaningfully.
         </MTLightText>
+        {/* Something with limited content not mapping through, okay to use ScrollView  */}
+        {/* Allows you to scroll side by side if you change its flex direction to row  */}
+        {/* We did not change flex direction here  */}
         <ScrollView style={{marginHorizontal: 10}}>
 
-        <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+        
+        <View style={styles.languageFolderContainer}>
           <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             Language
           </MTBoldText>
@@ -1746,7 +1740,11 @@ const SearchResultScreen = props => {
           />
           </View> : null 
         }
-        <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+        {/* Folder manager view with text next to it
+        Has similar style next to it, only difference is has marginTop 10 
+        This style will be used again by components below */}
+        {/* Religious preference, racial identity, gender identity will have simillar styles  */}
+        <View style={styles.genericFolderContainer}>
           <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             Religious Preference
           </MTBoldText>
@@ -1813,7 +1811,7 @@ const SearchResultScreen = props => {
           />
           </View> : null
         }
-         <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center',  marginTop: 10}}>
+         <View style={styles.genericFolderContainer}>
             <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
               Racial Identity
             </MTBoldText>
@@ -1900,7 +1898,7 @@ const SearchResultScreen = props => {
           />
           </View> : null 
         }
-        <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+        <View style={styles.genericFolderContainer}>
           <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             LGBTQ Supportive
           </MTBoldText>
@@ -1923,6 +1921,11 @@ const SearchResultScreen = props => {
             checkedColor={Colors.ocean.primary}
           /> : null 
         }
+        {/* This is the view for the reset button on the bottom for all the filters we can select.
+        Reset button resets the filter item in redux
+        Sets all filters back to false
+        Gives us an alert that we want to reset all filters 
+        When we accept, all filters will be removed in redux state */}
         <View style={{justifyContent:'center', alignItems:'center', height: 40, width: Dimensions.get('window').width, marginTop: 10 }}>
           <TouchableOpacity onPress={() => {
             Alert.alert("Stop", "You are about to reset all of your filters. Are you sure you would like to do this?", [{style: 'default', text: 'No'}, {text: 'Yes', onPress: () => {
@@ -1941,23 +1944,16 @@ const SearchResultScreen = props => {
 
   //Same as cultural filter bar, but just holds services:
   //Personal trainer certifications, price, speciaties and distance
+  // Styles are same for service Filter as cultural filter bar 
   const serviceFilterBar = () => {
     return (
       <View
-        style={{
-          height: 200,
-          width: Dimensions.get ('window').width,
-          backgroundColor: 'white',
-        }}
+        style={styles.culturalAndServiceFilterContainer}
       >
 
         {/* OUTSIDE SCROLL VIEW */}
         <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: 10,
-          }}
+          style={styles.culturalAndServiceFilterHeading}
         >
           <MTBoldText style={{color: Colors.ocean.primary}}>
             Service Filters
@@ -1978,7 +1974,7 @@ const SearchResultScreen = props => {
 
         <ScrollView style={{marginHorizontal: 10}}>
           {/* Personal Trainer Section */}
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+          <View style={styles.genericFolderContainer}>
             <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
               Personal Trainer Filters
             </MTBoldText>
@@ -2058,7 +2054,8 @@ const SearchResultScreen = props => {
         </View> : null 
           }
           {/* Meeting Experience Section */}
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+          {/* Similar to folder structure from before  */}
+          <View style={styles.genericFolderContainer}>
             <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
               Meeting Experience
             </MTBoldText>
@@ -2111,7 +2108,7 @@ const SearchResultScreen = props => {
           </View> : null 
         }
           {/* Distance Settings */}
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}} >
+          <View style={styles.genericFolderContainer} >
           <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
             Distance Settings Coming Soon!
           </MTBoldText>
@@ -2174,7 +2171,7 @@ const SearchResultScreen = props => {
           </View> : null 
           }
           {/*  Price Settings */}
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+          <View style={styles.genericFolderContainer}>
             <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
               Price Settings
             </MTBoldText>
@@ -2286,7 +2283,7 @@ const SearchResultScreen = props => {
                             checkedColor={Colors.ocean.primary} /> */}
 
           {/* Corporate Sustainability Response */}
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10}}>
+          <View style={styles.genericFolderContainer}>
             <MTBoldText style={{color: Colors.ocean.primary, fontSize: 18}}>
               Ethics
             </MTBoldText>
@@ -2470,6 +2467,7 @@ const SearchResultScreen = props => {
           </View>
           {showCulturalFilter ? culturalFilterBar () : null}
           {showServiceFilter ? serviceFilterBar () : null}
+          {/* When you select psychology, done inside of return statement instead of functions */}
           {showPsychologyFilter
             ? <View
                 style={{
@@ -2495,6 +2493,11 @@ const SearchResultScreen = props => {
                   <MTBoldText style={{color: Colors.ocean.secondary}}>
                     Psychology Matching
                   </MTBoldText>
+                  {/* Acts like a checkbox, but styled differently so using a Switch  */}
+                  {/* True or false values to check in or not  */}
+                  {/* This is where everything is that has to do with filter logic 
+                  All in filter bars for cultural, psychology and service */}
+                  
                   <Switch
                     style={{marginLeft: 5}}
                     value={sodalytTypingActive}
@@ -2549,6 +2552,7 @@ const SearchResultScreen = props => {
                   renderItem={renderItem}
                   style={styles.flatList}
                 />
+              {/* If no results in redux array, we send text that there are no results  */}
               : <View
                   style={{
                     flex: 1,
@@ -2602,7 +2606,7 @@ const SearchResultScreen = props => {
                     </TouchableOpacity>
                   </View>
                 </View>
-          {/* displayed when did not get the response yet. Use a React Native Placeholder
+          {/* displayed when did not get the response yet/DATA not returned YET. Use a React Native Placeholder
           Make a FlatList, it has the same number of columns as the other one 
           Placeholder is styled so it looks similar to how the results queue looks  */}
           : <View
@@ -2710,6 +2714,37 @@ const styles = StyleSheet.create ({
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
+  culturalAndServiceFilterContainer: {
+    height: 200,
+    width: Dimensions.get ('window').width,
+    backgroundColor: 'white',
+    paddingTop: 8,
+  },
+  culturalAndServiceFilterHeading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 10,
+  },
+  disclaimerFilter: {
+    fontSize: 10,
+    color: Colors.ocean.primary,
+    marginHorizontal: 8,
+    marginBottom: 5,
+  },
+  languageFolderContainer: {
+    flexDirection: 'row', 
+    justifyContent: 'flex-start', 
+    alignItems: 'center'
+  },
+  genericFolderContainer: {
+    flexDirection: 'row', 
+    justifyContent: 'flex-start', 
+    alignItems: 'center', 
+    marginTop: 10
+}
 });
 
 export default SearchResultScreen;
+
+
+

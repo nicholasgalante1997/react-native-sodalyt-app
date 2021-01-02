@@ -14,18 +14,30 @@ import CustomAlert from '../components/custom/CustomDevelopmentAlert'
 import {useSelector, useDispatch} from 'react-redux'
 import * as actions from '../store/actions/actionCreator'
 
+// From this screen, I can leave a review, which is ReviewFormScreen
 const ProfessionalUserShowPage = (props) => {
 
+    // When you click on image of company, you pass a navigation param that is alled this expert. Retrieved here
+    // Single source of truth, user only knows about one professional show page at a time. For the expert
     const thisExpert = props.navigation.getParam('thisExpert')
+    //Need currentUsers details to give a rating. 
+    // We also give an opportunity for user to give a review and need currentUser's ID to do so 
     const currentUser = useSelector(state => state.userDetails)
+    // Pull in the filters because in Professional show page has a matched on 
+    // Can see i.e. Professional that matches the certifications you requested while entering search
     const filters = useSelector(state => state.filters)
     const [modalVisible, setModalVisible] = useState(false)
-    // const [reviews, setReviews] = useState([])
+    // const [reviews, setReviews] = useState([])'
+
+    // Reviews belong to a professional user 
+    // On component load of professional user 
+    // Professional user ID is the only requirement for the fetch 
+    // That fetch is in fetch Reviews a couple of lines below
     const reviews = useSelector(state => state.reviews)
 
     const dispatch = useDispatch();
 
-    console.log(thisExpert)
+    // console.log(thisExpert)
 
     const fetchReviews = async function () {
         try {
@@ -33,6 +45,7 @@ const ProfessionalUserShowPage = (props) => {
             let myHeaders = new Headers();
             myHeaders.append ('Content-Type', 'application/json');
 
+            // JSON being sent to post
             const content = { 
                 "professionalId": thisExpert.id.toString()
             } 
@@ -47,16 +60,17 @@ const ProfessionalUserShowPage = (props) => {
                 body: JSONPackage,
                 redirect: 'follow'
             }
-
+            
             let response = await fetch(ENDPOINT, requestOptions);
             let reviews = await response.json()
-            return reviews
+            return reviews  
 
         } catch (err) {
             console.log(err)
         }
     }
 
+      // State only handles one professionals reviews at a time 
     useEffect(() => {
         fetchReviews().then(reviews => dispatch(actions.setReviews(reviews)))
     }, [])
@@ -69,6 +83,9 @@ const ProfessionalUserShowPage = (props) => {
         setModalVisible(false)
     }
 
+    // This is how we determine what filters we're on in redux state and what the customer user 
+    // and the professional user matched on
+    // A ton of conditional checks to see what matches are on and off
     const matchedOn = () => {
         let obj = {
             langs: [],
@@ -107,6 +124,7 @@ const ProfessionalUserShowPage = (props) => {
         return obj;
     }
 
+    // Generates stars for reviews
     const starGenerator = (itemData, returnIcon) => {
         let a = []
         for (let i=1; i < parseInt(itemData.item.rating); i++){
@@ -114,6 +132,8 @@ const ProfessionalUserShowPage = (props) => {
         }
         return a
     }
+
+    // matchedOn handles filters on creation and returns an object, we use this matchedOn() to return 
 
    const matchedOnObject = matchedOn()
 
@@ -140,6 +160,7 @@ const ProfessionalUserShowPage = (props) => {
     }
 
 
+    // Use a FlatList to render reviews. This is the renderItem for that FlatList
    const ReviewRenderItem = (itemData) => {
        return (
            <View style={{height: 40, width: Dimensions.get('window').width * 0.9, alignSelf: 'center', backgroundColor: Colors.ocean.secondary, padding: 8}}>
@@ -164,8 +185,8 @@ const ProfessionalUserShowPage = (props) => {
        )
    }
 
-   console.log(thisExpert)
-   console.log(reviews)
+//    console.log(thisExpert)
+//    console.log(reviews)
 
     return ( 
         <View style={styles.screen}>
@@ -173,6 +194,7 @@ const ProfessionalUserShowPage = (props) => {
                 <CustomAlert onPress={modalOff} />
             </Modal>
              <ScrollView style={styles.body}>
+             {/* Header with image, company name, little description and option to favorite the app. All in the top and in different color */}
             <View style={styles.header}>
                 <View style={styles.imageHolder}>
                     <Image source={{uri: thisExpert.companyProfileImage}} style={{height: '100%', width: "100%", resizeMode: 'stretch'}}/>
@@ -191,6 +213,7 @@ const ProfessionalUserShowPage = (props) => {
                     </View>
                 </View>
             </View>
+                {/* Contact for phone, email, text, etc. */}
                     <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Let's get in touch!</MTBoldText>
                         <View style={{width: '90%', height: 70, backgroundColor: Colors.rugged.primary, alignSelf: 'center', borderRadius: 20, shadowColor: 'black', shadowOpacity: 0.36, shadowOffset: { width: 0, height: 2}, shadowRadius: 10, elevation: 3, marginTop: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
@@ -216,11 +239,13 @@ const ProfessionalUserShowPage = (props) => {
                             </View>
                         </View>
                     </View>
+                {/* Specs are specialties and certifications */}
                     <View style={styles.specs}>
                     <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Specialties and Certifications</MTBoldText>
                     {thisExpert.companyCertifications.map( c => <MTLightText>{c}</MTLightText>)}
                     {thisExpert.companySpecialties.map( s => <MTLightText>{s}</MTLightText>)}
                     </View>
+                Rules for contacting people in person or social distancing rules
                     <View style={styles.contact}>
                     <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Meeting Experience</MTBoldText>
                         {thisExpert.virtualMeetStatus ? <MTMediumText>Offers Virtual Meetings</MTMediumText> : null }
@@ -232,11 +257,16 @@ const ProfessionalUserShowPage = (props) => {
                             {thisExpert.companyAddress}, {thisExpert.companyZipCode}
                         </MTMediumText>
                     </View>
+                    {/* Hourly rates */}
                     <View style={styles.contact}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>This expert offers {thisExpert.pricingModel} price deals.</MTBoldText>
                         <MTMediumText>Rates from the expert: {thisExpert.price} $</MTMediumText>
                     </View>
                     <View style={styles.contact}>
+                    {/* Using matchOn() object in this view to determine what the customer and professional users matched 
+                    Based on certain qualities of that matchedOn() object can let us know if its language filter, religious Pref
+                    other categories noted below. i.e. Corporate Sustainability Responsibilites 
+                    This is why we have matchedOn() object */}
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>You Matched On</MTBoldText>
                             <MTBoldText>You had a match percentage of {thisExpert.dynamicMeyersBriggsPercentage}%</MTBoldText>
                             {matchedOnObject.langs.length > 0 ? <MTBoldText>Languages Offered: {matchedOnObject.langs.map(lang => <MTLightText>{lang + ", "}</MTLightText>)}</MTBoldText> : null}
@@ -245,6 +275,7 @@ const ProfessionalUserShowPage = (props) => {
                             {matchedOnObject.lgbtqSupportive ? <MTBoldText>LGBTQ Supportive <Feather name="check-circle" size={12} color="white" /></MTBoldText> : null}
                             {matchedOnObject.CSR ? <MTBoldText>Corporate Sustainability Policy <Feather name="check-circle" size={12} color="white" /></MTBoldText> : null}
                     </View>
+                    {/* The reviews and we use a FlatList to render all the reviews  */}
                     <View style={styles.review}>
                         <MTBoldText style={{fontSize: 20, marginBottom: 5}}>Sodalyt Reviews</MTBoldText>
                         <FlatList data={reviews} keyExtractor={(item) => item.reviewId} renderItem={(itemData) => ReviewRenderItem(itemData)} />
@@ -264,10 +295,20 @@ const ProfessionalUserShowPage = (props) => {
      );
 }
 
+// Dynamically set a header 
+// Want to set a professional show page header to the company name 
+// Do that by passing a param from our component outside of our component
+// All the way from the top of our component
+// We picked up the expert on the first line that was passed to this component
+// Doing something similar here where we want to set dynamic headers or dynamic navigation options 
+// Have to do it in the same place we assigned new values before it gets to the object 
 ProfessionalUserShowPage.navigationOptions = navData => {
 
+    // similar to props.navigation, we have navData.navigation, which gets the Param of the Expert 
     const thisExpert = navData.navigation.getParam('thisExpert') 
 
+    // We return the object we want to correlate for this specific component
+    // This is dynamic now based on each .companyName
     return {
         headerTitle: thisExpert.companyName,
         headerTitleStyle: {

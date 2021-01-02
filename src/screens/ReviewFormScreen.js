@@ -11,13 +11,17 @@ import SuccessfulPostModal from '../components/explore/SuccessfulPostModal'
 
 const ReviewFormScreen = (props) => {
 
+    // If you tap a star, gives an ability to turn rating off and tap another star will change the star for the new rating 
+    // Manages each individual star
     const [firstStar, setFirstStar] = useState(false)
     const [secondStar, setSecondStar] = useState(false)
     const [thirdStar, setThirdStar] = useState(false)
     const [fourthStar, setFourthStar] = useState(false)
     const [fifthStar, setFifthStar] = useState(false)
 
+    // Text of review
     const [reviewText, setReviewText] = useState("")
+    // Rating set for post object
     const [rating, setRating] = useState(0)
     // const [submittedReviewStatusObject, setSubmittedReviewStatusObject] = useState({})
     const [successfulPost, setSuccessfulPost] = useState(false)
@@ -28,6 +32,7 @@ const ReviewFormScreen = (props) => {
         setSuccessfulPost(false)
     }
 
+    // Called after successfully posting a review and resetting the inputs
     const resetState = () => {
         setFirstStar(false)
         setSecondStar(false)
@@ -38,9 +43,12 @@ const ReviewFormScreen = (props) => {
         setRating("")
     }
 
+    // Use the user's ID for review
     const currentUser = useSelector(state => state.userDetails)
+    // Get the professional ID for the review from navigation param
     const professionalId = props.navigation.getParam('professionalId')
 
+    //4 things back end needs for post for a review
     const postObject = {
         "customerId": currentUser.id,
         "professionalId": professionalId,
@@ -48,6 +56,7 @@ const ReviewFormScreen = (props) => {
         "review": reviewText
     }
 
+    // Posting a review 
     const tryCatchReviewPost = async function () {
         try {
             const ENDPOINT = "https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/getreviews/makereview"
@@ -69,20 +78,27 @@ const ReviewFormScreen = (props) => {
         }
     }
 
+    // Click listener for submitting the review
     const handlePress = async function () {
         try {
             const returnedReview = await tryCatchReviewPost();
+            // Changing state
             dispatch(actions.addReview(returnedReview))
             resetState();
+            // alert that review has been posted
             setSuccessfulPost(true)
         } catch (err) {
             console.log(err)
         }
     }
 
+
     const handleChangeText = (textInput) => {
         setReviewText(textInput)
     }
+
+    // Set up that when you click on a star, it is the new rating and stars are illuminated
+    // Second tap will remove the star being selected
 
     const toggleFirstStar = () => {
         if (secondStar){
@@ -166,6 +182,7 @@ const ReviewFormScreen = (props) => {
         }
     } 
 
+    // Makes sure review is the correct size and is not empty
     const verifyReview = () => {
         if (rating === 0){
             return false
@@ -180,6 +197,7 @@ const ReviewFormScreen = (props) => {
 
     const verifyAndHandlePost = () => {
         if (verifyReview()){
+            // if verified, handle the click, if not send the alert
             handlePress()
         } else {
             Alert.alert("Oops!", "Reviews must have a rating, and must be more than 5 characters, and less than 150.", [{style: 'default', text: "Got it!"}])
@@ -190,9 +208,12 @@ const ReviewFormScreen = (props) => {
     
     <TouchableWithoutFeedback style={{flex: 1, alignItems: 'center'}} onPress={Keyboard.dismiss}>
         <View style={styles.screen}>
+        {/* For the successful post */}
             <Modal isVisible={successfulPost}>
                 <SuccessfulPostModal onPress={modalOff} />
             </Modal>
+            {/* topHolder has to do with stars. Each star is touchableOpacity with an icon on it
+            Filled in versus empty star */}
             <View style={styles.topHolder}>
             <MTBoldText style={{marginBottom: 20}}>Leave a review for {props.prof}</MTBoldText>
             <View style={styles.starHolder}>
@@ -213,6 +234,11 @@ const ReviewFormScreen = (props) => {
                 </TouchableOpacity>
             </View>
             </View>
+            {/* Editable means you can drag, copy, cut, paste text 
+            maxLength of 40 is not a max character it's a max characters per line
+            multiline so it doesnt just keep expanding and using ellipses to the right, it goes down
+            Max number of lines is 4 so ellipses doesnt go up 
+            value and onChangeText to control this textInput form */}
             <View style={styles.reviewHolder}>
                 <TextInput 
                 editable
@@ -224,6 +250,7 @@ const ReviewFormScreen = (props) => {
                 onChangeText={handleChangeText}/>
             </View>
 
+            {/* Submit button for the review */}
             <View style={styles.submitHolder}>
                 <TouchableOpacity style={{height: '100%', width: '100%'}} onPress={verifyAndHandlePost} >
                     <View style={styles.button}>
