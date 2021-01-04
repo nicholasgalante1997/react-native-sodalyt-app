@@ -10,12 +10,15 @@ import MTLightText from '../components/custom/MTLightText';
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import AnalyticsScreen from './ProfessionalAnalyticsCategoryScreen'
 
-
+// Get your type and have the ability to sign out
 const ProfileHomeScreen = (props) => {
 
+    // Pull user info from redux state
     const userInfo = useSelector(state => state.userDetails)
     const dispatch = useDispatch();
 
+    // On Component Mount, we set a param to verify sign out 
+    // Do this b/c buttons on header dont have access to the screen component     
     useEffect(() => {
         props.navigation.setParams({signOutClickHandler: verifySignOut})
     }, [])
@@ -159,14 +162,18 @@ const ProfileHomeScreen = (props) => {
     typeHandler(userInfo.MBTI)
     iconHandler()
 
+    // AWS will give us data on the customers, when launched will use the data here for customers looking for this professional 
+    // This will be a pull from back end point 
     return ( 
         <View style={styles.screen}>
+        {/* User name  */}
            <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height * 0.1, backgroundColor: Colors.ocean.primary, flexDirection: 'row'}}>
                 <View style={{height: '100%', width: '30%', justifyContent: 'center', alignItems: 'center'}}>
                     <MTBoldText style={{fontSize: userInfo.name.length < 10 ? 32 : 18}}>
                         {userInfo.name}
                     </MTBoldText>
                 </View>
+                {/* User type */}
                 <View style={{height: '100%', width: '50%', justifyContent: 'center'}}>
                     { userInfo.accountType === 'professional' ?
                         <MTBoldText style={{fontSize: 16}}>
@@ -180,10 +187,12 @@ const ProfileHomeScreen = (props) => {
                         {description}
                     </MTLightText>
                 </View>
+                {/* Icon associated with personality type  */}
                 <View style={{height: '100%', width: '10%', justifyContent: 'center', alignItems: 'center'}}>
                    <MaterialCommunityIcons size={48} color='white' name={iconName} />
                 </View>
            </View>
+           {/* Move into the analytics screen  */}
            <View style={{justifyContent: 'center', alignItems: 'center', height: '90%', width: Dimensions.get('window').width}}>
                <AnalyticsScreen />
            </View>
@@ -191,6 +200,9 @@ const ProfileHomeScreen = (props) => {
      );
 }
 
+// This is where we pull that function that we transported in functions, headreRight Button now becomes the sign out 
+// Button and we send this function from the screen to the header
+// We have to pass functions through params
 ProfileHomeScreen.navigationOptions = navData => {
     return {
         headerTitle: 'Home',

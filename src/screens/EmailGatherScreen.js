@@ -21,6 +21,7 @@ const EmailGatherScreen = (props) => {
 
     // We use isProfessional based on different screens they entered
     // accountType keeps track of whether person is professional
+    // Passed param for professional
     const demoUserInfo = {
         email: "",
         password: "",

@@ -10,17 +10,22 @@ import * as actions from '../store/actions/actionCreator'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { CheckBox } from 'react-native-elements';
 
+// Cultural information.
 const ProfessionalSurveyScreenThree = (props) => {
 
+
     const [lgbtqSupportive, setLGBTQSupportive] = useState(false)
+    // Sans means do not support LGBTQ
     const [sansLQGBT, setSansLGBTQ] = useState(false)
    
     const [male, setMale] = useState(false)
     const [female, setFemale] = useState(false)
 
+    // Based on what is selected for true, when then assign based on a drop down 
     const [racialIdentity, setRacialIdentity] = useState("")
     const [religiousPreference, setReligiousPreference] = useState("")
 
+    // These are checkboxes
     const [spanish, setSpanish] = useState(false)
     const [chineseMandarin, setChineseMandarin] = useState(false)
     const [french, setFrench] = useState(false)
@@ -34,6 +39,7 @@ const ProfessionalSurveyScreenThree = (props) => {
 
     const dispatch = useDispatch();
     
+    // What we're looking for out of this file
     const dispatchObject = {
        genderIdentity: male ? 'Male' : 'Female',
        lgbtqSupportive: lgbtqSupportive,
@@ -43,6 +49,7 @@ const ProfessionalSurveyScreenThree = (props) => {
        spokenLanguages: []
     }
 
+    // Push into spokenLanguages array 
     const generateDispatchObject = () => {
         if (spanish){
             dispatchObject.spokenLanguages.push('Spanish')
@@ -76,6 +83,7 @@ const ProfessionalSurveyScreenThree = (props) => {
         }
     }
 
+    //Make sure they
     const verifyBasicObjectValues = () => {
         if (!male && !female){
             return false
@@ -158,6 +166,8 @@ const ProfessionalSurveyScreenThree = (props) => {
                             </MTBoldText>
                         </View>
                         <View style={{width: '80%'}}>
+                        {/* Set up your race, taken from US Census Bureau races  */}
+                        {/* Put them into array with labels and values  */}
                             <DropDownPicker 
                                 style={{zIndex: 10}}
                                 items={[
@@ -293,6 +303,8 @@ const ProfessionalSurveyScreenThree = (props) => {
                             </MTBoldText>
                         </View>
                         <View style={{width: '40%'}}>
+                        {/* Pick religions on dropdownpicker. Based on Census Bureau options
+                        Have to select one */}
                             <DropDownPicker 
                                 style={{zIndex: 10}}
                                 items={[
@@ -349,6 +361,7 @@ const ProfessionalSurveyScreenThree = (props) => {
               </ScrollView>
               </View>
               <View style={{height: 150, width: Dimensions.get('window').width, justifyContent: 'center', alignItems:'center'}}> 
+                   {/* Submit button. Next tab clicked will submit info to state and move on to next screen, StoryCardHolder Screen */}
                     <TouchableWithoutFeedback onPress={verifyAndDispatchObject} style={{backgroundColor: Colors.ocean.secondary, height: 60, width: 60, borderRadius: 30, justifyContent: 'center', alignItems: 'center'}}>
                       <View style={{backgroundColor: Colors.ocean.secondary, height: 60, width: 60, borderRadius: 30, justifyContent: 'center', alignItems: 'center'}}>
                           <MTBoldText>

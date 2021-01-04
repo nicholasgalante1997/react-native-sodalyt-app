@@ -14,6 +14,7 @@ import * as actions from '../store/actions/actionCreator'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { CheckBox } from 'react-native-elements';
 
+// Take all 3 professional survey forms, and all added here in one big form 
 const EditCompanyInfoScreen= (props) => {
 
     const proUserInfo = useSelector(state => state.newProfInfo)
@@ -216,6 +217,9 @@ const EditCompanyInfoScreen= (props) => {
         }
     }
 
+    // We generate the dispatch object that we're used and get the special cases set .
+    // We do a quick check to make sure they dont mess up info 
+    
     const handleSaveClick = () => {
         generateDispatchObject()
 
@@ -225,15 +229,17 @@ const EditCompanyInfoScreen= (props) => {
         if (dispatchObject.companyCertifications.length < 1){
             dispatchObject.companyCertifications.push("")
         }
+        // PUsh an empty string if professional has no additional boxes checked for specialities b/c an empty 
+        // array will return an error in the backend
         if (dispatchObject.companySpecialties.length < 1){
             dispatchObject.companySpecialties.push("")
         }
 
-        console.log(dispatchObject, "right before the post")
-
+   
+        // Backend update 
         tryCatchForUpdatingProfessionalInformation()
         .then(response => {
-            console.log(response)
+            // If positive response, will receive a response.id 
             if (response.id){
                 dispatch(actions.addToProfInfo(response))
                 Alert.alert('Success!', "You've successfully updated your information. Changes should be reflected in your company profile now.", [{text: 'Awesome!', onPress: () => props.navigation.goBack() }])

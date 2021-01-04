@@ -7,6 +7,7 @@ import MTMediumText from '../components/custom/MTMediumText'
 import Colors from '../constants/Colors'
 import Modal from 'react-native-modal'
 
+// Screen that gets rendered with professional user's analytics 
 const ProAnalyticsScreen = (props) => {
 
     const [modal, setModal] = useState(false)

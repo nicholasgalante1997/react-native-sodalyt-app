@@ -11,21 +11,26 @@ import * as actions from '../store/actions/actionCreator'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { CheckBox } from 'react-native-elements';
 
+// Service information 
 const ProfessionalSurveyScreenTwo = (props) => {
 
+    // Professions selected for them already i.e. Trainer
     const [verticalId, setVerticalId] = useState("")
     const [virtual, setVirtual] = useState(false)
     const [inPerson, setInPerson] = useState(false)
    
+    
     const [hourly, setHourly] = useState(false)
     const [packageDeals, setPackageDeals] = useState(false)
     const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(0)
     const [averageRate, setAverageRate] = useState(0)
    
+    // Corporate Responsibility
     const [hasCSRP, setHasCSRP] = useState(false)
     const [lacksCSRP, setLacksCSRP] = useState(false)
 
+    // All only for personal trainers
     const [nsca, setNSCA] = useState(false)
     const [nasm, setNASM] = useState(false)
     const [acsm, setACSM] = useState(false)
@@ -37,6 +42,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
     const [nesta, setNESTA] = useState(false)
     const [afpa, setAFPA] = useState(false)
 
+    // All only for personal trainers
     const [athPerformance, setAthPerformance] = useState(false)
     const [strengthProgram, setStrengthProgram] = useState(false)
     const [injuryRelated, setInjuryRelated] = useState(false)
@@ -45,8 +51,9 @@ const ProfessionalSurveyScreenTwo = (props) => {
     const [restorative, setRestorative] = useState(false)
     const [traumaIP, setTraumaIP] = useState(false)
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); 
     
+
     const dispatchObject = {
         verticalId: verticalId,
         inPersonMeetStatus: inPerson,
@@ -55,6 +62,8 @@ const ProfessionalSurveyScreenTwo = (props) => {
         price: averageRate,
         traumaIP: traumaIP,
         corporateSustainabilityPolicyVerification: hasCSRP,
+        // Push certifications that they have into this array and check arrayh
+        // Push any clicked certifications into this array
         companyCertifications: [],
         companySpecialties: []
     }
@@ -110,6 +119,10 @@ const ProfessionalSurveyScreenTwo = (props) => {
         }
     }
 
+    // Have to be in person or virtual and both 
+    // If both set to false, retun false 
+    // Have to be either hoursly or package deals
+    // Have or dont have corporate responsibility box 
     const verifyBasicObjectValues = () => {
         if (!virtual && !inPerson){
             return false
@@ -122,6 +135,11 @@ const ProfessionalSurveyScreenTwo = (props) => {
         }
     }
 
+
+    // Verify all info is in form, use dispatch to push in certifications and specialties into the arrays
+    // Then push into the third PressionalSurveyScrreen page
+    // Marco's database ready to take an array
+    // Could also come up with models and register through that 
     const verifyAndDispatchObject = () => {
         if (verifyBasicObjectValues()){
             generateDispatchObject()
@@ -132,7 +150,10 @@ const ProfessionalSurveyScreenTwo = (props) => {
         }
     }
 
-    console.log(verticalId)
+    // console.log(verticalId)
+    // KebyboardAvoiding View for Android
+    // TouchableWithoutFeedback for iOS 
+    // TouchableWithoutNativeFeedback for Android ;
     return (
         <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : "height"}
@@ -148,9 +169,12 @@ const ProfessionalSurveyScreenTwo = (props) => {
                   Service preferences will vary across different professions. If you do not see your profession listed, we are working on expanding this platform every day to encapsulate every field. You can help us expedite this process by emailing any questions or concerns to info@sodalyt.com.
                 </MTMediumText>
             </View>
+            {/* If vertical ID, we render the content specific to profession
+            If no vertical ID, render the drop down to pick a profession */}
           {    verticalId.length > 0 ?
           <View style={styles.card}>
               <ScrollView>
+              {/* NO matter what professional id, get this question */}
                 <MTLightText style={{color: 'black'}}>
                     We know times have changed, how do you offer your service now?*
                 </MTLightText>
@@ -205,6 +229,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
                         }}
                         checkedColor={Colors.rugged.primary}
                     />
+                {/* hourly shows up regardless of professional id, gives offer for min, max and avg rate */}
                 </View>
                 {
                     hourly ? 
@@ -268,6 +293,7 @@ const ProfessionalSurveyScreenTwo = (props) => {
                 <MTLightText style={{color: 'black', marginTop: 10}}>
                     Does your company have a Corporate Sustainability and Responsibility Policy?*
                 </MTLightText>
+                {/* Shows up no matter what profession */}
                 <View style={{flexDirection: 'row', width: '90%',  justifyContent: 'space-between', alignItems: 'center'}}>
                     <MTBoldText style={{color: 'black'}}>Yes</MTBoldText>
                     <CheckBox 
@@ -293,6 +319,9 @@ const ProfessionalSurveyScreenTwo = (props) => {
                         }}
                         checkedColor={Colors.rugged.primary}
                     />
+
+                {/* If vertical ID is 1, this is personal trainer questions
+                Long term is to create their own components and add them here  */}
                 </View>
                 {
                     verticalId === "1" ? 
@@ -303,6 +332,13 @@ const ProfessionalSurveyScreenTwo = (props) => {
                         <MTLightText style={{color: 'black'}}>
                             Select All That Apply
                         </MTLightText>
+                        {/* Checkboxes are column and based attributes that go on top of each other by default 
+                        If put them in a view, they'll stack up and down 
+                        title is label you want next to checkbox, textStyle styles the label 
+                        checked takes the boolean value, that value is your control for the checkbox, will be true or false, must be boolean 
+                        Assign this to useState variable for that check box. traumaIP initially false 
+                        onPress, first thing is take the current value of it and sign it to a local variable 
+                        Set to opposite value of what it was previous. current value then set to opposite of current value  */}
                         <CheckBox 
                             title="Trauma Informed Practitioner"
                             textStyle={{fontFamily: 'tommy-light'}}
@@ -482,6 +518,10 @@ const ProfessionalSurveyScreenTwo = (props) => {
                     </View> : null
                 }
             </ScrollView>
+            {/* False statement vinally arrived. Going to select a vertical ID if they have not already
+            Render a dropdown picker that works the same as the search screen, gets the vertical screens. Category items 
+            and category id 
+            Assign to state. How we know what professional category we are in */}
             </View> : 
             <View style={{height: Dimensions.get('window').height / 2.1, justifyContent: 'center', alignItems: 'center'}}>
                   <DropDownPicker 

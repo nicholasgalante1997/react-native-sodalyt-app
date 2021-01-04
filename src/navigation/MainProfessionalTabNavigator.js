@@ -8,6 +8,7 @@ import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { Platform } from 'react-native'
 import Colors from '../constants/Colors'
 
+// These main navigators aren't screen, they send me to screens
 const TabScreenConfig = {
     Profile: {
         screen:  ProfessionalDashboardStackNavigator,

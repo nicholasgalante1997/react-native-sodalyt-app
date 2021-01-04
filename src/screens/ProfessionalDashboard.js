@@ -13,20 +13,22 @@ import {useDispatch, useSelector} from 'react-redux'
 import * as actions from '../store/actions/actionCreator'
 import InitialLoadModal from '../components/custom/InitialLoadModal'
 
+// Other side of where professionals land 
+// Identical to when customer clicks on their show page, but they have the opportunity to edit 
 const ProfessionalDashboard = (props) => {
-
-    console.log(props, "props")
-    console.log(props.navigation.isFirstRouteInParent())
 
     const [modalVisible, setModalVisible] = useState(false)
     const proUserInfo = useSelector(state => state.newProfInfo)
     const initInfo = useSelector(state => state.userDetails)
     const reviews = useSelector(state => state.reviews)
+    // If youre a new professional, we send in param that you are a new professional. 
+    // Pops on component load as a button what each dashboard does 
     const newStatus = useSelector(state => state.isNewProf)
 
-    console.log(proUserInfo)
+ 
     const dispatch = useDispatch();
 
+    // ON every show page to load reviews 
     const fetchReviews = async function () {
         try {
 
@@ -61,10 +63,12 @@ const ProfessionalDashboard = (props) => {
         fetchReviews().then(reviews => dispatch(actions.setReviews(reviews)))
     }, [])
 
+    // Soon as company info loads, retrieve its name to use as header title 
     useEffect(() => {
         props.navigation.setParams({companyName: proUserInfo.companyName})
     }, [proUserInfo])
 
+    // If a brand new user, set the new professional modal to true, shows how to walk through dashboard 
     useEffect(() => {
         if (newStatus){
             dispatch(actions.toggleNewProf(false))
@@ -90,6 +94,7 @@ const ProfessionalDashboard = (props) => {
         return a
     }
 
+    // PHone call with icons and ability to call number
     const phoneCall = () => {
         const phoneNumber = proUserInfo.companyPhoneNumber
         Linking.openURL(`tel:${phoneNumber}`)
@@ -112,6 +117,7 @@ const ProfessionalDashboard = (props) => {
          Linking.openURL(`https:${onlineAddress}`)
      }
 
+    //  Holds reviews and how they look 
    const ReviewRenderItem = (itemData) => {
        return (
            <View style={{height: 40, width: Dimensions.get('window').width * 0.9, alignSelf: 'center', backgroundColor: Colors.ocean.secondary, padding: 8}}>
@@ -135,6 +141,9 @@ const ProfessionalDashboard = (props) => {
            </View>
        )
    }
+
+//    Everything is the same as regular dashboard (professional show page) except on the bottom of the return statement 
+//    There is a button that allows you to edit your information 
 
     return ( 
         <View style={styles.screen}>
@@ -218,6 +227,8 @@ const ProfessionalDashboard = (props) => {
                         <FlatList data={reviews} keyExtractor={(item) => item.reviewId} renderItem={(itemData) => ReviewRenderItem(itemData)} />
                     </View>
                 </ScrollView>
+            {/* Button to edit info. Hitting this view, with onPress will take me to edit Info page, passing along user info  */}
+            {/* Go to edit info page, which is named, EditCompanyInfoScreen */}
             <View style={{backgroundColor: Colors.rugged.primary, height: 60, width: 60, borderRadius: 30, position: "absolute", bottom: 30, right: 30, justifyContent: 'center', alignItems: 'center'}}>
                         <FontAwesome name="gear" size={32} color="white" onPress={() => {
                             props.navigation.navigate({routeName: "EditInfo", params: {...proUserInfo}})

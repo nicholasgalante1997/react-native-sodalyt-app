@@ -8,6 +8,7 @@ import Colors from '../constants/Colors';
 import {useDispatch} from 'react-redux'
 import * as actions from '../store/actions/actionCreator'
 
+// General company information
 const ProfessionalSurveyScreenOne = (props) => {
 
     const [companyName, setCompanyName] = useState("")
@@ -30,7 +31,8 @@ const ProfessionalSurveyScreenOne = (props) => {
         companyProfilePhotoLink: companyProfilePhotoLink,
         companyDescription: companyDesc
     }
-
+    
+    // Make sure all values are filled in to the way we like them  
     const verifyObjectValues = () => {
         if (companyName.length < 2){
             return false
@@ -51,6 +53,10 @@ const ProfessionalSurveyScreenOne = (props) => {
         }
     }
 
+    // Check if everything is good
+    // If not, alert that incorrect input
+    // TO DO: 
+    // Can adjust to specifics of each input field if filled incorrectly
     const verifyAndDispatchObject = () => {
         if (verifyObjectValues()){
             dispatch(actions.setNewProfInfo(dispatchObject))
@@ -60,6 +66,8 @@ const ProfessionalSurveyScreenOne = (props) => {
         }
     }
 
+    // KeyboardAvoidingView for Android
+    // TouchableWithoutFeedback for iOS
     return (
         <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : "height"}
@@ -75,11 +83,13 @@ const ProfessionalSurveyScreenOne = (props) => {
                     Let's start off with a little information about your company. Some of this information will be available to customers later on, but we'll let you edit what's visible before you finish registering.
                 </MTMediumText>
             </View>
+            {/* Where all info is actually gathered */}
             <View style={styles.card}>
                 <ScrollView>
                 <MTMediumText style={{color: 'black'}}>
                     Company Name*
                 </MTMediumText>
+                {/* Control the input field with value and onChangeText */}
                 <Input 
                 style={{
                         width: '90%',
@@ -129,6 +139,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 placeholder="TX"
                 placeholderTextColor='#C7CBCE'
                 />
+                {/* Special circumstance, set to numeric to set validity check before hand  */}
                 <MTMediumText style={{color: 'black', marginRight: 5}}>
                     Zip Code*
                 </MTMediumText>
@@ -168,6 +179,11 @@ const ProfessionalSurveyScreenOne = (props) => {
                 <MTMediumText style={{color: 'black'}}>
                     Company Website*
                 </MTMediumText>
+                {/* Will work with Marco on setting up database to receive, host, store pictures
+                To do: Can host photos like you would online but from our own database 
+                He'll have a url/cdn for every photo and i'll be fetching that to attach to users
+                Expo permissions allows me to handle anything I want to get from the phone that isnt in 
+                the app/i.e. photos  */}
                 <Input 
                 style={{
                         width: '90%',
@@ -221,6 +237,7 @@ const ProfessionalSurveyScreenOne = (props) => {
                 />
                 </ScrollView>
             </View>
+            {/* Sending our current state to redux state where its going to hold it and send to the next screen, ProfessionalSurveyScreen2 */}
             <View style={{height: 150, width: Dimensions.get('window').width, justifyContent: 'center', alignItems:'center'}}> 
             <TouchableWithoutFeedback onPress={verifyAndDispatchObject} style={{backgroundColor: Colors.ocean.secondary, height: 60, width: 60, borderRadius: 30, justifyContent: 'center', alignItems: 'center'}}>
                     <View style={{backgroundColor: Colors.ocean.secondary, height: 60, width: 60, borderRadius: 30, justifyContent: 'center', alignItems: 'center'}}>

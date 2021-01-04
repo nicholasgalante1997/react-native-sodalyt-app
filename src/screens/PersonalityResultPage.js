@@ -268,7 +268,9 @@ const PersonalityResultPage = (props) => {
             <View style={{padding: 18, justifyContent: 'center', alignItems: 'center'}}>
                 <MTMediumText style={{fontSize: 14}}>{longFormDesc}</MTMediumText>
             </View>
-            {/* Takes customer and professional to different places  */}
+            {/* Takes customer and professional to different places  
+            If customer, we move to main content while passing along their search term to MainTabNavigator 
+            If professional, we move to MainProfessionalTabNavigator*/}
           {  userInfo.accountType === 'customer' ? 
           <View style={styles.nextCont}>
                 <CustomButton onPress={() => {
