@@ -13,7 +13,9 @@ import MTMediumText from '../components/custom/MTMediumText';
 
 const PersonalityResultPage = (props) => {
 
+    // navigation also has props.navigation.pop to go back a screen.
     //the returned object from the post sent to back end
+    //Key name was personalityResult from previous page that sent this object into .navigate 
     const returnedObject = props.navigation.getParam('personalityResult')
     const [modalVisible, setModalVisible] = useState(false)
     //retrieve search term from state we kept earlier

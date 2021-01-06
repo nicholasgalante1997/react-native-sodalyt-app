@@ -22,6 +22,10 @@ const LandingCUSearchScreen = (props) => {
 
     const handlePush = () => {
         dispatch(searchActions.setSearchedTerm(searchTerm))
+        //props.nagivation.navigate is how we get around in the app
+        //When we move from one screen to the next, this is the short hand version of the function 
+        //Can acceept a string or an object. Which is why names in stack navigator are important
+        //This case, we are calling the Email navigator 
         props.navigation.navigate('Email')
     }
 

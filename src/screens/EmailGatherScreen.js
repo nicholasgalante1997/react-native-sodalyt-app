@@ -133,7 +133,7 @@ const EmailGatherScreen = (props) => {
           {  isProfessional ?  
           <View style={styles.banner}>
                 <MTBoldText style={styles.topBannerText}>Welcome to Sodalyt, where we send you customers that are right for you.</MTBoldText>
-                <MTBoldText style={topBannerInstructionsText}>To get your name out there, we are going to ask you to login, complete a form, and play a 3 minute game. </MTBoldText>
+                <MTBoldText style={styles.topBannerInstructionsText}>To get your name out there, we are going to ask you to login, complete a form, and play a 3 minute game. </MTBoldText>
             </View>
            : <View style={styles.banner}>
                 <MTBoldText>To find the professional just right for you, we will use AI power to match you on personality, culture, and service. It will take about 3 minutes total.</MTBoldText>

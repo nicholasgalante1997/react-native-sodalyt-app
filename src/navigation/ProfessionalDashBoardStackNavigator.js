@@ -7,6 +7,8 @@ import EditProfInfoScreen from '../screens/EditCompanyInfoScreen'
 import ProfessionalAnalyticsCategoryScreen from '../screens/ProfessionalAnalyticsCategoryScreen'
 import GetPrem from '../screens/GetPremiumScreen'
 
+//Screen for dashboard side of the tab navigator
+//Just a regular stack navigator 
 const ProfessionalDashboardStackNavigator = createStackNavigator({
    ProfessionalDashboard: {
        screen: ProfessionalDashboard,

@@ -239,7 +239,15 @@ const QuestionRenderer = (props) => {
         fetch("https://3yfa6tf5vj.execute-api.us-east-2.amazonaws.com/demo1/getmbti", requestOptions)
         .then(response => response.json())
         .then(result => {
-            //pass entire result into a params     
+            //pass entire result into a params   
+            //Using .navigate as an object
+            // The first thing I give is the routeName instead of the string like in other pages 
+            // Only if passing in an object into .navigate 
+            //Do this if we want to pass params into navigation. 
+            //B/c the second argument is params and can pass data from one page to the next in a stack navigator.
+            // Passing the results of the personalityResult in this case, this is specific to a stack navigator
+            // This is how you use params, params itself is a key/value pair 
+            // Assign any names for keys
             props.navigation.navigate({routeName: 'PersonalityResultPage', params: {
                 personalityResult: result
             }})

@@ -6,6 +6,7 @@ import MTMediumText from '../components/custom/MTMediumText'
 import Input from '../components/custom/Input'
 import Colors from '../constants/Colors';
 import {useDispatch} from 'react-redux'
+
 import * as actions from '../store/actions/actionCreator'
 
 // General company information
@@ -31,6 +32,25 @@ const ProfessionalSurveyScreenOne = (props) => {
         companyProfilePhotoLink: companyProfilePhotoLink,
         companyDescription: companyDesc
     }
+
+
+    const onTextChange = (text) => {
+        var cleaned = ('' + text).replace(/\D/g, '')
+        var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
+        if (match) {
+            //var used to assign number
+            var intlCode = (match[1] ? '+1 ' : ''),
+                number = [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
+    
+            setCompanyPhoneNumber(number) 
+         
+       
+            return;
+        }
+    
+        setCompanyPhoneNumber(text)
+      
+    }
     
     // Make sure all values are filled in to the way we like them  
     const verifyObjectValues = () => {
@@ -42,7 +62,7 @@ const ProfessionalSurveyScreenOne = (props) => {
             return false
         } else if (companyZipCode.length !== 5){
             return false
-        } else if (companyPhoneNumber.length !== 14){
+        } else if(companyPhoneNumber.length !== 14) {
             return false
         } else if (companyWebsite.length < 6){
             return false 
@@ -163,19 +183,14 @@ const ProfessionalSurveyScreenOne = (props) => {
                     Phone Number*
                 </MTMediumText>
                 <Input 
-                style={{
-                        width: '90%',
-                        fontFamily: 'tommy-light'
-                    }}
-                blurOnSubmit 
-                autoCapitalize="none" 
-                autoCorrect={false} 
-                keyboardType="default" 
-                value={companyPhoneNumber}
-                onChangeText={(text) => setCompanyPhoneNumber(text)}
-                placeholder="(xxx) xxx-xxxx"
-                placeholderTextColor='#C7CBCE'
+                    onChangeText={(text) => onTextChange(text) }
+                    value={companyPhoneNumber}
+                    textContentType='telephoneNumber' 
+                    dataDetectorTypes='phoneNumber' 
+                    keyboardType='phone-pad' 
+                    maxLength={14}
                 />
+               
                 <MTMediumText style={{color: 'black'}}>
                     Company Website*
                 </MTMediumText>
@@ -235,7 +250,9 @@ const ProfessionalSurveyScreenOne = (props) => {
                 placeholder="A little about you..."
                 placeholderTextColor='#C7CBCE'
                 />
-                </ScrollView>
+                <View style={{height: 40, width: "100%"}}>
+                </View>
+            </ScrollView>
             </View>
             {/* Sending our current state to redux state where its going to hold it and send to the next screen, ProfessionalSurveyScreen2 */}
             <View style={{height: 150, width: Dimensions.get('window').width, justifyContent: 'center', alignItems:'center'}}> 
