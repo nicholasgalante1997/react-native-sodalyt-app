@@ -7,7 +7,12 @@ import MTLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 import Modal from 'react-native-modal'
 import { Feather, FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Octicons, AntDesign } from '@expo/vector-icons'; 
+//HeaderButtons imported, this is different than HeaderButton. 
+//Item always goes inside the closing tags of HeaderButtons. It's how we pass info of how 
+//We want this button and header to look like 
+
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
+//HeaderButton gives us style and look that we want
 import HeaderButton from '../components/custom/CustomHeaderButton'
 import {useDispatch, useSelector} from 'react-redux'
 import * as actions from '../store/actions/actionCreator'
@@ -238,6 +243,17 @@ const ProfessionalDashboard = (props) => {
      );
 }
 
+//Usually set navigation for screen inside 
+//Navigation is handled before component rendering 
+//It will be the last thing rendered and will accept these rendering options instead
+//We set these conditions to have access for info that we need.
+//We get companyName from a param, we call useEffect to transfer file from its screen to 
+//its header. Use this function to make that transfer onto header of screen 
+//HeaderButtons used here .
+//Navigation is returning an object that has all the preferences we want for this header
+//headerTitle, headerTitleStyle, and underneath is button for rightHeader
+// headerRight is key to function that returns our header button
+//headerRight is where we customize what our header does 
 ProfessionalDashboard.navigationOptions = navData => {
     const companyName = navData.navigation.getParam('companyName')
     return {
@@ -248,6 +264,14 @@ ProfessionalDashboard.navigationOptions = navData => {
         },
         headerRight: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                {/* using our HeaderButton customized in other component into our 
+                HeaderButtons . Item is what is passed into that specific headerbutton 
+                title is what appears underneath text wise if we chose to show it. 
+                iconName is type of icon that we want. onPress is what button actually 
+                does, it sets our navigation option dynamically that automically has 
+                access to parameter called navdata, same as functions and components
+                on the press of this header button, call navData.navigation.navigate
+                to move to Premium Sodalyt user screen*/}
                 <Item 
                 title="Chat" 
                 iconName="checkbox-marked-circle-outline" 

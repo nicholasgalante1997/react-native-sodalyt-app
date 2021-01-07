@@ -1,5 +1,8 @@
+//Array of different verticals if look in models this is how it's set up 
+
 import Vertical from '../models/vertical'
 
+// array sent to other files that have verticals listed for drop down 
 export default [
     new Vertical(1, "Personal Trainer", "dumbbell", "FontAwesome5", "#3382CE"),
     new Vertical(2, "Music Teacher", "music-clef-treble", "MaterialCommunityIcons", "#CE3335"),

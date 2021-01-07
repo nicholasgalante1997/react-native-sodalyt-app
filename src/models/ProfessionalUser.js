@@ -1,3 +1,4 @@
+// Not used anywhere in project, but shows us the model Marco has  
 class ProfessionalUser {
     constructor(
         id, 

@@ -11,6 +11,9 @@ import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import AnalyticsScreen from './ProfessionalAnalyticsCategoryScreen'
 
 // Get your type and have the ability to sign out
+//Instead of navigation.navigate, we are passing a callback function for them to call 
+//Passing the log out function through the param. Header has no idea its a log out function until 
+// passed through param. which is why in headerRight below, we have to use it
 const ProfileHomeScreen = (props) => {
 
     // Pull user info from redux state
@@ -18,12 +21,17 @@ const ProfileHomeScreen = (props) => {
     const dispatch = useDispatch();
 
     // On Component Mount, we set a param to verify sign out 
-    // Do this b/c buttons on header dont have access to the screen component     
+    // Do this b/c buttons on header dont have access to the screen component 
+    //When component loads, we pass the function to sign out over to the header with 
+    //this useEffect and then in our navigation options under the return statement that 
+    //are set dynamically, we pick up this param and use it on the header button     
     useEffect(() => {
         props.navigation.setParams({signOutClickHandler: verifySignOut})
     }, [])
 
 
+    //We send user back to beginning of app and reset the monitor of who was logged in 
+    //
     const completelyResetStateAndSignOut = () => {
         props.navigation.navigate('LandingSearchScreen')
         // dispatch(actions.resetCurrentUser())
@@ -34,6 +42,7 @@ const ProfileHomeScreen = (props) => {
         dispatch(actions.resetSearchedTerm())
     }
 
+    //Just gives a button. Wait you want to sign out, alert and when pressed calls completelyREsetStateandSignOut
     const verifySignOut = () => {
         Alert.alert('Wait', "You are about to sign out, is this what you want to do?", [{text: 'No', style: 'default'}, {text: 'Yes', onPress: () => completelyResetStateAndSignOut()} ])
     }
@@ -203,6 +212,9 @@ const ProfileHomeScreen = (props) => {
 // This is where we pull that function that we transported in functions, headreRight Button now becomes the sign out 
 // Button and we send this function from the screen to the header
 // We have to pass functions through params
+//Using something besids navigation function 
+//This is a log out function 
+
 ProfileHomeScreen.navigationOptions = navData => {
     return {
         headerTitle: 'Home',
@@ -213,7 +225,10 @@ ProfileHomeScreen.navigationOptions = navData => {
         headerLeft: () => null,
         headerRight: () => {
             const signOut = navData.navigation.getParam('signOutClickHandler')
-
+            //since headerRigth take s in a function, we first pick up the param.
+            // After picking up the param, we return a header button, and onPress 
+            // of the header function logs out for us with the log out function we passed 
+            // through the screen component 
             return ( 
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
             <Item 

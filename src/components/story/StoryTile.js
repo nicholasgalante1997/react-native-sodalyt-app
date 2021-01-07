@@ -11,6 +11,8 @@ const StoryTile = (props) => {
     //navigation.nativate takes in two object key/value pairs 
     //routeName where you're going 
     //params are objects you are sending over
+    //Have to figure otu which story they select before ocntinuing
+    // Must be Mars exploration story for right now 
 
     const onPress = () => {
       if (props.story.story_id === 1){  
@@ -18,12 +20,19 @@ const StoryTile = (props) => {
             storyInfo: {...props.story}
         }})
       } else {
-         props.modalOn()
+
+        //If not selecting Mars story, we give them a customer development alert 
+        //This prop is being passed from StoryHolderScreen parent to run 
+        //a Custom DevelopmentAlert that the functionality is not complete for 
+        //this story 
+        props.modalOn()
       }
     }
 
     let conditionalColoring;
 
+    //makes tiles different color so not the same color
+    //based on id make them different colors 
     const sortColorSchema = (storyId) => {
         switch(storyId){
             case 1: 

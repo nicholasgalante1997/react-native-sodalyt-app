@@ -22,6 +22,7 @@ const CustomAlert = (props) => {
                     <View style={styles.circle}>
                     <Ionicons name="md-thumbs-up" size={24} color="white" onPress={props.onPress} />
                     </View>
+                    {/* Button here to turn the alert off  */}
                 </View>
             </View>
         </View>

@@ -6,7 +6,8 @@ import MTBoldText from '../custom/MTBoldText'
 import { Ionicons, EvilIcons } from '@expo/vector-icons'; 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-
+//Lets customer know he has posted review successfully 
+//If no successful, let's them know there's an error 
 const CustomAlert = (props) => {
 
     return ( 

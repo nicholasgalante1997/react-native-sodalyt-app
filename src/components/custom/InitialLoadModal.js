@@ -4,6 +4,7 @@ import Colors from '../../constants/Colors'
 import MTBoldText from './MTBoldText'
 import MTMediumText from './MTMediumText'
 
+// If you are a professional user showing up for the first time, this is what shows up before you use the app
 const InitialLoadModal = (props) => {
     return (  
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

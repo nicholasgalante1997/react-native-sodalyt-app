@@ -3,6 +3,9 @@ import MainButton from '../src/components/custom/MainButton'
 import {View, StyleSheet} from 'react-native'
 import Colors from '../src/constants/Colors'
 
+// Running faker dummy data for front end. Was used before endpoints set up. Obsolete
+// When new endpoint, before trying out, we throw this TestComponent as its own screen. T
+// hrow in this endpoint and post and gets and I test it out from this screen. Has a console.log set up from it. Just add another one 
 const TestComp = (props) => {
 
     const firstPostTestData = {
@@ -62,6 +65,9 @@ const TestComp = (props) => {
         .catch(error => console.log('error', error))
     }
 
+    //If I am making a new test
+    //Copy this, rewrite return statement with changing the onPress proop to whatever
+    //Function i want to fire
     const postToThirdEndpoint = () => {
         // instantiate a headers object
         let myHeaders = new Headers();
@@ -89,6 +95,9 @@ const TestComp = (props) => {
         .catch(error => console.log('error', error))
     }
     
+    //If testing, change this onPress to whatever function I want to test
+    //in code above
+    //jest and enzyme for testing 
     return (
         <View style={styles.container}>
            <MainButton onPress={postToThirdEndpoint}>

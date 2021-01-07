@@ -9,6 +9,7 @@ import rootReducer from './src/store/reducers/reducers'
 
 import {enableScreens} from 'react-native-screens'
 
+//import company info through aws 
 import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
 import AWS from 'aws-sdk'
@@ -17,7 +18,9 @@ import AWS from 'aws-sdk'
 import FullStackNavigator from './src/navigation/FullStackNavigator'
 import GetPrem from './src/screens/GetPremiumScreen'
 
-// AWS Configuration
+// AWS Configuration Need to have this to hit back end points
+//This is what imported Amplify and awsconfig on lines 13 and 14 are for
+//Configure all data for us in aws exports folder. 
 Amplify.configure(awsconfig)
 
 // Screen Optimization
@@ -29,6 +32,11 @@ const store = createStore(rootReducer)
 
 // Custom Fonts
 const fetchFonts = () => {
+
+  //Takes an object, left side keys is what we refer to in style text
+  //Keys are font family names. Values are async functions going and getting font data
+  //That data is kept in constants folder. Everything is local, but may take time
+  //Which is why we use appLoad
   return Font.loadAsync({
     "tommy-bold": require('./src/constants/fonts/Made_Tommy_Bold.otf'),
     "tommy-bold-outline": require('./src/constants/fonts/Made_Tommy_Bold_Outline.otf'),
@@ -51,6 +59,11 @@ export default function App(props) {
 
   const [fontLoaded, setFontLoaded] = useState(false)
 
+  //If font is not yet loaded, we return AppLoading
+  //When AppLoading its startAsync function begins the async fetchFonts function 
+  // We want to run. onFinish is what happens afte rthe async funciton finishes 
+  // After finished, setFontLoaded to true which will create a re-render 
+
   if (!fontLoaded) {
     return <AppLoading 
     startAsync={fetchFonts}
@@ -58,6 +71,9 @@ export default function App(props) {
     onError={err => console.log(err)} 
     />
   }
+
+  //Store defined outside of app above the fetchFonts constant
+  //Using a simple combine/root reducers system. 
 
   return (
     <Provider store={store}>
