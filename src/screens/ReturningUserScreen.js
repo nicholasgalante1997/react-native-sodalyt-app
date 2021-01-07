@@ -92,6 +92,7 @@ const ReturningUserScreen = (props) => {
     }
 
     const verifyAndHandlePost = () => {
+   
       if (verifyPost()){
         tryCatchForSignIn().then(r =>{
           console.log(r)

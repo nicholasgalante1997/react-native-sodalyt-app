@@ -6,7 +6,7 @@ import MTMediumText from '../components/custom/MTMediumText';
 import MTLightText from '../components/custom/MTLightText'
 import Colors from '../constants/Colors'
 import Modal from 'react-native-modal'
-import { Feather, FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Octicons } from '@expo/vector-icons'; 
+import { Feather, FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Octicons, AntDesign } from '@expo/vector-icons'; 
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 import HeaderButton from '../components/custom/CustomHeaderButton'
 import {useDispatch, useSelector} from 'react-redux'
@@ -161,7 +161,7 @@ const ProfessionalDashboard = (props) => {
                     </MTBoldText>
                     <View style={{justifyContent: 'flex-start', alignItems: 'center', borderRadius: 15, flexDirection: 'row'}}>
                         <View  style={{justifyContent: 'center', alignItems: 'center', width: '70%'}}>
-                            <MTBoldText>{thisExpert.companyDescription}</MTBoldText>
+                            <MTBoldText>{proUserInfo.companyDescription}</MTBoldText>
                         </View>
                         <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', marginLeft: 10}} onPress={() =>{}} >
                             <AntDesign name="heart" size={32} color="white" />

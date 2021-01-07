@@ -224,7 +224,7 @@ const EditCompanyInfoScreen= (props) => {
         generateDispatchObject()
 
         if (dispatchObject.spokenLanguages.length < 1){
-            dispatchObject.languages.push("")
+            dispatchObject.spokenLanguages.push("")
         }
         if (dispatchObject.companyCertifications.length < 1){
             dispatchObject.companyCertifications.push("")
