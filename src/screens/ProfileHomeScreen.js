@@ -158,6 +158,13 @@ const ProfileHomeScreen = (props) => {
     typeHandler(userInfo.MBTI)
     iconHandler()
 
+    useEffect(() => {
+        console.log('first component', userInfo)
+    }, [])
+    useEffect(() => {
+        console.log('update if needed', userInfo)
+    }, [userInfo])
+
     return ( 
         <View style={styles.screen}>
            <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height * 0.1, backgroundColor: Colors.ocean.primary, flexDirection: 'row'}}>
@@ -172,7 +179,7 @@ const ProfileHomeScreen = (props) => {
                         Type: The {userInfo.sodalytType}
                     </MTBoldText> : 
                      <MTBoldText style={{fontSize: 16}}>
-                     Type: {userInfo.sodalytPreference}
+                     Type: {archetype}
                  </MTBoldText>
                     }
                     <MTLightText>

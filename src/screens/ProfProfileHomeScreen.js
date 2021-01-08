@@ -171,6 +171,12 @@ const ProfileHomeScreen = (props) => {
     typeHandler(userInfo.MBTI)
     iconHandler()
 
+    useEffect(() => {
+        console.log('first component', userInfo)
+    }, [])
+    useEffect(() => {
+        console.log('update if needed', userInfo)
+    }, [userInfo])
     // AWS will give us data on the customers, when launched will use the data here for customers looking for this professional 
     // This will be a pull from back end point 
     return ( 
@@ -189,7 +195,8 @@ const ProfileHomeScreen = (props) => {
                         Type: The {userInfo.sodalytType}
                     </MTBoldText> : 
                      <MTBoldText style={{fontSize: 16}}>
-                     Type: {userInfo.sodalytPreference}
+                     {/* Change this? */}
+                     Type: {archetype}
                  </MTBoldText>
                     }
                     <MTLightText>
